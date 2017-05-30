@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+                          "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- MyBatis XML 설정 파일(MyBatis설정의 중앙 허브 역할) -->
+<configuration>
+	<typeAliases>
+		<package name="com.abbo.kosta.applier.domain"/>
+		<package name="com.abbo.kosta.docu.domain"/>
+		<package name="com.abbo.kosta.event.domain"/>
+		<package name="com.abbo.kosta.liketruck.domain"/>
+		<package name="com.abbo.kosta.plan.domain"/>
+		<package name="com.abbo.kosta.review.domain"/>
+		<package name="com.abbo.kosta.user.domain"/>
+	</typeAliases>
+</configuration>
