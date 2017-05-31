@@ -22,7 +22,6 @@ public class EventDaoImpl implements EventDao {
 	 */
 	@Override
 	public void create(Event event) {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+event);
 		SqlSession.insert(namespace + ".create", event);
 	}
 	
