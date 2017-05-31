@@ -12,6 +12,8 @@ public interface TruckUserDao {
 	 */
 	public void create(TruckUser truckUser);
 	
+	
+	
 	/**
 	 * 트럭회원 상세보기
 	 * @param truckUserId
@@ -19,17 +21,23 @@ public interface TruckUserDao {
 	 */
 	public TruckUser read(int truckUserId);
 	
+	
+	
 	/**
 	 * 트럭회원 수정
 	 * @param truckUser
 	 */
 	public void update(TruckUser truckUser);
 	
+	
+	
 	/**
 	 * 트럭회원 삭제
 	 * @param truckUserId
 	 */
 	public void delete(int truckUserId);
+	
+	
 	
 	/**
 	 * 트럭회원 목록
