@@ -48,7 +48,7 @@
       <div class="panel panel-default">
         <div class="panel-heading text-center">
           <span><strong><span
-              class="glyphicon glyphicon-folder-open"> </span>  서류 관리</strong></span>
+              class="glyphicon glyphicon-folder-open" style="margin-right: 5px"> </span>  서류 관리</strong></span>
         </div>
         <table class="table table-bordered table-hover vmiddle">
           <thead>
@@ -120,6 +120,9 @@
           </tbody>
         </table>
       </div>
+      <div class="panel panel-default" style="margin-bottom: 30px"> 
+        <div class="panel-heading text-center"></div> 
+      </div>
     </div>
   </div>
 
@@ -127,15 +130,15 @@
   <!--/#footer-->
   
   <!-- Modal -->
-  <div id="registModal" class="modal modal-primary fade" role="dialog" style="background-color: rgba(255, 255, 255, 0.4);">
-    <div class="modal-dialog">
+  <div id="registModal" class="modal modal-primary fade" role="dialog">
+    <div class="modal-dialog modal-md"  style="background-color: #ffffff;">
       <!-- modal content -->
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title"></h4>
       </div>
-      <div class="modal-body" data-docunum>
       <form>
+      <div class="modal-body" data-docunum>
         <p style="font-weight: bolder;">서류파일 : </p><input type="file" class="form-control" style="margin-bottom: 10px;">
         <p style="font-weight: bolder;">만료일자 : </p><input type="date" class="form-control input-md" style="margin-bottom: 10px;">
       </div>
@@ -147,9 +150,9 @@
     </div>
   </div>
 </body>
-<script type="text/javascript" src="../resources/js/jquery.js"></script>
-<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="../resources/js/wow.min.js"></script>
-<script type="text/javascript" src="../resources/js/main.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="/resources/js/wow.min.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>
 </html>

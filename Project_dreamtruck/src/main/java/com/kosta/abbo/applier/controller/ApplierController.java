@@ -4,13 +4,13 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kosta.abbo.HomeController;
 import com.kosta.abbo.applier.service.ApplierService;
 
-@Service
+@Controller
 @RequestMapping("/applier")
 public class ApplierController {
 	

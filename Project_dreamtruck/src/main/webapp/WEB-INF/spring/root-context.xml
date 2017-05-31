@@ -15,7 +15,7 @@
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@192.168.0.27:1521:XE" />
 		<property name="username" value="Dream" />
 		<property name="password" value="Dream" />
 	</bean>
@@ -42,9 +42,10 @@
 	</bean>
 	
 	<!-- 파일 업로드 -->
-	<!-- <bean id="uploadPath" class="java.lang.String">
-		<constructor-arg value="E:\\kosta146\\img" />
-	</bean> -->
+	<bean id="uploadPath" class="java.lang.String">
+		<constructor-arg value="C:\\dt">
+		</constructor-arg>
+	</bean>
 	
 	<context:component-scan base-package="com.kosta.abbo" />
 		
