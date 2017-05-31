@@ -5,8 +5,8 @@
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.kosta.abbo.mapper.EventMapper">
 	<insert id="create" >
-      INSERT into event(event_id,duration, img, start_date, content,title,regdate,gu_id,user_id )
-	  values(event_id_seq.nextval,#{duration},#{img},#{start_date},#{content},#{title},#{regdate},#{gu_id},#{user_id})
+      INSERT into event(event_id,duration, img, start_date, content,title,gu_id,user_id)
+	  values(event_id_seq.nextval,#{duration},#{img},#{startDate},#{content},#{title},#{guId},4)
    </insert>
    
    <select id="read" resultType="com.kosta.abbo.event.domain.Event">
@@ -22,7 +22,7 @@
    
     <select id="listAll" resultType="com.kosta.abbo.event.domain.Event">
    <![CDATA[
-   		select event_id,title,writer,viewcnt
+   		select event_id,title,writer,hit
    		from event
    		where event_id >0
    		order by event_id desc, regdate desc

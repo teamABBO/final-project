@@ -44,7 +44,7 @@
   <!--/#action-->
 
 
-
+<form role="form" method="post">
   <div class="container">
     <div class="row">
       <div class="col-md-6" >
@@ -59,29 +59,32 @@
           <div class="form-group col-md-6">
            <label for="exampleInputEmail1">행사기간</label> <input type="text" name="duration" class="form-control">
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label for="exampleInputEmail1">장소</label> 
-            <input type="text" name="guId" class="form-control">
+             <input type="text" value="서울">
+            <select name="guId">
+              <option value="1">강남구</option>
+              <option value="2">강동구</option>
+              <option value="3">강북구</option>
+              <option value="4">강서구</option>
+            </select>
           </div>
-          
-          <div class="form-group col-md-6">
-            <label for="exampleInputEmail1">행사날짜</label> 
-            <input type="text" name=startDate class="form-control" placeholder="ex) 2017-06-30">
-          </div>
+
+
           <div class="form-group col-md-12">
             <label>내용</label>
             <textarea class="form-control col-md-12" name="content" rows="5"></textarea>
           </div>
           <div class="form-group col-md-12">
             <label for="exampleInputFile">파일 첨부</label> 
-            <input type="file" id="exampleInputFile">
+            <input type="file" name="img">
           </div>
-          <button type="submit" class="btn btn-
- ">등록</button>
+          <button type="submit" class="btn btn-common">등록</button>
         </form>
       </div>
     </div><!-- /row -->
   </div><!-- /container -->
+  </form>
 
 
 

@@ -24,6 +24,15 @@
 <link rel="apple-touch-icon-precomposed"
   href="../resources/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
+<script >
+
+var result = '${msg}';
+if (result == 'success') {
+	alert("처리완료");
+}
+
+
+</script>
 <body>
   <%@include file="../include/header.jsp"%> <!--/#header-->
   
