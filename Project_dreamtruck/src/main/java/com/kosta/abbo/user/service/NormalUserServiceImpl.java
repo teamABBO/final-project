@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.kosta.abbo.dto.LoginDTO;
 import com.kosta.abbo.user.dao.NormalUserDao;
 import com.kosta.abbo.user.domain.NormalUser;
 
@@ -14,6 +15,15 @@ public class NormalUserServiceImpl implements NormalUserService {
 	
 	@Inject
 	private NormalUserDao dao;
+	
+	/**
+	 * 로그인
+	 * @param LoginDTO
+	 */
+	@Override
+	public NormalUser login(LoginDTO dto) {
+		return dao.login(dto);
+	}
 
 	/**
 	 * 일반회원 등록
@@ -60,5 +70,6 @@ public class NormalUserServiceImpl implements NormalUserService {
 	public List<NormalUser> list() {
 		return dao.list();
 	}
+
 
 }

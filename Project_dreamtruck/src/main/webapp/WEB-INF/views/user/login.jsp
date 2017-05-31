@@ -32,20 +32,20 @@
 	<div class="container">
 	<div class="row">
 	 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form">
+		<form action="loginPost" method="post">
 			<fieldset>
 				<br>
 				<br>
 				<hr class="colorgraph">
 				<div class="form-group">
-                    <input type="text" id="name" class="form-control" placeholder="아이디를 입력해 주세요.">
+                    <input type="text" id="id" name="id" class="form-control" placeholder="아이디를 입력해 주세요.">
 				</div>
 				<div class="form-group">
-                    <input type="password" id="paw" class="form-control" placeholder="비밀번호를 입력해 주세요.">
+                    <input type="password" id="pw" name="pw" class="form-control" placeholder="비밀번호를 입력해 주세요.">
 				</div>
 				<span class="button-checkbox">
 					<button type="button" class="btn" data-color="info">아이디 저장</button>
-                    <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+                    <input type="checkbox" name="useCookie" id="useCookie" checked="checked" class="hidden">
 					<a href="find" class="btn btn-link pull-right">아이디  & 비밀번호를 잊어 버리셨습니까?</a>
 				</span>
 				<hr class="colorgraph">

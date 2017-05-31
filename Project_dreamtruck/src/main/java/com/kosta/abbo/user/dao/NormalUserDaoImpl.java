@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kosta.abbo.dto.LoginDTO;
 import com.kosta.abbo.user.domain.NormalUser;
 
 @Repository
@@ -15,6 +16,17 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	@Inject
 	private SqlSession SqlSession;
 	private static final String namespace= "com.kosta.abbo.mapper.NormalUserMapper";
+	
+	
+	/**
+	 * 로그인
+	 * @param LoginDTO
+	 */
+	@Override
+	public NormalUser login(LoginDTO dto) {
+		return SqlSession.selectOne(namespace + ".login",dto);
+	}
+
 	
 	/**
 	 * 일반회원 등록
@@ -61,5 +73,6 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	public List<NormalUser> list() {
 		return null;
 	}
-	
+
+		
 }
