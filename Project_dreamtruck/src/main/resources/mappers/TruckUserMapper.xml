@@ -6,5 +6,13 @@
 <mapper namespace="com.kosta.abbo.mapper.TruckUserMapper">
 	
 	
+	<select id="list" resultType="com.kosta.abbo.user.domain.TruckUser">
+		<![CDATA[
+			select truck_img, truck_Name, truck_Food
+			from users
+			where type = 'truck'
+			order by truck_Name desc
+		]]>
+	</select>
 
 </mapper>
