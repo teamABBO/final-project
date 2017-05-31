@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/font-awesome.min.css" rel="stylesheet">
-    <link href="resources/css/animate.min.css" rel="stylesheet"> 
-    <link href="resources/css/lightbox.css" rel="stylesheet"> 
-	<link href="resources/css/main.css" rel="stylesheet">
-	<link href="resources/css/responsive.css" rel="stylesheet">
+	<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/resources/css/animate.min.css" rel="stylesheet"> 
+    <link href="/resources/css/lightbox.css" rel="stylesheet"> 
+	<link href="/resources/css/main.css" rel="stylesheet">
+	<link href="/resources/css/responsive.css" rel="stylesheet">
 <style type="text/css">
 h1, h3, form{
 	text-align: center;
@@ -27,12 +27,16 @@ function popupOpen(){
 
 	}
 	
-/* function setChildValue(target, name){
-	if(target){
-		
+function setChildValue(target, name){
+	if(target=='place'){
+		document.getElementById("place").value = name;
 	}
-    document.getElementById("place").value = name;
-} */
+	else if(target=='point'){
+		/* document.getElementById("point").value = name; */
+		console.log("좌표 : " + name);
+		console.log("x : " + name.lat);
+	}
+}
 
 
 </script>
@@ -50,6 +54,7 @@ function popupOpen(){
                		<label class="col-md-4 control-label" for="title">제목</label>
                		<div class="col-md-5">
                   		<input id="title" name="title" type="text" placeholder="제목을 입력 해 주세요." class="form-control input-md" required>
+                  		<input id="point" name="point" type="hidden">
                		</div>
             	</div>
             	<div class="form-group">

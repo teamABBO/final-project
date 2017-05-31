@@ -4,17 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>  </title>
+	<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/resources/css/animate.min.css" rel="stylesheet"> 
+    <link href="/resources/css/lightbox.css" rel="stylesheet"> 
+	<link href="/resources/css/main.css" rel="stylesheet">
+	<link href="/resources/css/responsive.css" rel="stylesheet">
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
 <script type = "text/javascript"
  src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAHwzmzrIszazfIsbVDKdROzIYy-UClUFg&callback=initMap&sensor=true&">
 </script>
 <script type = "text/javascript">
 
 var map;
+var address;     //지도에서 클릭한 좌표의 주소
+var point;       //지도에서 클릭한 좌표
 var infowindow = new google.maps.InfoWindow();
 var marker =[];
 var geocoder;
-var geocodemarker = [];
 
 
 var GreenIcon = new google.maps.MarkerImage(
@@ -41,7 +48,6 @@ function initialize(){
 }
 
 function Setmarker(latLng) {
-     
   if (marker.length > 0)
         {
   marker[0].setMap(null); 
@@ -70,8 +76,8 @@ function Setmarker(latLng) {
 
 //클릭 이벤트 발생 시 그 좌표를 주소로 변환하는 함수입니다.
 function codeCoordinate(event) {
-        
  Setmarker(event.latLng);
+ point = event.latLng;
         //이벤트 발생 시 그 좌표에 마커를 생성합니다.
 
         // 좌표를 받아 reverse geocoding(좌표를 주소로 바꾸기)를 실행합니다.
@@ -79,6 +85,7 @@ function codeCoordinate(event) {
   if (status == google.maps.GeocoderStatus.OK)  {
    if (results[1])
    {
+	   address = results[1].formatted_address;
     infowindow.setContent(results[1].formatted_address);
     infowindow.open(map,marker[0]);
                                 //infowindow로 주소를 표시합니다.
@@ -87,6 +94,14 @@ function codeCoordinate(event) {
  });
 }
 //
+$(document).ready(function(){
+	var button = document.getElementById('place');
+	button.onclick = function(){
+		opener.setChildValue('place', address);
+		opener.setChildValue('point', point);
+		window.close();
+	}
+});
  
  
 </script>
@@ -94,6 +109,6 @@ function codeCoordinate(event) {
 <body onload="initialize()">
  
 <div id="map_canvas" style="margin:auto; width:400px; height:400px;"></div>
- 
+<button class="btn btn-common" id="place">확인</button>
 </body>
 </html>

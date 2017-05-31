@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/font-awesome.min.css" rel="stylesheet">
-    <link href="resources/css/animate.min.css" rel="stylesheet"> 
-    <link href="resources/css/lightbox.css" rel="stylesheet"> 
-	<link href="resources/css/main.css" rel="stylesheet">
-	<link href="resources/css/responsive.css" rel="stylesheet">
+	<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/resources/css/animate.min.css" rel="stylesheet"> 
+    <link href="/resources/css/lightbox.css" rel="stylesheet"> 
+	<link href="/resources/css/main.css" rel="stylesheet">
+	<link href="/resources/css/responsive.css" rel="stylesheet">
 <style type="text/css">
 h1, h3{
 	text-align: center;
@@ -44,7 +44,7 @@ td, th{
 		<div class="single-features">
 			<h1>마이페이지</h1>
 			<h3>스케줄 관리</h3>
-			<a href="upload"><button style="float: right; margin-right: 100px;">등록</button></a><br>
+			<a href="upload"><button class="btn btn-common" style="float: right; margin-right: 100px;">등록</button></a><br>
 		</div>
 		<table style="float: left; width: 4%;">
 			<tr>
