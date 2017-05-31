@@ -64,6 +64,7 @@ public class NormalUserController {
 	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session){
 		Object obj = session.getAttribute("login");
 		
+		
 		if(obj != null){
 			NormalUser normalUser = (NormalUser) obj;
 			session.removeAttribute("login");

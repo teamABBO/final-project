@@ -19,6 +19,7 @@ public interface NormalUserDao {
 	 */
 	public void create(NormalUser normalUser);
 	
+	
 	/**
 	 * 일반회원 상세보기
 	 * @param normalUserId

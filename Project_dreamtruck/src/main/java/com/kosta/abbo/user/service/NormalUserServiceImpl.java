@@ -16,6 +16,7 @@ public class NormalUserServiceImpl implements NormalUserService {
 	@Inject
 	private NormalUserDao dao;
 	
+	
 	/**
 	 * 로그인
 	 * @param LoginDTO

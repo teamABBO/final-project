@@ -36,7 +36,6 @@
 	
 	<!-- 인터셉터 -->
 	
-	
 	<beans:bean id="authInterceptor" class="com.kosta.abbo.interceptor.AuthInterceptor"></beans:bean>
 	
 	<beans:bean id="loginInterceptor" class="com.kosta.abbo.interceptor.LoginInterceptor"></beans:bean>

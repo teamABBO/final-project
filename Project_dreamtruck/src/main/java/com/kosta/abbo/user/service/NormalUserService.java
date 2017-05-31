@@ -14,6 +14,7 @@ public interface NormalUserService {
 	public NormalUser login(LoginDTO dto);
 
 	
+	
 	/**
 	 * 일반회원 등록
 	 * @param normalUser

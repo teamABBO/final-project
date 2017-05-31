@@ -18,6 +18,7 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	private static final String namespace= "com.kosta.abbo.mapper.NormalUserMapper";
 	
 	
+	
 	/**
 	 * 로그인
 	 * @param LoginDTO
