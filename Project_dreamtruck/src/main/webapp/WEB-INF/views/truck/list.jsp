@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page session="false" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,54 +50,37 @@
 						<div class="row">
 								<div class="col-md-10 col-sm-8">
 										<div class="row">
-												<div class="col-xs-6 col-sm-6 col-md-4 portfolio-item branded logos">
-														<div class="portfolio-wrapper">
-																<div class="portfolio-single">
-																		<div class="portfolio-thumb">
-																				<img src="../resources/images/portfolio/1.jpg"
-																						class="img-responsive" alt="">
-																		</div>
-																		<div class="portfolio-view">
-																				<ul class="nav nav-pills">
-																						<li><a href="portfolio-details.html"><i
-																										class="fa fa-link"></i></a></li>
-																						<li><a
-																								href="../resources/images/portfolio/1.jpg"
-																								data-lightbox="example-set"><i
-																										class="fa fa-eye"></i></a></li>
-																				</ul>
-																		</div>
-																</div>
-																<div class="portfolio-info">
-																		<div>
-																				<h2 style="float: left">푸드트럭 이름</h2>
-																				<h2 style="float: right">음식종류</h2>
-																		</div>
-																</div>
+										<table class="col-xs-6 col-sm-6 col-md-4 portfolio-item branded logos">
+										
+										<c:forEach items="${list}" var="truckUser">
+											<tr class="portfolio-wrapper">
+												<td class="portfolio-single">
+														<div class="portfolio-thumb">
+															<img src=${truckUser.truckImg } class="img-responsive" alt="">
 														</div>
-												</div>
-
-
-
-												<div
-														class="col-xs-6 col-sm-6 col-md-4 portfolio-item design logos">
-														<div class="portfolio-wrapper">
-																<table class="table table-bordered">
-																		<tr><
-																		</tr>
-																		<tr>
-																				<td></td>
-																		</tr>
-																</table>
-
-																<div class="portfolio-info " style="text-align: left;">
-																		<h2>Sailing Vivamus</h2>
-																</div>
-
+														<div class="portfolio-view">
+															<ul class="nav nav-pills">
+																<li><a href="portfolio-details.html"><i class="fa fa-link"></i></a></li>
+																<li><a href="../resources/images/portfolio/1.jpg" data-lightbox="example-set"><i	class="fa fa-eye"></i></a></li>
+															</ul>
 														</div>
-												</div>
-												<div
-														class="col-xs-6 col-sm-6 col-md-4 portfolio-item branded mobile">
+												</td>	
+												<td class="portfolio-info">
+														<div>
+															<h2 style="float: left">${truckUser.truckName }</h2>
+															<h2 style="float: right">${truckUser.truckFood}</h2>
+														</div>
+												</td>
+											</tr>
+											
+											</c:forEach>
+										</table>
+												
+
+
+
+
+												<div class="col-xs-6 col-sm-6 col-md-4 portfolio-item branded mobile">
 														<div class="portfolio-wrapper">
 																<div class="portfolio-single">
 																		<div class="portfolio-thumb">
