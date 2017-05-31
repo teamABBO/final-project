@@ -20,12 +20,12 @@
    		where event_id = #{event_id}
    </update>
    
-    <select id="listAll" resultType="com.kosta.abbo.event.domain.Event">
+    <select id="list" resultType="com.kosta.abbo.event.domain.Event">
    <![CDATA[
-   		select event_id,title,writer,hit
+   		select event_id,title,user_id,hit
    		from event
    		where event_id >0
-   		order by event_id desc, regdate desc
+   		order by event_id desc
    		]]>
    </select>
 	
