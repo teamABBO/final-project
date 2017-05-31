@@ -14,6 +14,7 @@ public class TruckUserDaoImpl implements TruckUserDao {
 
 	@Inject
 	private SqlSession SqlSession;
+	
 	private static final String namespace= "com.kosta.abbo.mapper.TruckUserMapper";
 	
 	/**
@@ -59,7 +60,7 @@ public class TruckUserDaoImpl implements TruckUserDao {
 	 */
 	@Override
 	public List<TruckUser> list() {
-		return null;
+		return SqlSession.selectList(namespace+".list");
 	}
 	
 }

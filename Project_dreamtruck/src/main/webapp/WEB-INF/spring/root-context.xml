@@ -42,9 +42,10 @@
 	</bean>
 	
 	<!-- 파일 업로드 -->
-	<!-- <bean id="uploadPath" class="java.lang.String">
-		<constructor-arg value="E:\\kosta146\\img" />
-	</bean> -->
+	<bean id="uploadPath" class="java.lang.String">
+		<constructor-arg value="C:\\dt">
+		</constructor-arg>
+	</bean>
 	
 	<context:component-scan base-package="com.kosta.abbo" />
 		
