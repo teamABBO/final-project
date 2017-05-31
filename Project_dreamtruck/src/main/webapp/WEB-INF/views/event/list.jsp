@@ -1,4 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java"   pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,13 +80,16 @@ if (result == 'success') {
             <th>작성자</th>
             <th style="width: 60px">조회수</th>
           </tr>
+          
+          <c:forEach items="${list }" var="event" varStatus="status">
+            <tr>
+              <td>${status.count}</td>
+              <td><a href=''>${event.title }</a></td>
+              <td>${event.userId }</td>
+              <td>${event.hit }</td>
+            </tr>
 
-          <tr>
-            <td>1</td>
-            <td>밤도깨비 야시장</td>
-            <td>여의도</td>
-            <td >100</td>
-          </tr>
+          </c:forEach>
         </table>
 
         <div class="">
