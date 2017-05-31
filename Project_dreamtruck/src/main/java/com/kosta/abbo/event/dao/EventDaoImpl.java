@@ -22,7 +22,7 @@ public class EventDaoImpl implements EventDao {
 	 */
 	@Override
 	public void create(Event event) {
-		
+		SqlSession.insert(namespace + ".create", event);
 	}
 	
 	/**
@@ -32,7 +32,7 @@ public class EventDaoImpl implements EventDao {
 	 */
 	@Override
 	public Event read(int eventId) {
-		return null;
+		return SqlSession.selectOne(namespace + ".read", eventId);
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class EventDaoImpl implements EventDao {
 	 */
 	@Override
 	public void update(Event event) {
-		
+		SqlSession.update(namespace + ".update", event);
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class EventDaoImpl implements EventDao {
 	 */
 	@Override
 	public List<Event> list() {
-		return null;
+		return SqlSession.selectList(namespace + ".list");
 	}
 	
 }
