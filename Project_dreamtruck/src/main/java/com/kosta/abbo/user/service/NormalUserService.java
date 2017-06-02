@@ -22,6 +22,14 @@ public interface NormalUserService {
 	public void create(NormalUser normalUser);
 	
 	/**
+	 * 회원중복 검사
+	 * @param id
+	 * @param pw
+	 * @return
+	 */
+	/*public boolean isMember(String id, String pw);*/
+	
+	/**
 	 * 일반회원 상세보기
 	 * @param normalUserId
 	 * @return
@@ -38,7 +46,7 @@ public interface NormalUserService {
 	 * 일반회원 삭제
 	 * @param normalUserId
 	 */
-	public void delete(int normalUserId);
+	public void delete(String id, String pw);
 	
 	/**
 	 * 일반회원 목록
