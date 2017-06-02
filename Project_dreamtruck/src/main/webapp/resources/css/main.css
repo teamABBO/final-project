@@ -254,7 +254,6 @@
 #header .navbar-brand{
   padding: 0;
   margin-left: 0;
-  margin-top: 18px;
 }
 
 #header .navbar-brand h1{
@@ -658,14 +657,15 @@ ul.sub-menu {
 
 #action, 
 #page-breadcrumb {
-  background-image: url(../images/home/tour-bg.png);
-  background-color: #fbfafa;
+  /* background-image: url(../images/home/tour-bg.png); */
+  background-color: #ffffff;
   background-repeat: repeat-x;
   height: 155px;
   background-position: center;
   display: table;
   position: static;
   width: 100%;
+  padding-bottom: 20px;
 }
 
 .vertical-center{
