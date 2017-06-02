@@ -2,15 +2,23 @@ package com.kosta.abbo.user.dao;
 
 import java.util.List;
 
+import com.kosta.abbo.dto.LoginDTO;
 import com.kosta.abbo.user.domain.NormalUser;
 
 public interface NormalUserDao {
+	
+	/**
+	 * 로그인 
+	 * @param LoginDTO
+	 */
+	public NormalUser login(LoginDTO dto);
 	
 	/**
 	 * 일반회원 등록
 	 * @param NormalUser
 	 */
 	public void create(NormalUser normalUser);
+	
 	
 	/**
 	 * 일반회원 상세보기

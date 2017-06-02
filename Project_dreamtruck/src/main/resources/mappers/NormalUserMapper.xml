@@ -6,5 +6,23 @@
 <mapper namespace="com.kosta.abbo.mapper.NormalUserMapper">
 	
 	
+	<!-- 로그인 -->
+	<select id="login" resultType="com.kosta.abbo.user.domain.NormalUser">
+		select id,pw from users where id = #{id} and pw = #{pw}
+	</select>
+	<!-- 회원가입 -->
+	<!-- <insert id="create">
+	INSERT INTO users
+            (boardid,
+             title,
+             content,
+             writer)
+	VALUES  (boardid_seq.NEXTVAL,
+             #{title},
+             #{content},
+             #{writer})
+	
+	</insert> -->
+	
 
 </mapper>

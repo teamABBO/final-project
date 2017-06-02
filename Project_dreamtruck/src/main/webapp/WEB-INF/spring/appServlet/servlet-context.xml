@@ -40,31 +40,18 @@
 	</beans:bean>
 	
 	<!-- 인터셉터 -->
-	<beans:bean id="sampleInterceptor" class="com.kosta.abbo.interceptor.SampleInterceptor"></beans:bean>
-	<interceptors>
-		<interceptor>
-			<mapping path="/doA"/>
-			<mapping path="/doB"/>
-			<beans:ref bean="sampleInterceptor"/>
-		</interceptor>
-	</interceptors>
 	
-	<!-- <beans:bean id="authInterceptor" class="com.abbo.blog.interceptor.AuthInterceptor"></beans:bean>
-	<beans:bean id="loginInterceptor" class="com.abbo.blog.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="authInterceptor" class="com.kosta.abbo.interceptor.AuthInterceptor"></beans:bean>
+	
+	<beans:bean id="loginInterceptor" class="com.kosta.abbo.interceptor.LoginInterceptor"></beans:bean>
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/user/loginPost"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 		
-		<interceptor>
-			<mapping path="/sboard/register"/>
-			<mapping path="/sboard/modifyPage"/>
-			<mapping path="/sboard/removePage"/>
-			<mapping path="/user/logout"/>
-			<beans:ref bean="authInterceptor"/>
-		</interceptor>
-	</interceptors> -->
+	</interceptors> 
 	
 	<context:component-scan base-package="com.kosta.abbo" />
 	

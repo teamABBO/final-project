@@ -4,7 +4,30 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.kosta.abbo.mapper.EventMapper">
-	
+	<insert id="create" >
+      INSERT into event(event_id,duration, img, start_date, content,title,gu_id,user_id)
+	  values(event_id_seq.nextval,#{duration},#{img},#{startDate},#{content},#{title},#{guId},4)
+   </insert>
+   
+   <select id="read" resultType="com.kosta.abbo.event.domain.Event">
+   		select event_id,title, start_date,duration, gu_id,content,img
+   		from event
+   		where event_id = #{event_id}
+   </select>
+   
+   <update id="update">
+   		update event set title =#{title},start_date =#{start_date},duration =#{duration},gu_id =#{gu_id},content =#{content}, img =#{img}
+   		where event_id = #{event_id}
+   </update>
+   
+    <select id="listAll" resultType="com.kosta.abbo.event.domain.Event">
+   <![CDATA[
+   		select event_id,title,writer,hit
+   		from event
+   		where event_id >0
+   		order by event_id desc, regdate desc
+   		]]>
+   </select>
 	
 
 </mapper>
