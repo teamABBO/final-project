@@ -36,11 +36,13 @@ public class EventController {
 		rttr.addFlashAttribute("msg", "success");
 		
 //		return "event/success";
-		return "redirect:/event/success";
+		return "redirect:/event/list";
 	}
 	@RequestMapping(value="/list", method =RequestMethod.GET)
 	public void listAll(Model model)throws Exception{
 		logger.info("나와라 리스트!!!!");
+		logger.info("!!!!!!!!!!!"+service.list());
+		model.addAttribute("list", service.list());
 	}
 
 }
