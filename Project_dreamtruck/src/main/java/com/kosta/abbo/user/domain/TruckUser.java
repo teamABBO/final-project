@@ -1,6 +1,13 @@
 package com.kosta.abbo.user.domain;
 
 public class TruckUser extends NormalUser {
+	
+	
+	private int userId; //회원 seq
+	private String id; //회원아이디
+	private String name; //회원이름
+	
+	
 	private String truckNum; 	// 차량번호
 	private String truckImg; 	// 트럭 이미지
 	private String truckName; 	// 트럭 상호명
@@ -12,6 +19,49 @@ public class TruckUser extends NormalUser {
 
 	public TruckUser() {
 		setType("truck");
+	}
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+
+
+
+	public TruckUser(String truckNum, String truckImg, String truckName, String truckFood, String truckInfo,
+			String truckDoc, String truckArea, int truckLikecnt) {
+		super();
+		this.truckNum = truckNum;
+		this.truckImg = truckImg;
+		this.truckName = truckName;
+		this.truckFood = truckFood;
+		this.truckInfo = truckInfo;
+		this.truckDoc = truckDoc;
+		this.truckArea = truckArea;
+		this.truckLikecnt = truckLikecnt;
 	}
 
 	public String getTruckNum() {
@@ -78,13 +128,18 @@ public class TruckUser extends NormalUser {
 		this.truckLikecnt = truckLikecnt;
 	}
 
+
 	@Override
 	public String toString() {
-		return "TruckUser [userId=" + super.getUserId() + ", id=" + super.getId() + ", name=" + super.getName()
-				+ ", type=" + super.getType() + ", pw=" + super.getPw() + ", phone=" + super.getPhone() + ", regdat="
-				+ super.getRegdat() + ", likeArea=" + super.getLikeArea() + "truckNum=" + truckNum + ", truckImg="
-				+ truckImg + ", truckName=" + truckName + ", truckFood=" + truckFood + ", truckInfo=" + truckInfo
-				+ ", truckDoc=" + truckDoc + ", truckArea=" + truckArea + "truckLikecnt=" + truckLikecnt + "]";
+		return "TruckUser [userId=" + userId + ", id=" + id + ", name=" + name + ", truckNum=" + truckNum
+				+ ", truckImg=" + truckImg + ", truckName=" + truckName + ", truckFood=" + truckFood + ", truckInfo="
+				+ truckInfo + ", truckDoc=" + truckDoc + ", truckArea=" + truckArea + ", truckLikecnt=" + truckLikecnt
+				+ "]";
 	}
+
+
+
+
+	
 
 }

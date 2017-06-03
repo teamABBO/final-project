@@ -5,14 +5,89 @@
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.kosta.abbo.mapper.TruckUserMapper">
 	
+	<!-- 트럭상세보기 -->
+	<select id="read" resultType="com.kosta.abbo.user.domain.TruckUser">
+		select user_id as userId, id, name, type, truck_img as truckImg, 
+                    truck_Name as truckName, 
+                    truck_Food as truckFood, 
+                    truck_info as truckInfo, 
+                    truck_area as truckArea, 
+                    truck_likecnt as truckLikecnt
+    from users
+    where user_id = #{userId}
+	</select>
 	
+	<!-- 트럭 목록 -->
 	<select id="list" resultType="com.kosta.abbo.user.domain.TruckUser">
-		<![CDATA[
-			select truck_img, truck_Name, truck_Food
+			select user_id as userId, truck_img as truckImg, truck_Name as truckName, truck_Food as truckFood
 			from users
 			where type = 'truck'
 			order by truck_Name desc
-		]]>
+		
 	</select>
+	
+	<!-- 트럭 목록 페이징 처리 -->
+	<select id="listPage" resultType="com.kosta.abbo.user.domain.TruckUser">
+		select page, userId, id, name, type,  truckImg, truckName, truckFood
+		from  (SELECT ROWNUM  page,user_id as userId, id, name, type, truckImg,truckName,truckFood
+           FROM   (SELECT user_id as userId, id, name, type, truck_img as truckImg,truck_Name as truckName,truck_Food as truckFood
+                   FROM   users
+                   where type = 'truck' 
+                   order by truck_Name asc)) 
+		where page BETWEEN #{page} AND #{page} + 9
+	</select>
+	
+	<!-- 트럭목록 페이징 넘버 받아서 처리 -->
+	<select id="listCriteria" resultType="com.kosta.abbo.user.domain.TruckUser">
+		 select page,userId, id, name, type, truckImg, truckName, truckFood
+		from (SELECT ROW_NUMBER() OVER (ORDER BY truck_Name asc) page, user_id as userId, id, name, type, 
+                    truck_img as truckImg,
+                    truck_Name as truckName,
+                    truck_Food as truckFood
+                   FROM   users
+                   where type = 'truck' 
+                   order by truck_Name asc) 
+			where page BETWEEN #{pageStart}+1 AND #{pageStart} + #{perPageNum}
+	</select>
+	
+	<!-- 트럭페이징 카운트 -->
+	<select id="countPaging" resultType="int">
+		select count(truck_name)
+			from   users
+			where  type='truck'
+	</select>
+	
+	<!-- 트럭목록 검색&페이징 -->
+	<select id="listSearch" resultType="com.kosta.abbo.user.domain.TruckUser">
+		select page,userId, id, name, type, truckImg, truckName, truckFood
+		from (SELECT ROW_NUMBER() OVER (ORDER BY truck_Name asc) page, user_id as userId, id, name, type, 
+                    truck_img as truckImg,
+                    truck_Name as truckName,
+                    truck_Food as truckFood
+                   FROM   users
+                   where type = 'truck' 
+                    <include refid="search"></include>
+                   order by truck_Name asc) 
+		where page BETWEEN #{pageStart}+1 AND #{pageStart} + #{perPageNum}
+	</select>
+	<select id="listSearchCount" resultType="int">
+		select count(truck_name)
+		from   users
+		where  type='truck'
+		 <include refid="search"></include>
+	</select>
+	<sql id="search">
+      <if test="searchType != null">
+         <if test="searchType == 'truckName'.toString()">
+            AND truck_name LIKE '%'|| #{keyword} ||'%' 
+         </if>
+         <if test="searchType == 'truckFood'.toString()">
+            AND Truck_food LIKE '%'|| #{keyword} ||'%' 
+         </if>
+         
+      </if>
+   </sql>
+
 
 </mapper>
+

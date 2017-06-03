@@ -676,6 +676,27 @@ ul.sub-menu {
   position: statice;
 }
 
+/**
+혜민 수정 CSS
+*/
+#page-searchcrumb {
+  background-color: #fff;
+  height: 50px;
+  background-position: center;
+  position: static;
+  width: 100%;
+}
+.search-center{
+  vertical-align: middle;
+  width: 100%;
+  position: static;
+  text-align: right;
+}
+
+
+
+
+
 .sun{
   background-image: url(../images/home/tour-icon1.png);
   background-repeat: no-repeat;
@@ -1012,14 +1033,21 @@ ul.elements li > i{
 **************************/
 .portfolio-single {
   position: relative;
+  
 }
 
 .portfolio-thumb {
   position: relative;
+  
 }
 
 .portfolio-thumb img {
-  width: 100%;
+	display: block;
+	max-width: 384px;
+	max-height: 304px;
+	width: 100%;
+	height: 100%;
+  
 }
 
 .portfolio-single:hover .portfolio-view{
@@ -1046,8 +1074,8 @@ ul.elements li > i{
 .portfolio-view .nav-pills {
   padding: 0;
   display: inline-block;
-  margin-top: -26px;
-  top: 50%;
+  margin-top: -50px;
+  top: 20%;
   position: relative;
 }
 
@@ -1064,6 +1092,7 @@ ul.elements li > i{
   line-height: 38px;
   text-align: center;
   padding: 0;
+  margin-top: 150px;
   border-radius: 40px;
   -webkit-animation: scaleIn 400ms linear 100ms both;
   animation: scaleIn 400ms linear 100ms both;
@@ -1152,7 +1181,7 @@ ul.elements li > i{
   border: 1px solid #fff;
 }
 
-.pagination li:first-child a{
+/* .pagination li:first-child a{
   background: url(../images/portfolio/left.png);
   background-repeat: no-repeat;
   text-indent: -999999999px;
@@ -1190,7 +1219,7 @@ ul.elements li > i{
   background-repeat: no-repeat;
   -webkit-transition: 300ms;
   transition: 300ms;
-}
+} */
 
 .pagination li a:hover,
 .pagination .active a,
