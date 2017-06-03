@@ -82,7 +82,7 @@ public class TruckUser extends NormalUser {
 	public String toString() {
 		return "TruckUser [userId=" + super.getUserId() + ", id=" + super.getId() + ", name=" + super.getName()
 				+ ", type=" + super.getType() + ", pw=" + super.getPw() + ", phone=" + super.getPhone() + ", regdat="
-				+ super.getRegdat() + ", likeArea=" + super.getLikeArea() + "truckNum=" + truckNum + ", truckImg="
+				+ super.getRegdate() + ", likeArea=" + super.getLikeArea() + "truckNum=" + truckNum + ", truckImg="
 				+ truckImg + ", truckName=" + truckName + ", truckFood=" + truckFood + ", truckInfo=" + truckInfo
 				+ ", truckDoc=" + truckDoc + ", truckArea=" + truckArea + "truckLikecnt=" + truckLikecnt + "]";
 	}
