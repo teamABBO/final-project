@@ -4,7 +4,7 @@ public class Docu {
 	private int docuId; 		// 서류 seq
 	private String path; 		// 서류 위치
 	private String expdate; 	// 서류 만료 날짜
-	private String docuName; 	// 서류 이름
+	private String docuName; 	// 서류 이름 (Deong, License, Saup, Youngup)
 	private String regdate; 	// 서류 등록 날짜
 	private int userId; 		// 회원번호
 

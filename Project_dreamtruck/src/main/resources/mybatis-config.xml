@@ -5,12 +5,14 @@
 <!-- MyBatis XML 설정 파일(MyBatis설정의 중앙 허브 역할) -->
 <configuration>
 	<typeAliases>
-		<package name="com.abbo.kosta.applier.domain"/>
-		<package name="com.abbo.kosta.docu.domain"/>
-		<package name="com.abbo.kosta.event.domain"/>
-		<package name="com.abbo.kosta.liketruck.domain"/>
-		<package name="com.abbo.kosta.plan.domain"/>
-		<package name="com.abbo.kosta.review.domain"/>
-		<package name="com.abbo.kosta.user.domain"/>
+		<typeAlias type="com.kosta.abbo.applier.domain.Applier" 	alias="Applier"/>
+		<typeAlias type="com.kosta.abbo.docu.domain.Docu" 			alias="Docu"/>
+		<typeAlias type="com.kosta.abbo.event.domain.Event" 		alias="Event"/>
+		<typeAlias type="com.kosta.abbo.liketruck.domain.Liketruck" alias="Liketruck"/>
+		<typeAlias type="com.kosta.abbo.plan.domain.Plan" 			alias="Plan"/>
+		<typeAlias type="com.kosta.abbo.review.domain.Review" 		alias="Review"/>
+		<typeAlias type="com.kosta.abbo.user.domain.NormalUser" 	alias="NormalUser"/>
+		<typeAlias type="com.kosta.abbo.user.domain.TruckUser" 		alias="TruckUser"/>
+		<typeAlias type="com.kosta.abbo.user.domain.EventUser" 		alias="EventUser"/>
 	</typeAliases>
 </configuration>

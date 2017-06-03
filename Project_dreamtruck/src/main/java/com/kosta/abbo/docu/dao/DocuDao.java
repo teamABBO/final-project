@@ -35,6 +35,6 @@ public interface DocuDao {
 	 * 서류 목록
 	 * @return
 	 */
-	public List<Docu> list();
+	public List<Docu> list(int userId);
 
 }

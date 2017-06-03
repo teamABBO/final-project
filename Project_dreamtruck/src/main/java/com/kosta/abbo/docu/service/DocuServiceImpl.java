@@ -57,8 +57,8 @@ public class DocuServiceImpl implements DocuService {
 	 * @return
 	 */
 	@Override
-	public List<Docu> list() {
-		return dao.list();
+	public List<Docu> list(int userId) {
+		return dao.list(userId);
 	}
 
 }

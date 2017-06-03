@@ -4,7 +4,56 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.kosta.abbo.mapper.DocuMapper">
+	<insert id="create">
+		INSERT INTO docu
+	            (docu_id,
+	             path,
+			     expdate,
+			     docu_name,
+			     regdate,
+			     user_id)
+		VALUES  (docu_id_seq.NEXTVAL,
+				 #{path},
+	             #{expdate},
+	             #{docuName},
+	             sysdate,
+	             #{userId})
+	</insert>
 	
+	<select id="read" resultType="Docu">
+		SELECT docu_id docuId,
+	           path,
+			   expdate,
+			   docu_name docuName,
+		       TO_CHAR(regdate, 'YYYY/MM/DD') regdate,
+			   user_id userId
+		FROM   docu 
+		WHERE  docu_id = #{docuId}
+	</select>
 	
-
+	<select id="list" resultType="Docu">
+		SELECT docu_id docuId,
+	           path,
+			   TO_CHAR(expdate, 'YYYY/MM/DD') expdate,
+			   docu_name docuName,
+		       TO_CHAR(regdate, 'YYYY/MM/DD') regdate,
+			   user_id userId
+		FROM   docu 
+ 		WHERE  user_id = #{userId} 
+		ORDER BY expdate ASC
+	</select>
+	
+	<update id="update">
+		UPDATE docu
+		SET    path = #{path},
+			   expdate = #{expdate},
+			   regdate = sysdate
+		WHERE  docu_id = #{docuId}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM docu
+		WHERE  docu_id = #{docuId}
+	</delete>
+	
 </mapper>

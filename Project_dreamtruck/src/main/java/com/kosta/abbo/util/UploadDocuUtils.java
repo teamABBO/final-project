@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.springframework.util.FileCopyUtils;
 
 public class UploadDocuUtils {
-	private static Logger logger = Logger.getLogger(UploadDocuUtils.class);
 	
 	/**
 	 * 경로 생성 메소드
@@ -37,8 +36,6 @@ public class UploadDocuUtils {
 		String userPath = File.separator + userId;
 		
 		makeDir(uploadPath, userPath);
-		
-		logger.info(uploadPath + userPath);
 		
 		return userPath;
 	}

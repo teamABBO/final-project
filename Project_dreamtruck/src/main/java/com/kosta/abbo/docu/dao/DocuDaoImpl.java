@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kosta.abbo.docu.domain.Docu;
 
@@ -13,7 +14,7 @@ import com.kosta.abbo.docu.domain.Docu;
 public class DocuDaoImpl implements DocuDao {
 
 	@Inject
-	private SqlSession SqlSession;
+	private SqlSession sqlSession;
 	private static final String namespace= "com.kosta.abbo.mapper.DocuMapper";
 	
 	/**
@@ -22,7 +23,7 @@ public class DocuDaoImpl implements DocuDao {
 	 */
 	@Override
 	public void create(Docu docu) {
-		
+		sqlSession.insert(namespace + ".create", docu);
 	}
 	
 	/**
@@ -32,7 +33,7 @@ public class DocuDaoImpl implements DocuDao {
 	 */
 	@Override
 	public Docu read(int docuId) {
-		return null;
+		return sqlSession.selectOne(namespace + ".read", docuId);
 	}
 	
 	/**
@@ -41,7 +42,7 @@ public class DocuDaoImpl implements DocuDao {
 	 */
 	@Override
 	public void update(Docu docu) {
-		
+		sqlSession.update(namespace + ".update", docu);
 	}
 	
 	/**
@@ -50,7 +51,7 @@ public class DocuDaoImpl implements DocuDao {
 	 */
 	@Override
 	public void delete(int docuId) {
-		
+		sqlSession.delete(namespace + ".delete", docuId);
 	}
 	
 	/**
@@ -58,8 +59,8 @@ public class DocuDaoImpl implements DocuDao {
 	 * @return
 	 */
 	@Override
-	public List<Docu> list() {
-		return null;
+	public List<Docu> list(int userId) {
+		return sqlSession.selectList(namespace + ".list", userId);
 	}
 	
 }
