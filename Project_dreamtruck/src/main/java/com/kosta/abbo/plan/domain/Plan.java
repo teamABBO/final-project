@@ -4,8 +4,8 @@ public class Plan {
 	private int planId; 	// 스케줄시퀀스
 	private String day; 	// 스케줄요일
 	private String title; 	// 스케줄제목
-	private double x; 		// 스케줄위도
-	private double y; 		// 스케줄경도
+	private String x; 		// 스케줄위도
+	private String y; 		// 스케줄경도
 	private String open; 	// 오픈시간
 	private String close; 	// 마감시간
 	private int userId; 	// 회원번호
@@ -37,19 +37,19 @@ public class Plan {
 		this.title = title;
 	}
 
-	public double getX() {
+	public String getX() {
 		return x;
 	}
 
-	public void setX(double x) {
+	public void setX(String x) {
 		this.x = x;
 	}
 
-	public double getY() {
+	public String getY() {
 		return y;
 	}
 
-	public void setY(double y) {
+	public void setY(String y) {
 		this.y = y;
 	}
 
@@ -82,4 +82,5 @@ public class Plan {
 		return "Plan [planId=" + planId + ", day=" + day + ", title=" + title + ", x=" + x + ", y=" + y + ", open="
 				+ open + ", close=" + close + ", userId=" + userId + "]";
 	}
+
 }
