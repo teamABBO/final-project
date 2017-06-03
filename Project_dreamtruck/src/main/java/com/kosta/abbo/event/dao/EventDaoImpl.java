@@ -7,7 +7,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kosta.abbo.event.domain.Criteria;
 import com.kosta.abbo.event.domain.Event;
+import com.kosta.abbo.event.domain.SearchCriteria;
 
 @Repository
 public class EventDaoImpl implements EventDao {
@@ -61,5 +63,45 @@ public class EventDaoImpl implements EventDao {
 	public List<Event> list() {
 		return SqlSession.selectList(namespace + ".list");
 	}
+
+	/** 페이징*/
+	@Override
+	public List<Event> listPage(int page) {
+		if (page <=0) {
+			page = 1;
+		}
+		page = (page - 1)*10;
+		return SqlSession.selectList(namespace + ".listPage", page);
+	}
+
+	@Override
+	public List<Event> listCriteria(Criteria cri) {
+		return SqlSession.selectList(namespace + ".listCriteria", cri);
+	}
+
+	@Override
+	public int countPaging(Criteria cri) {
+		return SqlSession.selectOne(namespace + ".countPaging", cri);
+	}
+
+	/** 검색 */
+	@Override
+	public List<Event> listSearch(SearchCriteria cri) {
+		return SqlSession.selectList(namespace + ".listSearch", cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) {
+		return SqlSession.selectOne(namespace + ".listSearchCount", cri);
+	}
+
+	/** 조회수 */
+	@Override
+	public void hit(int eventId) {
+		SqlSession.update(namespace + ".hit", eventId);
+		
+	}
+
+	
 	
 }

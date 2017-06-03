@@ -4,30 +4,78 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.kosta.abbo.mapper.EventMapper">
+
+	 <!-- 등록 -->
 	<insert id="create" >
-      INSERT into event(event_id,duration, img, start_date, content,title,gu_id,user_id)
-	  values(event_id_seq.nextval,#{duration},#{img},#{startDate},#{content},#{title},#{guId},4)
+      INSERT into event(event_id,duration, img, start_date, content,title,gu_id,user_id,recruit)
+	  values(event_id_seq.nextval,#{duration},#{img},#{startDate},#{content},#{title},#{guId},4,${recruit})
    </insert>
    
+   <!-- 읽기 -->
    <select id="read" resultType="com.kosta.abbo.event.domain.Event">
-   		select event_id,title, start_date,duration, gu_id,content,img
+   		select event_id eventId,duration, img, start_date startDate, content,title,gu_id guId,user_id userId,recruit
    		from event
    		where event_id = #{event_id}
    </select>
    
+    <!-- 수정 -->
    <update id="update">
-   		update event set title =#{title},start_date =#{start_date},duration =#{duration},gu_id =#{gu_id},content =#{content}, img =#{img}
-   		where event_id = #{event_id}
+   		update event set event_id = #{eventId}, title =#{title},start_date  =#{startDate},duration =#{duration},gu_id =#{guId},content =#{content}, img =#{img}, recruit=#{recruit}
+   		where event_id = #{eventId}
    </update>
-   
-    <select id="list" resultType="com.kosta.abbo.event.domain.Event">
-   <![CDATA[
-   		select event_id,title,user_id,hit
-   		from event
-   		where event_id >0
-   		order by event_id desc
+
+	 <!-- 페이징 -->
+	<select id="countPaging" resultType="int">
+     <![CDATA[
+select count(event_id)
+from event
+where event_id > 0
    		]]>
-   </select>
+	</select>
 	
+	 <!-- 리스트 -->
+	<select id="listSearch" resultType="com.kosta.abbo.event.domain.Event">
+              select page, eventId, title,  userId, hit, id, regdate, recruit
+from(
+SELECT rownum page,eventId,title,userId, hit, id, to_char(regdate, 'yy-mm-dd hh:mi:ss') regdate,recruit
+            FROM  (SELECT
+                          e.event_id eventId,e.title title ,e.user_id userId,e.hit hit ,u.id id, e.regdate,e.recruit
+                   FROM   event e, users u 
+                   where  e.event_id >0 and e.user_id=u.user_id 
+                   <include refid="search"></include> 
+                   order by e.regdate desc) )
+            WHERE  page BETWEEN #{pageStart} AND #{pageStart} + #{perPageNum} - 1
+           order by page asc
+   </select>
+   
+   
+   
+   <select id="listSearchCount" resultType="int">
+      SELECT Count(event_id) 
+      FROM   event 
+      WHERE  event_id> 0 
+      <include refid="search"></include>
+   </select>
+   
+   <sql id="search">
+      <if test="searchType != null">
+         <if test="searchType == 't'.toString()">
+            AND title LIKE '%'|| #{keyword} ||'%' 
+         </if>
+         <if test="searchType == 'c'.toString()">
+            AND content LIKE '%'|| #{keyword} ||'%' 
+         </if>
+         <if test="searchType == 'w'.toString()">
+            AND writer LIKE '%'|| #{keyword} ||'%' 
+         </if>
+      </if>
+   </sql>
+   
+   <!--  조회수  -->
+   <update id="hit">
+      UPDATE event 
+      SET hit = hit + 1
+      WHERE event_id = #{event_id}
+   </update>
 
 </mapper>
