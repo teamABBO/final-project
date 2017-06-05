@@ -22,7 +22,7 @@ public class PlanDaoImpl implements PlanDao {
 	 */
 	@Override
 	public void create(Plan plan) {
-		
+		SqlSession.insert(namespace+".create", plan);
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class PlanDaoImpl implements PlanDao {
 	 */
 	@Override
 	public List<Plan> list() {
-		return null;
+		return SqlSession.selectList(namespace+".list");
 	}
 	
 }

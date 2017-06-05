@@ -12,7 +12,7 @@
 	<link href="/resources/css/responsive.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <script type = "text/javascript"
- src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAHwzmzrIszazfIsbVDKdROzIYy-UClUFg&callback=initMap&sensor=true&">
+ src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAHwzmzrIszazfIsbVDKdROzIYy-UClUFg&callback=initMap&sensor=true">
 </script>
 <script type = "text/javascript">
 
@@ -79,7 +79,7 @@ function codeCoordinate(event) {
  Setmarker(event.latLng);
  point = event.latLng;
         //이벤트 발생 시 그 좌표에 마커를 생성합니다.
-
+var num = new google.maps.LatLng(37.529331802815086,126.95114135742188);
         // 좌표를 받아 reverse geocoding(좌표를 주소로 바꾸기)를 실행합니다.
  geocoder.geocode({'latLng' : event.latLng}, function(results, status) {
   if (status == google.maps.GeocoderStatus.OK)  {
@@ -97,8 +97,8 @@ function codeCoordinate(event) {
 $(document).ready(function(){
 	var button = document.getElementById('place');
 	button.onclick = function(){
-		opener.setChildValue('place', address);
-		opener.setChildValue('point', point);
+		opener.setChildValue('place', address, ${param.num});
+		opener.setChildValue('point', point, ${param.num});
 		window.close();
 	}
 });
