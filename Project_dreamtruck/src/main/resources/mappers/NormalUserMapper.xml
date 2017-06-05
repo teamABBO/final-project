@@ -12,10 +12,10 @@
       				id, 
        			    pw, 
        			  type, 
-       			  name 
+       			  NAME 
 		  FROM   users 
-		  WHERE  id = #{id} 
-      	    AND  pw = #{pw} 
+		  WHERE  id = # {id} 
+      	    AND  pw = # {pw} 
 	</select>
 	
 	<!-- 중복검사 -->
@@ -28,27 +28,27 @@
 	INSERT INTO users 
             (user_id, 
                   id, 
-                name, 
+                NAME, 
                 type, 
                   pw, 
                phone, 
              regdate, 
              like_area) 
 	VALUES  (user_id_seq.nextval, 
-            			  #{id}, 
-          			    #{name}, 
+            			  # {id}, 
+          			    # {name}, 
            			    'normal', 
             			  # {pw}, 
-            		   #{phone}, 
+            		   # {phone}, 
            				 sysdate, 
-            		#{likeArea}) 
+            		# {likeArea}) 
 	</insert> 
 	
 	<!-- 회원탈퇴 -->
 	<delete id="delete" >
 		DELETE FROM users 
-		WHERE  id = #{id} 
-    	   AND pw = #{pw} 
+		WHERE  id = # {id} 
+    	   AND pw = # {pw} 
 	</delete>
 
 </mapper>
