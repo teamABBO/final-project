@@ -36,6 +36,7 @@ public class TruckUserServiceImpl implements TruckUserService {
 		return dao.read(userId);
 	}
 
+	
 	/**
 	 * 트럭회원 수정
 	 * @param truckUser

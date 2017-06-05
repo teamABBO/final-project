@@ -1,5 +1,6 @@
 package com.kosta.abbo.user.domain;
 
+
 public class TruckUser extends NormalUser {
 	
 	

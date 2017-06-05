@@ -8,6 +8,7 @@ import com.kosta.abbo.user.domain.TruckUser;
 
 public interface TruckUserService {
 	
+	
 	/**
 	 * 트럭회원 등록
 	 * @param truckUser
