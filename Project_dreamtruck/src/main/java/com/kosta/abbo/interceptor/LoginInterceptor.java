@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -25,6 +26,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 //			response.sendRedirect("/");
 			Object dest = session.getAttribute("dest");
 			response.sendRedirect(dest != null ? (String)dest:"/");
+		}else if(normalUser == null){
+			logger.info("not user");
+			response.sendRedirect("login");
 		}
 	}
 	

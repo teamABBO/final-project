@@ -14,6 +14,11 @@
 <link href="../resources/css/lightbox.css" rel="stylesheet">
 <link href="../resources/css/main.css" rel="stylesheet">
 <link href="../resources/css/responsive.css" rel="stylesheet">
+<script type="text/javascript" src="../resources/js/jquery.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="../resources/js/wow.min.js"></script>
+<script type="text/javascript" src="../resources/js/main.js"></script>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -42,9 +47,10 @@
 				<br>
 				<h2 style="color: #0fad00">가입성공</h2>
 				<img src="http://osmhotels.com//assets/check-true.jpg">
-				<h2>환영합니다. 000님</h2>
+				<h2>환영합니다.</h2>
 				<br>
 				<p style="font-size: 20px; color: #5C5C5C;">로그인을 하시면 보다 더 많은 서비스를 이용하실 수 있습니다.</p>
+				
 				<br> <a href="login" class="btn btn-common">로그인</a> <br>
 				<br>
 			</div>
@@ -57,10 +63,6 @@
 	<%@include file="../include/footer.jsp"%>
 
 </body>
-<script type="text/javascript" src="../resources/js/jquery.js"></script>
-<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="../resources/js/wow.min.js"></script>
-<script type="text/javascript" src="../resources/js/main.js"></script>
+
 
 </html>

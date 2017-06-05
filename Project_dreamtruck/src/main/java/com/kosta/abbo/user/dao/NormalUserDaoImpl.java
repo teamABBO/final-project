@@ -48,9 +48,8 @@ public class NormalUserDaoImpl implements NormalUserDao {
 
 		paramMap.put("id", id);
 		paramMap.put("pw", pw);
-	
-		SqlSession.delete(namespace+".isMember",paramMap);
-		return true;
+		
+		return SqlSession.selectMap(namespace + ".isMember",paramMap);
 	}*/
 	
 	/**

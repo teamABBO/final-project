@@ -659,8 +659,8 @@ ul.sub-menu {
 
 #action, 
 #page-breadcrumb {
-  background-image: url(../images/home/tour-bg.png);
-  background-color: #fbfafa;
+
+  background-color: #ffffff;
   background-repeat: repeat-x;
   height: 155px;
   background-position: center;
@@ -677,11 +677,22 @@ ul.sub-menu {
 }
 
 .sun{
-  background-image: url(../images/home/tour-icon1.png);
+  background-image: url(../images/home/truckline2.png);
   background-repeat: no-repeat;
   background-position: 100% bottom;
 }
 
+.sun2{
+  background-image: url(../images/home/flight.png);
+  background-repeat: no-repeat;
+  background-position: 100% bottom;
+}
+
+.sun3{
+  background-image: url(../images/home/line1.png);
+  background-repeat: no-repeat;
+  background-position: 100% bottom;
+}
 
 .single-service{
   overflow: hidden;
