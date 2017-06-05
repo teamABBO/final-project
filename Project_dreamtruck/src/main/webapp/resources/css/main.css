@@ -761,6 +761,27 @@ ul.sub-menu {
 
 
 
+/**
+혜민 수정 CSS
+*/
+#page-searchcrumb {
+  background-color: #fff;
+  height: 50px;
+  background-position: center;
+  position: static;
+  width: 100%;
+}
+.search-center{
+  vertical-align: middle;
+  width: 100%;
+  position: static;
+  text-align: right;
+}
+
+
+
+
+
 .sun{
   background-image: url(../images/home/tour-icon1.png);
   background-repeat: no-repeat;
