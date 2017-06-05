@@ -9,18 +9,18 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Truck details | Dream Truck</title>
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="../resources/css/lightbox.css" rel="stylesheet">
-<link href="../resources/css/animate.min.css" rel="stylesheet">
-<link href="../resources/css/main.css" rel="stylesheet">
-<link href="../resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+<link href="/resources/css/lightbox.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet">
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
 
-<script type="text/javascript" src="../resources/js/jquery.js"></script>
-<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="../resources/js/wow.min.js"></script>
-<script type="text/javascript" src="../resources/js/main.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="/resources/js/wow.min.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>

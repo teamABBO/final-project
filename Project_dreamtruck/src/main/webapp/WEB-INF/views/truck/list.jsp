@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 		pageEncoding="utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,25 +7,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type="text/javascript" src="../resources/js/jquery.js"></script>
-<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
 <script type="text/javascript"
-		src="../resources/js/jquery.isotope.min.js"></script>
-<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="../resources/js/wow.min.js"></script>
-<script type="text/javascript" src="../resources/js/main.js"></script>
+		src="/resources/js/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="/resources/js/wow.min.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Truck List | Dream Truck</title>
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="../resources/css/lightbox.css" rel="stylesheet">
-<link href="../resources/css/animate.min.css" rel="stylesheet">
-<link href="../resources/css/main.css" rel="stylesheet">
-<link href="../resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+<link href="/resources/css/lightbox.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet">
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
 
-<link rel="shortcut icon" href="../resources/images/ico/favicon.ico">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 <script>
 	$(document).ready(
 		function () {
@@ -43,7 +42,12 @@
 					
 				});
 			
-			$('#tr').
+			$('#searchType').change(function(){
+				if ('#truckNmae'.checked) {
+					$('#');
+				}
+				
+			});
 		
 		});
 </script>
@@ -89,7 +93,9 @@
 																						음식 종류</option>
 																		</select> 
 																		<input type="text" name="keyword" id="keywordInput" value="${cri.keyword }">
-																		
+																		<select id="foodName" name="foodName">
+																			<option value="korean">한식</option>
+																		</select>
 																		
 																		<button id="trucksearchBtn">검색</button>
 																</div>
