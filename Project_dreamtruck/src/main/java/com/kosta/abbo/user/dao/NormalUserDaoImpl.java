@@ -1,6 +1,8 @@
 package com.kosta.abbo.user.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -28,15 +30,28 @@ public class NormalUserDaoImpl implements NormalUserDao {
 		return SqlSession.selectOne(namespace + ".login",dto);
 	}
 
-	
 	/**
 	 * 일반회원 등록
 	 * @param normalUser
 	 */
 	@Override
 	public void create(NormalUser normalUser) {
-		
+		SqlSession.insert(namespace + ".create",normalUser);
 	}
+	
+	/**
+	 * 회원중복 여부
+	 */
+	/*@Override
+	public boolean isMember(String id, String pw) {
+		Map<String, Object> paramMap = new HashMap<String,Object>();
+
+		paramMap.put("id", id);
+		paramMap.put("pw", pw);
+	
+		SqlSession.delete(namespace+".isMember",paramMap);
+		return true;
+	}*/
 	
 	/**
 	 * 일반회원 상세보기
@@ -62,8 +77,13 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	 * @param normalUserId
 	 */
 	@Override
-	public void delete(int normalUserId) {
+	public void delete(String id, String pw) {
+		Map<String, Object> paramMap = new HashMap<String,Object>();
+
+		paramMap.put("id", id);
+		paramMap.put("pw", pw);
 		
+		SqlSession.delete(namespace+".delete",paramMap);
 	}
 	
 	/**
@@ -74,6 +94,10 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	public List<NormalUser> list() {
 		return null;
 	}
+
+	
+
+	
 
 		
 }

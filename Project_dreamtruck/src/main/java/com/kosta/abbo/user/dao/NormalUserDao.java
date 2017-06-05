@@ -19,6 +19,13 @@ public interface NormalUserDao {
 	 */
 	public void create(NormalUser normalUser);
 	
+	/**
+	 * 회원중복 검사
+	 * @param id
+	 * @param pw
+	 * @return
+	 */
+	/*public boolean isMember(String id, String pw);*/
 	
 	/**
 	 * 일반회원 상세보기
@@ -37,7 +44,7 @@ public interface NormalUserDao {
 	 * 일반회원 삭제
 	 * @param normalUserId
 	 */
-	public void delete(int normalUserId);
+	public void delete(String id, String pw);
 	
 	/**
 	 * 일반회원 목록

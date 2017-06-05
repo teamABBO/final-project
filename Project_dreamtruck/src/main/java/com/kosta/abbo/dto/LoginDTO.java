@@ -3,6 +3,7 @@ package com.kosta.abbo.dto;
 public class LoginDTO {
 	private String id;
 	private String pw;
+
 	private boolean useCookie;
 	
 	// GET SET 메소드
@@ -24,13 +25,9 @@ public class LoginDTO {
 	public void setUseCookie(boolean useCookie) {
 		this.useCookie = useCookie;
 	}
-	
-	// toString
 	@Override
 	public String toString() {
 		return "LoginDTO [id=" + id + ", pw=" + pw + ", useCookie=" + useCookie + "]";
 	}
-	
-	
 	
 }
