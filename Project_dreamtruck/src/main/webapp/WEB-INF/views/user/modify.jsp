@@ -19,9 +19,7 @@
 <%@include file="../include/header.jsp"%>
 	
 	
-    <!--/#action-->
-	<c:choose>
-		<c:when test="${param.type == 'normal'}">
+   
 		
 		<section id="page-breadcrumb">
         <div class="vertical-center sun">
@@ -38,32 +36,16 @@
         </div>
    		</section>
    		
-   			<!-- <div class="col-md-3 col-sm-5">
-                    <div class="sidebar blog-sidebar">
-                        
-                        <div class="sidebar-item categories">
-                        <br>
-                            <h3>마이페이지</h3>
-                            <ul class="nav navbar-stacked">
-                                <li class="active"><a href="#">정보 수정</a></li>
-                                <li><a href="#">스케줄</a></li>
-                                <li><a href="#">관심트럭목록</a></li>
-                                <li><a href="#">서류관리</a></li>
-                                <li><a href="#">내가 쓴 글</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div> -->
                         
    			<!-- 일반 사용자 회원가입 -->
-			<form class="form-horizontal">
-			<fieldset >
+			<form class="form-horizontal" method="post" role="form">
+			<fieldset>
 				<!-- 아이디 -->
 				<div class="form-group">
 				<br><br>
 					<label class="col-md-4 control-label" for="name">아이디</label>
 					<div class="col-md-4">
-						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" disabled>
+						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" required="">
 					</div>
 				</div>
 
@@ -71,7 +53,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="phone">비밀번호</label>
 					<div class="col-md-4">
-						<input id="password" name="password" type="text" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" >
+						<input id="pw" name="pw" type="text" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" required="">
 					</div>
 				</div>
 
@@ -79,7 +61,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="phone">비밀번호 확인</label>
 					<div class="col-md-4">
-						<input id="repassword" name="repassword" type="text" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" >
+						<input id="repw" name="repw" type="text" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" required="">
 					</div>
 				</div>
 			
@@ -88,7 +70,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">전화번호 </label>
 					<div class="col-md-4">
-						<input id="phone" name="phone"  type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" >
+						<input id="phone" name="phone"  type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" required="">
 					</div>
 				</div>
 				
@@ -96,7 +78,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="rpassword">이름</label>
 					<div class="col-md-4">
-						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled>
+						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" required="">
 					</div>
 				</div>
 				
@@ -105,33 +87,33 @@
 					<label class="col-md-4 control-label" for="selectgu">관심 지역</label>
 					<div class="col-md-4">
 
-						<select id="selectgu" name="selectgu" class="form-control">
+						<select id="likeArea" name="likeArea" class="form-control">
 							<option value="">선택 해 주세요.</option>
-							<option value="gangnam">강남구</option>
-							<option value="gangdong">강동구</option>
-							<option value="gangbuk">강북구</option>
-							<option value="gangseo">강서구</option>
-							<option value="gwanak">관악구</option>
-							<option value="gwangjin">광진구</option>
-							<option value="guro">구로구</option>
-							<option value="geumcheon">금천구</option>
-							<option value="nowon">노원구</option>
-							<option value="dobong">도봉구</option>
-							<option value="ddm">동대문구</option>
-							<option value="dongjak">동작구</option>
-							<option value="mapo">마포구</option>
-							<option value="seodaemun">서대문구</option>
-							<option value="seocho">서초구</option>
-							<option value="seongdong">성동구</option>
-							<option value="seongbuk">성북구</option>
-							<option value="songpa">송파구</option>
-							<option value="yangcheon">양천구</option>
-							<option value="ydp">영등포구</option>
-							<option value="yongsan">용산구</option>
-							<option value="ep">은평구</option>
-							<option value="jongno">종로구</option>
-							<option value="junggu">중구</option>
-							<option value="jungnang">중랑구</option>
+							<option value="1">강남구</option>
+							<option value="2">강동구</option>
+							<option value="3">강북구</option>
+							<option value="4">강서구</option>
+							<option value="5">관악구</option>
+							<option value="6">광진구</option>
+							<option value="7">구로구</option>
+							<option value="8">금천구</option>
+							<option value="9">노원구</option>
+							<option value="10">도봉구</option>
+							<option value="11">동대문구</option>
+							<option value="12">동작구</option>
+							<option value="13">마포구</option>
+							<option value="14">서대문구</option>
+							<option value="15">서초구</option>
+							<option value="16">성동구</option>
+							<option value="17">성북구</option>
+							<option value="18">송파구</option>
+							<option value="19">양천구</option>
+							<option value="20">영등포구</option>
+							<option value="21">용산구</option>
+							<option value="22">은평구</option>
+							<option value="23">종로구</option>
+							<option value="24">중구</option>
+							<option value="25">중랑구</option>
 						</select>
 					</div>
 				</div>
@@ -140,17 +122,17 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="save"></label>
 					<div class="col-md-8">
-						<a class="btn btn-danger" href="delete">회원탈퇴</a>
-						<button id="save" name="save" class="btn btn-success">수정</button>
+						<a class="btn btn-common" href="delete">회원 탈퇴</a>
+						<button type="submit" id="save" name="save" class="btn btn-success">수정</button>
 						<a class="btn btn-primary" href="#primary" data-toggle="modal">취소</a>
 					</div>
 				</div>
 			</fieldset>
 			</form>
-		</c:when>
+		
 	
 	
-	<c:when test="${param.type == 'truck' }">
+	<%-- <c:when test="${param.type == 'truck' }">
 	<!-- 트럭 운영자 -->
 	<section id="page-breadcrumb">
         <div class="vertical-center sun">
@@ -447,7 +429,7 @@
 	
 	</c:when>
 	
-	</c:choose>
+	</c:choose> --%>
 	<br>
 	<%@include file="../include/footer.jsp"%>
 	

@@ -7,7 +7,7 @@ public class NormalUser {
 	private String type; 	// 회원 종류 (normal : 일반회원, truck : 트럭운영자, event : 행사운영자)
 	private String pw; 		// 비밀번호
 	private String phone; 	// 전화번호
-	private String regdat; 	// 회원가입 날짜
+	private String regdate; 	// 회원가입 날짜
 	private int likeArea; 	// 관심 지역
 
 	public NormalUser() {
@@ -62,12 +62,12 @@ public class NormalUser {
 		this.phone = phone;
 	}
 
-	public String getRegdat() {
-		return regdat;
+	public String getRegdate() {
+		return regdate;
 	}
 
-	public void setRegdat(String regdat) {
-		this.regdat = regdat;
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 
 	public int getLikeArea() {
@@ -81,7 +81,7 @@ public class NormalUser {
 	@Override
 	public String toString() {
 		return "NormalUser [userId=" + userId + ", id=" + id + ", name=" + name + ", type=" + type + ", pw=" + pw
-				+ ", phone=" + phone + ", regdat=" + regdat + ", likeArea=" + likeArea + "]";
+				+ ", phone=" + phone + ", regdate=" + regdate + ", likeArea=" + likeArea + "]";
 	}
 
 }

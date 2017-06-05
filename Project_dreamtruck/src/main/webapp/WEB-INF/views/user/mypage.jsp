@@ -29,37 +29,18 @@
             </div>
         </div>
    		</section>
-   		
 			<section id="services">
 			<div class="container">
 				<div class="row">
-					<!-- 정보수정 -->
+					<c:choose>
+					<c:when test="${param.type == 'normal' }">
+					
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
 						<div class="single-service2" >
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
-								<img src="../resources/images/regist/normal.png" alt="">
+								<a href="modify"><img src="../resources/images/regist/modify.png" alt=""></a>
 							</div>
 							<h2>정보수정</h2>
-							<br>
-							<form action="modify" method="post">
-								<input type="hidden" id="type" name="type" value="normal">
-								<button type="submit" class="btn btn-common" >클릭</button>
-							</form>
-						</div>
-					</div>
-					
-					<!-- 스케쥴 -->
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
-						<div class="single-service2">
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
-								<img src="../resources/images/regist/truck.png" alt="">
-							</div>
-							<h2>스케쥴</h2>
-							<br>
-							<form action="register" method="post">
-								<input type="hidden" id="type" name="type" value="truck">
-								<button type="submit" class="btn btn-common" >클릭</button>
-							</form>
 						</div>
 					</div>
 					
@@ -67,29 +48,9 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/event.png" alt="">
+								<img src="../resources/images/regist/trucklist.png" alt="">
 							</div>
 							<h2>관심트럭 목록</h2>
-							<br>
-							<form action="../liketruck/list" method="post">
-								<input type="hidden" id="type" name="type" value="event">
-								<button type="submit" class="btn btn-common" >클릭</button>
-							</form>
-						</div>
-					</div>
-					
-					<!-- 서류 관리 -->
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms" style="margin-left: 200px;">
-						<div class="single-service2">
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/event.png" alt="">
-							</div>
-							<h2>서류 관리</h2>
-							<br>
-							<form action="register" method="post">
-								<input type="hidden" id="type" name="type" value="event">
-								<button type="submit" class="btn btn-common" >클릭</button>
-							</form>
 						</div>
 					</div>
 					
@@ -97,16 +58,142 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/event.png" alt="">
+								<img src="../resources/images/regist/myboard.png" alt="">
 							</div>
 							<h2>내가 쓴글</h2>
-							<br>
-							<form action="register" method="post">
-								<input type="hidden" id="type" name="type" value="event">
-								<button type="submit" class="btn btn-common" >클릭</button>
-							</form>
 						</div>
 					</div>
+					</c:when>
+					
+					
+					<c:when test="${param.type == 'truck' }">
+					
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+						<div class="single-service2" >
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
+								<a href="modify"><img src="../resources/images/regist/modify.png" alt=""></a>
+							</div>
+							<h2>정보수정</h2>
+						</div>
+					</div>
+					
+					<!-- 관심트럭 목록 -->
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+						<div class="single-service2">
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+								<img src="../resources/images/regist/trucklist.png" alt="">
+							</div>
+							<h2>관심트럭 목록</h2>
+						</div>
+					</div>
+					
+					<!-- 내가 쓴 글 -->
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+						<div class="single-service2">
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+								<img src="../resources/images/regist/myboard.png" alt="">
+							</div>
+							<h2>내가 쓴글</h2>
+						</div>
+					</div>
+					
+					<!-- 스케쥴 -->
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms" style="margin-left: 200px;">
+						<div class="single-service2">
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
+								<img src="../resources/images/regist/schedule.png" alt="">
+							</div>
+							<h2>스케쥴</h2>
+						</div>
+					</div>
+					
+					<!-- 서류 관리 -->
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+						<div class="single-service2">
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+								<a href=""><img src="../resources/images/regist/docu.png" alt=""></a>
+							</div>
+							<h2>서류 관리</h2>
+						</div>
+					</div>
+					</c:when>
+					
+					<c:when test="${param.type == 'normal' }">
+					
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+						<div class="single-service2" >
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
+								<a href="modify"><img src="../resources/images/regist/modify.png" alt=""></a>
+							</div>
+							<h2>정보수정</h2>
+						</div>
+					</div>
+					
+					<!-- 관심트럭 목록 -->
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+						<div class="single-service2">
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+								<img src="../resources/images/regist/trucklist.png" alt="">
+							</div>
+							<h2>관심트럭 목록</h2>
+						</div>
+					</div>
+					
+					<!-- 내가 쓴 글 -->
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+						<div class="single-service2">
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+								<img src="../resources/images/regist/myboard.png" alt="">
+							</div>
+							<h2>내가 쓴글</h2>
+						</div>
+					</div>
+					</c:when>
+					
+					
+					<c:when test="${param.type == 'event' }">
+					
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+						<div class="single-service2" >
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
+								<a href="modify"><img src="../resources/images/regist/modify.png" alt=""></a>
+							</div>
+							<h2>정보수정</h2>
+						</div>
+					</div>
+					
+					<!-- 관심트럭 목록 -->
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+						<div class="single-service2">
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+								<img src="../resources/images/regist/trucklist.png" alt="">
+							</div>
+							<h2>관심트럭 목록</h2>
+						</div>
+					</div>
+					
+					<!-- 내가 쓴 글 -->
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+						<div class="single-service2">
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+								<img src="../resources/images/regist/myboard.png" alt="">
+							</div>
+							<h2>내가 쓴글</h2>
+						</div>
+					</div>
+					
+					
+					<!-- 서류 관리 -->
+					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms" style="margin-left: 400px;">
+						<div class="single-service2">
+							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+								<a href=""><img src="../resources/images/regist/docu.png" alt=""></a>
+							</div>
+							<h2>서류 관리</h2>
+						</div>
+					</div>
+					</c:when>
+					</c:choose>
 				</div>
 			</div>
 		</section>

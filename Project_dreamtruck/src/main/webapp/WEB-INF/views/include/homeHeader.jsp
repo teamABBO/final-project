@@ -16,9 +16,22 @@
             <c:if test="${not empty login}">
             <div class="social-icons pull-right">
               <ul class="nav nav-pills">
-                <li><a href=#">${login.id} </a></li>
+                <li><a href="#">${login.name} 님 환영합니다 </a></li>
                 <li><a href="#primary" data-toggle="modal">로그아웃</a></li>
-                <li><a href="">내 정보</a></li>
+                <c:choose>
+                <c:when test="${login.type == 'normal'}">
+                <li><a href="user/mypage?type=normal">내 정보</a></li>
+                </c:when>
+                
+                <c:when test="${login.type == 'truck'}">
+                <li><a href="user/mypage?type=truck">내 정보</a></li>
+                </c:when>
+                
+                <c:when test="${login.type == 'event'}">
+                <li><a href="user/mypage?type=event">내 정보</a></li>
+                </c:when>
+                
+                </c:choose>
               </ul>
             </div>
             </c:if>

@@ -38,7 +38,7 @@
 					<div class="single-service2">
 						<form id="idsearch" action="#" method="post" role="form" style="display: block; margin-left: 100px;" >
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/event.png" alt="">
+								<img src="../resources/images/regist/idSearch.png" alt="">
 							</div>
 							<h2>아이디 찾기</h2>
 							<br>
@@ -64,7 +64,7 @@
 					<div class="single-service2">
 						<form id="pwsearch" action="#" method="post" role="form" style="display: block; margin-left: 100px;" >
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/event.png" alt="">
+								<img src="../resources/images/regist/PasswordSearch.png" alt="">
 							</div>
 							<h2>비밀번호 찾기</h2>
 							<br>
