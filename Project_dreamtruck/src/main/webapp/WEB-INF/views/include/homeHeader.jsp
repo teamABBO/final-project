@@ -8,7 +8,7 @@
             <div class="social-icons pull-right">
               <ul class="nav nav-pills">
                 <li><a href="/user/login">로그인</a></li>
-                <li><a href="">회원가입</a></li>
+                <li><a href="/user/registertype">회원가입</a></li>
               </ul>
             </div>
             </c:if>
@@ -16,22 +16,9 @@
             <c:if test="${not empty login}">
             <div class="social-icons pull-right">
               <ul class="nav nav-pills">
-                <li><a href="#">${login.userId} 님 환영합니다 </a></li>
+                <li><a>${login.name} 님 환영합니다 </a></li>
                 <li><a href="#primary" data-toggle="modal">로그아웃</a></li>
-                <c:choose>
-                <c:when test="${login.type == 'normal'}">
-                <li><a href="user/mypage?type=normal">내 정보</a></li>
-                </c:when>
-                
-                <c:when test="${login.type == 'truck'}">
-                <li><a href="user/mypage?type=truck">내 정보</a></li>
-                </c:when>
-                
-                <c:when test="${login.type == 'event'}">
-                <li><a href="user/mypage?type=event">내 정보</a></li>
-                </c:when>
-                
-                </c:choose>
+                <li><a href="/user/mypage?type=${login.type}">내 정보</a></li>
               </ul>
             </div>
             </c:if>
@@ -49,7 +36,7 @@
             </button>
 
             <a class="navbar-brand" href="index.html"> <img
-              src="resources/images/logo.png" alt="logo">
+              src="/resources/images/logo.png" alt="logo">
             </a>
 
           </div>
@@ -58,12 +45,12 @@
               <li class="active"><a href="#">홈</a></li>
               <li><a href="#">회사소개</a></li>
               <li><a href="#">이용안내</a></li>
-              <li><a href="#">트럭소개</a></li>
-              <li class="dropdown"><a href="#">행사 <i
+              <li><a href="/truck/list">트럭소개</a></li>
+              <li class="dropdown"><a>행사 <i
                   class="fa fa-angle-down"></i></a>
                 <ul role="menu" class="sub-menu">
-                  <li><a href="#">목록</a></li>
-                  <li><a href="#">등록</a></li>
+                  <li><a href="/event/list">목록</a></li>
+                  <li><a href="/event/upload">등록</a></li>
                 </ul></li>
               <li><a href="#">트럭지도</a></li>
             </ul>

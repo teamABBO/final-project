@@ -52,4 +52,5 @@ public interface NormalUserDao {
 	 */
 	public List<NormalUser> list();
 
+
 }

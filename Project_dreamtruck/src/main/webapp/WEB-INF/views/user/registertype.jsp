@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,19 +15,31 @@
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
-		<section id="page-breadcrumb">
-        <div class="vertical-center sun">
-             <div class="container">
-                <div class="row">
-                    <div class="action">
-                        <div class="col-sm-12">
-                            <h1 class="title">회원가입</h1>
+	<!-- 배너 -->
+	<br><br>
+  	<section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
+   
+	<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+     <div class="container">
+       <div class="row">
+         <div class="action">
+            <div class="col-sm-12">
+              <h1 class="title">회원가입</h1>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-   		</section>
+        
+   </section>
+   <br>
+   </div>
+   </div>
+   </section>
+    <!-- 배너 -->
    		
 			<section id="services">
 			<div class="container">
@@ -42,9 +53,9 @@
 							<h2>일반 회원</h2>
 							<p>평점 & 리뷰를 등록 할 수 있으며,<br> 원하는 행사나 푸드트럭을 검색 할 수 있다.</p>
 							<br>
-							<form action="register" method="post">
+							<form method="get">
 								<input type="hidden" id="type" name="type" value="normal">
-								<button type="submit" class="btn btn-common" >가입</button>
+								<a type="button" class="btn btn-common" href="normalRegister">가입</a>
 							</form>
 						</div>
 					</div>
@@ -58,9 +69,9 @@
 							<h2>트럭 운영자</h2>
 							<p>영업신청 & 행사신청 등 운영에 필요한 <br>각종 서비스를 제공</p>
 							<br>
-							<form action="register" method="post">
+							<form action="register" method="get">
 								<input type="hidden" id="type" name="type" value="truck">
-								<button type="submit" class="btn btn-common" >가입</button>
+								<a type="button" class="btn btn-common" href="../truck/truckRegister">가입</a>
 							</form>
 						</div>
 					</div>
@@ -74,9 +85,9 @@
 							<h2>행사 운영자</h2>
 							<p>행사를 주최할 수 있으며, <br>푸드트럭 영업자들을 뽑을 수 있다.</p>
 							<br>
-							<form action="register" method="post">
+							<form method="get">
 								<input type="hidden" id="type" name="type" value="event">
-								<button type="submit" class="btn btn-common" >가입</button>
+								<a type="button" class="btn btn-common" href="../event/eventRegister">가입</a>
 							</form>
 						</div>
 					</div>

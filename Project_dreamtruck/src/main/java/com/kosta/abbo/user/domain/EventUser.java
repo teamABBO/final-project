@@ -28,7 +28,7 @@ public class EventUser extends NormalUser {
 	public String toString() {
 		return "EventUser [userId=" + super.getUserId() + ", id=" + super.getId() + ", name=" + super.getName()
 				+ ", type=" + super.getType() + ", pw=" + super.getPw() + ", phone=" + super.getPhone() + ", regdat="
-				+ super.getRegdat() + ", likeArea=" + super.getLikeArea() + "]" + "eventEmail=" + eventEmail
+				+ super.getRegdate() + ", likeArea=" + super.getLikeArea() + ", eventEmail=" + eventEmail
 				+ ", eventDep=" + eventDep + "]";
 	}
 

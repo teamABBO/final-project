@@ -3,28 +3,27 @@ package com.kosta.abbo.user.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
-import javax.servlet.http.HttpServletRequest;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.abbo.HomeController;
-
 import com.kosta.abbo.dto.LoginDTO;
 import com.kosta.abbo.page.domain.Criteria;
 import com.kosta.abbo.page.domain.PageMaker;
 import com.kosta.abbo.page.domain.SearchCriteria;
 import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.service.TruckUserService;
+import com.kosta.abbo.util.UploadUserUtils;
 
 
 
