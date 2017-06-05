@@ -2,7 +2,9 @@ package com.kosta.abbo.event.sevice;
 
 import java.util.List;
 
+import com.kosta.abbo.event.domain.Criteria;
 import com.kosta.abbo.event.domain.Event;
+import com.kosta.abbo.event.domain.SearchCriteria;
 
 public interface EventService {
 	
@@ -36,5 +38,18 @@ public interface EventService {
 	 * @return
 	 */
 	public List<Event> list();
+	
+	/** 페이징 */
+	public List<Event> listCriteria(Criteria cri);
+	public int listCountCriteria(Criteria cri);
+	
+
+	/** 검색 */
+	public List<Event> listSearchCriteria(SearchCriteria cri);
+	public int listSearchCount(SearchCriteria cri);
+
+
+
+
 
 }

@@ -2,7 +2,6 @@
 <%@ page language="java"   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +16,7 @@
 <link href="../resources/css/lightbox.css" rel="stylesheet">
 <link href="../resources/css/main.css" rel="stylesheet">
 <link href="../resources/css/responsive.css" rel="stylesheet">
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
 
 <link rel="shortcut icon" href="../resources/images/ico/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -35,6 +35,21 @@ if (result == 'success') {
 	alert("처리완료");
 }
 
+$(document).ready(
+		function() {
+			$('#searchB').on(
+					"click", function (event) {
+						self.location = "list"
+						+ '${pageMaker.makeQuery(1)}'
+						+"&searchType="
+						+$("select option:selected").val()
+						+"&keyword="+encodeURIComponent($('#keywordInput').val());
+					});
+			$('#newB').on("click", function(evt) {
+				self.location = "upload";
+			});
+		});
+	
 
 </script>
 <body>
@@ -57,61 +72,95 @@ if (result == 'success') {
     <!--/#action-->
 
 
-
 <div class="container">
     <div class="row">
+      <div class="single-features">
       <div class="col-md-12">
-
-        <div class="input-group col-md-4">
-          <input type="text" class="form-control" placeholder="Search" /> 
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <span class=" glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-        </div>
-
-
-
+      <input type="button" class="btn btn-common" id="newB" value="등록" style="float: right;">
+      <br>
+      <br>
+      <br>
         <table class="table table-hover">
           <tr>
             <th style="width: 10px">No.</th>
             <th>행사제목</th>
             <th>작성자</th>
+            <th>모집트럭수</th>
+            <th>신청트럭수</th>
             <th style="width: 60px">조회수</th>
           </tr>
           
           <c:forEach items="${list }" var="event" varStatus="status">
             <tr>
-              <td>${status.count}</td>
-              <td><a href=''>${event.title }</a></td>
-              <td>${event.userId }</td>
+              <td>${event.eventId}</td>
+              <td><a href='/event/detail${pageMaker.makeSearch(pageMaker.cri.page)}&eventId=${event.eventId }'>${event.title }</a></td>
+              <td >${event.userId}</td>
+              <td>${event.recruit}</td>
+              <td>아직못함</td>
               <td>${event.hit }</td>
             </tr>
 
           </c:forEach>
         </table>
+        <form class="form-inline" >
+        <div class="text-center">
+        <div class="form-group"  >
+          <select class="form-control " name="searchType">
+            <option value="n"
+              <c:out value="${cri.searchType == null?'selected':'' }"/>>
+              ---</option>
 
-        <div class="">
-          <button type="submit" class="btn btn-default">등록</button>
+            <option value="t"
+              <c:out value="${cri.searchType eq 't'?'selected':'' }"/>>
+              제목</option>
+
+            <option value="c"
+              <c:out value="${cri.searchType eq 'c'?'selected':'' }"/>>
+              내용</option>
+
+            <option value="w"
+              <c:out value="${cri.searchType eq 'w'?'selected':'' }"/>>
+              작성자</option>
+          </select> 
+          <input type="text" class="form-control " name="keyword" id="keywordInput" value="${cri.keyword }" />
+          <input type="submit" class="btn btn-common" id="searchB"value="검색">
+          
         </div>
+        </div>
+        </form>
+
+<div class="text-center">
+  <ul class="pagination">
+    <c:if test="${pageMaker.prev }">
+      <li><a href="list${pageMaker.makeSearch(pageMakekr.startPage-1 )}">&laquo;</a></li>
+    </c:if>
+    
+    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+      <li 
+        <c:out value="${pageMaker.cri.page == idx?'class=active':''}"/>>
+        <a href="list${pageMaker.makeSearch(idx) }">${idx}</a>
+        </li>
+    </c:forEach>
+    
+    <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+      <li><a href = "list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
+    </c:if>
+  </ul>
+</div>
+        
       </div>
     </div>
   </div>
-
-
-
-  <div class="portfolio-pagination">
-    <ul class="pagination">
-      <li><a href="#">left</a></li>
-      <li class="active"><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">right</a></li>
-    </ul>
   </div>
+
+
+
+
+
+
+
+
+
 
 
 

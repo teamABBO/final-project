@@ -11,6 +11,7 @@ public class Event {
 	private int guId; 			// 위치 번호
 	private int userId; 		// 등록자
 	private int hit;			// 조회수
+	private int recruit;			// 모집트럭수
 
 	public Event() {
 	}
@@ -95,11 +96,19 @@ public class Event {
 		this.hit = hit;
 	}
 
+	public int getRecruit() {
+		return recruit;
+	}
+
+	public void setRecruit(int recruit) {
+		this.recruit = recruit;
+	}
+
 	@Override
 	public String toString() {
 		return "Event [eventId=" + eventId + ", duration=" + duration + ", img=" + img + ", startDate=" + startDate
 				+ ", content=" + content + ", title=" + title + ", regdate=" + regdate + ", guId=" + guId + ", userId="
-				+ userId + ", hit=" + hit + "]";
+				+ userId + ", hit=" + hit + ", recruit=" + recruit + "]";
 	}
 
 }

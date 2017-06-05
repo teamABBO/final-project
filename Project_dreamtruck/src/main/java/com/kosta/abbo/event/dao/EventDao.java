@@ -2,7 +2,9 @@ package com.kosta.abbo.event.dao;
 
 import java.util.List;
 
+import com.kosta.abbo.event.domain.Criteria;
 import com.kosta.abbo.event.domain.Event;
+import com.kosta.abbo.event.domain.SearchCriteria;
 
 public interface EventDao {
 	
@@ -36,5 +38,30 @@ public interface EventDao {
 	 * @return
 	 */
 	public List<Event> list();
-
+	
+	/**
+	 * 페이징 
+	 * @param page
+	 * @return
+	 */
+	public List<Event> listPage(int page);
+	
+	/**
+	 * 페이징
+	 * @param cri
+	 * @return
+	 */
+	public List<Event> listCriteria(Criteria cri);
+	
+	public int countPaging(Criteria cri);
+	
+	
+	/** 검색 */
+	public List<Event> listSearch(SearchCriteria cri);
+	public int listSearchCount(SearchCriteria cri);
+	
+	/** 조회수 */
+	public void hit(int eventId);
+	
+	
 }
