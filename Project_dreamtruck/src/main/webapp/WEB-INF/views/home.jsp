@@ -26,6 +26,7 @@
 </head>
 <!--/head-->
 
+
 <body>
   <div style="background: url(resources/images/h2.png) 0 100% repeat-x, linear-gradient( to bottom, #fc7972, #ffffff );">
     <%@include file="include/homeHeader.jsp"%>
