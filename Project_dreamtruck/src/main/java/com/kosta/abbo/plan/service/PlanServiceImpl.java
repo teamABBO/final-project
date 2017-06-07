@@ -57,8 +57,8 @@ public class PlanServiceImpl implements PlanService {
 	 * @return
 	 */
 	@Override
-	public List<Plan> list() {
-		return dao.list();
+	public List<Plan> list(int userId) {
+		return dao.list(userId);
 	}
 
 }
