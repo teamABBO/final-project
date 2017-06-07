@@ -48,7 +48,7 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
 						<div class="single-service2" >
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
-								<img src="../resources/images/regist/normal.png" alt="">
+								<a href="normalRegister"><img src="../resources/images/regist/normal.png" alt=""></a>
 							</div>
 							<h2>일반 회원</h2>
 							<p>평점 & 리뷰를 등록 할 수 있으며,<br> 원하는 행사나 푸드트럭을 검색 할 수 있다.</p>
@@ -64,14 +64,14 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
-								<img src="../resources/images/regist/truck.png" alt="">
+								<a href="truckRegister"><img src="../resources/images/regist/truck.png" alt=""></a>
 							</div>
 							<h2>트럭 운영자</h2>
 							<p>영업신청 & 행사신청 등 운영에 필요한 <br>각종 서비스를 제공</p>
 							<br>
 							<form action="register" method="get">
 								<input type="hidden" id="type" name="type" value="truck">
-								<a type="button" class="btn btn-common" href="../truck/truckRegister">가입</a>
+								<a type="button" class="btn btn-common" href="truckRegister">가입</a>
 							</form>
 						</div>
 					</div>
@@ -80,14 +80,14 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/event.png" alt="">
+								<a href="eventRegister"><img src="../resources/images/regist/event.png" alt=""></a>
 							</div>
 							<h2>행사 운영자</h2>
 							<p>행사를 주최할 수 있으며, <br>푸드트럭 영업자들을 뽑을 수 있다.</p>
 							<br>
 							<form method="get">
 								<input type="hidden" id="type" name="type" value="event">
-								<a type="button" class="btn btn-common" href="../event/eventRegister">가입</a>
+								<a type="button" class="btn btn-common" href="eventRegister">가입</a>
 							</form>
 						</div>
 					</div>

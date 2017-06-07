@@ -96,7 +96,7 @@
     font-weight: 300;
     padding: 10px 25px;
   }
-
+	
   #action .col-sm-5{
     position: absolute;
 
@@ -1163,7 +1163,7 @@ ul.elements li > i{
   border: 1px solid #fff;
 }
 
-.pagination li:first-child a{
+/* .pagination li:first-child a{
   background: url(../images/portfolio/left.png);
   background-repeat: no-repeat;
   text-indent: -999999999px;
@@ -1201,7 +1201,7 @@ ul.elements li > i{
   background-repeat: no-repeat;
   -webkit-transition: 300ms;
   transition: 300ms;
-}
+} */
 
 .pagination li a:hover,
 .pagination .active a,

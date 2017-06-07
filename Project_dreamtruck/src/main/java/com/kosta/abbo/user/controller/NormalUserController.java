@@ -1,5 +1,6 @@
 package com.kosta.abbo.user.controller;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
@@ -22,14 +23,27 @@ import com.kosta.abbo.HomeController;
 import com.kosta.abbo.dto.LoginDTO;
 import com.kosta.abbo.user.domain.EventUser;
 import com.kosta.abbo.user.domain.NormalUser;
+import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.service.EventUserService;
 import com.kosta.abbo.user.service.NormalUserService;
+import com.kosta.abbo.user.service.TruckUserService;
+import com.kosta.abbo.util.UploadUserUtils;
 
 @Controller
 @RequestMapping("/user/*")
 public class NormalUserController {
+	
 	@Inject
 	private NormalUserService normalService;
+	
+	@Inject
+	private TruckUserService truckService;
+	
+	@Inject
+	private EventUserService eventService;
+	
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -53,8 +67,10 @@ public class NormalUserController {
 		
 		NormalUser normalUser = normalService.login(dto);
 		if(normalUser == null){
+			model.addAttribute("msg","success");
 			return;
 		}
+		/*normalService.checkDocu(normalUser.getUserId());*/
 		model.addAttribute("normalUser",normalUser);
 	}
 	
@@ -96,11 +112,9 @@ public class NormalUserController {
 		logger.info("회원 종류 GET .....");
 	}
 	
-	
-	
 	@RequestMapping(value = "/normalRegister", method = RequestMethod.GET)
 	public void registGET(@ModelAttribute("dto") LoginDTO dto){
-		logger.info("회원가입 POST .....");
+		logger.info("회원가입 GET .....");
 		
 	}
 	
@@ -114,6 +128,70 @@ public class NormalUserController {
 		logger.info(normalUser.toString());
 		
 		normalService.create(normalUser);
+		
+		rttr.addFlashAttribute("msg","success");
+		
+//		return "/user/success";
+		return "redirect:/user/success";
+	}
+	
+	@RequestMapping(value = "/truckRegister", method = RequestMethod.GET)
+	public void truckRegistGET(@ModelAttribute("dto") LoginDTO dto){
+		logger.info("트럭 회원가입 GET .....");		
+	}
+	
+	/**
+	 * 트럭 유저 회원가입
+	 * @param id
+	 * @param truckUser
+	 * @param rttr
+	 * @param file
+	 * @param model
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/truckRegister", method = RequestMethod.POST)
+	public String truckRegistPOST(@RequestParam("id") String id, TruckUser truckUser, RedirectAttributes rttr, MultipartFile file, Model model, HttpServletRequest request) throws Exception{
+		logger.info("트럭 회원가입 POST .....");
+		
+		logger.info("originalName: " + file.getOriginalFilename());
+		logger.info("size : " + file.getSize());
+		logger.info("contentType : " + file.getContentType());
+		
+		String path = request.getServletContext().getRealPath(uploadPath) + "/user";
+
+		String savedName = UploadUserUtils.uploadFile(id, path, file.getOriginalFilename(), file.getBytes());
+				
+		truckService.create(truckUser);
+
+		model.addAttribute("savedName",savedName);
+		model.addAttribute("truckUser",truckUser);
+		logger.info(truckUser.toString());
+		
+		rttr.addFlashAttribute("msg","success");
+		
+//		return "user/success";
+		return "redirect:/user/success";
+	}
+	
+	@RequestMapping(value = "/eventRegister", method = RequestMethod.GET)
+	public void EventRegistGET(@ModelAttribute("dto") LoginDTO dto){
+		logger.info("이벤트 회원가입 GET .....");		
+	}
+	
+	/**
+	 * 이벤트 유저 회원가입
+	 * @param eventUser
+	 * @param rttr
+	 * @return
+	 */
+	@RequestMapping(value = "/eventRegister", method = RequestMethod.POST)
+	public String EventRegistPOST(EventUser eventUser, RedirectAttributes rttr){
+		logger.info("이벤트 회원가입 POST .....");
+		logger.info(eventUser.toString());
+		
+		eventService.create(eventUser);
 		
 		rttr.addFlashAttribute("msg","success");
 		
@@ -172,11 +250,11 @@ public class NormalUserController {
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String deletePOST(@RequestParam("id") String id, @RequestParam("pw") String pw, RedirectAttributes rttr, 
-			HttpSession session,HttpServletResponse response,HttpServletRequest request){
+			HttpSession session,HttpServletResponse response,HttpServletRequest request, Model model){
 		logger.info("회원 탈퇴 POST .....");
 		
 		normalService.delete(id,pw);
-		rttr.addFlashAttribute("msg","success");
+		model.addAttribute("msg","success");
 		Object obj = session.getAttribute("login");
 		
 		
@@ -193,6 +271,9 @@ public class NormalUserController {
 //				service.keepLogin()
 			}
 			
+		}else if(obj == null){
+			model.addAttribute("msg","fale");
+			return "user/delete";
 		}
 		return "user/login";
 	}

@@ -80,7 +80,10 @@
    </div>
    </section>
     <!-- 배너 -->
+   			
    			<!-- 일반 사용자 회원가입 -->
+   			<img alt="" src="../resources/images/home/joinus.png" style="margin-left: 590px; height: 100px;">
+    		<br>
 			<form class="form-horizontal" method="post" role="form">
 			<fieldset>
 				<!-- 아이디 -->

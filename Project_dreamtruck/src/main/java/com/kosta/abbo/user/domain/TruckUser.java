@@ -2,6 +2,7 @@ package com.kosta.abbo.user.domain;
 
 public class TruckUser extends NormalUser {
 	private String truckNum; 	// 차량번호
+	private int sid;
 	private String truckImg; 	// 트럭 이미지
 	private String truckName; 	// 트럭 상호명
 	private String truckFood; 	// 음식 종류
@@ -12,6 +13,14 @@ public class TruckUser extends NormalUser {
 
 	public TruckUser() {
 		setType("truck");
+	}
+
+	public int getSid() {
+		return sid;
+	}
+
+	public void setSid(int sid) {
+		this.sid = sid;
 	}
 
 	public String getTruckNum() {
@@ -81,8 +90,8 @@ public class TruckUser extends NormalUser {
 	@Override
 	public String toString() {
 		return "TruckUser [userId=" + super.getUserId() + ", id=" + super.getId() + ", name=" + super.getName()
-				+ ", type=" + super.getType() + ", pw=" + super.getPw() + ", phone=" + super.getPhone() + ", regdat="
-				+ super.getRegdat() + ", likeArea=" + super.getLikeArea() + "truckNum=" + truckNum + ", truckImg="
+				+ ", type=" + super.getType() + ", pw=" + super.getPw() + ", phone=" + super.getPhone() + ", regdate="
+				+ super.getRegdate() + ", likeArea=" + super.getLikeArea() + "truckNum=" + sid + ",sid=" +  truckNum + ", truckImg="
 				+ truckImg + ", truckName=" + truckName + ", truckFood=" + truckFood + ", truckInfo=" + truckInfo
 				+ ", truckDoc=" + truckDoc + ", truckArea=" + truckArea + "truckLikecnt=" + truckLikecnt + "]";
 	}

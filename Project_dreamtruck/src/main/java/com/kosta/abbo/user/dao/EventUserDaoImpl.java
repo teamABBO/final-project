@@ -22,7 +22,7 @@ public class EventUserDaoImpl implements EventUserDao {
 	 */
 	@Override
 	public void create(EventUser eventUser) {
-		
+		SqlSession.insert(namespace + ".create",eventUser);
 	}
 	
 	/**

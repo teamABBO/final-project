@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,54 +18,11 @@
 <script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
 <script type="text/javascript" src="../resources/js/wow.min.js"></script>
 <script type="text/javascript" src="../resources/js/main.js"></script>
-<script type="text/javascript">
-	$(document).ready(
-			
-			 function() {
-				$(document).on(
-						'change',
-						'.btn-file :file',
-						function() {
-							var input = $(this), label = input.val().replace(
-									/\\/g, '/').replace(/.*\//, '');
-							input.trigger('fileselect', [ label ]);
-						}); 
-				
-				$('.btn-file :file').on(
-						'fileselect',
-						function(event, label) {
-
-							var input = $(this).parents('.input-group').find(
-									':text'), log = label;
-
-							if (input.length) {
-								input.val(log);
-							} else {
-								if (log)
-									alert(log);
-							}
-
-						});
-				
-				function readURL(input) {
-					if (input.files && input.files[0]) {
-						var reader = new FileReader();
-
-						reader.onload = function(e) {
-							$('#img-upload').attr('src', e.target.result);
-						}
-						reader.readAsDataURL(input.files[0]);
-					}
-				}
-				$("#imgInp").change(function() {
-					readURL(this);
-				});
-			});
-</script> 
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
 	
+    
 	<!-- 배너 -->
 	<br><br>
   	<section id="services" style="margin-top: 0px">
@@ -80,7 +36,7 @@
          <div class="action">
             <div class="col-sm-12">
               <h1 class="title">회원가입</h1>
-                            <p>트럭 운영자</p>
+                            <p>행사 운영자</p>
                         </div>
                     </div>
                 </div>
@@ -94,9 +50,11 @@
    </section>
     <!-- 배너 -->
     
-	<form class="form-horizontal" id="form1" action="truckRegister" enctype="multipart/form-data" method="post" role="form">
+    <img alt="" src="../resources/images/home/joinus.png" style="margin-left: 590px; height: 100px;">
+    <br>
+	<form class="form-horizontal" method="post" role="form">
 			<fieldset>
-				 <!-- 아이디 -->
+				<!-- 아이디 -->
 				<div class="form-group">
 				<br><br>
 					<label class="col-md-4 control-label" for="name">아이디</label>
@@ -115,7 +73,7 @@
 
 				<!-- 비밀번호 확인 -->
 				<div class="form-group">
-					<label class="col-md-4 control-label" >비밀번호 확인</label>
+					<label class="col-md-4 control-label">비밀번호 확인</label>
 					<div class="col-md-4">
 						<input id="repw" name="repw" type="password" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" required="">
 					</div>
@@ -126,7 +84,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">전화번호 </label>
 					<div class="col-md-4">
-						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" required="">
+						<input id="phone" name="phone"  type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" required="">
 					</div>
 				</div>
 				
@@ -174,123 +132,21 @@
 					</div>
 				</div>
 				
-				<!-- 영업 지역 -->
+				<!-- 이메일 -->
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="selectgu">영업 지역</label>
+					<label class="col-md-4 control-label" for="email">이메일</label>
 					<div class="col-md-4">
-
-						<select id="truckArea" name="truckArea" class="form-control">
-							<option value="">선택 해 주세요.</option>
-							<option value="1">강남구</option>
-							<option value="2">강동구</option>
-							<option value="3">강북구</option>
-							<option value="4">강서구</option>
-							<option value="5">관악구</option>
-							<option value="6">광진구</option>
-							<option value="7">구로구</option>
-							<option value="8">금천구</option>
-							<option value="9">노원구</option>
-							<option value="10">도봉구</option>
-							<option value="11">동대문구</option>
-							<option value="12">동작구</option>
-							<option value="13">마포구</option>
-							<option value="14">서대문구</option>
-							<option value="15">서초구</option>
-							<option value="16">성동구</option>
-							<option value="17">성북구</option>
-							<option value="18">송파구</option>
-							<option value="19">양천구</option>
-							<option value="20">영등포구</option>
-							<option value="21">용산구</option>
-							<option value="22">은평구</option>
-							<option value="23">종로구</option>
-							<option value="24">중구</option>
-							<option value="25">중랑구</option>
-						</select>
+						<input id="eventEmail" name="eventEmail" type="text" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required="">
 					</div>
 				</div>
 					
-				<!-- 사업자번호 -->
+				<!-- 담당부서명 -->
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="address1">사업자번호</label>
+					<label class="col-md-4 control-label" for="contactname">담당부서명</label>
 					<div class="col-md-4">
-						<input id="sid" name="sid" type="text" placeholder="사업자번호를 입력 해 주세요. " class="form-control input-md" required="">
-
+						<input id="eventDep" name="eventDep" type="text" placeholder="담당부서명을 입력 해 주세요." class="form-control input-md" required="">
 					</div>
 				</div>
-
-				<!-- 차량번호 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="address1">차량번호</label>
-					<div class="col-md-4">
-						<input id="truckNum" name="truckNum" type="text" placeholder="차량번호를 입력 해 주세요." class="form-control input-md">
-					</div>
-				</div>
-
-				<!-- 트럭상호명 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="city">트럭상호명</label>
-					<div class="col-md-4">
-						<input id="truckName" name="truckName" type="text" placeholder="트럭상호명을 입력 해 주세요." class="form-control input-md" required="">
-
-					</div>
-				</div>
-				
-				<!-- 음식 종류 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="selectgu">음식 종류</label>
-					<div class="col-md-4">
-
-						<select id="truckFood" name="truckFood" class="form-control">
-							<option value="">선택 해 주세요.</option>
-							<option value="한식">한식</option>
-							<option value="일식">일식</option>
-							<option value="중식">중식</option>
-							<option value="아프리카">아프리카</option>
-							<option value="동남아">동남아</option>
-							<option value="남미">남미</option>
-							<option value="북미">북미</option>
-							<option value="이탈리아">이탈리아</option>
-							<option value="스페인">스페인</option>
-							<option value="오세아니아">오세아니아</option>
-							<option value="유럽식">유럽식</option>
-							<option value="디저트">디저트</option>
-							<option value="음료">음료</option>
-							<option value="주류">주류</option>
-							<option value="퓨전">퓨전</option>
-						</select>
-					</div>
-				</div>
-				
-				<!-- 트럭 이미지 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="contactphone">트럭 이미지 </label>
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="col-md-5">
-								<div class="form-group">
-									<div class="input-group">
-										<span class="input-group-btn"> 
-										<span class="btn btn-default btn-file" style="margin-left: 15px;">업로드
-									    <input type="file" name="file" id="imgInp">
-										</span>
-										</span> <input type="text" class="form-control" readonly style="margin-left: 20px;" id="truckImg" name="truckImg">
-									</div>
-									<img id='img-upload' style="margin-left: 20px; margin-top: 10px;" />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- 내용 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="info">내용</label>
-					<div class="col-md-5">
-						<textarea rows="8" cols="84" id="truckInfo" name="truckInfo" style="resize: none;"></textarea>
-					</div>
-				</div>-->
-
 				<!-- 버튼 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="save"></label>
@@ -301,12 +157,12 @@
 				</div>
 			</fieldset>
 			</form>
-	
+
 	<br>
 	<%@include file="../include/footer.jsp"%>
 	
 	<!-- Modal -->
-     <div class="modal fade" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="border-bottom: 4px solid #a94442; background-color: #f2dede; color: #a94446;">
@@ -333,14 +189,16 @@
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">취소</button>
                     <a class="btn btn-default" href="../" >확인</a>
                 </div>
-            </div><!-- modal-content -->
-        </div><!-- modal-dialog -->
-    </div><!-- modal -->   
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Modal -->
     </div>
     </div>
     </div>
     
 	
 </body>
+
 
 </html>

@@ -26,7 +26,7 @@
                 <c:when test="${login.type == 'truck'}">
                 <li><a href="user/mypage?type=truck">내 정보</a></li>
                 </c:when>
-                
+               
                 <c:when test="${login.type == 'event'}">
                 <li><a href="user/mypage?type=event">내 정보</a></li>
                 </c:when>

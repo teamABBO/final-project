@@ -23,7 +23,7 @@ public class TruckUserDaoImpl implements TruckUserDao {
 	 */
 	@Override
 	public void create(TruckUser truckUser) {
-		
+		SqlSession.insert(namespace+".create",truckUser);
 	}
 	
 	/**

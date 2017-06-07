@@ -27,8 +27,8 @@ public class EventUser extends NormalUser {
 	@Override
 	public String toString() {
 		return "EventUser [userId=" + super.getUserId() + ", id=" + super.getId() + ", name=" + super.getName()
-				+ ", type=" + super.getType() + ", pw=" + super.getPw() + ", phone=" + super.getPhone() + ", regdat="
-				+ super.getRegdat() + ", likeArea=" + super.getLikeArea() + "]" + "eventEmail=" + eventEmail
+				+ ", type=" + super.getType() + ", pw=" + super.getPw() + ", phone=" + super.getPhone() + ", regdate="
+				+ super.getRegdate() + ", likeArea=" + super.getLikeArea() + "]" + "eventEmail=" + eventEmail
 				+ ", eventDep=" + eventDep + "]";
 	}
 

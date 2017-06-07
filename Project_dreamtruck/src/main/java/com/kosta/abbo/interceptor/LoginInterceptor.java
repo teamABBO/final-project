@@ -28,7 +28,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect(dest != null ? (String)dest:"/");
 		}else if(normalUser == null){
 			logger.info("not user");
-			response.sendRedirect("login");
 		}
 	}
 	
