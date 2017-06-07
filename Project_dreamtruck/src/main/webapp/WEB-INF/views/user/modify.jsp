@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Home | DreamTruck</title>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
@@ -15,28 +15,86 @@
 <link href="../resources/css/main.css" rel="stylesheet">
 <link href="../resources/css/responsive.css" rel="stylesheet">
 </head>
+<script type="text/javascript" src="../resources/js/jquery.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="../resources/js/wow.min.js"></script>
+<script type="text/javascript" src="../resources/js/main.js"></script>
+<script type="text/javascript">
+	$(document).ready(
+			 function() {
+				$(document).on(
+						'change',
+						'.btn-file :file',
+						function() {
+							var input = $(this), label = input.val().replace(
+									/\\/g, '/').replace(/.*\//, '');
+							input.trigger('fileselect', [ label ]);
+						}); 
+				
+				$('.btn-file :file').on(
+						'fileselect',
+						function(event, label) {
+
+							var input = $(this).parents('.input-group').find(
+									':text'), log = label;
+
+							if (input.length) {
+								input.val(log);
+							} else {
+								if (log)
+									alert(log);
+							}
+
+						});
+				
+				function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+
+						reader.onload = function(e) {
+							$('#img-upload').attr('src', e.target.result);
+						}
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
+				$("#imgInp").change(function() {
+					readURL(this);
+				});
+			});
+</script> 
 <body>
 <%@include file="../include/header.jsp"%>
 	
-	
+	<c:choose>
+		<c:when test="${login.type == 'normal'}">
+			<!-- 배너 -->
+	<br><br>
+  	<section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
    
-		
-		<section id="page-breadcrumb">
-        <div class="vertical-center sun">
-             <div class="container">
-                <div class="row">
-                    <div class="action">
-                        <div class="col-sm-12">
-                            <h1 class="title">회원 정보수정</h1>
+	<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+     <div class="container">
+       <div class="row">
+         <div class="action">
+            <div class="col-sm-12">
+              <h1 class="title">회원정보수정</h1>
                             <p>일반 사용자</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-   		</section>
+        
+   </section>
+   <br>
+   </div>
+   </div>
+   </section>
+   <!-- 배너 -->
    		
-                        
    			<!-- 일반 사용자 회원가입 -->
 			<form class="form-horizontal" method="post" role="form">
 			<fieldset>
@@ -45,7 +103,7 @@
 				<br><br>
 					<label class="col-md-4 control-label" for="name">아이디</label>
 					<div class="col-md-4">
-						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" required="">
+						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" value="${login.id}" disabled>
 					</div>
 				</div>
 
@@ -53,7 +111,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="phone">비밀번호</label>
 					<div class="col-md-4">
-						<input id="pw" name="pw" type="text" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" required="">
+						<input id="pw" name="pw" type="password" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" required="">
 					</div>
 				</div>
 
@@ -61,7 +119,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="phone">비밀번호 확인</label>
 					<div class="col-md-4">
-						<input id="repw" name="repw" type="text" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" required="">
+						<input id="repw" name="repw" type="password" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" required="">
 					</div>
 				</div>
 			
@@ -122,32 +180,177 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="save"></label>
 					<div class="col-md-8">
-						<a class="btn btn-common" href="delete">회원 탈퇴</a>
+						<a class="btn btn-danger" href="delete">회원 탈퇴</a>
 						<button type="submit" id="save" name="save" class="btn btn-success">수정</button>
 						<a class="btn btn-primary" href="#primary" data-toggle="modal">취소</a>
 					</div>
 				</div>
 			</fieldset>
 			</form>
+		</c:when>
 		
-	
-	
-	<%-- <c:when test="${param.type == 'truck' }">
-	<!-- 트럭 운영자 -->
+	<c:when test="${login.type == 'event'}">
+	<!-- 배너 -->
+	<br><br>
+  	<section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
+   
 	<section id="page-breadcrumb">
-        <div class="vertical-center sun">
-             <div class="container">
-                <div class="row">
-                    <div class="action">
-                        <div class="col-sm-12">
-                            <h1 class="title">회원 정보수정</h1>
+    <div class="vertical-center sun">
+     <div class="container">
+       <div class="row">
+         <div class="action">
+            <div class="col-sm-12">
+              <h1 class="title">회원정보수정</h1>
+                            <p>행사 운영자</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+   </section>
+   <br>
+   </div>
+   </div>
+   </section>
+   <!-- 배너 -->
+	<form class="form-horizontal">
+			<fieldset>
+				<!-- 아이디 -->
+				<div class="form-group">
+				<br><br>
+					<label class="col-md-4 control-label" for="name">아이디</label>
+					<div class="col-md-4">
+						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" disabled>
+					</div>
+				</div>
+
+				<!-- 비밀번호 -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="phone">비밀번호</label>
+					<div class="col-md-4">
+						<input id="password" name="password" type="text" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md">
+					</div>
+				</div>
+
+				<!-- 비밀번호 확인 -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="phone">비밀번호 확인</label>
+					<div class="col-md-4">
+						<input id="repassword" name="repassword" type="text" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md">
+					</div>
+				</div>
+			
+			
+				<!-- 전화번호 -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="password">전화번호 </label>
+					<div class="col-md-4">
+						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" >
+					</div>
+				</div>
+				
+				<!-- 이름 -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="rpassword">이름</label>
+					<div class="col-md-4">
+						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled>
+					</div>
+				</div>
+				
+				<!-- 관심 지역 -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="selectgu">관심 지역</label>
+					<div class="col-md-4">
+
+						<select id="selectgu" name="selectgu" class="form-control">
+							<option value="">선택 해 주세요.</option>
+							<option value="gangnam">강남구</option>
+							<option value="gangdong">강동구</option>
+							<option value="gangbuk">강북구</option>
+							<option value="gangseo">강서구</option>
+							<option value="gwanak">관악구</option>
+							<option value="gwangjin">광진구</option>
+							<option value="guro">구로구</option>
+							<option value="geumcheon">금천구</option>
+							<option value="nowon">노원구</option>
+							<option value="dobong">도봉구</option>
+							<option value="ddm">동대문구</option>
+							<option value="dongjak">동작구</option>
+							<option value="mapo">마포구</option>
+							<option value="seodaemun">서대문구</option>
+							<option value="seocho">서초구</option>
+							<option value="seongdong">성동구</option>
+							<option value="seongbuk">성북구</option>
+							<option value="songpa">송파구</option>
+							<option value="yangcheon">양천구</option>
+							<option value="ydp">영등포구</option>
+							<option value="yongsan">용산구</option>
+							<option value="ep">은평구</option>
+							<option value="jongno">종로구</option>
+							<option value="junggu">중구</option>
+							<option value="jungnang">중랑구</option>
+						</select>
+					</div>
+				</div>
+				
+				<!-- 이메일 -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="email">이메일</label>
+					<div class="col-md-4">
+						<input id="email" name="email" type="text" placeholder="이메일을 입력 해 주세요." class="form-control input-md" >
+					</div>
+				</div>
+					
+				<!-- 담당부서명 -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="contactname">담당부서명</label>
+					<div class="col-md-4">
+						<input id="dep" name="dep" type="text" placeholder="담당부서명을 입력 해 주세요." class="form-control input-md">
+					</div>
+				</div>
+				<!-- 버튼 -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="save"></label>
+					<div class="col-md-8">
+						<a class="btn btn-danger" href="delete">회원 탈퇴</a>
+						<button id="save" name="save" class="btn btn-success">가입</button>
+						<a class="btn btn-primary" href="#primary" data-toggle="modal">취소</a>
+					</div>
+				</div>
+			</fieldset>
+			</form>
+		</c:when>
+		
+		<c:when test="${login.type == 'truck' }">
+	<!-- 배너 -->
+	<br><br>
+  	<section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
+   
+	<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+     <div class="container">
+       <div class="row">
+         <div class="action">
+            <div class="col-sm-12">
+              <h1 class="title">회원정보수정</h1>
                             <p>트럭 운영자</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-   		</section>
+        
+   </section>
+   <br>
+   </div>
+   </div>
+   </section>
+   <!-- 배너 -->
 	<form class="form-horizontal">
 			<fieldset>
 				<!-- 아이디 -->
@@ -293,7 +496,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="save"></label>
 					<div class="col-md-8">
-						<button id="save" name="save" class="btn btn-danger">회원탈퇴</button>
+						<a class="btn btn-danger" href="delete">회원 탈퇴</a>
 						<button id="save" name="save" class="btn btn-success">가입</button>
 						<a class="btn btn-primary" href="#primary" data-toggle="modal">취소</a>
 					</div>
@@ -302,134 +505,7 @@
 			</form>
 	
 	</c:when>
-	
-	
-	<c:when test="${param.type == 'event' }">
-	<!-- 행사 운영자 -->
-	<section id="page-breadcrumb">
-        <div class="vertical-center sun">
-             <div class="container">
-                <div class="row">
-                    <div class="action">
-                        <div class="col-sm-12">
-                            <h1 class="title">회원 정보수정</h1>
-                            <p>행사 운영자</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-   		</section>
-	<form class="form-horizontal">
-			<fieldset>
-				<!-- 아이디 -->
-				<div class="form-group">
-				<br><br>
-					<label class="col-md-4 control-label" for="name">아이디</label>
-					<div class="col-md-4">
-						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" disabled>
-					</div>
-				</div>
-
-				<!-- 비밀번호 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="phone">비밀번호</label>
-					<div class="col-md-4">
-						<input id="password" name="password" type="text" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md">
-					</div>
-				</div>
-
-				<!-- 비밀번호 확인 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="phone">비밀번호 확인</label>
-					<div class="col-md-4">
-						<input id="repassword" name="repassword" type="text" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md">
-					</div>
-				</div>
-			
-			
-				<!-- 전화번호 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="password">전화번호 </label>
-					<div class="col-md-4">
-						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" >
-					</div>
-				</div>
-				
-				<!-- 이름 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="rpassword">이름</label>
-					<div class="col-md-4">
-						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled>
-					</div>
-				</div>
-				
-				<!-- 관심 지역 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="selectgu">관심 지역</label>
-					<div class="col-md-4">
-
-						<select id="selectgu" name="selectgu" class="form-control">
-							<option value="">선택 해 주세요.</option>
-							<option value="gangnam">강남구</option>
-							<option value="gangdong">강동구</option>
-							<option value="gangbuk">강북구</option>
-							<option value="gangseo">강서구</option>
-							<option value="gwanak">관악구</option>
-							<option value="gwangjin">광진구</option>
-							<option value="guro">구로구</option>
-							<option value="geumcheon">금천구</option>
-							<option value="nowon">노원구</option>
-							<option value="dobong">도봉구</option>
-							<option value="ddm">동대문구</option>
-							<option value="dongjak">동작구</option>
-							<option value="mapo">마포구</option>
-							<option value="seodaemun">서대문구</option>
-							<option value="seocho">서초구</option>
-							<option value="seongdong">성동구</option>
-							<option value="seongbuk">성북구</option>
-							<option value="songpa">송파구</option>
-							<option value="yangcheon">양천구</option>
-							<option value="ydp">영등포구</option>
-							<option value="yongsan">용산구</option>
-							<option value="ep">은평구</option>
-							<option value="jongno">종로구</option>
-							<option value="junggu">중구</option>
-							<option value="jungnang">중랑구</option>
-						</select>
-					</div>
-				</div>
-				
-				<!-- 이메일 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="email">이메일</label>
-					<div class="col-md-4">
-						<input id="email" name="email" type="text" placeholder="이메일을 입력 해 주세요." class="form-control input-md" >
-					</div>
-				</div>
-					
-				<!-- 담당부서명 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="contactname">담당부서명</label>
-					<div class="col-md-4">
-						<input id="dep" name="dep" type="text" placeholder="담당부서명을 입력 해 주세요." class="form-control input-md">
-					</div>
-				</div>
-				<!-- 버튼 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="save"></label>
-					<div class="col-md-8">
-						<button id="save" name="save" class="btn btn-danger">회원탈퇴</button>
-						<button id="save" name="save" class="btn btn-success">가입</button>
-						<a class="btn btn-primary" href="#primary" data-toggle="modal">취소</a>
-					</div>
-				</div>
-			</fieldset>
-			</form>
-	
-	</c:when>
-	
-	</c:choose> --%>
+	</c:choose>
 	<br>
 	<%@include file="../include/footer.jsp"%>
 	
@@ -471,53 +547,5 @@
     
 	
 </body>
-<script type="text/javascript" src="../resources/js/jquery.js"></script>
-<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="../resources/js/wow.min.js"></script>
-<script type="text/javascript" src="../resources/js/main.js"></script>
-<script type="text/javascript">
-	$(document).ready(
-			
-			 function() {
-				$(document).on(
-						'change',
-						'.btn-file :file',
-						function() {
-							var input = $(this), label = input.val().replace(
-									/\\/g, '/').replace(/.*\//, '');
-							input.trigger('fileselect', [ label ]);
-						}); 
-				
-				$('.btn-file :file').on(
-						'fileselect',
-						function(event, label) {
 
-							var input = $(this).parents('.input-group').find(
-									':text'), log = label;
-
-							if (input.length) {
-								input.val(log);
-							} else {
-								if (log)
-									alert(log);
-							}
-
-						});
-				
-				function readURL(input) {
-					if (input.files && input.files[0]) {
-						var reader = new FileReader();
-
-						reader.onload = function(e) {
-							$('#img-upload').attr('src', e.target.result);
-						}
-						reader.readAsDataURL(input.files[0]);
-					}
-				}
-				$("#imgInp").change(function() {
-					readURL(this);
-				});
-			});
-</script> 
 </html>

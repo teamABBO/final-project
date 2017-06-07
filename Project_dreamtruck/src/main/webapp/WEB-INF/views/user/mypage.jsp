@@ -16,19 +16,31 @@
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
-		<section id="page-breadcrumb">
-        <div class="vertical-center sun">
-             <div class="container">
-                <div class="row">
-                    <div class="action">
-                        <div class="col-sm-12">
-                            <h1 class="title">마이페이지</h1>
+		<!-- 배너 -->
+	<br>
+  	<section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
+   
+	<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+     <div class="container">
+       <div class="row">
+         <div class="action">
+            <div class="col-sm-12">
+              <h1 class="title">마이페이지</h1>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-   		</section>
+        
+   </section>
+   <br>
+   </div>
+   </div>
+   </section>
+    <!-- 배너 -->
 			<section id="services">
 			<div class="container">
 				<div class="row">
@@ -48,7 +60,7 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/trucklist.png" alt="">
+								<a href=""><img src="../resources/images/regist/trucklist.png" alt=""></a>
 							</div>
 							<h2>관심트럭 목록</h2>
 						</div>
@@ -58,7 +70,7 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/myboard.png" alt="">
+								<a href=""><img src="../resources/images/regist/myboard.png" alt=""></a>
 							</div>
 							<h2>내가 쓴글</h2>
 						</div>
@@ -81,7 +93,7 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/trucklist.png" alt="">
+								<a href=""><img src="../resources/images/regist/trucklist.png" alt=""></a>
 							</div>
 							<h2>관심트럭 목록</h2>
 						</div>
@@ -91,7 +103,7 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/myboard.png" alt="">
+								<a href=""><img src="../resources/images/regist/myboard.png" alt=""></a>
 							</div>
 							<h2>내가 쓴글</h2>
 						</div>
@@ -101,7 +113,7 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms" style="margin-left: 200px;">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
-								<img src="../resources/images/regist/schedule.png" alt="">
+								<a href=""><img src="../resources/images/regist/schedule.png" alt=""></a>
 							</div>
 							<h2>스케쥴</h2>
 						</div>
@@ -133,7 +145,7 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/trucklist.png" alt="">
+								<a href=""><img src="../resources/images/regist/trucklist.png" alt=""></a>
 							</div>
 							<h2>관심트럭 목록</h2>
 						</div>
@@ -143,7 +155,7 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/myboard.png" alt="">
+								<a href=""><img src="../resources/images/regist/myboard.png" alt=""></a>
 							</div>
 							<h2>내가 쓴글</h2>
 						</div>
@@ -166,7 +178,7 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/trucklist.png" alt="">
+								<a href=""><img src="../resources/images/regist/trucklist.png" alt=""></a>
 							</div>
 							<h2>관심트럭 목록</h2>
 						</div>
@@ -176,7 +188,7 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/myboard.png" alt="">
+								<a href=""><img src="../resources/images/regist/myboard.png" alt=""></a>
 							</div>
 							<h2>내가 쓴글</h2>
 						</div>

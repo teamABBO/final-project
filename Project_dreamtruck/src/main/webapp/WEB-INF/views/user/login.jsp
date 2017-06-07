@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Home | DreamTruck</title>
 <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="../resources/css/animate.min.css" rel="stylesheet"> 
@@ -13,12 +13,22 @@
 <link href="../resources/css/main.css" rel="stylesheet">
 <link href="../resources/css/responsive.css" rel="stylesheet">
 <script type="text/javascript" src="../resources/js/jquery.js"></script>
-		<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-		<script type="text/javascript" src="../resources/js/wow.min.js"></script>
-		<script type="text/javascript" src="../resources/js/main.js"></script>  
-		<script type="text/javascript">
+<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="../resources/js/wow.min.js"></script>
+<script type="text/javascript" src="../resources/js/main.js"></script>  
+<script >
+
+var result = '${msg}';
+if (result == 'success') {
+   alert("처리완료");
+}
+
+</script>
+		
+		<!-- <script type="text/javascript">
 		$(function(){
+			
 		    $('.button-checkbox').each(function(){
 				var $widget = $(this),
 					$button = $widget.find('button'),
@@ -43,7 +53,7 @@
 					updateDisplay();
 				});
 
-				function updateDisplay() {
+				 function updateDisplay() {
 					var isChecked = $checkbox.is(':checked');
 					// Set the button's state
 					$button.data('state', (isChecked) ? "on" : "off");
@@ -65,7 +75,7 @@
 							.removeClass('btn-' + color + ' active')
 							.addClass('btn-default');
 					}
-				}
+				} 
 				function init() {
 					updateDisplay();
 					// Inject the icon if applicable
@@ -76,7 +86,31 @@
 				init();
 			});
 		});
-</script>
+</script> -->
+<style type="text/css">
+.box-radius {
+   width : 550px;
+   padding: 10px;
+   border: 1px solid #cc0000;
+   border-radius: 30px;
+   -moz-border-radius: 30px;
+   -webkit-border-radius: 30px;
+   -o-border-radius: 30px;
+}
+
+.box-radius2 {
+   width : 200px;
+   height : 50px;
+   padding: 15px;
+   border: 1px solid ;
+   border-radius: 30px;
+   margin-left : 60px;
+   -moz-border-radius: 30px;
+   -webkit-border-radius: 30px;
+   -o-border-radius: 30px;
+}
+
+</style>
 </head>
 
 <body>
@@ -109,28 +143,33 @@
     <!-- 배너 -->
     
     <!-- 본문 -->
+    <br>
+    <img alt="" src="../resources/images/home/welcome.png" style="margin-left: 590px; height: 100px;">
+    <br>
 	<div class="container">
 	<div class="row">
 	 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+	 
 		<form action="loginPost" method="post" onsubmit="return check();">
 			<fieldset>
 				<br>
 				<br>
+			
 				<div class="form-group">
-                    <input type="text" id="id" name="id" class="form-control" placeholder="아이디를 입력해 주세요.">
+                    <input type="text" id="id" name="id" class="box-radius" placeholder="아이디를 입력해 주세요.">
 				</div>
 				<div class="form-group">
-                    <input type="password" id="pw" name="pw" class="form-control" placeholder="비밀번호를 입력해 주세요.">
+                    <input type="password" id="pw" name="pw" class="box-radius" placeholder="비밀번호를 입력해 주세요.">
 				</div>
 				<span class="button-checkbox">
-					<button type="button" class="btn" data-color="info">아이디 저장</button>
+					<!-- <button type="button" class="btn" data-color="info">아이디 저장</button> -->
                     <input type="checkbox" name="useCookie" id="useCookie" checked="checked" class="hidden">
-					<a href="find" class="btn btn-link pull-right">아이디  & 비밀번호를 잊어 버리셨습니까?</a>
+					<!-- <a href="find" class="btn btn-link pull-right">아이디  & 비밀번호를 잊어 버리셨습니까?</a> -->
+					
 				</span>
 				<div class="row">
-				<hr/>
 					<div class="col-xs-6 col-sm-6 col-md-6">
-                        <input type="submit" class="btn btn-lg btn-success btn-block" value="로그인">
+                        <!-- <input type="submit" class="btn btn-lg btn-success btn-block" value="로그인"> -->
 					</div>
 					
 				<!-- 유효성 검사 -->
@@ -143,7 +182,7 @@
 					}
 					
 					if($.trim($("#pw").val())==""){
-						alert("비번을 입력하세요!");
+						alert("비밀번호를 입력하세요!");
 						$("#pw").val("").focus();
 						return false;
 					}
@@ -151,8 +190,13 @@
 				</script>	
 				
 					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a href="registertype" class="btn btn-lg btn-primary btn-block">회원가입</a>
+						<input type="submit" class="btn btn-lg btn-common box-radius2" value="로그인">
+						
+						<!-- <a href="registertype" class="btn btn-lg btn-primary btn-block">회원가입</a> -->
 					</div>
+					<br><br><br>
+					<a href="find" class="btn btn-link" style="margin-left: 50px;">아이디  & 비밀번호를 잊어 버리셨습니까?</a>
+					<a href="registertype" class="btn btn-link" style="margin-left: 100px; color: #fd9483;">회원가입</a>
 				</div>
 				</fieldset>
 			</form>

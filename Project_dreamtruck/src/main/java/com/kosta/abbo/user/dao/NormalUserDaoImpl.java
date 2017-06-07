@@ -94,7 +94,11 @@ public class NormalUserDaoImpl implements NormalUserDao {
 		return null;
 	}
 
-	
+	@Override
+	public void checkDocu(int userId) {
+	   SqlSession.update(namespace + ".checkDocu", userId);
+	}
+
 
 	
 

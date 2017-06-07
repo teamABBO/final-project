@@ -77,7 +77,11 @@ public class NormalUserServiceImpl implements NormalUserService {
 		return dao.list();
 	}
 
-	
+	@Override
+	public void checkDocu(int userId) {
+		   dao.checkDocu(userId);
+		}
+
 
 
 }

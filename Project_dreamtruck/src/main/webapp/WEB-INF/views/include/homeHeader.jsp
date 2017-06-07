@@ -16,7 +16,7 @@
             <c:if test="${not empty login}">
             <div class="social-icons pull-right">
               <ul class="nav nav-pills">
-                <li><a>${login.name} 님 환영합니다 </a></li>
+                <li><a href="#">${login.name} 님 환영합니다 </a></li>
                 <li><a href="#primary" data-toggle="modal">로그아웃</a></li>
                 <li><a href="/user/mypage?type=${login.type}">내 정보</a></li>
               </ul>

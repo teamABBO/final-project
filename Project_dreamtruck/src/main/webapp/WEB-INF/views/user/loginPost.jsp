@@ -17,7 +17,15 @@
 
 <body>
 <script type="text/javascript">
-self.location = "../";
+var result = '${msg}';
+if (result == 'success') {
+   alert("회원정보를 확인 해 주세요.");
+   self.location = "login";
+}else{
+   self.location = "../";
+}
+
+
 </script>
 </body>
 <script type="text/javascript" src="../resources/js/jquery.js"></script>

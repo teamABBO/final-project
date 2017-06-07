@@ -50,5 +50,17 @@
 		WHERE  id = #{id}
     	   AND pw = #{pw}
 	</delete>
+	
+	<update id="checkDocu">
+   UPDATE users
+      SET truck_doc = 'o'
+      WHERE (SELECT count(*)
+             FROM (SELECT docu_id
+                   FROM docu
+                   WHERE user_id = "#{userId}" AND expdate > sysdate
+                   )
+           ) = 4;
+</update>
+	
 
 </mapper>

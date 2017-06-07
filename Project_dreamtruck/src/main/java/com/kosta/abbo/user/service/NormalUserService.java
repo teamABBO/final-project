@@ -21,13 +21,6 @@ public interface NormalUserService {
 	 */
 	public void create(NormalUser normalUser);
 	
-	/**
-	 * 회원중복 검사
-	 * @param id
-	 * @param pw
-	 * @return
-	 */
-	/*public boolean isMember(String id, String pw);*/
 	
 	/**
 	 * 일반회원 상세보기
@@ -53,5 +46,9 @@ public interface NormalUserService {
 	 * @return
 	 */
 	public List<NormalUser> list();
+	
+
+	public void checkDocu(int userId);
+
 
 }
