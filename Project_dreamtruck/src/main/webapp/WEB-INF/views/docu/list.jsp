@@ -99,18 +99,21 @@
 			}
 		});
 		
+		/* 등록버튼 */
 		$(".btn-primary").on("click", function() {
 			console.log($(this).parent().parent().parent().parent().attr("id"));
 			var downName = $(this).parent().parent().parent().parent().attr("id");
 			$("[name='docuName']").attr("value", downName);
 		});
 		
+		/* 수정버튼 */
 		$(".btn-success").on("click", function() {
 			var downName = $(this).parent().parent().parent().parent().attr("id");
 			$("[name='docuName']").attr("value", downName);
 			$("[name='docuId']").attr("value", $(this).attr("data-id"));
 			$("[name='path']").attr("value", $(this).attr("data-path"));
 		});
+		
 	});
 </script>
 </head>
@@ -126,7 +129,7 @@
           <div class="action">
             <div class="col-sm-12">
               <h1 class="title">마이 페이지</h1>
-              <p>서류 관리</p>
+              <p>서류 관리</p> 
             </div>
           </div>
         </div>
