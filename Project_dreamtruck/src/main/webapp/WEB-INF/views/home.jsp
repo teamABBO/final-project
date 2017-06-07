@@ -153,8 +153,7 @@
 
   </section>
   <!--/#features-->
- 	<!-- <img src="/resources/images/upload/trucktest22/1.jpg"/> -->
-	 <img src="/WEB-INF/upload/user/1234/1.jpg"/>
+ 	
 
   <%@include file="include/footer.jsp"%>
   <!--/#footer-->
