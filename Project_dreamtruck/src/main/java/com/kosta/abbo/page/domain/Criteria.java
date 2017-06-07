@@ -1,3 +1,4 @@
+
 package com.kosta.abbo.page.domain;
 
 public class Criteria {
