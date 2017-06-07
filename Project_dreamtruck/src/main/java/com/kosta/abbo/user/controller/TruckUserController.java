@@ -1,5 +1,9 @@
 package com.kosta.abbo.user.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -9,9 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -83,7 +89,7 @@ public class TruckUserController {
 	}
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model) throws Exception{
+	public void listPageGet(@ModelAttribute("cri")SearchCriteria cri, Model model) throws Exception{
 		
 		logger.info(cri.toString());
 		
@@ -96,7 +102,6 @@ public class TruckUserController {
 		model.addAttribute("pageMaker", pageMaker);
 		
 	}
-
 	
 	@RequestMapping(value="/read", method = RequestMethod.GET)
 	public void read(@RequestParam("userId") int userId,@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
