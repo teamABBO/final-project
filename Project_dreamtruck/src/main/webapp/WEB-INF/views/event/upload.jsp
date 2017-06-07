@@ -29,9 +29,13 @@
   href="../resources/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <script type="text/javascript">
-   $(document).ready(
+$(document).ready( function() {
+		   
+			$("#list").on("click", function() {
+				self.location = "/event/list";
+			});
          
-          function() {
+        
             $(document).on(
                   'change',
                   '.btn-file :file',
@@ -71,6 +75,7 @@
                readURL(this);
             });
          });
+
 </script> 
 <body>
   <%@include file="../include/header.jsp"%> <!--/#header-->
@@ -104,8 +109,12 @@
                   <label class="col-md-4 control-label" for="title"></label>
                </div>
             </div>
+            
+            <input type="hidden" name="userId" value="${login.userId }">
 
             <!-- 행사시작날짜 -->
+            
+<!--             <div class="form-inline  col-md-12" > -->
             <div class="form-group">
                <label class="col-md-4 control-label">행사시작날짜</label>
                <label id="startDate"></label>
@@ -124,6 +133,7 @@
                   
                </div>
             </div>
+<!--             </div> -->
          
          
             <!-- 모집트럭 수 -->
@@ -174,7 +184,7 @@
                </div>
             </div>
             
-            <!-- 내용 -->s
+            <!-- 내용 -->
             <div class="form-group">
                <label class="col-md-4 control-label" for="content">내용</label>
                <div class="col-md-4">
@@ -203,15 +213,21 @@
                </div>
             </div>
             
+            
             <!-- 버튼 -->
             <div class="form-group">
                <label class="col-md-4 control-label" for="save"></label>
                <div class="col-md-8 text-center">
                   <button type="submit" id="save" name="save" class="btn btn-common">등록</button>
+                  <button type="button" id="list" name="list" class="btn btn-common">취소</button>
                </div>
             </div>
          </fieldset>
          </form>
+         
+         <!-- 맨위로 -->
+         <a href="#" class="top">Top</a>
+         
 
 
 

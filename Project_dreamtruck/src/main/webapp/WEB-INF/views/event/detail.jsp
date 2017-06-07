@@ -215,8 +215,18 @@
             <div class="form-group">
                <label class="col-md-4 control-label" for="img">파일 첨부</label>
                <div class="col-md-4">
-                  <input id="img" name="img" type="text" class="form-control input-md" value="${event.img }" >
-                  <img width="500" height="300" src="C:/dt/aa.png"/> 
+               
+               <c:choose>
+            <c:when test="${event.img eq null}">
+              <input id="img" name="img" type="text" class="form-control input-md" readonly="readonly" >
+            </c:when>
+            <c:when test="${event.img} ">
+             <input id="img" name="img" type="text" class="form-control input-md"  value="${event.img }"   readonly="readonly" >
+                  <img alt="" src="/dispalyFile?fileName=/event/${login.userId }/${event.img}"/>
+              </c:when>
+              </c:choose>
+               
+                  
                </div>
             </div>
             

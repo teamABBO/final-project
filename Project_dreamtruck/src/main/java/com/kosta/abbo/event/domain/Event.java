@@ -9,7 +9,8 @@ public class Event {
 	private String title; 		// 행사 제목
 	private String regdate; 	// 등록 날짜
 	private int guId; 			// 위치 번호
-	private int userId; 		// 등록자
+	private String userId; 		// 등록자
+	private String writer;
 	private int hit;			// 조회수
 	private int recruit;			// 모집트럭수
 
@@ -80,13 +81,7 @@ public class Event {
 		this.guId = guId;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+	
 
 	public int getHit() {
 		return hit;
@@ -108,7 +103,25 @@ public class Event {
 	public String toString() {
 		return "Event [eventId=" + eventId + ", duration=" + duration + ", img=" + img + ", startDate=" + startDate
 				+ ", content=" + content + ", title=" + title + ", regdate=" + regdate + ", guId=" + guId + ", userId="
-				+ userId + ", hit=" + hit + ", recruit=" + recruit + "]";
+				+ userId + ", hit=" + hit + ", recruit=" + recruit +", writer=" + writer +"]";
 	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	
+	
 
 }
