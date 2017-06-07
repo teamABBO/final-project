@@ -8,12 +8,13 @@
     <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
     <link href="/resources/css/animate.min.css" rel="stylesheet"> 
     <link href="/resources/css/lightbox.css" rel="stylesheet"> 
-	<link href="/resources/css/main.css" rel="stylesheet">
+	<link href="/resources/css/main.css?ver=1" rel="stylesheet">
 	<link href="/resources/css/responsive.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <script type = "text/javascript"
- src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAHwzmzrIszazfIsbVDKdROzIYy-UClUFg&callback=initMap&sensor=true">
+ src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAHwzmzrIszazfIsbVDKdROzIYy-UClUFg">
 </script>
+
 <script type = "text/javascript">
 
 var map;
@@ -33,9 +34,9 @@ var GreenIcon = new google.maps.MarkerImage(
 
 function initialize(){
 
- var latlng = new google.maps.LatLng(37.5240220, 126.9265940);
+ var latlng = new google.maps.LatLng(37.555172, 126.970788);
  var myOptions = {
-  zoom: 10,
+  zoom: 11,
   center:latlng,
   mapTypeId: google.maps.MapTypeId.ROADMAP   
  };
@@ -79,7 +80,6 @@ function codeCoordinate(event) {
  Setmarker(event.latLng);
  point = event.latLng;
         //이벤트 발생 시 그 좌표에 마커를 생성합니다.
-var num = new google.maps.LatLng(37.529331802815086,126.95114135742188);
         // 좌표를 받아 reverse geocoding(좌표를 주소로 바꾸기)를 실행합니다.
  geocoder.geocode({'latLng' : event.latLng}, function(results, status) {
   if (status == google.maps.GeocoderStatus.OK)  {
@@ -102,13 +102,41 @@ $(document).ready(function(){
 		window.close();
 	}
 });
- 
+
+
  
 </script>
+<style type="text/css">
+LI {list-style-type:circle}
+</style>
 </head>
 <body onload="initialize()">
- 
-<div id="map_canvas" style="margin:auto; width:400px; height:400px;"></div>
-<button class="btn btn-common" id="place">확인</button>
+
+<div style="margin:auto;  margin-top: 20px;">
+	<table>
+		<tr>
+			<td id="map_canvas" style="width: 500px; height: 500px;">
+			</td>
+			<td style="width: 10px; height: 10px;"></td>
+			<td style="width: 150px; height: 150px;">
+				<li>
+					지역이동을 통해 <br>&emsp;&nbsp;&nbsp;원하는 지역으로 <br>&emsp;&nbsp;&nbsp;이동해보세요.
+				</li><br>
+				<li>
+					지도의 확대/축소를 <br>&emsp;&nbsp;&nbsp;통해 원하는 지역<br>&emsp;&nbsp;&nbsp;으로 이동해보세요.
+				</li><br>
+				<li>
+					푸드트럭을 운영할 <br>&emsp;&nbsp;&nbsp;장소를 찾아 클릭<br>&emsp;&nbsp;&nbsp;하세요.
+				</li><br>
+				<li>
+					주소를 확인하고 <br>&emsp;&nbsp;&nbsp;'확인'버튼을 클릭<br>&emsp;&nbsp;&nbsp;하세요.
+				</li>
+			</td>
+		</tr>
+	</table>
+</div>
+<button class="btn btn-common" id="place" style="float: right; margin-top: 20px; margin-right: 20px;">확인</button>
+<%-- <img src="<%= response.getOutputStream() %>" > --%>
+<img src="${param.getOutputStream() }" >
 </body>
 </html>

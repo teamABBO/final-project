@@ -58,8 +58,8 @@ public class PlanDaoImpl implements PlanDao {
 	 * @return
 	 */
 	@Override
-	public List<Plan> list() {
-		return SqlSession.selectList(namespace+".list");
+	public List<Plan> list(int userId) {
+		return SqlSession.selectList(namespace+".list", userId);
 	}
 	
 }

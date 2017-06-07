@@ -1,23 +1,27 @@
 package com.kosta.abbo.plan.controller;
 
-import java.util.List;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kosta.abbo.HomeController;
 import com.kosta.abbo.plan.domain.Plan;
 import com.kosta.abbo.plan.service.PlanService;
+import com.kosta.abbo.user.domain.NormalUser;
 
 @Controller
 @RequestMapping("/plan")
@@ -27,12 +31,15 @@ public class PlanController {
 	private static final Logger logger = Logger.getLogger(PlanController.class);
 	
 	@RequestMapping(value="/schedule", method = RequestMethod.GET)
-	public void schedule(Model model) throws Exception{
-		ObjectMapper objectMapper = new ObjectMapper();
-		
+	public void schedule(Model model, HttpSession session) throws Exception{
 		logger.info("스케줄 페이지");
-		String jsonlist = objectMapper.writeValueAsString(service.list());
-		model.addAttribute("list", jsonlist);
+		ObjectMapper objectMapper = new ObjectMapper();
+		Object obj = session.getAttribute("login");
+		if(obj != null){
+			NormalUser normalUser = (NormalUser) obj;
+			String jsonlist = objectMapper.writeValueAsString(service.list(normalUser.getUserId()));
+			model.addAttribute("list", jsonlist);
+		}
 	}
 	
 	@RequestMapping(value="/upload", method = RequestMethod.GET)
@@ -55,6 +62,7 @@ public class PlanController {
 			addPlan.setY(plan.getY().split(",")[i]);
 			addPlan.setOpen(plan.getOpen().split(",")[i]);
 			addPlan.setClose(plan.getClose().split(",")[i]);
+			addPlan.setUserId(plan.getUserId().split(",")[i]);
 			service.create(addPlan);
 		}
 //		service.create(plan);
@@ -66,12 +74,7 @@ public class PlanController {
 	@RequestMapping(value="/searchMap", method = RequestMethod.GET)
 	public void searchMap(){
 		logger.info("지도 페이지");
+		
 	}
 	
-	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public String add(Model model){
-		logger.info("ajax를 슈발..");
-		model.addAttribute("list", "list");
-		return "/plan/upload";
-	}
 }

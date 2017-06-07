@@ -8,7 +8,7 @@ public class Plan {
 	private String y; 		// 스케줄경도
 	private String open; 	// 오픈시간
 	private String close; 	// 마감시간
-	private int userId; 	// 회원번호
+	private String userId; 	// 회원번호
 
 	public Plan() {
 	}
@@ -69,11 +69,11 @@ public class Plan {
 		this.close = close;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
