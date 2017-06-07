@@ -47,7 +47,7 @@
               <li><a href="#" style="color: #fd9691">회사소개</a></li>
               <li><a href="#" style="color: #fd9691">이용안내</a></li>
               <li><a href="/truck/list" style="color: #fd9691">트럭소개</a></li>
-              <li class="dropdown"><a href="#" style="color: #fd9691">행사 <i
+              <li class="dropdown"><a style="color: #fd9691">행사 <i
                   class="fa fa-angle-down"></i></a>
                 <ul role="menu" class="sub-menu">
                   <li><a href="/event/list" style="color: #fd9691">목록</a></li>
@@ -67,3 +67,5 @@
         </div>
       </div>
     </header>
+
+    
