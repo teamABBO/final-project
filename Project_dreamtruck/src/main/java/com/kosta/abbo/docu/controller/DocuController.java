@@ -37,13 +37,14 @@ import com.kosta.abbo.util.UploadDocuUtils;
 public class DocuController {
 	@Resource(name = "uploadPath")
 	private String uploadPath;
-	
+
 	@Inject
 	private DocuService service;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/**
 	 * 서류 목록 처리
+	 * 
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -51,23 +52,23 @@ public class DocuController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String docu(Model model, HttpSession session) throws Exception {
 		logger.info("서류관리 페이지");
-		
+
 		NormalUser loginUser = (NormalUser) session.getAttribute("login");
-		
-		
+
 		ObjectMapper objectMapper = new ObjectMapper();
-		
+
 		List<Docu> docuList = service.list(loginUser.getUserId());
-		
+
 		String jsonList = objectMapper.writeValueAsString(docuList);
-		
+
 		model.addAttribute("docuList", jsonList);
-		
+
 		return "/docu/list";
 	}
-	
+
 	/**
 	 * 파일 업로드 처리
+	 * 
 	 * @param file
 	 * @param docu
 	 * @param model
@@ -80,23 +81,25 @@ public class DocuController {
 		logger.info("originalName : " + file.getOriginalFilename());
 		logger.info("size : " + file.getSize());
 		logger.info("contentTpye : " + file.getContentType());
-		
+
 		String originalName = file.getOriginalFilename();
 		String formmatName = originalName.substring(originalName.lastIndexOf(".")).toLowerCase();
 
 		docu.setPath("/" + docu.getUserId() + "/" + (docu.getDocuName() + formmatName));
 
-		UploadDocuUtils.uploadFile(docu.getUserId(), uploadPath + "/docu", (docu.getDocuName() + formmatName), file.getBytes());
-		
+		UploadDocuUtils.uploadFile(docu.getUserId(), uploadPath + "/docu", (docu.getDocuName() + formmatName),
+				file.getBytes());
+
 		service.create(docu);
-		
+
 		logger.info("docu 정보 : " + docu);
-		
+
 		return "redirect: list";
 	}
-	
+
 	/**
 	 * 파일 수정 처리
+	 * 
 	 * @param file
 	 * @param docu
 	 * @param model
@@ -110,25 +113,26 @@ public class DocuController {
 		logger.info("originalName : " + file.getOriginalFilename());
 		logger.info("size : " + file.getSize());
 		logger.info("contentTpye : " + file.getContentType());
-		 
 		new File(uploadPath + "/docu" + docu.getPath().replace('/', File.separatorChar)).delete();
-		
+
 		String originalName = file.getOriginalFilename();
 		String formmatName = originalName.substring(originalName.lastIndexOf(".")).toLowerCase();
 
 		docu.setPath("/" + docu.getUserId() + "/" + (docu.getDocuName() + formmatName));
 
-		UploadDocuUtils.uploadFile(docu.getUserId(), uploadPath + "/docu", (docu.getDocuName() + formmatName), file.getBytes());
-		
+		UploadDocuUtils.uploadFile(docu.getUserId(), uploadPath + "/docu", (docu.getDocuName() + formmatName),
+				file.getBytes());
+
 		service.update(docu);
-		
+
 		logger.info("docu 정보 : " + docu);
-		
+
 		return "redirect: list";
 	}
-	
+
 	/**
 	 * 파일 다운로드 처리
+	 * 
 	 * @param fileName
 	 * @return
 	 * @throws IOException
@@ -144,11 +148,11 @@ public class DocuController {
 
 		try {
 			HttpHeaders headers = new HttpHeaders();
-			
 			in = new FileInputStream(uploadPath + "/docu" + fileName);
 
 			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-			headers.add("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+			headers.add("Content-Disposition",
+					"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
 
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
 
@@ -158,12 +162,13 @@ public class DocuController {
 		} finally {
 			in.close();
 		}
-		
+
 		return entity;
 	}
-	
+
 	/**
 	 * 파일 삭제 처리
+	 * 
 	 * @param fileName
 	 * @param docuId
 	 * @return
@@ -174,15 +179,15 @@ public class DocuController {
 		logger.info("파일 삭제");
 		logger.info("delete file : " + fileName);
 		logger.info("docu_id :" + docuId);
-		
+
 		new File(uploadPath + "/docu" + fileName.replace('/', File.separatorChar)).delete();
-		
+
 		service.delete(docuId);
-		
+
 		logger.info("삭제 경로 : " + uploadPath + "/docu" + fileName);
-		
+
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
-		
+
 	}
-	
+
 }
