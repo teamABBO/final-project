@@ -18,7 +18,7 @@
 <link href="../resources/css/responsive.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 
-<link rel="shortcut icon" href="../resources/images/ico/favicon.ico">
+<link rel="shortcut icon" href="../resources/images/ico/5.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
   href="../resources/images/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -28,6 +28,11 @@
 <link rel="apple-touch-icon-precomposed"
   href="../resources/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
+<style type="text/css">
+th {
+    text-align: center;
+}
+</style>
 <script >
 
 var result = '${msg}';
@@ -40,6 +45,7 @@ $(document).ready(
 			$('#searchB').on(
 					"click", function (event) {
 						self.location = "list"
+						
 						+ '${pageMaker.makeQuery(1)}'
 						+"&searchType="
 						+$("select option:selected").val()
@@ -76,17 +82,23 @@ $(document).ready(
     <div class="row">
       <div class="single-features">
       <div class="col-md-12">
-      <input type="button" class="btn btn-common" id="newB" value="등록" style="float: right;">
+      
+       <c:choose>
+            <c:when test="${login.type=='event'}">
+              <input type="button" class="btn btn-common" id="newB" value="등록" style="float: right;">
+            </c:when>
+       </c:choose>
+    
       <br>
       <br>
       <br>
-        <table class="table table-hover">
-          <tr>
+        <table class="table table-hover" style="text-align: center" >
+          <tr >
             <th style="width: 10px">No.</th>
             <th>행사제목</th>
             <th>작성자</th>
-            <th>모집트럭수</th>
-            <th>신청트럭수</th>
+            <th style="width: 180px">모집트럭수</th>
+            <th style="width: 180px">신청트럭수</th>
             <th style="width: 60px">조회수</th>
           </tr>
           
@@ -94,7 +106,7 @@ $(document).ready(
             <tr>
               <td>${event.eventId}</td>
               <td><a href='/event/detail${pageMaker.makeSearch(pageMaker.cri.page)}&eventId=${event.eventId }'>${event.title }</a></td>
-              <td >${event.userId}</td>
+              <td >${event.writer}</td>
               <td>${event.recruit}</td>
               <td>아직못함</td>
               <td>${event.hit }</td>
