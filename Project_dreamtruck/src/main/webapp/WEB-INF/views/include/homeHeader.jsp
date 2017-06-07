@@ -16,9 +16,9 @@
             <c:if test="${not empty login}">
             <div class="social-icons pull-right">
               <ul class="nav nav-pills">
-                <li><a href="#">${login.name} 님 환영합니다 </a></li>
+                <li><a>${login.userId} 님 환영합니다 </a></li>
                 <li><a href="#primary" data-toggle="modal">로그아웃</a></li>
-                <li><a href="/user/mypage?type=${login.type}">내 정보</a></li>
+                <li><a href="/user/mypage?${login.type}">내 정보</a></li>
               </ul>
             </div>
             </c:if>
@@ -34,15 +34,14 @@
                 class="icon-bar"></span> <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-
-            <a class="navbar-brand" href="index.html"> <img
-              src="/resources/images/logo.png" alt="logo">
+            <a class="navbar-brand" href="/"> <img
+              src="resources/images/logo.png" alt="logo">
             </a>
 
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#">홈</a></li>
+              <li class="active"><a href="/">홈</a></li>
               <li><a href="#">회사소개</a></li>
               <li><a href="#">이용안내</a></li>
               <li><a href="/truck/list">트럭소개</a></li>
