@@ -42,7 +42,8 @@
 	<!-- 인터셉터 -->
 	
 	<beans:bean id="authInterceptor" class="com.kosta.abbo.interceptor.AuthInterceptor"></beans:bean>
-	
+	<beans:bean id="eventCheckInterceptor" class="com.kosta.abbo.interceptor.EventCheckInterceptor"></beans:bean>
+	<beans:bean id="truckCheckInterceptor" class="com.kosta.abbo.interceptor.TruckCheckInterceptor"></beans:bean>
 	<beans:bean id="loginInterceptor" class="com.kosta.abbo.interceptor.LoginInterceptor"></beans:bean>
 	
 	<interceptors>
@@ -52,8 +53,21 @@
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/docu/list"/>
+			<mapping path="/user/mypage"/>
+			<mapping path="/user/modify"/>
+			<mapping path="/user/delete"/>
 			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/event/upload"/>
+			<beans:ref bean="eventCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/docu/*"/>
+			<mapping path="/plan/*"/>
+			<beans:ref bean="truckCheckInterceptor"/>
 		</interceptor>
 		
 	</interceptors> 

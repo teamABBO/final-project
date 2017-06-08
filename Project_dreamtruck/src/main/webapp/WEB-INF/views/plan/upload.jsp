@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
     <link href="/resources/css/animate.min.css" rel="stylesheet"> 
     <link href="/resources/css/lightbox.css" rel="stylesheet"> 
-	<link href="/resources/css/main.css?ver=1" rel="stylesheet">
-	<link href="/resources/css/responsive.css" rel="stylesheet">
-	<script type="text/javascript" src="/resources/js/jquery.js"></script>
+   <link href="/resources/css/main.css?ver=1" rel="stylesheet">
+   <link href="/resources/css/responsive.css" rel="stylesheet">
+   <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <style type="text/css">
 .circle3 {
  width:50px;
@@ -27,120 +27,139 @@
  text-align:center;
 }
 form{
-	text-align: center;
+   text-align: center;
 }
 </style>
 <script type="text/javascript">
 
 function popupOpen(num){
 
-	var popUrl = "searchMap?num="+num+"";	//팝업창에 출력될 페이지 URL
+   var popUrl = "searchMap?num="+num+"";   //팝업창에 출력될 페이지 URL
 
-	var popOption = "width=650, height=650, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+   var popOption = "width=650, height=650, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 
-		window.open(popUrl,"",popOption);
+      window.open(popUrl,"",popOption);
 
-	}
-	
+   }
+   
 function setChildValue(target, name, num){
-	if(target=='place'){
-		document.getElementsByClassName("placename")[num-1].value = name;
-	}
-	else if(target=='point'){
-		document.getElementsByClassName("x")[num-1].value = name.lat();
-		document.getElementsByClassName("y")[num-1].value = name.lng();
-	}
+   if(target=='place'){
+      document.getElementsByClassName("placename")[num-1].value = name;
+   }
+   else if(target=='point'){
+      document.getElementsByClassName("x")[num-1].value = name.lat();
+      document.getElementsByClassName("y")[num-1].value = name.lng();
+   }
 }
 </script>
 <script>
 $(document).ready(function(){
-	var count=0;
-	var str = '';
-	str += '<fieldset>'+
-		'<div class="form-group">' +
-		'<label class="col-md-4 control-label" for="title">제목</label>'+
-   		'<div class="col-md-5">'+
-      		'<input id="title" name="title" type="text" placeholder="제목을 입력 해 주세요." class="form-control input-md" required>'+
-   		'</div>'+
-   		'<div class="col-md-5">'+
-   			'<input id="x" name="x" type="hidden" class="form-control input-md x" required>'+
-   			'<input id="y" name="y" type="hidden" class="form-control input-md y" required>'+
-   		'</div>'+
-	'</div>'+
-	'<div class="form-group">'+
-   		'<label class="col-md-4 control-label" for="place">장소</label>'+
-   		'<div class="col-md-5">'+
-      		'<input id="placename" name="placename" type="text" placeholder="지도를 이용해주세요." class="form-control input-md placename" required>'+
-   		'</div>'+
-   		'<div class="col-md-1">'+
-   			'<input class="btn btn-common" style="margin-top: -2px;" type="button" id="map" value="지도">'+
-   		'</div>'+
-	'</div>'+
-	'<div class="form-group">'+
-   		'<label class="col-md-4 control-label" for="date">일시</label>'+
-   		'<div class="col-md-1">'+
-      		'<select id="day" name="day" class="form-control input-md" style="width:70px;" required>'+
-      			'<option value="1">월</option>'+
-      			'<option value="2">화</option>'+
-      			'<option value="3">수</option>'+
-      			'<option value="4">목</option>'+
-      			'<option value="5">금</option>'+
-      			'<option value="6">토</option>'+
-      			'<option value="0">일</option>'+
-      		'</select>'+
-      	'</div>'+
-      	'<div class="col-xs-2">'+
-      		'<input id="open" name="open" type="time" class="form-control input-md" required>'+
-      	'</div>'+
-      	'<div class="col-xs-1">'+
-      		'<label>~</label>'+
-      	'</div>'+
-      	'<div class="col-xs-2">'+
-      		'<input id="close" name="close" type="time" class="form-control input-md" required>'+
-      	'</div>'+
-	'</div>'+
-	'<hr>'+
-	'</fieldset>';
-	document.getElementById('form').innerHTML = str;
-	$("#add").click(function(){
-		if(count==6){
-			alert("스케줄은 최대 7개만 합시다.");
-		}else{
-			count++;
-	        document.getElementById('addForm'+count).innerHTML = str;
-		}
-	});
-	$("#remove").click(function(){
-		if(count==0){
-			alert("전부없앨꺼면 왜 등록하냐?");
-		}else{
-			$('#addForm'+count).empty();
-			count--;
-		}
-	});
-	$("#form").on("click", "#map", function(){
-		popupOpen(1);
-	});
-	
-	$("#addForm1").on("click", "#map", function(){
-		popupOpen(2);
-	});
-	$("#addForm2").on("click", "#map", function(){
-		popupOpen(3);
-	});
-	$("#addForm3").on("click", "#map", function(){
-		popupOpen(4);
-	});
-	$("#addForm4").on("click", "#map", function(){
-		popupOpen(5);
-	});
-	$("#addForm5").on("click", "#map", function(){
-		popupOpen(6);
-	});
-	$("#addForm6").on("click", "#map", function(){
-		popupOpen(7);
-	});
-	//alert(${login.name});
+   var count=0;
+   var str = '';
+   str += '<fieldset>'+
+      '<div class="form-group">' +
+      '<label class="col-md-4 control-label" for="title">제목</label>'+
+         '<div class="col-md-5">'+
+            '<input id="title" name="title" type="text" placeholder="제목을 입력 해 주세요." class="form-control input-md" required>'+
+         '</div>'+
+         '<div class="col-md-5">'+
+            '<input id="x" name="x" type="hidden" class="form-control input-md x" required>'+
+            '<input id="y" name="y" type="hidden" class="form-control input-md y" required>'+
+         '</div>'+
+   '</div>'+
+   '<div class="form-group">'+
+         '<label class="col-md-4 control-label" for="place">장소</label>'+
+         '<div class="col-md-5">'+
+            '<input id="placename" name="placename" type="text" placeholder="지도를 이용해주세요." class="form-control input-md placename" required>'+
+         '</div>'+
+         '<div class="col-md-1">'+
+            '<input class="btn btn-common" style="margin-top: -2px;" type="button" id="map" value="지도">'+
+         '</div>'+
+   '</div>'+
+   '<div class="form-group">'+
+         '<label class="col-md-4 control-label" for="date">일시</label>'+
+         '<div class="col-md-1">'+
+            '<select id="day" name="day" class="form-control input-md" style="width:70px;" required>'+
+               '<option value="1">월</option>'+
+               '<option value="2">화</option>'+
+               '<option value="3">수</option>'+
+               '<option value="4">목</option>'+
+               '<option value="5">금</option>'+
+               '<option value="6">토</option>'+
+               '<option value="0">일</option>'+
+            '</select>'+
+         '</div>'+
+         '<div class="col-xs-2">'+
+            '<input id="open" name="open" type="time" class="form-control input-md" required>'+
+         '</div>'+
+         '<div class="col-xs-1">'+
+            '<label>~</label>'+
+         '</div>'+
+         '<div class="col-xs-2">'+
+            '<input id="close" name="close" type="time" class="form-control input-md" required>'+
+         '</div>'+
+   '</div>'+
+   '<hr>'+
+   '</fieldset>';
+   document.getElementById('form').innerHTML = str;
+   $("#add").click(function(){
+      if(count==13){
+         alert("스케줄은 최대 14개만 합시다.");
+      }else{
+         count++;
+           document.getElementById('addForm'+count).innerHTML = str;
+      }
+   });
+   $("#remove").click(function(){
+      if(count==0){
+         alert("전부없앨수 없습니다.");
+      }else{
+         $('#addForm'+count).empty();
+         count--;
+      }
+   });
+   $("#form").on("click", "#map", function(){
+      popupOpen(1);
+   });
+   $("#addForm1").on("click", "#map", function(){
+      popupOpen(2);
+   });   
+   $("#addForm2").on("click", "#map", function(){
+      popupOpen(3);
+   });   
+   $("#addForm3").on("click", "#map", function(){
+      popupOpen(4);
+   });   
+   $("#addForm4").on("click", "#map", function(){
+      popupOpen(5);
+   });   
+   $("#addForm5").on("click", "#map", function(){
+      popupOpen(6);
+   });   
+   $("#addForm6").on("click", "#map", function(){
+      popupOpen(7);
+   });   
+   $("#addForm7").on("click", "#map", function(){
+      popupOpen(8);
+   });   
+   $("#addForm8").on("click", "#map", function(){
+      popupOpen(9);
+   });   
+   $("#addForm9").on("click", "#map", function(){
+      popupOpen(10);
+   });   
+   $("#addForm10").on("click", "#map", function(){
+      popupOpen(11);
+   });   
+   $("#addForm11").on("click", "#map", function(){
+      popupOpen(12);
+   });   
+   $("#addForm12").on("click", "#map", function(){
+      popupOpen(13);
+   });   
+   $("#addForm13").on("click", "#map", function(){
+      popupOpen(14);
+   });   
 });
 </script>
 </head>
@@ -174,25 +193,25 @@ $(document).ready(function(){
    <!-- 배너 -->
 <section id="home-slider">
 <div class="container">
-	<div class="row">
-	
-		<div class="single-features">
-			<form class="form-horizontal" method="post" role="form" >
-				<input type="button" class="circle3" id="add" value="+" >
-				<input type="button" class="circle3" id="remove" value="-" >
-				<hr>
-				<div id="form"> </div>
-            	
-            	<c:forEach begin="1" end="6" varStatus="status">
-            		<div id="addForm${status.count }"> </div>
-            	</c:forEach>
-            	
-            	<input type="hidden" id="userId" name="userId" value="${login.userId }">
-            	<input class="btn btn-common" type="submit" value="등록">
-            	<a href="schedule"><input class="btn btn-common" type="button" value="취소"></a>
-			</form>
-		</div>
-	</div>
+   <div class="row">
+   
+      <div class="single-features">
+         <form class="form-horizontal" method="post" role="form" >
+            <input type="button" class="circle3" id="add" value="+" >
+            <input type="button" class="circle3" id="remove" value="-" >
+            <hr>
+            <div id="form"> </div>
+               
+               <c:forEach begin="1" end="13" varStatus="status">
+                  <div id="addForm${status.count }"> </div>
+               </c:forEach>
+               
+               <input type="hidden" id="userId" name="userId" value="${login.userId }">
+               <input class="btn btn-common" type="submit" value="등록">
+               <a href="schedule"><input class="btn btn-common" type="button" value="취소"></a>
+         </form>
+      </div>
+   </div>
 </div>
 </section>
 <%@include file="../include/footer.jsp"%>

@@ -115,21 +115,23 @@
             data-wow-delay="300ms">
             <img src="resources/images/home/image1.png" class="img-responsive" alt="">
           </div>
-          <div class="col-sm-6 wow fadeInRight"
+           <div class="col-sm-6 wow fadeInRight"
             data-wow-duration="500ms" data-wow-delay="300ms">
             <h2>푸드트럭 연동 서비스</h2>
-            <P>푸드트럭은 영업구역 확보가 가장 어려운 문제이죠.
-             합법적인 공간은 인적이 드물어 행사를 전전긍긍 돌아다나며 유지하기조차 바쁘죠. 하지만 우리 함께 뭉쳐봐요. 
-             뭉쳐야산다! 여러대의 푸드트럭이 함께 영업하면서 지역 상권 활성화와 영업구역 확보를 우리의 힘으로 만들어볼까요? </P>
+            <P>푸드트럭 영업구역이 한정적이기에 항상 제자리만 반복하며 다니고있나요?
+            다양한 손님들을 만나고 싶은 푸드트럭을 위한 연동 서비스! 서울시에서 진행되는 행사에 참여해보세요.
+            드림트럭이 행사의 정보를 제공해드립니다. 
+             </P>
           </div>
         </div>
         <div class="single-features">
           <div class="col-sm-6 col-sm-offset-1 align-right wow fadeInLeft"
             data-wow-duration="500ms" data-wow-delay="300ms">
-            <h2>푸드트럭 순환이동 서비스</h2>
-            <P>푸드트럭 영업구역이 한정적이기에 항상 제자리만 반복하며 다니고있나요? 
-            다양한 사람들 다양한 환경을 여행하며 푸드트럭 영업을 하고싶은 청춘별을 위한 푸드트럭 순환이동 서비스! 
-            다른사람과 위치를 바꿔가면서 손님과 청춘별 모두에게 다양한 경험을! </P>
+            <h2>푸드트럭 운영신청 원클릭 서비스</h2>
+            <P>번거로운 푸드트럭 운영 신청. 매번 바쁜 시간을 쪼개어 신청하느라 힘드셨죠?
+            드림트럭에서 원클릭 신청 서비스로 빠르고 쉽게 신청해보세요!
+            필수 서류만 업로드 해놓는다면 한 번의 클릭으로 손쉽게 운영신청을 할 수 있습니다.  
+         </P>
           </div>
           <div class="col-sm-5 wow fadeInRight"
             data-wow-duration="500ms" data-wow-delay="300ms">
@@ -142,10 +144,10 @@
             <img src="resources/images/home/image3.png" class="img-responsive" alt="">
           </div>
           <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
-            <h2>청춘별 정보제공 서비스</h2>
-            <P>다양하고 복잡한 정보에 많이 혼란됐었죠? 드림트럭에서 간단하게 해결해보세요. 
-            복잡한 영업신고를 원클릭으로 해결하고, 변경되는 규제나 위생관리 방법등에 대한 정보를 
-            실시간으로 확인 할 수 있습니다 </P>
+            <h2> 주변 트럭 검색 서비스</h2>
+            <P>오늘도 먹고 싶은 푸드트럭 음식! 언제 올까 노심초사 하지마세요. 
+            드림트럭 회원인 푸드트럭이라면 드림트럭에서 위치 검색이 가능하답니다. 
+            나와 가까운 푸드트럭은 어디 있는지 찾아보세요! </P>
           </div>
         </div>
       </div>

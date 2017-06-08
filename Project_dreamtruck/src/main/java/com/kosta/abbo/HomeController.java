@@ -49,6 +49,13 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/fail", method = RequestMethod.GET)
+	public String fail(Model model) {
+		logger.info("잘못된 유저 타입");
+		
+		return "fail";
+	}
+	
 	@ResponseBody
 	@RequestMapping("/displayFile")
 	public ResponseEntity<byte[]> displayFile(String fileName) throws IOException {

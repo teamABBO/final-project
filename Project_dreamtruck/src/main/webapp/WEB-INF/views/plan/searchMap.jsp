@@ -136,7 +136,5 @@ LI {list-style-type:circle}
 	</table>
 </div>
 <button class="btn btn-common" id="place" style="float: right; margin-top: 20px; margin-right: 20px;">확인</button>
-<%-- <img src="<%= response.getOutputStream() %>" > --%>
-<img src="${param.getOutputStream() }" >
 </body>
 </html>

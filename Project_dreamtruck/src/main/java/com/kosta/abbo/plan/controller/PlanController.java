@@ -49,6 +49,7 @@ public class PlanController {
 	
 	@RequestMapping(value="/upload", method = RequestMethod.POST)
 	public String uploadPOST(Plan plan, RedirectAttributes rttr){
+		logger.info(plan);
 		/*logger.info(plan);
 		logger.info(plan.getDay());
 		logger.info(plan.getDay().length());
@@ -62,7 +63,7 @@ public class PlanController {
 			addPlan.setY(plan.getY().split(",")[i]);
 			addPlan.setOpen(plan.getOpen().split(",")[i]);
 			addPlan.setClose(plan.getClose().split(",")[i]);
-			addPlan.setUserId(plan.getUserId().split(",")[i]);
+			addPlan.setUserId(plan.getUserId());
 			service.create(addPlan);
 		}
 //		service.create(plan);
