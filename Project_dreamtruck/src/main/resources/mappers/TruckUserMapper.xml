@@ -47,7 +47,7 @@
 	
 	
 	<!-- 트럭상세보기 -->
-	<select id="read" resultType="com.kosta.abbo.user.domain.TruckUser">
+	<select id="read" resultType="TruckUser">
 		select user_id as userId, id, name, type, truck_img as truckImg, 
                     truck_Name as truckName, 
                     truck_Food as truckFood, 
@@ -59,7 +59,7 @@
 	</select>
 	
 	<!-- 트럭 목록 -->
-	<select id="list" resultType="com.kosta.abbo.user.domain.TruckUser">
+	<select id="list" resultType="TruckUser">
 			select user_id as userId, truck_img as truckImg, truck_Name as truckName, truck_Food as truckFood
 			from users
 			where type = 'truck'
@@ -68,7 +68,7 @@
 	</select>
 	
 	<!-- 트럭 목록 페이징 처리 -->
-	<select id="listPage" resultType="com.kosta.abbo.user.domain.TruckUser">
+	<select id="listPage" resultType="TruckUser">
 		select page, userId, id, name, type,  truckImg, truckName, truckFood
 		from  (SELECT ROWNUM  page,user_id as userId, id, name, type, truckImg,truckName,truckFood
            FROM   (SELECT user_id as userId, id, name, type, truck_img as truckImg,truck_Name as truckName,truck_Food as truckFood
@@ -79,7 +79,7 @@
 	</select>
 	
 	<!-- 트럭목록 페이징 넘버 받아서 처리 -->
-	<select id="listCriteria" resultType="com.kosta.abbo.user.domain.TruckUser">
+	<select id="listCriteria" resultType="TruckUser">
 		 select page,userId, id, name, type, truckImg, truckName, truckFood
 		from (SELECT ROW_NUMBER() OVER (ORDER BY truck_Name asc) page, user_id as userId, id, name, type, 
                     truck_img as truckImg,
@@ -99,7 +99,7 @@
 	</select>
 	
 	<!-- 트럭목록 검색&페이징 -->
-	<select id="listSearch" resultType="com.kosta.abbo.user.domain.TruckUser">
+	<select id="listSearch" resultType="TruckUser">
 		select page,userId, id, name, type, truckImg, truckName, truckFood
 		from (SELECT ROW_NUMBER() OVER (ORDER BY truck_Name asc) page, user_id as userId, id, name, type, 
                     truck_img as truckImg,

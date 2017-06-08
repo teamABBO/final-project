@@ -9,7 +9,7 @@
 		values (plan_id_seq.nextval,#{day}, #{title}, #{x}, #{y}, #{open}, #{close}, #{userId})
 	</insert>
 	
-	<select id="list" resultType="com.kosta.abbo.plan.domain.Plan">
+	<select id="list" resultType="Plan">
 		select plan_id planId, day, title, x, y, open, close, user_id userId
 		from   plan
 		where  user_id = #{userId}

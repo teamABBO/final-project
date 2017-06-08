@@ -100,7 +100,7 @@
                <label class="col-md-4 control-label">행사시작날짜</label>
                <label id="startDate"></label>
                <div class="col-md-4">
-                  <input id="startDate" name="startDate" type="text"  class="form-control input-md" maxlength=x"16" value="${event.startDate }" readonly="readonly">
+                  <input id="startDate" name="startDate" type="text"  class="form-control input-md" maxlength="16" value="${event.startDate }" readonly="readonly">
                   
                </div>
             </div>
@@ -120,7 +120,7 @@
             <div class="form-group">
                <label class="col-md-4 control-label" for="recruit">모집트럭 수</label>
                <div class="col-md-4">
-                  <input id="recruit" name="recruit" type="text" class="form-control input-md" required="" value="${event.recruit }" readonly="readonly">
+                  <input id="recruit" name="recruit" type="text" class="form-control input-md" required value="${event.recruit }" readonly="readonly">
                </div>
             </div>
             
@@ -135,79 +135,79 @@
 
           <c:choose>
             <c:when test="${event.guId  eq '1'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="강남구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="강남구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '2'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="강동구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="강동구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '3'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="강북구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="강북구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '4'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="강서구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="강서구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '5'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="관악구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="관악구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '6'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="광진구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="광진구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '7'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="구로구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="구로구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '8'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="금천구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="금천구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '9'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="노원구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="노원구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '10'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="도봉구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="도봉구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '11'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="동대문구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="동대문구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '12'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="동작구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="동작구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '13'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="마포구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="마포구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '14'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="서대문구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="서대문구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '15'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="서초구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="서초구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '16'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="성동구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="성동구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '17'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="성북구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="성북구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '18'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="송파구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="송파구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '19'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="양천구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="양천구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '20'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="영등포구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="영등포구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '21'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="용산구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="용산구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '22'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="은평구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="은평구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '23'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="종로구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="종로구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '24'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="중구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="중구" readonly="readonly">
             </c:when>
             <c:when test="${event.guId  eq '25'}">
-              <input id="guId" name="guId" type="text" class="form-control input-md" required="" value="중랑구" readonly="readonly">
+              <input id="guId" name="guId" type="text" class="form-control input-md" required value="중랑구" readonly="readonly">
             </c:when>
           </c:choose>
           
@@ -223,23 +223,16 @@
             </div>
             
              <!-- 첨부파일 -->
+             <c:if test="${!empty event.img }">
             <div class="form-group">
                <label class="col-md-4 control-label" for="img">파일 첨부</label>
                <div class="col-md-4">
-               
-               <c:choose>
-            <c:when test="${event.img eq null}">
-              <input id="img" name="img" type="text" class="form-control input-md" readonly="readonly" >
-            </c:when>
-            <c:when test="${event.img} ">
              <input id="img" name="img" type="text" class="form-control input-md"  value="${event.img }"   readonly="readonly" >
-                  <img alt="" src="/dispalyFile?fileName=/event/${login.userId }/${event.img}"/>
-              </c:when>
-              </c:choose>
-               
+                  <img alt="" src="/displayFile?fileName=/event${event.img}"/>
                   
                </div>
             </div>
+             </c:if>
             
         
             

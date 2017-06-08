@@ -6,7 +6,7 @@
 <mapper namespace="com.kosta.abbo.mapper.NormalUserMapper">
 	
 	<!-- 로그인 -->
-	<select id="login" resultType="com.kosta.abbo.user.domain.NormalUser">
+	<select id="login" resultType="NormalUser">
 		SELECT user_id as userId,
       				id,
        			    pw,

@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kosta.abbo.util.MediaUtils;
+
 /**
  * Handles requests for the application home page.
  */
@@ -66,14 +68,19 @@ public class HomeController {
 		logger.info("FILE NAME : " + fileName);
 
 		try {
-
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+			MediaType mType = MediaUtils.getMediaType(formatName);
+			
 			HttpHeaders headers = new HttpHeaders();
 
 			in = new FileInputStream(uploadPath + fileName);
 
+			headers.setContentType(mType);
+			
+			/*파일 다운로드
 			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 			headers.add("Content-Disposition",
-					"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+					"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");*/
 
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
 
