@@ -87,7 +87,6 @@ public class NormalUserController {
 		
 		
 		if(obj != null){
-			NormalUser normalUser = (NormalUser) obj;
 			session.removeAttribute("login");
 			session.invalidate();
 			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
@@ -96,7 +95,6 @@ public class NormalUserController {
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(0);
 				response.addCookie(loginCookie);
-//				service.keepLogin()
 			}
 			
 		}
@@ -159,7 +157,7 @@ public class NormalUserController {
 		logger.info("size : " + file.getSize());
 		logger.info("contentType : " + file.getContentType());
 		
-		String path = request.getServletContext().getRealPath(uploadPath) + "/user";
+		String path = uploadPath + "/user";
 
 		String savedName = UploadUserUtils.uploadFile(id, path, file.getOriginalFilename(), file.getBytes());
 				

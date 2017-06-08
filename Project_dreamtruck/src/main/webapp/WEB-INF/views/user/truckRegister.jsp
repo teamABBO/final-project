@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>드림트럭</title>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
@@ -126,7 +126,7 @@
 				<br><br>
 					<label class="col-md-4 control-label" for="name">아이디</label>
 					<div class="col-md-4">
-						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" required="">
+						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 
@@ -135,7 +135,7 @@
 					<label class="col-md-4 control-label">비밀번호</label>
 					<label id="pwLabel"></label>
 					<div class="col-md-4">
-						<input id="pw" name="pw" type="password" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" required="">
+						<input id="pw" name="pw" type="password" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 
@@ -144,7 +144,7 @@
 					<label class="col-md-4 control-label" >비밀번호 확인</label>
 					<label id="repwLabel"></label>
 					<div class="col-md-4">
-						<input id="repw" name="repw" type="password" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" required="">
+						<input id="repw" name="repw" type="password" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 			
@@ -153,7 +153,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">전화번호 </label>
 					<div class="col-md-4">
-						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" required="">
+						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" required>
 					</div>
 				</div>
 				
@@ -161,7 +161,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="rpassword">이름</label>
 					<div class="col-md-4">
-						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" required="">
+						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 				
@@ -241,7 +241,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="address1">사업자번호</label>
 					<div class="col-md-4">
-						<input id="sid" name="sid" type="text" placeholder="사업자번호를 입력 해 주세요. " class="form-control input-md" required="">
+						<input id="sid" name="sid" type="text" placeholder="사업자번호를 입력 해 주세요. " class="form-control input-md" required>
 
 					</div>
 				</div>
@@ -258,7 +258,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="city">트럭상호명</label>
 					<div class="col-md-4">
-						<input id="truckName" name="truckName" type="text" placeholder="트럭상호명을 입력 해 주세요." class="form-control input-md" required="">
+						<input id="truckName" name="truckName" type="text" placeholder="트럭상호명을 입력 해 주세요." class="form-control input-md" required>
 
 					</div>
 				</div>
@@ -314,7 +314,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="info">내용</label>
 					<div class="col-md-5">
-						<textarea rows="8" cols="84" id="truckInfo" name="truckInfo" style="resize: none;"></textarea>
+						<textarea rows="8" cols="84" id="truckInfo" name="truckInfo" style="resize: none;" class="form-control"></textarea>
 					</div>
 				</div>
 

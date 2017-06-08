@@ -66,6 +66,32 @@
                 </div>
         </div>
       </div>
+      <!-- Modal -->
+    <div class="modal fade" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom: 4px solid #a94442; background-color: #f2dede; color: #a94446;">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">닫기</span></button>
+              <h4 class="modal-title" id="myModalLabel" style="font-size: 9pt;"><i class="fa fa-warning"></i> 경고</h4>
+              </div>
+          <div style="margin-top: 1px; background-color: #a94442; height: 1px; width: 100%;"></div>
+          <div class="modal-body">
+              <div class="row">
+
+                  <div class="col-xs-12">
+                      <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fa fa-warning"></i> 로그아웃 하시겠습니까?</div>
+                      <div style="text-align: center; font-size: 10pt; margin: 16px;"><span style="color: #2e77bc;"><i class="fa fa-info-circle"></i></span>로그아웃하시면 서비스에 제한이 될 수 있습니다.</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">취소</button>
+                    <a class="btn btn-default" href="/user/logout" >확인</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Modal -->
+    </div>
+    </div>
+    </div>
     </header>
 
     

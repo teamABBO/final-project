@@ -64,7 +64,7 @@ public class EventController {
 
 			service.create(event);
 			
-			String path = request.getServletContext().getRealPath(uploadPath) + "/event";
+			String path = uploadPath + "/event";
 			UploadEventUtils.uploadFile(path, userId, imgName, file.getBytes());
 
 			rttr.addFlashAttribute("msg", "success");

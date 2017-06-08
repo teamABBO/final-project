@@ -59,7 +59,7 @@
 				<br><br>
 					<label class="col-md-4 control-label" for="name">아이디</label>
 					<div class="col-md-4">
-						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" required="">
+						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 
@@ -67,7 +67,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label">비밀번호</label>
 					<div class="col-md-4">
-						<input id="pw" name="pw" type="password" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" required="">
+						<input id="pw" name="pw" type="password" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 
@@ -75,7 +75,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label">비밀번호 확인</label>
 					<div class="col-md-4">
-						<input id="repw" name="repw" type="password" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" required="">
+						<input id="repw" name="repw" type="password" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 			
@@ -84,7 +84,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">전화번호 </label>
 					<div class="col-md-4">
-						<input id="phone" name="phone"  type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" required="">
+						<input id="phone" name="phone"  type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" required>
 					</div>
 				</div>
 				
@@ -92,7 +92,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="rpassword">이름</label>
 					<div class="col-md-4">
-						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" required="">
+						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 				
@@ -136,7 +136,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">이메일</label>
 					<div class="col-md-4">
-						<input id="eventEmail" name="eventEmail" type="text" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required="">
+						<input id="eventEmail" name="eventEmail" type="email" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 					
@@ -144,7 +144,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="contactname">담당부서명</label>
 					<div class="col-md-4">
-						<input id="eventDep" name="eventDep" type="text" placeholder="담당부서명을 입력 해 주세요." class="form-control input-md" required="">
+						<input id="eventDep" name="eventDep" type="text" placeholder="담당부서명을 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 				<!-- 버튼 -->

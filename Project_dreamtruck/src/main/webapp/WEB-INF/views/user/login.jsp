@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home | DreamTruck</title>
+<title>드림트럭</title>
 <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="../resources/css/animate.min.css" rel="stylesheet"> 
