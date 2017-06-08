@@ -28,7 +28,7 @@
 
 
 <body>
-  <div style="background: url(resources/images/h2.png) 0 100% repeat-x, linear-gradient( to bottom, #fc7972, #ffffff );">
+  <div style="background: url(/resources/images/h2.png) 0 100% repeat-x, linear-gradient( to bottom, #fc7972, #ffffff );">
     <%@include file="include/homeHeader.jsp"%>
     <!--/#header--> 
     <section id="home-slider">
@@ -45,7 +45,7 @@
             </p>
             <a href="#" class="btn btn-common">영업허용 구역에 대한 정보 보러가기</a>
           </div>
-          <img src="resources/images/truck.png" class="slider-house"
+          <img src="/resources/images/truck.png" class="slider-house"
             alt="">
         </div>
       </div>
@@ -56,7 +56,7 @@
   </div>
 
   <div>
-    <img src="resources/images/m1.png"
+    <img src="/resources/images/m1.png"
       style="margin-left: 20px; margin-top: 20px">
   </div>
   <!--/#home-slider-->
@@ -70,7 +70,7 @@
           <div class="single-service">
             <div class="wow scaleIn" data-wow-duration="500ms"
               data-wow-delay="300ms">
-              <img src="resources/images/home/icon1.png" alt="">
+              <img src="/resources/images/home/icon1.png" alt="">
             </div>
             <h2>원클릭 서비스</h2>
             <p>기관마다 다른 서류와 방문해야하는 면접제출 시스템 등의 복잡한 푸드트럭 영업신고 절차를 클릭 한번으로 해결할 수 있습니다.</p>
@@ -81,7 +81,7 @@
           <div class="single-service">
             <div class="wow scaleIn" data-wow-duration="500ms"
               data-wow-delay="600ms">
-              <img src="resources/images/home/icon2.png" alt="">
+              <img src="/resources/images/home/icon2.png" alt="">
             </div>
             <h2>영업 허용구역 규제</h2>
             <p>푸드트럭 합법 영업 구역이 생겨날 때 마다 드림트럭에서 새로운 정보를 확인해 볼 수 있습니다. </p>
@@ -92,7 +92,7 @@
           <div class="single-service">
             <div class="wow scaleIn" data-wow-duration="500ms"
               data-wow-delay="900ms">
-              <img src="resources/images/home/icon3.png" alt="">
+              <img src="/resources/images/home/icon3.png" alt="">
             </div>
             <h2>위생,청결 관리</h2>
             <p>위생 관리와 청결 유지를 위해 필요한 노하우와 정보들을 제공 받아 나의 트럭을  
@@ -113,7 +113,7 @@
         <div class="single-features">
           <div class="col-sm-5 wow fadeInLeft" data-wow-duration="500ms"
             data-wow-delay="300ms">
-            <img src="resources/images/home/image1.png" class="img-responsive" alt="">
+            <img src="/resources/images/home/image1.png" class="img-responsive" alt="">
           </div>
            <div class="col-sm-6 wow fadeInRight"
             data-wow-duration="500ms" data-wow-delay="300ms">
@@ -135,13 +135,13 @@
           </div>
           <div class="col-sm-5 wow fadeInRight"
             data-wow-duration="500ms" data-wow-delay="300ms">
-            <img src="resources/images/home/image2.png" class="img-responsive" alt="">
+            <img src="/resources/images/home/image2.png" class="img-responsive" alt="">
           </div>
         </div>
         <div class="single-features">
           <div class="col-sm-5 wow fadeInLeft" data-wow-duration="500ms"
             data-wow-delay="300ms">
-            <img src="resources/images/home/image3.png" class="img-responsive" alt="">
+            <img src="/resources/images/home/image3.png" class="img-responsive" alt="">
           </div>
           <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
             <h2> 주변 트럭 검색 서비스</h2>
