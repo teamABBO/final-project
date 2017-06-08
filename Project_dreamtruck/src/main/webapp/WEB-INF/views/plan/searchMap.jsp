@@ -10,6 +10,7 @@
     <link href="/resources/css/lightbox.css" rel="stylesheet"> 
 	<link href="/resources/css/main.css?ver=1" rel="stylesheet">
 	<link href="/resources/css/responsive.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <script type = "text/javascript"
  src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAHwzmzrIszazfIsbVDKdROzIYy-UClUFg">

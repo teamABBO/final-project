@@ -6,13 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="../resources/css/animate.min.css" rel="stylesheet">
-<link href="../resources/css/lightbox.css" rel="stylesheet">
-<link href="../resources/css/main.css" rel="stylesheet">
-<link href="../resources/css/responsive.css" rel="stylesheet">
+<title>드림트럭</title>
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet">
+<link href="/resources/css/lightbox.css" rel="stylesheet">
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
@@ -44,76 +45,40 @@
 			<section id="services">
 			<div class="container">
 				<div class="row">
-					<c:choose>
-					<c:when test="${param.type == 'normal' }">
-					
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
-						<div class="single-service2" >
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
-								<a href="modify"><img src="../resources/images/regist/modify.png" alt=""></a>
-							</div>
-							<h2>정보수정</h2>
-						</div>
-					</div>
-					
-					<!-- 관심트럭 목록 -->
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
-						<div class="single-service2">
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<a href="#"><img src="../resources/images/regist/trucklist.png" alt=""></a>
-							</div>
-							<h2>관심트럭 목록</h2>
-						</div>
-					</div>
-					
-					<!-- 내가 쓴 글 -->
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
-						<div class="single-service2">
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<a href="#"><img src="../resources/images/regist/myboard.png" alt=""></a>
-							</div>
-							<h2>내가 쓴글</h2>
-						</div>
-					</div>
-					</c:when>
-					
-					
-					<c:when test="${param.type == 'truck' }">
-					
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
-						<div class="single-service2" >
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
-								<a href="modify"><img src="../resources/images/regist/modify.png" alt=""></a>
-							</div>
-							<h2>정보수정</h2>
-						</div>
-					</div>
-					
-					<!-- 관심트럭 목록 -->
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
-						<div class="single-service2">
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<a href="#"><img src="../resources/images/regist/trucklist.png" alt=""></a>
-							</div>
-							<h2>관심트럭 목록</h2>
-						</div>
-					</div>
-					
-					<!-- 내가 쓴 글 -->
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
-						<div class="single-service2">
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<a href="#"><img src="../resources/images/regist/myboard.png" alt=""></a>
-							</div>
-							<h2>내가 쓴글</h2>
-						</div>
-					</div>
-					
+        <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <div class="single-service2" >
+              <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
+                <a href="modify"><img src="/resources/images/regist/modify.png" alt=""></a>
+              </div>
+              <h2>정보수정</h2>
+            </div>
+          </div>
+          
+          <!-- 관심트럭 목록 -->
+          <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+            <div class="single-service2">
+              <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+                <a href="#"><img src="/resources/images/regist/trucklist.png" alt=""></a>
+              </div>
+              <h2>관심트럭 목록</h2>
+            </div>
+          </div>
+          
+          <!-- 내가 쓴 글 -->
+          <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+            <div class="single-service2">
+              <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+                <a href="#"><img src="/resources/images/regist/myboard.png" alt=""></a>
+              </div>
+              <h2>내가 쓴글</h2>
+            </div>
+          </div>
+					<c:if test="${param.type == 'truck' }">
 					<!-- 스케쥴 -->
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms" style="margin-left: 200px;">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
-								<a href="/plan/schedule"><img src="../resources/images/regist/schedule.png" alt=""></a>
+								<a href="/plan/schedule"><img src="/resources/images/regist/schedule.png" alt=""></a>
 							</div>
 							<h2>스케쥴</h2>
 						</div>
@@ -123,54 +88,20 @@
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 						<div class="single-service2">
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<a href="/docu/list"><img src="../resources/images/regist/docu.png" alt=""></a>
+								<a href="/docu/list"><img src="/resources/images/regist/docu.png" alt=""></a>
 							</div>
 							<h2>서류 관리</h2>
 						</div>
 					</div>
-					</c:when>
-					
-					<c:when test="${param.type == 'event' }">
-					
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
-						<div class="single-service2" >
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
-								<a href="modify"><img src="../resources/images/regist/modify.png" alt=""></a>
-							</div>
-							<h2>정보수정</h2>
-						</div>
-					</div>
-					
-					<!-- 관심트럭 목록 -->
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
-						<div class="single-service2">
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<a href="#"><img src="../resources/images/regist/trucklist.png" alt=""></a>
-							</div>
-							<h2>관심트럭 목록</h2>
-						</div>
-					</div>
-					
-					<!-- 내가 쓴 글 -->
-					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
-						<div class="single-service2">
-							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<a href="#"><img src="../resources/images/regist/myboard.png" alt=""></a>
-							</div>
-							<h2>내가 쓴글</h2>
-						</div>
-					</div>
-					
-					</c:when>
-					</c:choose>
+          </c:if>
 				</div>
 			</div>
 		</section>
 		<%@include file="../include/footer.jsp"%>
 </body>
-<script type="text/javascript" src="../resources/js/jquery.js"></script>
-<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="../resources/js/wow.min.js"></script>
-<script type="text/javascript" src="../resources/js/main.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="/resources/js/wow.min.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>
 </html>

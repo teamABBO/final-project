@@ -6,13 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="../resources/css/animate.min.css" rel="stylesheet"> 
-<link href="../resources/css/lightbox.css" rel="stylesheet"> 
-<link href="../resources/css/main.css" rel="stylesheet">
-<link href="../resources/css/responsive.css" rel="stylesheet">
+<title>드림트럭</title>
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet"> 
+<link href="/resources/css/lightbox.css" rel="stylesheet"> 
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 </head>
 
 <body>

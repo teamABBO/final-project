@@ -8,28 +8,42 @@
 <meta charset="UTF-8">
 <title></title>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="resources/css/animate.min.css" rel="stylesheet">
-<link href="resources/css/lightbox.css" rel="stylesheet">
-<link href="resources/css/main.css" rel="stylesheet">
-<link href="resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet">
+<link href="/resources/css/lightbox.css" rel="stylesheet">
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 </head>
 <body>
 <%@include file="include/header.jsp"%>
-<section id="page-breadcrumb">
-        <div class="vertical-center sun">
-             <div class="container">
-                <div class="row">
-                    <div class="action">
-                        <div class="col-sm-12">
-                            <h1 class="title">회사소개</h1>
-                        </div>
-                    </div>
+<!-- 배너 -->
+  <br>
+  <br>
+  <section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
+
+        <section id="page-breadcrumb">
+          <div class="vertical-center sun">
+            <div class="container">
+              <div class="row">
+                <div class="action">
+                  <div class="col-sm-12">
+                    <h1 class="title">회사소개</h1>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-   		</section>
+          </div>
+
+        </section>
+        <br>
+      </div>
+    </div>
+  </section>
+  <!-- 배너 -->
 
     <section id="map-section">
         <div class="container">
@@ -317,11 +331,11 @@
     
 <%@include file="include/footer.jsp"%>
 </body>
-<script type="text/javascript" src="resources/js/gmaps.js"></script>
-<script type="text/javascript" src="resources/js/jquery.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="resources/js/wow.min.js"></script>
-<script type="text/javascript" src="resources/js/main.js"></script>
+<script type="text/javascript" src="/resources/js/gmaps.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="/resources/js/wow.min.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>
 
 </html>

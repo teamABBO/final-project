@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>드림트럭</title>
 <meta charset="UTF-8">
 	<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
@@ -10,6 +11,7 @@
     <link href="/resources/css/lightbox.css" rel="stylesheet"> 
 	<link href="/resources/css/main.css?ver=1" rel="stylesheet">
 	<link href="/resources/css/responsive.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 	<script type="text/javascript" src="/resources/js/jquery.js"></script>
 <style type="text/css">
 /* -------------------------------- 
@@ -613,30 +615,32 @@ function reversegeo(day,count,x, y) {
 <body>
 <%@include file="../include/header.jsp"%>
    <!-- 배너 -->
-   <br><br>
-     <section id="services" style="margin-top: 0px">
+  <br>
+  <br>
+  <section id="services" style="margin-top: 0px">
     <div class="container">
       <div class="row">
-   
-   <section id="page-breadcrumb">
-    <div class="vertical-center sun">
-     <div class="container">
-       <div class="row">
-         <div class="action">
-            <div class="col-sm-12">
-              <h1 class="title">마이페이지</h1>
-                            <p>스케줄 관리</p>
-                        </div>
-                    </div>
+
+        <section id="page-breadcrumb">
+          <div class="vertical-center sun">
+            <div class="container">
+              <div class="row">
+                <div class="action">
+                  <div class="col-sm-12">
+                    <h1 class="title">마이페이지</h1>
+                    <p>스케줄관리</p>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-   </section>
-   <br>
-   </div>
-   </div>
-   </section>
-   <!-- 배너 -->
+          </div>
+
+        </section>
+        <br>
+      </div>
+    </div>
+  </section>
+  <!-- 배너 -->
     <!--/#action-->
 <div class="single-features">
 	<a href="upload"><input type="button" class="btn btn-common" style="float: right; margin-right: 300px;" value="등록"></a>

@@ -12,25 +12,26 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>드림트럭</title>
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="../resources/css/animate.min.css" rel="stylesheet">
-<link href="../resources/css/lightbox.css" rel="stylesheet">
-<link href="../resources/css/main.css" rel="stylesheet">
-<link href="../resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet">
+<link href="/resources/css/lightbox.css" rel="stylesheet">
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <script type="text/javascript"
   src="/resources/js/jquery.scrollfollow.js"></script>
 
-<link rel="shortcut icon" href="../resources/images/ico/5.ico">
+<link rel="shortcut icon" href="/resources/images/ico/5.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-  href="../resources/images/ico/apple-touch-icon-144-precomposed.png">
+  href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-  href="../resources/images/ico/apple-touch-icon-114-precomposed.png">
+  href="/resources/images/ico/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-  href="../resources/images/ico/apple-touch-icon-72-precomposed.png">
+  href="/resources/images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-  href="../resources/images/ico/apple-touch-icon-57-precomposed.png">
+  href="/resources/images/ico/apple-touch-icon-57-precomposed.png">
 
 <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 
@@ -127,21 +128,33 @@
   <%@include file="../include/header.jsp"%>
 
 
-  <section id="page-breadcrumb">
-    <div class="vertical-center sun">
-      <div class="container">
-        <div class="row">
-          <div class="action">
-            <div class="col-sm-12">
-              <h1 class="title">푸드트럭</h1>
-              <p>드림트럭과 함께 하는 푸드트럭! 관심트럭 등록하고 스케줄 받아보세요</p>
+  <!-- 배너 -->
+  <br>
+  <br>
+  <section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
+
+        <section id="page-breadcrumb">
+          <div class="vertical-center sun">
+            <div class="container">
+              <div class="row">
+                <div class="action">
+                  <div class="col-sm-12">
+                    <h1 class="title">푸드트럭</h1>
+                    <p>푸드트럭 목록</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+
+        </section>
+        <br>
       </div>
     </div>
   </section>
-  <!--/#action-->
+  <!-- 배너 -->
 
   <section id="projects" class="padding-top">
     <div class="container">
@@ -199,7 +212,7 @@
                     <div class="portfolio-thumb">
 
                       <img
-                        src="/displayFile?fileName=/user/${truckUser.userId}/${truckUser.truckImg }"
+                        src="/displayFile?fileName=/user/${truckUser.id}/${truckUser.truckImg }"
                         class="img-responsive" alt="">
                     </div>
                     <div class="portfolio-view">
@@ -214,7 +227,7 @@
                           href="read${pageMaker.makeSearch(pageMaker.cri.page)}&userId=${truckUser.userId }"><i
                             class="fa fa-link"></i></a></li>
                         <li><a
-                          href="/displayFile?fileName=/user/${truckUser.userId}/${truckUser.truckImg }"
+                          href="/displayFile?fileName=/user/${truckUser.id}/${truckUser.truckImg }" 
                           data-lightbox="example-set"><i
                             class="fa fa-eye"></i></a></li>
                         <li><a><i class="fa fa-heart"></i>${truckUser.truckLikecnt }

@@ -17,7 +17,7 @@
             <div class="social-icons pull-right">
               <ul class="nav nav-pills">
                 <li><a>${login.userId} 님 환영합니다 </a></li>
-                <li><a href="#primary" data-toggle="modal">로그아웃</a></li>
+                <li><a href="#logoutMod" data-toggle="modal">로그아웃</a></li>
                 <li><a href="/user/mypage?type=${login.type}">내 정보</a></li>
               </ul>
             </div>
@@ -68,7 +68,7 @@
     
     
     <!-- Modal -->
-    <div class="modal fade" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutMod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="border-bottom: 4px solid #a94442; background-color: #f2dede; color: #a94446;">

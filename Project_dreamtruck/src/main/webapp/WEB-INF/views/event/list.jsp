@@ -10,23 +10,23 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>드림트럭</title>
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="../resources/css/animate.min.css" rel="stylesheet">
-<link href="../resources/css/lightbox.css" rel="stylesheet">
-<link href="../resources/css/main.css" rel="stylesheet">
-<link href="../resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet">
+<link href="/resources/css/lightbox.css" rel="stylesheet">
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 
-<link rel="shortcut icon" href="../resources/images/ico/5.ico">
+<link rel="shortcut icon" href="/resources/images/ico/5.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-  href="../resources/images/ico/apple-touch-icon-144-precomposed.png">
+  href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-  href="../resources/images/ico/apple-touch-icon-114-precomposed.png">
+  href="/resources/images/ico/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-  href="../resources/images/ico/apple-touch-icon-72-precomposed.png">
+  href="/resources/images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-  href="../resources/images/ico/apple-touch-icon-57-precomposed.png">
+  href="/resources/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <style type="text/css">
 th {
@@ -61,21 +61,33 @@ $(document).ready(
 <body>
   <%@include file="../include/header.jsp"%> <!--/#header-->
   
-  <section id="page-breadcrumb">
-        <div class="vertical-center sun">
-             <div class="container">
-                <div class="row">
-                    <div class="action">
-                        <div class="col-sm-12">
-                            <h1 class="title">행사</h1>
-                            <p>행사 목록</p>
-                        </div>
-                    </div>
+  <!-- 배너 -->
+  <br>
+  <br>
+  <section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
+
+        <section id="page-breadcrumb">
+          <div class="vertical-center sun">
+            <div class="container">
+              <div class="row">
+                <div class="action">
+                  <div class="col-sm-12">
+                    <h1 class="title">행사</h1>
+                    <p>행사목록</p>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-   </section>
-    <!--/#action-->
+          </div>
+
+        </section>
+        <br>
+      </div>
+    </div>
+  </section>
+  <!-- 배너 -->
 
 
 <div class="container">

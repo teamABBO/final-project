@@ -10,6 +10,7 @@
     <link href="/resources/css/lightbox.css" rel="stylesheet"> 
    <link href="/resources/css/main.css?ver=1" rel="stylesheet">
    <link href="/resources/css/responsive.css" rel="stylesheet">
+   <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
    <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <style type="text/css">
 .circle3 {
@@ -166,31 +167,32 @@ $(document).ready(function(){
 <body>
 <%@include file="../include/header.jsp"%>
 <!-- 배너 -->
-   <br><br>
-     <section id="services" style="margin-top: 0px">
+  <br>
+  <br>
+  <section id="services" style="margin-top: 0px">
     <div class="container">
       <div class="row">
-   
-   <section id="page-breadcrumb">
-    <div class="vertical-center sun">
-     <div class="container">
-       <div class="row">
-         <div class="action">
-            <div class="col-sm-12">
-              <h1 class="title">마이페이지</h1>
-                            <p>스케줄 등록</p>
-                        </div>
-                    </div>
+
+        <section id="page-breadcrumb">
+          <div class="vertical-center sun">
+            <div class="container">
+              <div class="row">
+                <div class="action">
+                  <div class="col-sm-12">
+                    <h1 class="title">마이페이지</h1>
+                    <p>스케쥴등록</p>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-        
-   </section>
-   <br>
-   </div>
-   </div>
-   </section>
-   <!-- 배너 -->
+          </div>
+
+        </section>
+        <br>
+      </div>
+    </div>
+  </section>
+  <!-- 배너 -->
 <section id="home-slider">
 <div class="container">
    <div class="row">

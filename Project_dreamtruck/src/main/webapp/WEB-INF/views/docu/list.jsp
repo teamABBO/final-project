@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Documents | DreamTruck</title>
+<title>드림트럭</title>
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="/resources/css/animate.min.css" rel="stylesheet">
@@ -122,20 +122,33 @@
   <%@include file="../include/header.jsp"%>
   <!-- /header -->
 
-  <section id="page-breadcrumb">
-    <div class="vertical-center sun">
-      <div class="container">
-        <div class="row">
-          <div class="action">
-            <div class="col-sm-12">
-              <h1 class="title">마이 페이지</h1>
-              <p>서류 관리</p> 
+  <!-- 배너 -->
+  <br>
+  <br>
+  <section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
+
+        <section id="page-breadcrumb">
+          <div class="vertical-center sun">
+            <div class="container">
+              <div class="row">
+                <div class="action">
+                  <div class="col-sm-12">
+                    <h1 class="title">마이페이지</h1>
+                    <p>서류관리</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+
+        </section>
+        <br>
       </div>
     </div>
   </section>
+  <!-- 배너 -->
   <!--/#page-breadcrumb-->
   <div class="row col-md-12" style="padding-left: 50px; padding-right: 50px; margin-top: 40px">
     <div class="col-md-12">

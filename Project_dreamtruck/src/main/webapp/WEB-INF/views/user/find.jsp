@@ -6,18 +6,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="../resources/css/animate.min.css" rel="stylesheet">
-<link href="../resources/css/lightbox.css" rel="stylesheet">
-<link href="../resources/css/main.css" rel="stylesheet">
-<link href="../resources/css/responsive.css" rel="stylesheet">
-<script type="text/javascript" src="../resources/js/jquery.js"></script>
-<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="../resources/js/wow.min.js"></script>
-<script type="text/javascript" src="../resources/js/main.js"></script>
+<title>드림트럭</title>
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet">
+<link href="/resources/css/lightbox.css" rel="stylesheet">
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="/resources/js/wow.min.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>
 
 </head>
 <body>
@@ -55,7 +56,7 @@
 					<div class="single-service2">
 						<form id="idsearch" action="#" method="post" role="form" style="display: block; margin-left: 100px;" >
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/idSearch.png" alt="">
+								<img src="/resources/images/regist/idSearch.png" alt="">
 							</div>
 							<h2>아이디 찾기</h2>
 							<br>
@@ -81,7 +82,7 @@
 					<div class="single-service2">
 						<form id="pwsearch" action="#" method="post" role="form" style="display: block; margin-left: 100px;" >
 							<div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-								<img src="../resources/images/regist/PasswordSearch.png" alt="">
+								<img src="/resources/images/regist/PasswordSearch.png" alt="">
 							</div>
 							<h2>비밀번호 찾기</h2>
 							<br>

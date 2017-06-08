@@ -8,13 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Truck details | Dream Truck</title>
+<title>드림트럭</title>
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="/resources/css/lightbox.css" rel="stylesheet">
 <link href="/resources/css/animate.min.css" rel="stylesheet">
 <link href="/resources/css/main.css" rel="stylesheet">
 <link href="/resources/css/responsive.css" rel="stylesheet">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
@@ -52,21 +53,33 @@
 		});
 </script>
 
-		<section id="page-breadcrumb">
-				<div class="vertical-center sun">
-						<div class="container">
-								<div class="row">
-										<div class="action">
-												<div class="col-sm-12">
-														<h1 class="title">트럭세부사항</h1>
-														<p>어떤 트럭일까요?</p>
-												</div>
-										</div>
-								</div>
-						</div>
-				</div>
-		</section>
-		<!--/#page-breadcrumb-->
+		<!-- 배너 -->
+  <br>
+  <br>
+  <section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
+
+        <section id="page-breadcrumb">
+          <div class="vertical-center sun">
+            <div class="container">
+              <div class="row">
+                <div class="action">
+                  <div class="col-sm-12">
+                    <h1 class="title">푸드트럭</h1>
+                    <p>푸드트럭 보기</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+        <br>
+      </div>
+    </div>
+  </section>
+  <!-- 배너 -->
 
 		<section id="blog-details" class="padding-top">
 				<div class="container">
@@ -86,7 +99,7 @@
 														<div class="single-blog blog-details two-column">
 																<div class="post-thumb">
 																		<a href="#"><img
-																				src="../resources/images/portfolio/${truckUser.truckImg }"
+																				src="/displayFile?fileName=/user/${truckUser.id}/${truckUser.truckImg }"
 																				class="img-responsive" alt=""></a>
 
 																</div>

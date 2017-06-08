@@ -10,12 +10,12 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>드림트럭</title>
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="../resources/css/animate.min.css" rel="stylesheet">
-<link href="../resources/css/lightbox.css" rel="stylesheet">
-<link href="../resources/css/main.css" rel="stylesheet">
-<link href="../resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet">
+<link href="/resources/css/lightbox.css" rel="stylesheet">
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 
 <link rel="shortcut icon" href="../resources/images/ico/favicon.ico">
@@ -52,22 +52,33 @@
   <%@include file="../include/header.jsp"%> <!--/#header-->
 
 
-<!--  배너  -->
-  <section id="page-breadcrumb">
-    <div class="vertical-center sun">
-      <div class="container">
-        <div class="row">
-          <div class="action">
-            <div class="col-sm-12">
-              <h1 class="title">행사</h1>
-              <p>행사 상세보기</p>
+<!-- 배너 -->
+  <br>
+  <br>
+  <section id="services" style="margin-top: 0px">
+    <div class="container">
+      <div class="row">
+
+        <section id="page-breadcrumb">
+          <div class="vertical-center sun">
+            <div class="container">
+              <div class="row">
+                <div class="action">
+                  <div class="col-sm-12">
+                    <h1 class="title">행사</h1>
+                    <p>행사 보기</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+
+        </section>
+        <br>
       </div>
     </div>
   </section>
-  <!--/배너-->
+  <!-- 배너 -->
 
 <!-- 행사등록 -->
 

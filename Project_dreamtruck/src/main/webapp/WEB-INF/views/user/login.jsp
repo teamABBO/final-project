@@ -6,17 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>드림트럭</title>
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="../resources/css/animate.min.css" rel="stylesheet"> 
-<link href="../resources/css/lightbox.css" rel="stylesheet"> 
-<link href="../resources/css/main.css" rel="stylesheet">
-<link href="../resources/css/responsive.css" rel="stylesheet">
-<script type="text/javascript" src="../resources/js/jquery.js"></script>
-<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="../resources/js/wow.min.js"></script>
-<script type="text/javascript" src="../resources/js/main.js"></script>  
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet"> 
+<link href="/resources/css/lightbox.css" rel="stylesheet"> 
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="/resources/js/wow.min.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>  
 <script >
 
 var result = '${msg}';
@@ -144,7 +145,7 @@ if (result == 'success') {
     
     <!-- 본문 -->
     <br>
-    <img alt="" src="../resources/images/home/welcome.png" style="margin-left: 590px; height: 100px;">
+    <img alt="" src="/resources/images/home/welcome.png" style="margin-left: 590px; height: 100px;">
     <br>
 	<div class="container">
 	<div class="row">
