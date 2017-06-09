@@ -22,8 +22,7 @@
               </a></li>
               <li><a href="#logoutMod" data-toggle="modal"
                 style="color: #fd9691">로그아웃</a></li>
-              <li><a href="/user/mypage?type=${login.type }"
-                style="color: #fd9691">내 정보</a></li>
+              <li><a href="/user/mypage" style="color: #fd9691">내 정보</a></li>
             </ul>
           </div>
         </c:if>

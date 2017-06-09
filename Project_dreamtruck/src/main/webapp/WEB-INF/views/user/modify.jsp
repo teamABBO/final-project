@@ -23,7 +23,10 @@
 <script type="text/javascript" src="/resources/js/main.js"></script>
 <script type="text/javascript">
 	$(document).ready(
+				
 			 function() {
+				 console.log("${login.type}");
+				 console.log("${login.userId}");
 				$(document).on(
 						'change',
 						'.btn-file :file',
@@ -66,7 +69,8 @@
 </script> 
 <body>
 <%@include file="../include/header.jsp"%>
-	
+	<input type="hidden" name="userId" value="${login.userId}">
+	<input type="hidden" name="type" value="${login.type}">
 	<c:choose>
 		<c:when test="${login.type == 'normal'}">
 			<!-- 배너 -->
@@ -129,7 +133,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">전화번호 </label>
 					<div class="col-md-4">
-						<input id="phone" name="phone"  type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" required="">
+						<input id="phone" name="phone"  type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" value="${login.phone}">
 					</div>
 				</div>
 				
@@ -137,7 +141,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="rpassword">이름</label>
 					<div class="col-md-4">
-						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" required="">
+						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" value="${login.name}">
 					</div>
 				</div>
 				
@@ -145,9 +149,10 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="selectgu">관심 지역</label>
 					<div class="col-md-4">
+					
 
 						<select id="likeArea" name="likeArea" class="form-control">
-							<option value="">선택 해 주세요.</option>
+							<option value="">다시 선택 해 주세요.</option>
 							<option value="1">강남구</option>
 							<option value="2">강동구</option>
 							<option value="3">강북구</option>
@@ -224,7 +229,7 @@
 				<br><br>
 					<label class="col-md-4 control-label" for="name">아이디</label>
 					<div class="col-md-4">
-						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" disabled>
+						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" disabled value="${login.id}">
 					</div>
 				</div>
 
@@ -249,7 +254,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">전화번호 </label>
 					<div class="col-md-4">
-						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" >
+						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" value="${login.phone}">
 					</div>
 				</div>
 				
@@ -257,7 +262,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="rpassword">이름</label>
 					<div class="col-md-4">
-						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled>
+						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled value="${login.name}">
 					</div>
 				</div>
 				
@@ -267,7 +272,7 @@
 					<div class="col-md-4">
 
 						<select id="selectgu" name="selectgu" class="form-control">
-							<option value="">선택 해 주세요.</option>
+							<option value="">다시 선택 해 주세요.</option>
 							<option value="gangnam">강남구</option>
 							<option value="gangdong">강동구</option>
 							<option value="gangbuk">강북구</option>
@@ -301,7 +306,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">이메일</label>
 					<div class="col-md-4">
-						<input id="email" name="email" type="text" placeholder="이메일을 입력 해 주세요." class="form-control input-md" >
+						<input id="eventEmail" name="eventEmail" type="text" placeholder="이메일을 입력 해 주세요." class="form-control input-md">
 					</div>
 				</div>
 					
@@ -359,7 +364,8 @@
 				<br><br>
 					<label class="col-md-4 control-label" for="name">아이디</label>
 					<div class="col-md-4">
-						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" disabled >
+						
+						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" disabled value="${login.id}">
 					</div>
 				</div>
 
@@ -384,7 +390,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">전화번호 </label>
 					<div class="col-md-4">
-						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md">
+						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" value="${login.phone}">
 					</div>
 				</div>
 				
@@ -392,7 +398,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="rpassword">이름</label>
 					<div class="col-md-4">
-						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled>
+						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled value="${login.name}">
 					</div>
 				</div>
 				
@@ -401,33 +407,69 @@
 					<label class="col-md-4 control-label" for="selectgu">관심 지역</label>
 					<div class="col-md-4">
 
-						<select id="selectgu" name="selectgu" class="form-control">
-							<option value="">선택 해 주세요.</option>
-							<option value="gangnam">강남구</option>
-							<option value="gangdong">강동구</option>
-							<option value="gangbuk">강북구</option>
-							<option value="gangseo">강서구</option>
-							<option value="gwanak">관악구</option>
-							<option value="gwangjin">광진구</option>
-							<option value="guro">구로구</option>
-							<option value="geumcheon">금천구</option>
-							<option value="nowon">노원구</option>
-							<option value="dobong">도봉구</option>
-							<option value="ddm">동대문구</option>
-							<option value="dongjak">동작구</option>
-							<option value="mapo">마포구</option>
-							<option value="seodaemun">서대문구</option>
-							<option value="seocho">서초구</option>
-							<option value="seongdong">성동구</option>
-							<option value="seongbuk">성북구</option>
-							<option value="songpa">송파구</option>
-							<option value="yangcheon">양천구</option>
-							<option value="ydp">영등포구</option>
-							<option value="yongsan">용산구</option>
-							<option value="ep">은평구</option>
-							<option value="jongno">종로구</option>
-							<option value="junggu">중구</option>
-							<option value="jungnang">중랑구</option>
+						<select id="likeArea" name="likeArea" class="form-control">
+							<option value="">다시 선택 해 주세요.</option>
+							<option value="1">강남구</option>
+							<option value="2">강동구</option>
+							<option value="3">강북구</option>
+							<option value="4">강서구</option>
+							<option value="5">관악구</option>
+							<option value="6">광진구</option>
+							<option value="7">구로구</option>
+							<option value="8">금천구</option>
+							<option value="9">노원구</option>
+							<option value="10">도봉구</option>
+							<option value="11">동대문구</option>
+							<option value="12">동작구</option>
+							<option value="13">마포구</option>
+							<option value="14">서대문구</option>
+							<option value="15">서초구</option>
+							<option value="16">성동구</option>
+							<option value="17">성북구</option>
+							<option value="18">송파구</option>
+							<option value="19">양천구</option>
+							<option value="20">영등포구</option>
+							<option value="21">용산구</option>
+							<option value="22">은평구</option>
+							<option value="23">종로구</option>
+							<option value="24">중구</option>
+							<option value="25">중랑구</option>
+						</select>
+					</div>
+				</div>
+				
+				<!-- 영업 지역 -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="selectgu">영업 지역</label>
+					<div class="col-md-4">
+
+						<select id="truckArea" name="truckArea" class="form-control">
+							<option value="">다시 선택 해 주세요.</option>
+							<option value="1">강남구</option>
+							<option value="2">강동구</option>
+							<option value="3">강북구</option>
+							<option value="4">강서구</option>
+							<option value="5">관악구</option>
+							<option value="6">광진구</option>
+							<option value="7">구로구</option>
+							<option value="8">금천구</option>
+							<option value="9">노원구</option>
+							<option value="10">도봉구</option>
+							<option value="11">동대문구</option>
+							<option value="12">동작구</option>
+							<option value="13">마포구</option>
+							<option value="14">서대문구</option>
+							<option value="15">서초구</option>
+							<option value="16">성동구</option>
+							<option value="17">성북구</option>
+							<option value="18">송파구</option>
+							<option value="19">양천구</option>
+							<option value="20">영등포구</option>
+							<option value="21">용산구</option>
+							<option value="22">은평구</option>
+							<option value="23">종로구</option>
+							<option value="24">중구</option>
+							<option value="25">중랑구</option>
 						</select>
 					</div>
 				</div>
@@ -436,7 +478,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="address1">사업자번호</label>
 					<div class="col-md-4">
-						<input id="sid" name="sid" type="text" placeholder="사업자번호를 입력 해 주세요. " class="form-control input-md" disabled>
+						<input id="sid" name="sid" type="text" placeholder="사업자번호를 입력 해 주세요. " class="form-control input-md" value="${login.sid}" disabled>
 
 					</div>
 				</div>
@@ -445,7 +487,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="address1">차량번호</label>
 					<div class="col-md-4">
-						<input id="trucknum" name="trucknum" type="text" placeholder="차량번호를 입력 해 주세요." class="form-control input-md" disabled>
+						<input id="truckNum" name="truckNum" type="text" placeholder="차량번호를 입력 해 주세요." class="form-control input-md" value="${login.truckNum}" disabled>
 					</div>
 				</div>
 
@@ -453,16 +495,34 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="city">트럭상호명</label>
 					<div class="col-md-4">
-						<input id="truckname" name="truckname" type="text" placeholder="트럭상호명을 입력 해 주세요." class="form-control input-md" >
+						<input id="truckName" name="truckName" type="text" placeholder="트럭상호명을 입력 해 주세요." class="form-control input-md" value="${login.truckName}">
 
 					</div>
 				</div>
 				
 				<!-- 음식 종류 -->
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="contactphone">음식 종류</label>
+					<label class="col-md-4 control-label" for="selectgu">음식 종류</label>
 					<div class="col-md-4">
-						<input id="food" name="food" type="text" placeholder="영업할 음식을 입력 해 주세요." class="form-control input-md" >
+
+						<select id="truckFood" name="truckFood" class="form-control">
+							<option value="">선택 해 주세요.</option>
+							<option value="한식">한식</option>
+							<option value="일식">일식</option>
+							<option value="중식">중식</option>
+							<option value="아프리카">아프리카</option>
+							<option value="동남아">동남아</option>
+							<option value="남미">남미</option>
+							<option value="북미">북미</option>
+							<option value="이탈리아">이탈리아</option>
+							<option value="스페인">스페인</option>
+							<option value="오세아니아">오세아니아</option>
+							<option value="유럽식">유럽식</option>
+							<option value="디저트">디저트</option>
+							<option value="음료">음료</option>
+							<option value="주류">주류</option>
+							<option value="퓨전">퓨전</option>
+						</select>
 					</div>
 				</div>
 
@@ -476,9 +536,9 @@
 									<div class="input-group">
 										<span class="input-group-btn"> <span class="btn btn-default btn-file" style="margin-left: 15px;">업로드 <input type="file" id="imgInp">
 										</span>
-										</span> <input type="text" class="form-control" readonly style="margin-left: 20px;">
+										</span> <input type="text" id="truckImg" name="truckImg" class="form-control" readonly style="margin-left: 20px;" value="${login.truckImg}">
 									</div>
-									<img id='img-upload' style="margin-left: 20px; margin-top: 10px;" />
+									<img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/${login.id}/${login.truckImg }" />
 								</div>
 							</div>
 						</div>
@@ -489,7 +549,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="info">내용</label>
 					<div class="col-md-5">
-						<textarea rows="8" cols="84" id="info" name="info" style="resize: none;"></textarea>
+						<textarea rows="8" cols="84" id="truckInfo" name="truckInfo" style="resize: none;">${login.truckInfo}</textarea>
 					</div>
 				</div>
 
@@ -524,16 +584,7 @@
 
                   <div class="col-xs-12">
                       <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fa fa-warning"></i> 취소 시 입력했던 내용이 전부 삭제됩니다.</div>
-                      <div style="text-align: center; font-size: 10pt; margin: 16px;"><span style="color: #2e77bc;"><i class="fa fa-info-circle"></i></span> Undiscovered assets are assets that were recorded against a DRH customer but were not discoverable when a site audit was carried out.</div>
-                      <div class="well">
-                            <div style="color: #acacac; font-size: 9pt; text-align: center; padding: 0px; margin-bottom: 6px;">You are required to complete the following actions:</div>
-                              <ul class="list-unstyled" style="line-height: 2">
-                                  <li><span class="text-success"><i class="fa fa-check-square"></i></span> <span style="color: #acacac; font-size: 11pt; text-align: left;">1</span> <span style="font-size: 11pt; text-align: left;">Connect the affected workstation to the power & network</span></li>
-                                  <li><span class="text-success"><i class="fa fa-check-square"></i></span> <span style="color: #acacac; font-size: 11pt; text-align: left;">2</span> <span style="font-size: 11pt; text-align: left;">Login to the workstation with using your admin account</span></li>
-                                  <li><span class="text-success"><i class="fa fa-check-square"></i></span> <span style="color: #acacac; font-size: 11pt; text-align: left;">3</span> <span style="font-size: 11pt; text-align: left;">Check the local <b>C:\Documents and Settings</b> for the DRH customers profile</span></li>
-                                  <li><span class="text-success"><i class="fa fa-check-square"></i></span> <span style="color: #acacac; font-size: 11pt; text-align: left;">4</span> <span style="font-size: 11pt; text-align: left;">Contact the DRH SME (NAME HERE)</span></li>
-                              </ul>
-                      </div>
+                      
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">취소</button>
                     <a class="btn btn-default" href="../" >확인</a>
@@ -541,11 +592,10 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    <!-- Modal -->
     </div>
     </div>
     </div>
-    
+     <!-- Modal -->
 	
 </body>
 

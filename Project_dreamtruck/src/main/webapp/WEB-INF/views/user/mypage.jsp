@@ -73,7 +73,7 @@
               <h2>내가 쓴글</h2>
             </div>
           </div>
-					<c:if test="${param.type == 'truck' }">
+					<c:if test="${login.type == 'truck' }">
 					<!-- 스케쥴 -->
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms" style="margin-left: 200px;">
 						<div class="single-service2">

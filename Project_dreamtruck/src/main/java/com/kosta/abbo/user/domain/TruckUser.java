@@ -3,7 +3,7 @@ package com.kosta.abbo.user.domain;
 
 public class TruckUser extends NormalUser {
 	private String truckNum; 	// 차량번호
-	private int sid;
+	private String sid;			// 사업자번호
 	private String truckImg; 	// 트럭 이미지
 	private String truckName; 	// 트럭 상호명
 	private String truckFood; 	// 음식 종류
@@ -17,13 +17,16 @@ public class TruckUser extends NormalUser {
 	}
 
 
-	public int getSid() {
+	public String getSid() {
 		return sid;
 	}
 
-	public void setSid(int sid) {
+
+	public void setSid(String sid) {
 		this.sid = sid;
 	}
+
+
 
 	public String getTruckNum() {
 		return truckNum;

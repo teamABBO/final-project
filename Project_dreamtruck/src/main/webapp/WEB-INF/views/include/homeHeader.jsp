@@ -18,7 +18,7 @@
               <ul class="nav nav-pills">
                 <li><a>${login.userId} 님 환영합니다 </a></li>
                 <li><a href="#logoutMod" data-toggle="modal">로그아웃</a></li>
-                <li><a href="/user/mypage?type=${login.type}">내 정보</a></li>
+                <li><a href="/user/mypage">내 정보</a></li>
               </ul>
             </div>
             </c:if>

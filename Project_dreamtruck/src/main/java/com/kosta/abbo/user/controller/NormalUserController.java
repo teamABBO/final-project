@@ -121,12 +121,13 @@ public class NormalUserController {
 	 * @param dto
 	 */
 	@RequestMapping(value = "/normalRegister", method = RequestMethod.POST)
-	public String registPOST(NormalUser normalUser, RedirectAttributes rttr){
+	public String registPOST(NormalUser normalUser, RedirectAttributes rttr, Model model){
 		logger.info("회원가입 POST .....");
 		logger.info(normalUser.toString());
 		
 		normalService.create(normalUser);
 		
+		model.addAttribute("normalUser",normalUser);
 		rttr.addFlashAttribute("msg","success");
 		
 //		return "/user/success";
@@ -211,6 +212,7 @@ public class NormalUserController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public void mypageGET(NormalUser normalUser, Model model){
 		logger.info("마이페이지 GET .....");
+		
 	}
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
@@ -221,10 +223,15 @@ public class NormalUserController {
 	/**
 	 * 회원정보 수정
 	 * @param dto
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modify(@ModelAttribute("dto") LoginDTO dto){
+	public void modify(@ModelAttribute("dto") LoginDTO dto,  Model model) throws Exception{
 		logger.info("회원 정보 수정 GET .....");
+		/*if(type == "truck"){
+			model.addAttribute(truckService.read(userId));
+		}*/
+		
 	}
 	
 	/**
