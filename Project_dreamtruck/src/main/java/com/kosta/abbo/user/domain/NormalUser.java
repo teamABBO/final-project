@@ -7,8 +7,9 @@ public class NormalUser {
 	private String type; 	// 회원 종류 (normal : 일반회원, truck : 트럭운영자, event : 행사운영자)
 	private String pw; 		// 비밀번호
 	private String phone; 	// 전화번호
-	private String regdate; 	// 회원가입 날짜
+	private String regdate; // 회원가입 날짜
 	private int likeArea; 	// 관심 지역
+	private String email;	// 이메일
 
 	public NormalUser() {
 		type = "normal";
@@ -77,11 +78,19 @@ public class NormalUser {
 	public void setLikeArea(int likeArea) {
 		this.likeArea = likeArea;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	@Override
 	public String toString() {
 		return "NormalUser [userId=" + userId + ", id=" + id + ", name=" + name + ", type=" + type + ", pw=" + pw
-				+ ", phone=" + phone + ", regdate=" + regdate + ", likeArea=" + likeArea + "]";
+				+ ", phone=" + phone + ", regdate=" + regdate + ", likeArea=" + likeArea + ", email=" + email +"]";
 	}
 
 }

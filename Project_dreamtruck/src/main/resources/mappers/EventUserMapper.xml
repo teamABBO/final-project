@@ -16,7 +16,7 @@
                phone,
              regdate,
            like_area,
-         event_email,
+         	   email,
            event_dep)
 	VALUES (user_id_seq.nextval,
             	     	  #{id},
@@ -26,7 +26,7 @@
             	       #{phone},
             		    sysdate,
             	    #{likeArea},
-          		  #{eventEmail},
+          		  	   #{email},
                     #{eventDep})
 	</insert> 
 	

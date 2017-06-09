@@ -95,9 +95,9 @@ public class TruckUser extends NormalUser {
 
 		return "TruckUser [userId=" + super.getUserId() + ", id=" + super.getId() + ", name=" + super.getName()
 				+ ", type=" + super.getType() + ", pw=" + super.getPw() + ", phone=" + super.getPhone() + ", regdate="
-				+ super.getRegdate() + ", likeArea=" + super.getLikeArea() + "truckNum=" + sid + ",sid=" +  truckNum + ", truckImg="
+				+ super.getRegdate() + ", likeArea=" + super.getLikeArea() + ", email=" + super.getEmail() + ", truckNum=" + sid + ",sid=" +  truckNum + ", truckImg="
 				+ truckImg + ", truckName=" + truckName + ", truckFood=" + truckFood + ", truckInfo=" + truckInfo
-				+ ", truckDoc=" + truckDoc + ", truckArea=" + truckArea + "truckLikecnt=" + truckLikecnt + "]";
+				+ ", truckDoc=" + truckDoc + ", truckArea=" + truckArea + ", truckLikecnt=" + truckLikecnt + "]";
 	}
 
 

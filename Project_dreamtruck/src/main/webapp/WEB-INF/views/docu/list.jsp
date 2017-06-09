@@ -150,7 +150,8 @@
   </section>
   <!-- 배너 -->
   <!--/#page-breadcrumb-->
-  <div class="row col-md-12" style="padding-left: 50px; padding-right: 50px; margin-top: 40px">
+  <div class="container">
+  <div class="row">
     <div class="col-md-12">
       <caption>
         <pre class="glyphicon glyphicon-file" style="color: green"> 등록완료 </pre>
@@ -254,6 +255,7 @@
         <div class="panel-heading text-center"></div>
       </div>
     </div>
+  </div>
   </div>
 
   <%@include file="../include/footer.jsp"%>

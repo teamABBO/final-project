@@ -43,6 +43,30 @@ public class DocuController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
+	 * 영업신청서 제출 화면
+	 * 
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/apply", method = RequestMethod.GET)
+	public String apply(Model model, HttpSession session) throws Exception {
+		logger.info("영업신청서 제출 페이지");
+
+		NormalUser loginUser = (NormalUser) session.getAttribute("login");
+
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		List<Docu> docuList = service.list(loginUser.getUserId());
+
+		String jsonList = objectMapper.writeValueAsString(docuList);
+
+		model.addAttribute("docuList", jsonList);
+
+		return "/docu/apply";
+	}
+	
+	/**
 	 * 서류 목록 처리
 	 * 
 	 * @param model
