@@ -6,21 +6,23 @@
 <mapper namespace="com.kosta.abbo.mapper.NormalUserMapper">
 	
 	<!-- 로그인 -->
-	<select id="login" resultType="NormalUser">
+	<select id="login" resultType="TruckUser">
 		SELECT user_id as userId,
       				id,
        			    pw,
        			  type,
-       			  name
+       			  name,
+       			  phone,
+       			  sid,
+       			  truck_num as truckNum,
+       			  truck_name as truckName,
+       			  truck_info as truckInfo,
+       			  truck_img as truckImg
 		  FROM   users
 		  WHERE  id = #{id} 
       	    AND  pw = #{pw}
 	</select>
 	
-	<!-- 중복검사 -->
-	<!-- <select id="isMember" resultType="com.kosta.abbo.user.domain.NormalUser">
-		select id,pw from users where id = #{id} and pw = #{pw}
-	</select> -->
 	
 	<!-- 회원가입 -->
 	<insert id="create">
@@ -32,6 +34,7 @@
                   pw,
                phone,
              regdate,
+               email,
              like_area)
 	VALUES  (user_id_seq.nextval,
             			   #{id},
@@ -39,6 +42,7 @@
            			    'normal',
             			   #{pw},
             		    #{phone},
+            		    #{email},
            				 sysdate,
             		 #{likeArea})
 	</insert> 

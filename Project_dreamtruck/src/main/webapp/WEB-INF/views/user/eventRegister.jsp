@@ -137,7 +137,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">이메일</label>
 					<div class="col-md-4">
-						<input id="eventEmail" name="eventEmail" type="email" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required>
+						<input id="email" name="email" type="email" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required>
 					</div>
 				</div>
 					
@@ -176,16 +176,6 @@
 
                   <div class="col-xs-12">
                       <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fa fa-warning"></i> 취소 시 입력했던 내용이 전부 삭제됩니다.</div>
-                      <div style="text-align: center; font-size: 10pt; margin: 16px;"><span style="color: #2e77bc;"><i class="fa fa-info-circle"></i></span> Undiscovered assets are assets that were recorded against a DRH customer but were not discoverable when a site audit was carried out.</div>
-                      <div class="well">
-                            <div style="color: #acacac; font-size: 9pt; text-align: center; padding: 0px; margin-bottom: 6px;">You are required to complete the following actions:</div>
-                              <ul class="list-unstyled" style="line-height: 2">
-                                  <li><span class="text-success"><i class="fa fa-check-square"></i></span> <span style="color: #acacac; font-size: 11pt; text-align: left;">1</span> <span style="font-size: 11pt; text-align: left;">Connect the affected workstation to the power & network</span></li>
-                                  <li><span class="text-success"><i class="fa fa-check-square"></i></span> <span style="color: #acacac; font-size: 11pt; text-align: left;">2</span> <span style="font-size: 11pt; text-align: left;">Login to the workstation with using your admin account</span></li>
-                                  <li><span class="text-success"><i class="fa fa-check-square"></i></span> <span style="color: #acacac; font-size: 11pt; text-align: left;">3</span> <span style="font-size: 11pt; text-align: left;">Check the local <b>C:\Documents and Settings</b> for the DRH customers profile</span></li>
-                                  <li><span class="text-success"><i class="fa fa-check-square"></i></span> <span style="color: #acacac; font-size: 11pt; text-align: left;">4</span> <span style="font-size: 11pt; text-align: left;">Contact the DRH SME (NAME HERE)</span></li>
-                              </ul>
-                      </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">취소</button>
                     <a class="btn btn-default" href="../" >확인</a>
