@@ -13,14 +13,21 @@
 <link href="/resources/css/lightbox.css" rel="stylesheet"> 
 <link href="/resources/css/main.css" rel="stylesheet">
 <link href="/resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/sweetalert.css" rel="stylesheet">
 <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
+<script type="text/javascript" src="../resources/js/jquery.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="../resources/js/wow.min.js"></script>
+<script type="text/javascript" src="../resources/js/main.js"></script>  
+<script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
 </head>
 
 <body>
 <script type="text/javascript">
 var result = '${msg}';
 if (result == 'success') {
-   alert("회원정보를 확인 해 주세요.");
+	swal("Good job!", "You clicked the button!", "success")
    self.location = "login";
 }else{
    self.location = "../";
@@ -29,10 +36,5 @@ if (result == 'success') {
 
 </script>
 </body>
-<script type="text/javascript" src="../resources/js/jquery.js"></script>
-		<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-		<script type="text/javascript" src="../resources/js/wow.min.js"></script>
-		<script type="text/javascript" src="../resources/js/main.js"></script>  
-		
+
 </html>

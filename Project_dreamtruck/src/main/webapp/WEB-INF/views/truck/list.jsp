@@ -210,10 +210,15 @@
                 <div class="portfolio-wrapper">
                   <div class="portfolio-single">
                     <div class="portfolio-thumb">
-
-                      <img
+					  <c:if test="${empty truckUser.truckImg}">
+					  <img id='img-upload' class="img-responsive" src="/displayFile?fileName=/user/noimage.png" />
+					  </c:if>
+					  <c:if test="${not empty truckUser.truckImg}">
+					  <img
                         src="/displayFile?fileName=/user/${truckUser.id}/${truckUser.truckImg }"
                         class="img-responsive" alt="">
+					  </c:if>
+                      
                     </div>
                     <div class="portfolio-view">
                       <ul class="nav nav-pills">

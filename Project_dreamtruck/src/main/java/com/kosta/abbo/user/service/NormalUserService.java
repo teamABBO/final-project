@@ -27,7 +27,7 @@ public interface NormalUserService {
 	 * @param normalUserId
 	 * @return
 	 */
-	public NormalUser read(int normalUserId);
+	public NormalUser read(int userId);
 	
 	/**
 	 * 일반회원 수정

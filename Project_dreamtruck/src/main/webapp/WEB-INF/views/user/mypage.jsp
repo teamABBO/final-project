@@ -15,6 +15,14 @@
 <link href="/resources/css/responsive.css" rel="stylesheet">
 <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 </head>
+<script type="text/javascript">
+var result = '${msg}';
+if (result == 'success') {
+   alert("수정이 완료되었습니다..");
+   self.location = "login";
+}else{
+}
+</script>
 <body>
 <%@include file="../include/header.jsp"%>
 		<!-- 배너 -->
@@ -42,6 +50,9 @@
    </div>
    </section>
     <!-- 배너 -->
+    <form method="post" role="form"  class="form-horizontal" >
+    <input type="hidden" id="userId" name="userId" value="${login.userId}">
+    </form>
 			<section id="services">
 			<div class="container">
 				<div class="row">

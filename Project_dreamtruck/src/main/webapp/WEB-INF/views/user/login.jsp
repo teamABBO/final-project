@@ -12,82 +12,30 @@
 <link href="/resources/css/lightbox.css" rel="stylesheet"> 
 <link href="/resources/css/main.css" rel="stylesheet">
 <link href="/resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/sweetalert.css" rel="stylesheet">
 <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
 <script type="text/javascript" src="/resources/js/wow.min.js"></script>
-<script type="text/javascript" src="/resources/js/main.js"></script>  
+<script type="text/javascript" src="/resources/js/main.js"></script>
+<script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
 <script >
 
 var result = '${msg}';
+var modify = '${modify}';
+
+console.log(result);
+console.log(modify);
 if (result == 'success') {
    alert("처리완료");
+}else if (modify == 'modify'){
+	alert("수정이 완료되었습니다. 다시 로그인 해 주세요.");
 }
 
 </script>
 		
-		<!-- <script type="text/javascript">
-		$(function(){
-			
-		    $('.button-checkbox').each(function(){
-				var $widget = $(this),
-					$button = $widget.find('button'),
-					$checkbox = $widget.find('input:checkbox'),
-					color = $button.data('color'),
-					settings = {
-							on: {
-								icon: 'glyphicon glyphicon-check'
-							},
-							off: {
-								icon: 'glyphicon glyphicon-unchecked'
-							}
-					};
-
-				$button.on('click', function () {
-					$checkbox.prop('checked', !$checkbox.is(':checked'));
-					$checkbox.triggerHandler('change');
-					updateDisplay();
-				});
-
-				$checkbox.on('change', function () {
-					updateDisplay();
-				});
-
-				 function updateDisplay() {
-					var isChecked = $checkbox.is(':checked');
-					// Set the button's state
-					$button.data('state', (isChecked) ? "on" : "off");
-
-					// Set the button's icon
-					$button.find('.state-icon')
-						.removeClass()
-						.addClass('state-icon ' + settings[$button.data('state')].icon);
-
-					// Update the button's color
-					if (isChecked) {
-						$button
-							.removeClass('btn-default')
-							.addClass('btn-' + color + ' active');
-					}
-					else
-					{
-						$button
-							.removeClass('btn-' + color + ' active')
-							.addClass('btn-default');
-					}
-				} 
-				function init() {
-					updateDisplay();
-					// Inject the icon if applicable
-					if ($button.find('.state-icon').length == 0) {
-						$button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
-					}
-				}
-				init();
-			});
-		});
-</script> -->
+		
 <style type="text/css">
 .box-radius {
    width : 550px;

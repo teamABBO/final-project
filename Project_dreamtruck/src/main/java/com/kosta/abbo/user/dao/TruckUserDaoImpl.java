@@ -45,7 +45,7 @@ public class TruckUserDaoImpl implements TruckUserDao {
 	 */
 	@Override
 	public void update(TruckUser truckUser) {
-		
+		SqlSession.update(namespace+".update",truckUser);
 	}
 	
 	/**
