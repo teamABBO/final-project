@@ -14,6 +14,7 @@
        			  name,
        			  phone,
        			  sid,
+       			  email,
        			  truck_num as truckNum,
        			  truck_name as truckName,
        			  truck_info as truckInfo,
@@ -42,8 +43,8 @@
            			    'normal',
             			   #{pw},
             		    #{phone},
-            		    #{email},
            				 sysdate,
+           				#{email},
             		 #{likeArea})
 	</insert> 
 	
@@ -54,6 +55,29 @@
     	   AND pw = #{pw}
 	</delete>
 	
+	<!-- 정보수정 -->
+	<update id="update">
+	UPDATE  users 
+	SET        pw = #{pw},
+            phone = #{phone},
+            email = #{email},
+        like_area = #{likeArea}
+	WHERE  user_id = #{userId}
+	</update>
+	
+	<!-- 일반상세보기 -->
+	<select id="read" resultType="NormalUser">
+		select user_id as userId,
+							  id,
+							name,
+							type,
+						   email,
+						   phone,
+		   like_area as likeArea
+    	from users
+    	where user_id = #{userId}
+	</select>
+	
 	<update id="checkDocu">
    UPDATE users
       SET truck_doc = 'o'
@@ -63,7 +87,7 @@
                    WHERE user_id = "#{userId}" AND expdate > sysdate
                    )
            ) = 4;
-</update>
+	</update>
 	
 
 </mapper>

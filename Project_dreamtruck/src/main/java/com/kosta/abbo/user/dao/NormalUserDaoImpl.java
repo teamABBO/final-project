@@ -39,18 +39,6 @@ public class NormalUserDaoImpl implements NormalUserDao {
 		SqlSession.insert(namespace + ".create",normalUser);
 	}
 	
-	/**
-	 * 회원중복 여부
-	 */
-	/*@Override
-	public boolean isMember(String id, String pw) {
-		Map<String, Object> paramMap = new HashMap<String,Object>();
-
-		paramMap.put("id", id);
-		paramMap.put("pw", pw);
-		
-		return SqlSession.selectMap(namespace + ".isMember",paramMap);
-	}*/
 	
 	/**
 	 * 일반회원 상세보기
@@ -58,8 +46,8 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	 * @return
 	 */
 	@Override
-	public NormalUser read(int normalUserId) {
-		return null;
+	public NormalUser read(int userId) {
+		return SqlSession.selectOne(namespace + ".read", userId);
 	}
 	
 	/**
@@ -68,7 +56,7 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	 */
 	@Override
 	public void update(NormalUser normalUser) {
-		
+		SqlSession.update(namespace+".update", normalUser);
 	}
 	
 	/**

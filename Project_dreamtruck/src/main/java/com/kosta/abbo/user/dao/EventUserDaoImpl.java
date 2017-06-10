@@ -41,7 +41,7 @@ public class EventUserDaoImpl implements EventUserDao {
 	 */
 	@Override
 	public void update(EventUser eventUser) {
-		
+		SqlSession.update(namespace+".update", eventUser);
 	}
 	
 	/**

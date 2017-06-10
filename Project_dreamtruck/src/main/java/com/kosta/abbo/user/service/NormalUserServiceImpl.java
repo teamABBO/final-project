@@ -35,10 +35,6 @@ public class NormalUserServiceImpl implements NormalUserService {
 		dao.create(normalUser);
 	}
 	
-	/*@Override
-	public boolean isMember(String id, String pw) {
-		return dao.isMember(id, pw);
-	}*/
 
 	/**
 	 * 일반회원 상세보기
@@ -46,8 +42,8 @@ public class NormalUserServiceImpl implements NormalUserService {
 	 * @return
 	 */
 	@Override
-	public NormalUser read(int normalUserId) {
-		return dao.read(normalUserId);
+	public NormalUser read(int userId) {
+		return dao.read(userId);
 	}
 
 	/**

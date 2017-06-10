@@ -46,6 +46,22 @@
                       #{truckImg})
    </insert> 
 	
+	<!-- 정보수정 -->
+	<update id="update">
+	UPDATE users
+	SET    pw = #{pw},
+           phone = #{phone},
+           email = #{email},
+           truck_area = #{truckArea},
+           like_area = #{likeArea},
+           truck_name = #{truckName},
+           truck_food = #{truckFood},
+		   truck_img = #{truckImg},
+		   truck_info = #{truckInfo}
+	WHERE  user_id = #{userId}
+	</update>
+	
+	
 	
 	<!-- 트럭상세보기 -->
 	<select id="read" resultType="TruckUser">

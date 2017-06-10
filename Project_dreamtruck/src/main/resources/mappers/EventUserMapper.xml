@@ -30,5 +30,15 @@
                     #{eventDep})
 	</insert> 
 	
+	<!-- 정보수정 -->
+	<update id="update">
+	UPDATE users
+	SET    pw = #{pw},
+           phone = #{phone},
+           email = #{email},
+           like_area = #{likeArea},
+           event_dep = #{eventDep}
+	WHERE  user_id = #{userId}
+	</update>
 
 </mapper>
