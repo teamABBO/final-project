@@ -38,168 +38,103 @@
     var geocoder;
     
     
-    var GreenIcon = new google.maps.MarkerImage(
-       "http://labs.google.com/ridefinder/images/mm_20_green.png",
-       new google.maps.Size(12, 20),
-       new google.maps.Point(0, 0),
-       new google.maps.Point(6, 20));
+ 
     // 녹색 마커 아이콘을 정의하는 부분
     
     function initialize(){
     
-     var latlng = new google.maps.LatLng(37.555172, 126.970788);
-     var myOptions = {
-      zoom: 11,
-      center:latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP   
-     };
-     
-     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-     geocoder =  new google.maps.Geocoder();
-     google.maps.event.addListener(map, 'click', codeCoordinate);
-            /*아랫글에서 설명한 event를 이용 지도를 'click'하면 codeCoordinate함수를 실행합니다.
-               codeCoordinate함수는 클릭한 지점의 좌표를 가지고 주소를 찾는 함수입니다. */
+       var latlng = new google.maps.LatLng(37.555172, 126.970788);
+       var myOptions = {
+        zoom: 11,
+        center:latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP   
+       };
+       
+       map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+       geocoder =  new google.maps.Geocoder();
+       google.maps.event.addListener(map, 'click', codeCoordinate);
+              /*아랫글에서 설명한 event를 이용 지도를 'click'하면 codeCoordinate함수를 실행합니다.
+                 codeCoordinate함수는 클릭한 지점의 좌표를 가지고 주소를 찾는 함수입니다. */
     }
-    
-    function Setmarker(latLng) {
-      if (marker.length > 0)
-            {
-      marker[0].setMap(null); 
+      
+      function Setmarker(latLng) {
+        if (marker.length > 0) {
+        	marker[0].setMap(null); 
+        }
+      // marker.length는 marker라는 배열의 원소의 개수입니다.
+      // 만약 이 개수가 0이 아니라면 marker를 map에 표시되지 않게 합니다.
+      // 이는 다른 지점을 클릭할 때 기존의 마커를 제거하기 위함입니다.
+      
+        marker = [];
+        marker.length = 0;
+      // marker를 빈 배열로 만들고, marker 배열의 개수를 0개로 만들어 marker 배열을 초기화합니
+      // 다.
+      
+        marker.push(new google.maps.Marker({
+         	position: latLng,
+          	map: map
+        }));
+      // marker 배열에 새 marker object를 push 함수로 추가합니다.
+      
       }
-    // marker.length는 marker라는 배열의 원소의 개수입니다.
-    // 만약 이 개수가 0이 아니라면 marker를 map에 표시되지 않게 합니다.
-    // 이는 다른 지점을 클릭할 때 기존의 마커를 제거하기 위함입니다.
-    
-      marker = [];
-      marker.length = 0;
-    // marker를 빈 배열로 만들고, marker 배열의 개수를 0개로 만들어 marker 배열을 초기화합니
-    // 다.
-    
-       marker.push(new google.maps.Marker({
-       position: latLng,
-       map: map
-      } ));
-    // marker 배열에 새 marker object를 push 함수로 추가합니다.
-    
-    }
-    /*클릭한 지점에 마커를 표시하는 함수입니다.
-       그런데 이 함수를 잘 봐야 하는 것이 바로 marker를 생성하지 않고 marker라는 배열 안에 Marker 
-       obejct  원소를 계속 추가하고 있습니다. 이는 매번 클릭할 때마다 새로운 마커를 생성하기 위함입니
-       다. */
-    
-    
-    //클릭 이벤트 발생 시 그 좌표를 주소로 변환하는 함수입니다.
-    function codeCoordinate(event) {
-     Setmarker(event.latLng);
-     point = event.latLng;
-            //이벤트 발생 시 그 좌표에 마커를 생성합니다.
-            // 좌표를 받아 reverse geocoding(좌표를 주소로 바꾸기)를 실행합니다.
-     geocoder.geocode({'latLng' : event.latLng}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK)  {
-       if (results[1])
-       {
-    	   address = results[1].formatted_address;
-        infowindow.setContent(results[1].formatted_address);
-        infowindow.open(map,marker[0]);
-                                    //infowindow로 주소를 표시합니다.
-       }
+      /*클릭한 지점에 마커를 표시하는 함수입니다.
+         그런데 이 함수를 잘 봐야 하는 것이 바로 marker를 생성하지 않고 marker라는 배열 안에 Marker 
+         obejct  원소를 계속 추가하고 있습니다. 이는 매번 클릭할 때마다 새로운 마커를 생성하기 위함입니
+         다. */
+      
+      
+      //클릭 이벤트 발생 시 그 좌표를 주소로 변환하는 함수입니다.
+      function codeCoordinate(event) {
+       Setmarker(event.latLng);
+       point = event.latLng;
+              //이벤트 발생 시 그 좌표에 마커를 생성합니다.
+              // 좌표를 받아 reverse geocoding(좌표를 주소로 바꾸기)를 실행합니다.
+       geocoder.geocode({'latLng' : event.latLng}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK)  {
+             if (results[1]) {
+            	  address = results[1].formatted_address;
+                infowindow.setContent(results[1].formatted_address);
+                infowindow.open(map,marker[0]);
+                //infowindow로 주소를 표시합니다.
+                
+                /* var community = address.split(" ");
+                $("#placename").attr("value", community[2]); */
+                // 3번째 지역 구분만을 받아와서 화면에 표시해줍니다.
+              
+                $.ajax({
+                    url: "getLocation",
+                    type: "POST",
+                    data : {
+        				latitude : event.latLng.lat(),
+        				longitude : event.latLng.lng()
+        			},
+                    dataType: "text",
+                    success: function(result) {
+                        $("#location").attr("value", result);
+                    }
+                });
+             }
+          }
+       });
       }
-     });
-    }
-	
-  	$(document).ready(function() {
-		var docuList = ${docuList};
-		var today = new Date();
-		
-		/* 서류 종류별 model 설정 */
-		for ( var num in docuList) {
-			var name = docuList[num].docuName;
-				$("#download" + name).attr("href", ("downloadFile?fileName="+docuList[num].path));
-				$("#download" + name + "Btn").removeAttr("disabled");
-				$("#regist" + name + "Btn").attr("disabled", "disabled");
-				$("#modify" + name + "Btn").removeAttr("disabled");
-				$("#modify" + name + "Btn").attr("data-id", docuList[num].docuId);
-				$("#modify" + name + "Btn").attr("data-path", docuList[num].path);
-				$("#delete" + name).attr("data-src", docuList[num].path);
-				$("#delete" + name).attr("data-id", docuList[num].docuId);
-				$("#delete" + name).removeAttr("disabled");
-				$("#regdate" + name).html(docuList[num].regdate);
-				$("#expdate" + name).html(docuList[num].expdate);
-				
-				var dateArray = docuList[num].expdate.split("/");
-				var dateObj = new Date(dateArray[0], Number(dateArray[1])-1, dateArray[2]);
-				
-				var betweenDay = ((dateObj.getTime() - today.getTime()) / 1000 / 60 / 60 / 24);
-				
-				if (betweenDay <= 0) {
-					$("#icon" + name).attr("style", "color: red");
-				} else if (betweenDay > 0 && betweenDay <= 28) {
-					$("#icon" + name).attr("style", "color: #e7b903");
-				} else {
-					$("#icon" + name).attr("style", "color: green");
-				}
-		}
-
-		/* 삭제 버튼 이벤트 처리 */
-		$(".btn-danger").on("click", function(event) {
-			var kind = $(this).parent().parent().parent().parent().attr("id");
-			
-			var aId = "download" + kind;
-			var downloadId = "download" + kind + "Btn";
-			var deleteId = "delete" + kind;
-			var iconId = "icon" + kind
-			
-			if (confirm("정말 삭제하시겠습니까??") == true){
-				$.ajax({
-					url : "deleteFile",
-					type : "post",
-					data : {
-						fileName : $(this).attr("data-src"),
-						docuId : $(this).attr("data-id")
-					},
-					dataType : "text",
-					success : function(result) {
-						if (result == "deleted") {
-							$("#download" + kind).removeAttr("href");
-							$("#download" + kind + "Btn").attr("disabled", "disabled");
-							$("#regist" + kind + "Btn").removeAttr("disabled");
-							$("#modify" + kind + "Btn").attr("disabled", "disabled");
-							$("#delete" + kind).attr("disabled", "disabled");
-							$("#icon" + kind).attr("style", "color: black");
-							$("#regdate" + kind).attr("style", "color: black");
-							$("#regdate" + kind).html(" - ");
-							$("#expdate" + kind).html(" - ");
-							alert("삭제되었습니다.");
-						}
-					}
-				});
-			} else {
-			    return;
-			}
-		});
-		
-		/* 등록버튼 */
-		$(".btn-primary").on("click", function() {
-			console.log($(this).parent().parent().parent().parent().attr("id"));
-			var downName = $(this).parent().parent().parent().parent().attr("id");
-			$("[name='docuName']").attr("value", downName);
-		});
-		
-		/* 수정버튼 */
-		$(".btn-success").on("click", function() {
-			var downName = $(this).parent().parent().parent().parent().attr("id");
-			$("[name='docuName']").attr("value", downName);
-			$("[name='docuId']").attr("value", $(this).attr("data-id"));
-			$("[name='path']").attr("value", $(this).attr("data-path"));
-		});
-		
-	  	$("#place").on("click", function(){
-	  		opener.setChildValue('place', address, ${param.num});
-	  		opener.setChildValue('point', point, ${param.num});
-	  		window.close();
-	  	});
-		
-	});
+      
+      $(document).ready(function() {
+    	  $("#applyBtn").on("click", function() {
+        	  $.ajax({
+                  url: "send",
+                  type: "POST",
+                  data : {
+      				location : $("#location").attr("value")
+      			},
+                  dataType: "text",
+                  success: function(result) {
+                	  if (result == "success") {
+    					self.location = "success"
+    				}
+                  }
+              });
+          }); 
+      });
 </script>
 </head>
 <body onload="initialize()">
@@ -242,13 +177,13 @@
             <tr>
               <td id="map_canvas" style="width: 700px; height: 500px;">
               </td>
-              <td style="width: 50px; height: 500px;"></td>
+              <td style="width: 50px; height: 500px;"><div id="place"></div></td>
               <td style="width: 300px; height: 500px;">
                 <h3>* 영업하고 싶은 지역을 선택하시면 서류를 제출해야하는 기관이 표시됩니다.</h3><br>
                 <h3>* '영업신청' 버튼을 클릭하여 등록하신 서류를 간편하게 제출하세요!</h3><br><br><br>
-                      <input id="placename" name="placename" type="text" style="margin-bottom: 20px"
-                        class="form-control input-md placename" required disabled>
-                  <button class="btn btn-common form-control" type="button" style="font-size: large;">영 업 신 청</button>
+                  <input id="location" name="location" type="text" style="margin-bottom: 20px"
+                        class="form-control input-md" required disabled value="">
+                  <button class="btn btn-common form-control" type="submit" style="font-size: large;" id="applyBtn">영 업 신 청</button>
               </td>
             </tr>
           </table>
@@ -259,6 +194,37 @@
 
   <%@include file="../include/footer.jsp"%>
   <!--/#footer-->
-
+  
+  <!-- Modify Modal -->
+  <div id="modifyModal" class="modal modal-primary fade" role="dialog">
+    <div class="modal-dialog modal-md"
+      style="background-color: #ffffff;">
+      <!-- modal content -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <form id="modifyForm" action="modifyForm" method="post"
+        enctype="multipart/form-data">
+        <div class="modal-body" data-docunum>
+          <p style="font-weight: bolder;">서류파일 :</p>
+          <input type="file" name="file" class="form-control"
+            style="margin-bottom: 10px;" required>
+          <p style="font-weight: bolder;">만료일자 :</p>
+          <input type="date" class="form-control input-md"
+            style="margin-bottom: 10px;" name="expdate" required>
+          <input type="hidden" name="userId" value="${login.userId }" />
+          <input type="hidden" name="docuName" value="" />
+          <input type="hidden" name="docuId" value="" />
+          <input type="hidden" name="path" value="" />
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn" style="color: green" value="저장">
+          <input type="reset" class="btn btn-warning" value="취소">
+        </div>
+      </form>
+    </div>
+  </div>
+  
 </body>
 </html>

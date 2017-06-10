@@ -13,19 +13,20 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-		<property name="url" value="jdbc:log4jdbc:oracle:thin:@192.168.0.27:1521:XE" />
+		<property name="url"
+			value="jdbc:log4jdbc:oracle:thin:@192.168.0.27:1521:XE" />
 		<property name="username" value="Dream" />
 		<property name="password" value="Dream" />
 	</bean>
-	
-	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE" />
-		<property name="username" value="hr" />
-		<property name="password" value="hr" />
-	</bean> -->
+
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" 
+		/> <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE" 
+		/> <property name="username" value="hr" /> <property name="password" value="hr" 
+		/> </bean> -->
 
 	<!-- Mybatis SqlSssionFactory 설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -38,22 +39,39 @@
 	<aop:aspectj-autoproxy />
 
 	<!-- Transactional 애노테이션 사용을 위한 설정 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
+
 	<tx:annotation-driven />
 
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+		destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-	
+
 	<!-- 파일 업로드 -->
 	<bean id="uploadPath" class="java.lang.String">
 		<constructor-arg value="C:\\dt">
 		</constructor-arg>
 	</bean>
-	
+
+	<!-- 메일보내기 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="dreamtruck146@gmail.com" />
+		<property name="password" value="emfla146" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>
+	</bean>
+
 	<context:component-scan base-package="com.kosta.abbo" />
-		
+
 </beans>
