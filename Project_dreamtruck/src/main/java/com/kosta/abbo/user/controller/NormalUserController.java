@@ -265,10 +265,15 @@ public class NormalUserController {
 			
 			String path = uploadPath + "/user";
 			
-			String fileName = path + "/"+id+"/1.jpg";
+			TruckUser findTruck = truckService.read(truckUser.getUserId());
+	         if (findTruck.getTruckImg() != null) {
+	            /*String[] parse = findTruck.getTruckImg().split("/");*/
+	            String sumnail = "s_"+ findTruck.getTruckImg();
+	            new File("C:/dt/user/" + id + "/" + findTruck.getTruckImg()).delete();
+	            new File("C:/dt/user/" + id + "/" + sumnail).delete();
+	         } 
 			
-			deleteFile(fileName);
-
+			
 			if (!file.getOriginalFilename().equals("") || file.getOriginalFilename().length() != 0) {
 				UploadUserUtils.uploadFile(id, path, file.getOriginalFilename(), file.getBytes());
 			}
@@ -358,12 +363,12 @@ public class NormalUserController {
 
 	/**
 	 * 아이디비밀번호 찾기
-	 * 
 	 * @param dto
 	 */
 	@RequestMapping(value = "/find", method = RequestMethod.GET)
 	public void findGet(NormalUser normalUser, Model model) {
 		logger.info("아이디/비밀번호 GET .....");
 	}
-
+	
+	
 }

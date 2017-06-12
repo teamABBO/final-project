@@ -69,7 +69,7 @@ if (result == 'success') {
           <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
             <div class="single-service2">
               <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-                <a href="#"><img src="/resources/images/regist/trucklist.png" alt=""></a>
+                <a href="/liketruck/list?userId=${login.userId}"><img src="/resources/images/regist/trucklist.png" alt=""></a>
               </div>
               <h2>관심트럭 목록</h2>
             </div>
