@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.kosta.abbo.page.domain.Criteria;
 import com.kosta.abbo.review.dao.ReviewDao;
 import com.kosta.abbo.review.domain.Review;
 
@@ -15,23 +16,14 @@ public class ReviewServiceImpl implements ReviewService {
 	@Inject
 	private ReviewDao dao;
 
+	
 	/**
 	 * 리뷰 등록
 	 * @param review
 	 */
 	@Override
-	public void create(Review review) {
+	public void create(Review review)  throws Exception{
 		dao.create(review);
-	}
-
-	/**
-	 * 리뷰 상세보기
-	 * @param reviewId
-	 * @return
-	 */
-	@Override
-	public Review read(int reviewId) {
-		return dao.read(reviewId);
 	}
 
 	/**
@@ -39,7 +31,7 @@ public class ReviewServiceImpl implements ReviewService {
 	 * @param review
 	 */
 	@Override
-	public void update(Review review) {
+	public void update(Review review) throws Exception {
 		dao.update(review);
 	}
 
@@ -48,7 +40,7 @@ public class ReviewServiceImpl implements ReviewService {
 	 * @param reviewId
 	 */
 	@Override
-	public void delete(int reviewId) {
+	public void delete(int reviewId) throws Exception {
 		dao.delete(reviewId);
 	}
 
@@ -57,8 +49,22 @@ public class ReviewServiceImpl implements ReviewService {
 	 * @return
 	 */
 	@Override
-	public List<Review> list() {
-		return dao.list();
+	public List<Review> list(int targetId) throws Exception {
+		return dao.list(targetId);
+	}
+
+	
+	/**
+	 * 리뷰목록 페이징
+	 */
+	@Override
+	public List<Review> listReviewPage(int targetId, Criteria cri) throws Exception {
+		return dao.listPage(targetId, cri);
+	}
+
+	@Override
+	public int count(int targetId) throws Exception {
+		return dao.count(targetId);
 	}
 
 }

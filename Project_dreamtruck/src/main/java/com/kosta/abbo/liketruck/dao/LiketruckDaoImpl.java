@@ -20,10 +20,28 @@ public class LiketruckDaoImpl implements LiketruckDao {
 	 * 관심트럭 등록
 	 * @param liketruck
 	 */
+	
 	@Override
 	public void create(Liketruck liketruck) {
+		SqlSession.insert(namespace+".create", liketruck);
 		
 	}
+	
+	/**
+	 * 관심트럭 체크
+	 */
+	public void checkliketruck(int userId, int truckId){
+		SqlSession.selectOne(namespace+".checkliketruck", truckId);
+	}
+	/**
+	 * 관심트럭 수정
+	 * @param liketruck
+	 */
+	@Override
+	public void update(Liketruck liketruck) {
+		SqlSession.update(namespace+".update", liketruck);
+	}
+	
 	
 	/**
 	 * 관심트럭 상세보기
@@ -35,14 +53,6 @@ public class LiketruckDaoImpl implements LiketruckDao {
 		return null;
 	}
 	
-	/**
-	 * 관심트럭 수정
-	 * @param liketruck
-	 */
-	@Override
-	public void update(Liketruck liketruck) {
-		
-	}
 	
 	/**
 	 * 관심트럭 삭제
@@ -50,7 +60,7 @@ public class LiketruckDaoImpl implements LiketruckDao {
 	 */
 	@Override
 	public void delete(int liketruckId) {
-		
+		SqlSession.delete(namespace+".delete", liketruckId);
 	}
 	
 	/**
