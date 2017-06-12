@@ -1,12 +1,15 @@
 package com.kosta.abbo.review.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kosta.abbo.page.domain.Criteria;
 import com.kosta.abbo.review.domain.Review;
 
 @Repository
@@ -14,6 +17,7 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Inject
 	private SqlSession SqlSession;
+	
 	private static final String namespace= "com.kosta.abbo.mapper.ReviewMapper";
 	
 	/**
@@ -22,17 +26,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	 */
 	@Override
 	public void create(Review review) {
-		
-	}
-	
-	/**
-	 * 리뷰 상세보기
-	 * @param reviewId
-	 * @return
-	 */
-	@Override
-	public Review read(int reviewId) {
-		return null;
+		SqlSession.insert(namespace+".create", review);
 	}
 	
 	/**
@@ -41,7 +35,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	 */
 	@Override
 	public void update(Review review) {
-		
+		SqlSession.update(namespace+".update", review);
 	}
 	
 	/**
@@ -50,7 +44,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	 */
 	@Override
 	public void delete(int reviewId) {
-		
+		SqlSession.delete(namespace+".delete", reviewId);
 	}
 	
 	/**
@@ -58,8 +52,29 @@ public class ReviewDaoImpl implements ReviewDao {
 	 * @return
 	 */
 	@Override
-	public List<Review> list() {
-		return null;
+	public List<Review> list(int targetId) throws Exception {
+		return SqlSession.selectList(namespace+".list", targetId);
+	}
+
+	
+	/**
+	 * 리뷰목록 페이징
+	 */
+	@Override
+	public List<Review> listPage(int targetId, Criteria cri) throws Exception {
+
+		Map<String, Object> paramMap = new HashMap<>();
+		
+		paramMap.put("targetId", targetId);
+		paramMap.put("cri", cri);
+		
+		
+		return SqlSession.selectList(namespace+".listPage", paramMap);
+	}
+
+	@Override
+	public int count(int targetId) throws Exception {
+		return SqlSession.selectOne(namespace+".count", targetId);
 	}
 	
 }

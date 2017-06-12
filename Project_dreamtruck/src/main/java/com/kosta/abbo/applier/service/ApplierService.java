@@ -35,7 +35,7 @@ public interface ApplierService {
 	 * 행사 신청자 목록
 	 * @return
 	 */
-	public List<Applier> list();
+	public List<Applier> list(int eventId);
 	
 	public void upCnt(int eventId);
 

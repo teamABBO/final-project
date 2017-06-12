@@ -5,6 +5,42 @@
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.kosta.abbo.mapper.ReviewMapper">
 	
+	<!-- 댓글 등록 -->
+	<insert id="create">
+		insert into review (review_id, regdate, content, star, writer_id, target_id)
+		values(review_id_seq.nextval, sysdate, #{content},#{star}, #{writerId},#{targetId})
+	</insert>
 	
-
+	<!-- 댓글 목록 -->
+	<select id="list" resultType="Review">
+		select review_id, regdate, content, star, writer_id, target_id
+		from review
+		where target_id = #{targetId} order by regdate desc
+	</select>
+	
+	<!-- 댓글 수정 -->
+	<update id="update">
+		update review set content = #{content} where review_id = #{reviewId}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="delete">
+			delete from review where review_id = #{reviewId}
+	</delete>
+	
+	<!-- 댓글 목록 페이징 -->
+	<select id="listPage" resultType="Review">
+	 SELECT review_id as reviewId, regdate, content, star, writer_id as writerId, target_id as targetId
+        FROM  (SELECT ROW_NUMBER() OVER (ORDER BY regdate DESC) page, 
+                         review_id, regdate, content, star, writer_id, target_id
+                   FROM   review 
+                   WHERE  review_id > 0 AND target_id = #{targetId}
+                   ORDER  BY review_id DESC, 
+                             regdate DESC) 
+        WHERE  page BETWEEN #{cri.pageStart} AND #{cri.pageStart} + #{cri.perPageNum}
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(target_id) from review where target_id = #{targetId}
+	</select>
 </mapper>

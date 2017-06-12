@@ -103,7 +103,6 @@
 
 						$('.infoName').each(
 								function() {
-									console.log($(this).text().length);
 									if (($(this).text().length) > 6) {
 										var minText = $(this).text().substring(
 												0, 5)

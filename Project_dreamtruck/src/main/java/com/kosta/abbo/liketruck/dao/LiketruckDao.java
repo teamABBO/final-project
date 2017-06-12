@@ -13,17 +13,24 @@ public interface LiketruckDao {
 	public void create(Liketruck liketruck);
 	
 	/**
+	 * 관심트럭 수정
+	 * @param liketruck
+	 */
+	public void update(Liketruck liketruck);
+	
+	/**
+	 * 관심트럭 체크
+	 */
+	public void checkliketruck(int userId, int truckId);
+	
+	/**
 	 * 관심트럭 상세보기
 	 * @param liketruckId
 	 * @return
 	 */
 	public Liketruck read(int liketruckId);
 	
-	/**
-	 * 관심트럭 수정
-	 * @param liketruck
-	 */
-	public void update(Liketruck liketruck);
+	
 	
 	/**
 	 * 관심트럭 삭제
