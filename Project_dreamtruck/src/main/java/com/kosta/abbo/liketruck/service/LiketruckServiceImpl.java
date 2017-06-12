@@ -71,8 +71,8 @@ public class LiketruckServiceImpl implements LiketruckService {
 	 * @return
 	 */
 	@Override
-	public List<Liketruck> list() {
-		return dao.list();
+	public List<Liketruck> list(int userId) {
+		return dao.list(userId);
 	}
 
 	

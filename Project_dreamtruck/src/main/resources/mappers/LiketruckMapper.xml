@@ -11,6 +11,20 @@
 		from liketruck l join users u 
 		on l.truck_id = u.user_id  where l.user_id=#{userId} and l.truck_id = #{truckId};
 	</select>
+
+	<!-- 트럭 목록 -->
+	<select id="list" resultType="Liketruck">
+	   SELECT t.user_id as userId,
+       t.truck_id as truckId,
+       t.liketruck_id as liketruckId,
+       u.truck_img as truckImg,
+       u.truck_name as truckName,
+       u.truck_info as truckInfo,
+       u.id
+	   FROM   liketruck t, users u
+	   WHERE  t.truck_id = u.user_id
+	   AND t.user_id = #{userId}
+	</select>
 	
 	<!-- 관심트럭 등록 (update와 같이 사용) -->
 	<insert id="create">

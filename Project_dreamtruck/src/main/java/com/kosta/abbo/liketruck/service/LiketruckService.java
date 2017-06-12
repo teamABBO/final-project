@@ -41,6 +41,6 @@ public interface LiketruckService {
 	 * 관심트럭 목록
 	 * @return
 	 */
-	public List<Liketruck> list();
+	public List<Liketruck> list(int userId);
 
 }
