@@ -62,8 +62,7 @@ public interface EventDao {
 	
 	/** 조회수 */
 	public void hit(int eventId);
-	
-	/** 첨부파일 삭제 */
+
 	
 	
 }
