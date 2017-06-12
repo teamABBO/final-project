@@ -27,19 +27,61 @@
 <link rel="apple-touch-icon-precomposed"
   href="/resources/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
+
 <script>
 
   $(document).ready(function() {
 	  var formObj = $("form[role='form']");
 		console.log(formObj);
 		
-		$(".btn-warning").on("click", function() {
+		$("#save").on("click", function() {
+			formObj.submit();v
+			
+		});
+		
+		$("#list").on("click", function() {
 			self.location = "/event/list";
 		});
 		
-		$(".btn-primary").on("click", function() {
-			formObj.submit();
-		});
+		// 이미지 변경
+            $(document).on(
+                  'change',
+                  '.btn-file :file',
+                  function() {
+                     var input = $(this), label = input.val().replace(
+                           /\\/g, '/').replace(/.*\//, '');
+                     input.trigger('fileselect', [ label ]);
+                  }); 
+            
+            $('.btn-file :file').on(
+                  'fileselect',
+                  function(event, label) {
+
+                     var input = $(this).parents('.input-group').find(
+                           ':text'), log = label;
+
+                     if (input.length) {
+                        input.val(log);
+                     } else {
+                        if (log)
+                           alert(log);
+                     }
+
+                  });
+            
+            function readURL(input) {
+               if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+
+                  reader.onload = function(e) {
+                     $('#img-upload').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[0]);
+               }
+            }
+            $("#imgInp").change(function() {
+               readURL(this);
+            });
     
 
   });
@@ -76,8 +118,8 @@
   </section>
   <!-- 배너 -->
 
-<!-- 행사등록 -->
-  <form class="form-horizontal" method="post" role="form">
+<!-- 행사수정 -->
+  <form class="form-horizontal" method="post" role="form" id="form1" enctype="multipart/form-data">
          <fieldset>
          <!-- 행사 게시판 번호 -->
          <div class="form-group">
@@ -85,7 +127,7 @@
                <label id="eventId"></label>
                <div class="col-md-4">
                   <input id="eventId" name="eventId" type="text"  class="form-control input-md" maxlength="16" value="${event.eventId }" readonly="readonly">
-                  
+                  <input type="hidden" name="userId" value="${login.userId }">
                </div>
             </div>
          
@@ -139,9 +181,30 @@
 
                   <select id="guId" name="guId" class="form-control" value="${event.guId }" >
                     <option value="1">강남구</option>
-                    <option value="2">강동구</option>
-                    <option value="3">강북구</option>
-                    <option value="4">강서구</option>
+                     <option value="2">강동구</option>
+                     <option value="3">강북구</option>
+                     <option value="4">강서구</option>
+                     <option value="5">관악구</option>
+                     <option value="6">광진구</option>
+                     <option value="7">구로구</option>
+                     <option value="8">금천구</option>
+                     <option value="9">노원구</option>
+                     <option value="10">도봉구</option>
+                     <option value="11">동대문구</option>
+                     <option value="12">동작구</option>
+                     <option value="13">마포구</option>
+                     <option value="14">서대문구</option>
+                     <option value="15">서초구</option>
+                     <option value="16">성동구</option>
+                     <option value="17">성북구</option>
+                     <option value="18">송파구</option>
+                     <option value="19">양천구</option>
+                     <option value="20">영등포구</option>
+                     <option value="21">용산구</option>
+                     <option value="22">은평구</option>
+                     <option value="23">종로구</option>
+                     <option value="24">중구</option>
+                     <option value="25">중랑구</option>
                   </select>
                </div>
             </div>
@@ -155,10 +218,30 @@
             </div>
             
              <!-- 첨부파일 -->
-            <div class="form-group">
-               <label class="col-md-4 control-label" for="img">파일 첨부</label>
+             <div class="form-group">
+               <label class="col-md-4 control-label" for="contactphone">파일 첨부 </label>
                <div class="col-md-4">
-                  <input id="img" name="img" type="file" class="form-control input-md" >
+                  <div class="form-group">
+                     <div class="col-md-5">
+                        <div class="form-group">
+                           <div class="input-group">
+                              <span class="input-group-btn"> 
+                              <span class="btn btn-default btn-file" style="margin-left: 15px;">업로드
+                               <input type="file" name="file" id="imgInp">
+                              </span>
+                              </span><input type="text" class="form-control" style="margin-left: 20px;"  id="img" name="img" value="${event.img }">
+                           </div>
+                           <c:if test="${empty event.img}">
+                           
+                           <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/event/noimage.png" />
+                          
+                           </c:if>
+                           <c:if test="${not empty event.img}">
+                           <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/event${event.img}"/>
+                           </c:if>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
             
@@ -166,8 +249,8 @@
             <div class="form-group">
                <label class="col-md-4 control-label" for="save"></label>
                <div class="col-md-8 text-center">
-                  <button type="submit" id="modify" name="modify" class="btn btn-primary">저장</button>
-                  <button type="button" id="list" name="list" class="btn  btn-warning">취소</button>
+                  <button type="submit" id="save" name="save" class="btn btn-common">저장</button>
+                  <button type="button" id="list" name="list" class="btn  btn-common">취소</button>
                </div>
             </div>
          </fieldset>

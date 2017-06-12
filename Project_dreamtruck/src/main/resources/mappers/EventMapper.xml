@@ -13,7 +13,7 @@
 
 	<!-- 읽기 -->
 	<select id="read" resultType="Event">
-		select event_id eventId,duration, img, start_date startDate,
+		select event_id eventId,duration, img, to_char(start_date , 'yyyy-MM-dd') startDate,
 		content,title,gu_id guId,user_id userId,recruit
 		from event
 		where event_id = #{event_id}
@@ -83,5 +83,9 @@ where event_id > 0
 		SET hit = hit + 1
 		WHERE event_id = #{event_id}
 	</update>
+	
+	<delete id="deleteImg">
+		delete from img where event_id =#{event_id}
+	</delete>
 
 </mapper>
