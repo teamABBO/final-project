@@ -4,7 +4,20 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.kosta.abbo.mapper.ApplierMapper">
-	
+	<insert id="create">
+		INSERT INTO applier(
+			applier_id,
+			success,
+			regdate,
+			user_id,
+			event_id)
+		VALUES(
+			applier_id_seq,
+			n,
+			sysdate,
+			#{userId},
+			#{eventId})
+	</insert>
 	
 
 </mapper>

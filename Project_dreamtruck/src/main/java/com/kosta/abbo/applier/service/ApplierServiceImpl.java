@@ -20,7 +20,7 @@ public class ApplierServiceImpl implements ApplierService {
 	 */
 	@Override
 	public void create(Applier applier) {
-		dao.create(applier);;
+		dao.create(applier);
 	}
 
 	/**

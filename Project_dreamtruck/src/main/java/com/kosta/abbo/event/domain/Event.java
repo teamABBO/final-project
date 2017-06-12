@@ -13,6 +13,7 @@ public class Event {
 	private String writer;
 	private int hit;			// 조회수
 	private int recruit;			// 모집트럭수
+	private int applierCnt;			// 신청트럭수
 
 	public Event() {
 	}
@@ -99,13 +100,6 @@ public class Event {
 		this.recruit = recruit;
 	}
 
-	@Override
-	public String toString() {
-		return "Event [eventId=" + eventId + ", duration=" + duration + ", img=" + img + ", startDate=" + startDate
-				+ ", content=" + content + ", title=" + title + ", regdate=" + regdate + ", guId=" + guId + ", userId="
-				+ userId + ", hit=" + hit + ", recruit=" + recruit +", writer=" + writer +"]";
-	}
-
 	public String getUserId() {
 		return userId;
 	}
@@ -121,7 +115,19 @@ public class Event {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	
-	
 
+	public int getApplierCnt() {
+		return applierCnt;
+	}
+
+	public void setApplierCnt(int applierCnt) {
+		this.applierCnt = applierCnt;
+	}
+	
+	@Override
+	public String toString() {
+		return "Event [eventId=" + eventId + ", duration=" + duration + ", img=" + img + ", startDate=" + startDate
+				+ ", content=" + content + ", title=" + title + ", regdate=" + regdate + ", guId=" + guId + ", userId="
+				+ userId + ", hit=" + hit + ", recruit=" + recruit +", writer=" + writer +"]";
+	}
 }

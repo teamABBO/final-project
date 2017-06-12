@@ -35,9 +35,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.HomeController;
+import com.kosta.abbo.applier.domain.Applier;
+import com.kosta.abbo.applier.service.ApplierService;
 import com.kosta.abbo.docu.domain.Docu;
 import com.kosta.abbo.docu.service.DocuService;
-import com.kosta.abbo.user.domain.NormalUser;
+import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.service.NormalUserService;
 import com.kosta.abbo.util.UploadDocuUtils;
@@ -70,7 +72,7 @@ public class DocuController {
 	public String docu(Model model, HttpSession session) throws Exception {
 		logger.info("서류관리 페이지");
 
-		NormalUser loginUser = (NormalUser) session.getAttribute("login");
+		TruckUser loginUser = (TruckUser) session.getAttribute("login");
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
@@ -293,9 +295,7 @@ public class DocuController {
 		TruckUser user = (TruckUser) session.getAttribute("login");
 
 		userService.checkDocu(user.getUserId());
-		logger.info("checkDocu 성공");
 		String isUpload = userService.isUpload(user.getUserId());
-		logger.info("isUpload 성공");
 
 		if (isUpload.equals("x")) {
 			logger.info("파일 수 부족!");
@@ -361,4 +361,38 @@ public class DocuController {
 
 		return "/docu/success";
 	}
+	
+	@Inject
+	private ApplierService applierService;
+	/**
+	 * 행사 신청
+	 * @param session
+	 * @param eventId
+	 * @return
+	 */
+	@ResponseBody
+	@Transactional
+	@RequestMapping(value = "/event/apply", method = RequestMethod.POST)
+	public ResponseEntity<String> eventApply(HttpSession session, int eventId) {
+		logger.info("행사신청서 등록");
+		TruckUser user = (TruckUser) session.getAttribute("login");
+		
+		userService.checkDocu(user.getUserId());
+		String isUpload = userService.isUpload(user.getUserId());
+
+		if (isUpload.equals("x")) {
+			logger.info("파일 수 부족!");
+			return new ResponseEntity<String>("fail", HttpStatus.BAD_REQUEST);
+		}
+		
+		Applier applier = new Applier();
+		applier.setEventId(eventId);
+		applier.setUserId(user.getUserId()); 
+		
+		applierService.create(applier);
+		applierService.list();
+		return new ResponseEntity<String>("success", HttpStatus.OK);
+	}
+	
+	
 }

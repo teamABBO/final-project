@@ -44,6 +44,26 @@
 		$("#list").on("click", function() {
 			self.location = "/event/list";
 		});
+		
+		$("#one").on("click", function() {
+			$.ajax({
+                url: "/docu/event/apply",
+                type: "POST",
+                data : {
+    				eventId : "${event.eventId}"
+    			},
+              dataType: "text",
+              success: function(result) {
+              	if (result == "success") {
+					alert("${event.title}에 성공적으로 영업신청하였습니다.");
+  				}
+              },
+    			error: function(result) {
+					alert("필요 서류가 부족합니다! 서류를 등록/수정해주세요. 확인을 누르시면 서류관리 페이지로 이동합니다.");
+					self.location = "/docu/list";
+				}
+            });
+		});
 
 	});
 </script>
@@ -190,31 +210,33 @@
                 </c:choose>
               </p></span>
             <h3>신청트럭 수:</h3>
-            <p>아직못함</p>
+            <p>${event. }</p>
           </div>
           <hr style="background-color: #fd8c86;" />
-          <button type="button" id="one" name="one"
+           <c:choose>
+            <c:when test="${login.type=='truck'}">
+            <button type="button" id="one" name="one"
             class="btn btn-common">원클릭 신청</button>
-
+            </c:when>
+       </c:choose>
           
         </div>
     </div>
     <div style="margin-left: 190px; margin-top: 20px" >
             <div class="col-md-6">
-              <textarea class="form-control col-md-12" name="content"  rows="12" readonly="readonly" style="width: 700px; "> ${event.content }</textarea>
+              <textarea class="form-control col-md-12" name="content"  rows="12" readonly="readonly" style="width: 700px; background-color: #ffffff"> ${event.content }</textarea>
             </div>
              <!-- 버튼 -->
             
             <div class="form-group" >
                <label class="col-md-4 control-label" for="save"></label>
-               <div class="col-md-8 text-center" style="margin-top: 20px">
+               <div class="col-md-8" style="margin-top: 20px">
+                  <button type="button" id="list" name="list" class="btn btn-common">목록</button>
                <c:choose>
             <c:when test="${login.type=='event'}">
-              <button type="button" id="modify" name="modify" class="btn btn-common">수정</button>
+              <button type="button" id="modify" name="modify" class="btn btn-common" style="margin-left: 20px">수정</button>
             </c:when>
        </c:choose>
-                  
-                  <button type="button" id="list" name="list" class="btn btn-common">목록</button>
                </div>
             </div>
       </div>
