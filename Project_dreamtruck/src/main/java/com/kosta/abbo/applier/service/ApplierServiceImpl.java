@@ -56,8 +56,8 @@ public class ApplierServiceImpl implements ApplierService {
 	 * @return
 	 */
 	@Override
-	public List<Applier> list() {
-		return dao.list();
+	public List<Applier> list(int eventId) {
+		return dao.list(eventId);
 	}
 
 	@Override

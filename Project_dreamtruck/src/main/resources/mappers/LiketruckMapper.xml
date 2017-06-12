@@ -5,6 +5,41 @@
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.kosta.abbo.mapper.LiketruckMapper">
 	
-	
+	<!-- 관심트럭 등록 체크  -->
+	<select id="checkliketruck" resultType="Liketruck">
+		select l.truck_id 
+		from liketruck l join users u 
+		on l.truck_id = u.user_id  where l.user_id=#{userId} and l.truck_id = #{truckId};
+	</select>
 
+	<!-- 트럭 목록 -->
+	<select id="list" resultType="Liketruck">
+	   SELECT t.user_id as userId,
+       t.truck_id as truckId,
+       t.liketruck_id as liketruckId,
+       u.truck_img as truckImg,
+       u.truck_name as truckName,
+       u.truck_info as truckInfo,
+       u.id
+	   FROM   liketruck t, users u
+	   WHERE  t.truck_id = u.user_id
+	   AND t.user_id = #{userId}
+	</select>
+	
+	<!-- 관심트럭 등록 (update와 같이 사용) -->
+	<insert id="create">
+		insert into liketruck
+								(liketruck_id, truck_id, user_id) 
+		values(liketruck_id_seq.nextval, #{truckId}, #{userId});
+	</insert>
+	
+	<!-- 트럭에 관심트럭 등록 업데이트 (create와 같이 사용)  -->
+	<update id="update">
+	update users set #{truck_likecnt} = #{truck_likecnt}+1 where user_id = #{truckId};
+	</update>
+	
+	<!-- 관심트럭 삭제 -->
+	<delete id="delete">
+	delete from liketruck where liketruck_id = #{liketruckId} ;
+	</delete>
 </mapper>

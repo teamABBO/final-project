@@ -21,18 +21,16 @@
 <script type="text/javascript" src="/resources/js/main.js"></script>
 <script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
 <script >
-
 var result = '${msg}';
 var modify = '${modify}';
 
 console.log(result);
 console.log(modify);
 if (result == 'success') {
-   alert("처리완료");
+	alert("처리 완료.");
 }else if (modify == 'modify'){
-	alert("수정이 완료되었습니다. 다시 로그인 해 주세요.");
+	alert("회원정보가 수정되었습니다. 다시 로그인 해 주세요.");
 }
-
 </script>
 		
 		

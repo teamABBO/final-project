@@ -35,7 +35,7 @@ public interface ApplierDao {
 	 * 행사 신청자 목록
 	 * @return
 	 */
-	public List<Applier> list();
+	public List<Applier> list(int eventId);
 
 	/**
 	 * 신청자 수 증가

@@ -58,7 +58,7 @@ public class ApplierDaoImpl implements ApplierDao {
 	 * @return
 	 */
 	@Override
-	public List<Applier> list() {
+	public List<Applier> list(int eventId) {
 		return null;
 	}
 

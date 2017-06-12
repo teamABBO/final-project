@@ -3,6 +3,7 @@ package com.kosta.abbo.user.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kosta.abbo.HomeController;
+import com.kosta.abbo.liketruck.service.LiketruckService;
 import com.kosta.abbo.page.domain.Criteria;
 import com.kosta.abbo.page.domain.PageMaker;
 import com.kosta.abbo.page.domain.SearchCriteria;
+import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.service.TruckUserService;
 
 
@@ -26,6 +30,9 @@ import com.kosta.abbo.user.service.TruckUserService;
 public class TruckUserController {
 	@Inject
 	private TruckUserService service;
+	
+	//@Inject
+	//private LiketruckService likeservice;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -62,9 +69,13 @@ public class TruckUserController {
 
 	
 	@RequestMapping(value="/read", method = RequestMethod.GET)
-	public void read(@RequestParam("userId") int userId,@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void read(@RequestParam("userId") int userId, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		logger.info(userId+"**** ");
 		model.addAttribute(service.read(userId));
+		
+		/*NormalUser loginUser = (NormalUser) session.getAttribute("login");*/
+		
+		/*likeservice.checkliketruck(loginUser.getUserId(), truckId);*/
 	}
 	
 	

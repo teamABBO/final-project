@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-  pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
@@ -20,18 +19,13 @@
 <link href="/resources/css/responsive.css" rel="stylesheet">
 <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
-<script type="text/javascript"
-  src="/resources/js/jquery.scrollfollow.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.scrollfollow.js"></script>
 
 <link rel="shortcut icon" href="/resources/images/ico/5.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-  href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-  href="/resources/images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-  href="/resources/images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-  href="/resources/images/ico/apple-touch-icon-57-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resources/images/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resources/images/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="/resources/images/ico/apple-touch-icon-57-precomposed.png">
 
 <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 
@@ -39,7 +33,7 @@
 	$(document)
 			.ready(
 					function() {
-
+							
 						if ($('#searchType option:selected').val() == "truckFood") {
 							var food = "${param.keyword}";
 							$('#foodName').show();
@@ -103,6 +97,7 @@
 
 						$('.infoName').each(
 								function() {
+									console.log($(this).text().length);
 									if (($(this).text().length) > 6) {
 										var minText = $(this).text().substring(
 												0, 5)
@@ -118,44 +113,43 @@
 
 					});
 </script>
-
 </head>
 <!--/head-->
 
 <body>
 
-  <%@include file="../include/header.jsp"%>
+	<%@include file="../include/header.jsp"%>
 
 
-  <!-- 배너 -->
-  <br>
-  <br>
-  <section id="services" style="margin-top: 0px">
-    <div class="container">
-      <div class="row">
+	<!-- 배너 -->
+	<br>
+	<br>
+	<section id="services" style="margin-top: 0px">
+		<div class="container">
+			<div class="row">
 
-        <section id="page-breadcrumb">
-          <div class="vertical-center sun">
-            <div class="container">
-              <div class="row">
-                <div class="action">
-                  <div class="col-sm-12">
-                    <h1 class="title">푸드트럭</h1>
-                    <p>푸드트럭 목록</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+				<section id="page-breadcrumb">
+					<div class="vertical-center sun">
+						<div class="container">
+							<div class="row">
+								<div class="action">
+									<div class="col-sm-12">
+										<h1 class="title">마이페이지</h1>
+										<p>관심트럭 목록</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<br>
+			</div>
+		</div>
+	</section>
+	<!-- 배너 -->
 
-        </section>
-        <br>
-      </div>
-    </div>
-  </section>
-  <!-- 배너 -->
 
-  <section id="projects" class="padding-top">
+	<section id="projects" class="padding-top">
     <div class="container">
       <div class="row">
         <section id="page-searchcrumb">
@@ -163,8 +157,7 @@
             <div class="container">
               <div class="row"">
                 <div class="col-sm-12 form-group">
-                  <select id="searchType" name="searchType"
-                    class="form-control1">
+                  <select id="searchType" name="searchType" class="form-control1">
 
                     <option value="truckName" selected="selected"
                       <c:out value="${cri.searchType eq 'truckName'?'selected':''}" />>트럭
@@ -200,38 +193,43 @@
             </div>
           </div>
         </section>
-        <div class="col-md-10 col-sm-8">
-          <div class="row" id="listAll">
-            <c:forEach items="${list}" var="truckUser">
-
-              <div
-                class="col-xs-6 col-sm-6 col-md-4 portfolio-item branded mobile">
+        <br>
+		<div class="container">
+		<div class="row">
+		
+			<c:if test="${empty list}">
+			<label style="color: red; margin-left: 500px;">관심 트럭이 존재하지 않습니다.</label>
+			<br><br>
+			</c:if>
+			 
+			<c:if test="${not empty list}">
+			<c:forEach items="${list}" var="liketruck">
+			<form method="post" role="form"  class="form-horizontal" >
+    		<input type="hidden" id="userId" name="userId" value="${liketruck.userId}">
+    		</form>
+				<div class="col-xs-6 col-sm-6 col-md-4 portfolio-item branded mobile">
                 <div class="portfolio-wrapper">
                   <div class="portfolio-single">
                     <div class="portfolio-thumb">
-					  <c:if test="${empty truckUser.truckImg}">
-					  <img id='img-upload' class="img-responsive" src="/displayFile?fileName=/user/noimage.png" />
+					  <c:if test="${empty liketruck.truckImg}">
+						<img id='img-upload' class="img-responsive" src="/displayFile?fileName=/user/noimage.png" />
 					  </c:if>
-					  <c:if test="${not empty truckUser.truckImg}">
-					  <img
-                        src="/displayFile?fileName=/user/${truckUser.id}/${truckUser.truckImg }"
-                        class="img-responsive" alt="">
-					  </c:if>
-                      
+					  <c:if test="${not empty liketruck.truckImg}">
+						<img src="/displayFile?fileName=/user/${liketruck.id}/${liketruck.truckImg }" class="img-responsive" alt="" style="width: 100%; height: 50%;">
+					  </c:if>   
                     </div>
                     <div class="portfolio-view">
                       <ul class="nav nav-pills">
                         <h2>
-
-                          <a href="read?userId=${truckUser.userId }"
-                            style="color: white" class="infoName">${truckUser.truckName }</a>
+                          <a href="../truck/read?userId=${liketruck.truckId }"
+                            style="color: white" class="infoName">${liketruck.truckName }</a>
                         </h2>
 
                         <li><a
-                          href="read${pageMaker.makeSearch(pageMaker.cri.page)}&userId=${truckUser.userId }"><i
+                          href="read${pageMaker.makeSearch(pageMaker.cri.page)}&userId=${liketruck.userId }"><i
                             class="fa fa-link"></i></a></li>
                         <li><a
-                          href="/displayFile?fileName=/user/${truckUser.id}/${truckUser.truckImg }" 
+                          href="/displayFile?fileName=/user/${liketruck.id}/${liketruck.truckImg }" 
                           data-lightbox="example-set"><i
                             class="fa fa-eye"></i></a></li>
                         <li><a><i class="fa fa-heart"></i>${truckUser.truckLikecnt }
@@ -245,12 +243,15 @@
                   </div>
                 </div>
               </div>
+		
+		
+		</c:forEach>
+		</c:if>
+		</div>
+	</div>
+	</section>
 
-            </c:forEach>
 
-
-
-          </div>
           <div class="text-center">
             <ul class="pagination">
               <c:if test="${pageMaker.prev }">
@@ -275,35 +276,17 @@
           </div>
 
 
-        </div>
+        </div> 
 
 
-        <div class="col-md-2 col-sm-4" id="favourite">
-          <div class="sidebar portfolio-sidebar">
+
+	</div>
+	</div>
+	</section>
+	<!--/#projects-->
 
 
-            <div class="sidebar-item categories">
-              <h3 style="font-weight: bold;">나의 관심트럭</h3>
-              <ul class="nav navbar-stacked">
-                <li><a href="#">준서네 군만두<span class="pull-right">(1)</span></a></li>
-                <li class="active"><a href="#">제주도 삼겹덮밥<span
-                    class="pull-right">(8)</span></a></li>
-                <li><a href="#">짱구! 타코야끼<span
-                    class="pull-right">(4)</span></a></li>
-                <li><a href="#">호이호이 찹쌀떡<span
-                    class="pull-right">(9)</span></a></li>
-
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--/#projects-->
-
-
-  <%@include file="../include/footer.jsp"%>
+	<%@include file="../include/footer.jsp"%>
 
 
 

@@ -20,15 +20,15 @@
 <script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
 <script type="text/javascript" src="../resources/js/wow.min.js"></script>
 <script type="text/javascript" src="../resources/js/main.js"></script>  
-<script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
+<script type="text/javascript" src="../resources/js/sweetalert.min.js"></script> 
 </head>
 
 <body>
 <script type="text/javascript">
 var result = '${msg}';
 if (result == 'success') {
-	swal("Good job!", "You clicked the button!", "success")
-   self.location = "login";
+	alert("회원 정보를 확인 해 주세요.");
+    self.location = "login";
 }else{
    self.location = "../";
 }
