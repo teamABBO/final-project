@@ -84,8 +84,6 @@ where event_id > 0
 		WHERE event_id = #{event_id}
 	</update>
 	
-	<delete id="deleteImg">
-		delete from img where event_id =#{event_id}
-	</delete>
+	
 
 </mapper>

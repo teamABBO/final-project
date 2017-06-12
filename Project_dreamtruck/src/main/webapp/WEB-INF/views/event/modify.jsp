@@ -229,7 +229,7 @@
                               <span class="btn btn-default btn-file" style="margin-left: 15px;">업로드
                                <input type="file" name="file" id="imgInp">
                               </span>
-                              </span><input type="text" class="form-control" style="margin-left: 20px;"  id="img" name="img" value="${event.img }">
+                              </span><input type="text" class="form-control" style="margin-left: 20px;" id="img" name="img" value="${event.img }">
                            </div>
                            <c:if test="${empty event.img}">
                            

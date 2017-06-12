@@ -48,6 +48,7 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public void update(Event event) {
 		dao.update(event);
+		
 	}
 
 	/**
@@ -89,5 +90,6 @@ public class EventServiceImpl implements EventService {
 	public int listSearchCount(SearchCriteria cri) {
 		return dao.listSearchCount(cri);
 	}
+
 
 }

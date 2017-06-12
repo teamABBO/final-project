@@ -1,18 +1,25 @@
 package com.kosta.abbo.event.controller;
 
+import java.io.File;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.print.attribute.standard.Media;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,6 +27,7 @@ import com.kosta.abbo.event.domain.Event;
 import com.kosta.abbo.event.domain.PageMaker;
 import com.kosta.abbo.event.domain.SearchCriteria;
 import com.kosta.abbo.event.sevice.EventService;
+import com.kosta.abbo.util.MediaUtils;
 import com.kosta.abbo.util.UploadEventUtils;
 
 @Controller
@@ -122,9 +130,20 @@ public class EventController {
 
 			rttr.addFlashAttribute("msg", "success");
 			return "redirect:/event/list";
-		
-
 	}
+}
 
-}
-}
+
+
+
+		
+		
+	}
+	
+
+
+			
+		
+		
+		
+		
