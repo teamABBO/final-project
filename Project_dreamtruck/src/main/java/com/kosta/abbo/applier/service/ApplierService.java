@@ -36,5 +36,7 @@ public interface ApplierService {
 	 * @return
 	 */
 	public List<Applier> list();
+	
+	public void upCnt(int eventId);
 
 }

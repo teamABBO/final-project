@@ -362,37 +362,4 @@ public class DocuController {
 		return "/docu/success";
 	}
 	
-	@Inject
-	private ApplierService applierService;
-	/**
-	 * 행사 신청
-	 * @param session
-	 * @param eventId
-	 * @return
-	 */
-	@ResponseBody
-	@Transactional
-	@RequestMapping(value = "/event/apply", method = RequestMethod.POST)
-	public ResponseEntity<String> eventApply(HttpSession session, int eventId) {
-		logger.info("행사신청서 등록");
-		TruckUser user = (TruckUser) session.getAttribute("login");
-		
-		userService.checkDocu(user.getUserId());
-		String isUpload = userService.isUpload(user.getUserId());
-
-		if (isUpload.equals("x")) {
-			logger.info("파일 수 부족!");
-			return new ResponseEntity<String>("fail", HttpStatus.BAD_REQUEST);
-		}
-		
-		Applier applier = new Applier();
-		applier.setEventId(eventId);
-		applier.setUserId(user.getUserId()); 
-		
-		applierService.create(applier);
-		applierService.list();
-		return new ResponseEntity<String>("success", HttpStatus.OK);
-	}
-	
-	
 }

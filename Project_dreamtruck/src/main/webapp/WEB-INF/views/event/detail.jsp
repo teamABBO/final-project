@@ -47,7 +47,7 @@
 		
 		$("#one").on("click", function() {
 			$.ajax({
-                url: "/docu/event/apply",
+                url: "apply",
                 type: "POST",
                 data : {
     				eventId : "${event.eventId}"
@@ -210,7 +210,7 @@
                 </c:choose>
               </p></span>
             <h3>신청트럭 수:</h3>
-            <p>${event. }</p>
+            <p>${event.applierCnt }</p>
           </div>
           <hr style="background-color: #fd8c86;" />
            <c:choose>

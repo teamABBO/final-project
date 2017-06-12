@@ -13,7 +13,7 @@ import com.kosta.abbo.applier.domain.Applier;
 public class ApplierDaoImpl implements ApplierDao {
 
 	@Inject
-	private SqlSession SqlSession;
+	private SqlSession sqlSession;
 	private static final String namespace= "com.kosta.abbo.mapper.ApplierMapper";
 	
 	/**
@@ -60,6 +60,11 @@ public class ApplierDaoImpl implements ApplierDao {
 	@Override
 	public List<Applier> list() {
 		return null;
+	}
+
+	@Override
+	public void upCnt(int eventId) {
+		sqlSession.update(namespace + ".upCnt", eventId);
 	}
 
 }

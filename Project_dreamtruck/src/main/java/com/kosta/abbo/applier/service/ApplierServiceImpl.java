@@ -59,4 +59,9 @@ public class ApplierServiceImpl implements ApplierService {
 	public List<Applier> list() {
 		return dao.list();
 	}
+
+	@Override
+	public void upCnt(int eventId) {
+		dao.upCnt(eventId);
+	}
 }

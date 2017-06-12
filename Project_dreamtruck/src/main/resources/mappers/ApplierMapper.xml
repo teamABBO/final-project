@@ -19,5 +19,11 @@
 			#{eventId})
 	</insert>
 	
+	<update id="upCnt">
+		UPDATE event
+		SET    applier_cnt = applier_cnt + 1
+		WHERE  event_id = #{eventId}
+	</update>
+	
 
 </mapper>

@@ -37,4 +37,9 @@ public interface ApplierDao {
 	 */
 	public List<Applier> list();
 
+	/**
+	 * 신청자 수 증가
+	 * @param eventId
+	 */
+	public void upCnt(int eventId);
 }

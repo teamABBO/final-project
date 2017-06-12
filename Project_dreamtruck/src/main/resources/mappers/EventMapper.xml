@@ -14,7 +14,7 @@
 	<!-- 읽기 -->
 	<select id="read" resultType="Event">
 		select event_id eventId,duration, img, to_char(start_date , 'yyyy-MM-dd') startDate,
-		content,title,gu_id guId,user_id userId,recruit
+		content,title,gu_id guId,user_id userId,recruit, applier_cnt applierCnt
 		from event
 		where event_id = #{event_id}
 	</select>

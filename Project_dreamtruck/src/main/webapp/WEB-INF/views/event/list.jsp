@@ -121,7 +121,7 @@ $(document).ready(
               <td><a href='/event/detail${pageMaker.makeSearch(pageMaker.cri.page)}&eventId=${event.eventId }'>${event.title }</a></td>
               <td >${event.writer}</td>
               <td>${event.recruit}</td>
-              <td>아직못함</td>
+              <td>${event.applierCnt }</td>
               <td>${event.hit }</td>
             </tr>
 
