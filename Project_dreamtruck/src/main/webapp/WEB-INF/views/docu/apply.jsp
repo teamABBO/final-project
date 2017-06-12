@@ -42,6 +42,7 @@
     // 녹색 마커 아이콘을 정의하는 부분
     
     function initialize(){
+    	$("#applyBtn").hide();
     
        var latlng = new google.maps.LatLng(37.555172, 126.970788);
        var myOptions = {
@@ -111,6 +112,11 @@
                     dataType: "text",
                     success: function(result) {
                         $("#location").attr("value", result);
+                        if (result == "서비스 구역이 아닙니다." || result == "") {
+							$("#applyBtn").hide();
+						} else {
+							$("#applyBtn").show();
+						}
                     }
                 });
              }
@@ -126,12 +132,17 @@
                   data : {
       				location : $("#location").attr("value")
       			},
-                  dataType: "text",
-                  success: function(result) {
-                	  if (result == "success") {
-    					self.location = "success"
+                dataType: "text",
+                success: function(result) {
+                	if (result == "success") {
+    					self.location = "success";
     				}
-                  }
+                },
+      			error: function(result) {
+					$("#loadingModal").hide();
+					alert("필요 서류가 부족합니다! 서류를 등록/수정해주세요. 확인을 누르시면 서류관리 페이지로 이동합니다.");
+					self.location = "list";
+				}
               });
           }); 
       });
@@ -183,7 +194,8 @@
                 <h3>* '영업신청' 버튼을 클릭하여 등록하신 서류를 간편하게 제출하세요!</h3><br><br><br>
                   <input id="location" name="location" type="text" style="margin-bottom: 20px"
                         class="form-control input-md" required disabled value="">
-                  <button class="btn btn-common form-control" type="submit" style="font-size: large;" id="applyBtn">영 업 신 청</button>
+                  <button class="btn btn-common form-control" type="submit" style="font-size: large;" id="applyBtn"
+                  data-toggle="modal" data-target="#loadingModal">영 업 신 청</button>
               </td>
             </tr>
           </table>
@@ -196,31 +208,21 @@
   <!--/#footer-->
   
   <!-- Modify Modal -->
-  <div id="modifyModal" class="modal modal-primary fade" role="dialog">
+  <div id="loadingModal" class="modal modal-primary fade" role="dialog">
     <div class="modal-dialog modal-md"
       style="background-color: #ffffff;">
       <!-- modal content -->
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title"></h4>
       </div>
       <form id="modifyForm" action="modifyForm" method="post"
         enctype="multipart/form-data">
-        <div class="modal-body" data-docunum>
-          <p style="font-weight: bolder;">서류파일 :</p>
-          <input type="file" name="file" class="form-control"
-            style="margin-bottom: 10px;" required>
-          <p style="font-weight: bolder;">만료일자 :</p>
-          <input type="date" class="form-control input-md"
-            style="margin-bottom: 10px;" name="expdate" required>
-          <input type="hidden" name="userId" value="${login.userId }" />
-          <input type="hidden" name="docuName" value="" />
-          <input type="hidden" name="docuId" value="" />
-          <input type="hidden" name="path" value="" />
+        <div class="modal-body">
+          <h3>처리를 완료하는 중입니다.</h3><br>
+          <h3> 최대 1분의 시간이 소요될 수 있습니다.</h3><br>
+          <h3> 잠시만 기다려주세요.</h3><br>
         </div>
         <div class="modal-footer">
-          <input type="submit" class="btn" style="color: green" value="저장">
-          <input type="reset" class="btn btn-warning" value="취소">
         </div>
       </form>
     </div>

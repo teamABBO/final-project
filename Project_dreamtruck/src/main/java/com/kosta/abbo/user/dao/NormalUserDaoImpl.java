@@ -87,8 +87,9 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	   SqlSession.update(namespace + ".checkDocu", userId);
 	}
 
-
-	
-
+	@Override
+	public String isUpload(int userId) {
+		return SqlSession.selectOne(namespace + ".isUpload", userId);
+	}
 		
 }

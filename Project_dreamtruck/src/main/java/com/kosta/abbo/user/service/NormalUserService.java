@@ -50,5 +50,5 @@ public interface NormalUserService {
 
 	public void checkDocu(int userId);
 
-
+	public String isUpload(int userId);
 }

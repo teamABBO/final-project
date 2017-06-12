@@ -78,6 +78,11 @@ public class NormalUserServiceImpl implements NormalUserService {
 		   dao.checkDocu(userId);
 		}
 
+	@Override
+	public String isUpload(int userId) {
+		return dao.isUpload(userId);
+	}
 
+	
 
 }

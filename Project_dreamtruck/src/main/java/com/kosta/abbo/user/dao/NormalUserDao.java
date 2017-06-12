@@ -46,5 +46,7 @@ public interface NormalUserDao {
 	public List<NormalUser> list();
 
 	public void checkDocu(int userId);
+	
+	public String isUpload(int userId);
 
 }

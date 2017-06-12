@@ -13,7 +13,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
@@ -40,6 +39,7 @@ import com.kosta.abbo.docu.domain.Docu;
 import com.kosta.abbo.docu.service.DocuService;
 import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.domain.TruckUser;
+import com.kosta.abbo.user.service.NormalUserService;
 import com.kosta.abbo.util.UploadDocuUtils;
 
 @Controller
@@ -50,10 +50,13 @@ public class DocuController {
 
 	@Inject
 	private DocuService service;
-	
+
+	@Inject
+	private NormalUserService userService;
+
 	@Autowired
 	private JavaMailSender mailSender;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
@@ -216,110 +219,134 @@ public class DocuController {
 	public String apply(Model model, HttpSession session) throws Exception {
 		logger.info("영업신청서 제출 페이지");
 
-		NormalUser loginUser = (NormalUser) session.getAttribute("login");
-
-		ObjectMapper objectMapper = new ObjectMapper();
-
-		List<Docu> docuList = service.list(loginUser.getUserId());
-
-		String jsonList = objectMapper.writeValueAsString(docuList);
-
-		model.addAttribute("docuList", jsonList);
-
 		return "/docu/apply";
 	}
-	
+
 	/**
 	 * 관할구역 반환 처리
 	 * 
 	 * @param fileName
 	 * @param docuId
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getLocation", method = RequestMethod.POST, produces = "application/text; charset=utf-8")
 	public ResponseEntity<String> getLocation(String latitude, String longitude) throws Exception {
 		logger.info("관할구역 파싱처리");
-		
-		URL url = new URL("https://apis.daum.net/local/geo/coord2addr?apikey=28b3a5cf726ff24cbcf578f9c766696d&latitude=" + latitude + "&longitude=" + longitude);
-		
+
+		URL url = new URL("https://apis.daum.net/local/geo/coord2addr?apikey=28b3a5cf726ff24cbcf578f9c766696d&latitude="
+				+ latitude + "&longitude=" + longitude);
+
 		URLConnection connection = url.openConnection();
 		connection.setDoOutput(true);
-		 
+
 		// 타입 설정
-		connection.setRequestProperty("CONTENT-TYPE","text/xml"); 
-		 
-		BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
-		
+		connection.setRequestProperty("CONTENT-TYPE", "text/xml");
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(), "utf-8"));
+
 		in.readLine();
 		String xml = in.readLine();
 
 		int name1start = xml.indexOf("name1");
 		int name2start = xml.indexOf("name2");
-		
+
 		String name1xml = xml.substring(name1start + 7);
 		String name2xml = xml.substring(name2start + 7);
-		
+
 		int name1end = name1xml.indexOf("'");
 		int name2end = name2xml.indexOf("'");
-		
+
 		String city = name1xml.substring(0, name1end);
 		String gu = name2xml.substring(0, name2end);
-		
+
 		String message;
-		
+
 		if (!city.equals("서울특별시")) {
 			message = "서비스 구역이 아닙니다.";
 		} else {
 			message = gu + "청";
 		}
-		
+
 		logger.info("시 : " + city + ", 구: " + gu);
-		
+
 		return new ResponseEntity<String>(message, HttpStatus.OK);
 
 	}
-	
+
 	/**
 	 * 영업신청서 메일로 전송
 	 * 
-	 * @param file
-	 * @param docu
 	 * @param model
-	 * @param user
+	 * @param session
+	 * @param location
 	 * @return
 	 * @throws IOException
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
+	@Transactional
 	public ResponseEntity<String> send(Model model, HttpSession session, String location) throws IOException {
 		logger.info("영업신청서 전송");
-		
+
 		TruckUser user = (TruckUser) session.getAttribute("login");
+
+		userService.checkDocu(user.getUserId());
+		logger.info("checkDocu 성공");
+		String isUpload = userService.isUpload(user.getUserId());
+		logger.info("isUpload 성공");
+
+		if (isUpload.equals("x")) {
+			logger.info("파일 수 부족!");
+			return new ResponseEntity<String>("fail", HttpStatus.BAD_REQUEST);
+		}
 		
+		logger.info("파일 첨부 실행");
+		List<Docu> docuList = service.list(user.getUserId());
+
 		String fromMail = "dreamtruck146@gmail.com";
 		String toMail = "yeogirotour@gmail.com";
-		String title = user.getName() + "님께서 " + location +"에 푸드트럭 영업신청을 하였습니다. -dreamtruck-";
-		String content = user.getName() + "님의 푸드트럭 정보와 영업신청에 필요한 서류를 첨부합니다.<br>"
-						+ "성명 : " + user.getName();
+		String title = user.getName() + "님께서 " + location + "에 푸드트럭 영업신청을 하였습니다. -dreamtruck-";
+		String content = user.getName() + "님의 푸드트럭 정보와 영업신청에 필요한 서류를 첨부합니다.<br>" + "성명 : " + user.getName()
+				+ "<br>E-mail : " + user.getEmail() + "<br>휴대폰 : " + user.getPhone() + "<br>트럭 등록 번호 : "
+				+ user.getTruckNum() + "<br>사업자번호 : " + user.getSid() + "<br>상호명 : " + user.getTruckName();
 
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
-			
+
 			messageHelper.setFrom(fromMail);
 			messageHelper.setTo(toMail);
 			messageHelper.setSubject(title);
-			messageHelper.setText(content);
-			
+			messageHelper.setText("", content);
+
+			for (Docu docu : docuList) {
+				switch (docu.getDocuName()) {
+				case "Deong":
+					messageHelper.addAttachment("등본/초본", new File(uploadPath + "/docu" + docu.getPath()));
+					break;
+				case "License":
+					messageHelper.addAttachment("운전면허증", new File(uploadPath + "/docu" + docu.getPath()));
+					break;
+				case "Youngup":
+					messageHelper.addAttachment("영업신청서", new File(uploadPath + "/docu" + docu.getPath()));
+					break;
+				case "Saup":
+					messageHelper.addAttachment("사업계획서", new File(uploadPath + "/docu" + docu.getPath()));
+					break;
+				default:
+					break;
+				}
+			}
+			logger.info("메일 전송");
 			mailSender.send(message);
 		} catch (Exception e) {
 			logger.warn(e.toString());
 		}
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
-	
+
 	/**
 	 * 서류 제출 성공화면
 	 * 

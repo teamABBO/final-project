@@ -78,16 +78,25 @@
     	where user_id = #{userId}
 	</select>
 	
+	
+	<!-- 파일 등록 여부 체크 후 수정-->
 	<update id="checkDocu">
-   UPDATE users
+   	  UPDATE users
       SET truck_doc = 'o'
       WHERE (SELECT count(*)
              FROM (SELECT docu_id
                    FROM docu
-                   WHERE user_id = "#{userId}" AND expdate > sysdate
+                   WHERE user_id = #{userId} AND expdate > sysdate
                    )
-           ) = 4;
+           ) = 4
 	</update>
+	
+	<!-- 파일 등록 여부 반환 -->
+	<select id="isUpload" resultType="string">
+		SELECT truck_doc truckDoc
+		FROM users
+		WHERE user_id = #{userId}
+	</select>
 	
 
 </mapper>
