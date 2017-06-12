@@ -17,7 +17,8 @@
 <link href="/resources/css/main.css" rel="stylesheet">
 <link href="/resources/css/responsive.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
-
+<link href="/resources/css/sweetalert.css" rel="stylesheet">
+<script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
 <link rel="shortcut icon" href="/resources/images/ico/5.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
   href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
@@ -37,7 +38,7 @@ th {
 
 var result = '${msg}';
 if (result == 'success') {
-	alert("처리완료");
+	swal("처리완료");
 }
 
 $(document).ready(

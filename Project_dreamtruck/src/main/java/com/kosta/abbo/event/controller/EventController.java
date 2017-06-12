@@ -91,17 +91,40 @@ public class EventController {
 
 	/** 수정 */
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modifyGET(int eventId, Model model) throws Exception {
+	public void modifyGET(@RequestParam("eventId") int eventId, Model model) throws Exception {
 		model.addAttribute(service.read(eventId));
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(Event event, RedirectAttributes rttr) throws Exception {
+	public String modifyPOST(Event event, RedirectAttributes rttr, MultipartFile file, Model model,
+			HttpServletRequest request, int userId) throws Exception {
 		logger.info("mod post!!!");
-		service.update(event);
-		rttr.addFlashAttribute("msg", "SUCCESS");
-		return "redirect:/event/list";
+		
+		if (file.getOriginalFilename().equals(null) || file.getOriginalFilename().length() == 0) {
+			service.update(event);
+			rttr.addFlashAttribute("msg", "success");
+			return "redirect:/event/list";
+		} else {
+			logger.info("originalName: " + file.getOriginalFilename());
+			logger.info("size : " + file.getSize());
+			logger.info("contentType : " + file.getContentType());
+			
+			UUID uid = UUID.randomUUID();
+			String imgName = uid.toString()+"_"+file.getOriginalFilename();
+			String imgPath = "/"+userId+"/"+imgName;
+			
+			event.setImg(imgPath);
+
+			service.update(event);
+			
+			String path = uploadPath + "/event";
+			UploadEventUtils.uploadFile(path, userId, imgName, file.getBytes());
+
+			rttr.addFlashAttribute("msg", "success");
+			return "redirect:/event/list";
+		
 
 	}
 
+}
 }
