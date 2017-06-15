@@ -47,8 +47,8 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/" style="color: #fd9691">홈</a></li>
-          <li><a href="#" style="color: #fd9691">회사소개</a></li>
-          <li><a href="#" style="color: #fd9691">이용안내</a></li>
+          <li><a href="/introduction" style="color: #fd9691">회사소개</a></li>
+          <li><a href="/info" style="color: #fd9691">이용안내</a></li>
           <li><a href="/truck/list" style="color: #fd9691">트럭소개</a></li>
           <li class="dropdown"><a style="color: #fd9691">행사 <i
               class="fa fa-angle-down"></i></a>

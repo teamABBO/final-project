@@ -29,6 +29,33 @@
 <link rel="apple-touch-icon-precomposed"
   href="/resources/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
+<style type="text/css">
+.container{
+    margin-top:20px;
+}
+.image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+   position: absolute;
+   top: 0;
+   right: 0;
+   margin: 0;
+   padding: 0;
+   font-size: 20px;
+   cursor: pointer;
+   opacity: 0;
+   filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+</style>
 <script type="text/javascript">
 $(document).ready( function() {
 		   
@@ -131,7 +158,7 @@ $(document).ready( function() {
                <label class="col-md-4 control-label">행사시작날짜</label>
                <label id="startDate"></label>
                <div class="col-md-4">
-                  <input id="startDate" name="startDate" type="date"  class="form-control input-md" maxlength="16">
+                  <input id="startDate" name="startDate" type="date" placeholder="행사 시작 날짜를 입력해주세요."   class="form-control input-md" maxlength="16">
                   
                </div>
             </div>
@@ -141,7 +168,7 @@ $(document).ready( function() {
                <label class="col-md-4 control-label">행사기간</label>
                <label id="duration"></label>
                <div class="col-md-4">
-               <input id="duration" name="duration" type="text" placeholder="행사기간을 입력해주세요." class="form-control input-md" maxlength="16">
+               <input id="duration" name="duration" type="number" placeholder="행사기간을 입력해주세요." class="form-control input-md" maxlength="16">
                   
                </div>
             </div>
@@ -152,7 +179,7 @@ $(document).ready( function() {
             <div class="form-group">
                <label class="col-md-4 control-label" for="recruit">모집트럭 수</label>
                <div class="col-md-4">
-                  <input id="recruit" name="recruit" type="text" placeholder="모집트럭 수를 입력 해 주세요." class="form-control input-md" required="">
+                  <input id="recruit" name="recruit" type="number" placeholder="모집트럭 수를 입력 해 주세요." class="form-control input-md" required="">
                </div>
             </div>
             
@@ -213,17 +240,19 @@ $(document).ready( function() {
                         <div class="form-group">
                            <div class="input-group">
                               <span class="input-group-btn"> 
-                              <span class="btn btn-default btn-file" style="margin-left: 15px;">업로드
+                              <input type="text" class="form-control" readonly style="margin-left: 15px; margin-top: 2px;" id="truckImg" name="truckImg">
+                              <span class="btn btn-file image-preview-input" style="margin-right: 1px; margin-top: 2px; height: 40px;" >업로드
                                <input type="file" name="file" id="imgInp">
                               </span>
-                              </span> <input type="text" class="form-control" readonly style="margin-left: 20px;" id="img" name="img">
+                              <a type="button" id="deleteImg" class="btn btn-default image-preview-input" style="margin-right: 30px; margin-top: 2px; height: 40px;"><i class="fa fa-close"></i></a>
+                              </span>
                            </div>
                            <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" />
                         </div>
                      </div>
                   </div>
                </div>
-            </div>
+            </div> 
             
             
             <!-- 버튼 -->

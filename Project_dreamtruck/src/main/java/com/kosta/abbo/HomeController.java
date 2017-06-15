@@ -107,5 +107,18 @@ public class HomeController {
 		String jsonlist = objectMapper.writeValueAsString(planservice.truck());
 		model.addAttribute("list", jsonlist);
 	}
+		
+	/** 이용안내 */
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public void info() throws Exception {
+		logger.info("info get............................................");
+
+	}
+	
+	@RequestMapping(value = "/introduction", method = RequestMethod.GET)
+	public void introduction() throws Exception {
+		logger.info("introduction get............................................");
+
+	}
 
 }
