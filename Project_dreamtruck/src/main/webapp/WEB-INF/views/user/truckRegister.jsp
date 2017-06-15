@@ -21,7 +21,6 @@
 <script type="text/javascript" src="/resources/js/wow.min.js"></script>
 <script type="text/javascript" src="/resources/js/main.js"></script>
 <style type="text/css">
-<style type="text/css">
 .container{
     margin-top:20px;
 }
