@@ -25,7 +25,7 @@
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <link href="/resources/css/sweetalert.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/sweetalert.min.js"></script>
-<link rel="shortcut icon" href="/resources/images/ico/5.ico">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
   href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -41,6 +41,146 @@ th {
 }
 </style>
 <script>
+$(document).ready(function () {
+	var applierList = ${applierList};
+	
+	for ( var num in applierList) {
+		if (applierList[num].success == "o") {
+			$("#confirmTable").append(""+
+				"<tr>" + 
+      				"<td><a href='/truck/read?userId=" + applierList[num].userId + "'>" + applierList[num].applierName + "</a></td>" +
+      				"<td>" + applierList[num].regdate + "</td>" +
+      				"<td> <a href='/applier/downloadFile?userId=" + applierList[num].userId + "&docuName=Deong'><button class='btn btn-sm glyphicon glyphicon-save' style='background-color: #fd9483; color:#ffffff'></button></a>" + 
+      				" || <a href='/applier/downloadFile?userId=" + applierList[num].userId + "&docuName=License'><button class='btn btn-sm glyphicon glyphicon-save' style='background-color: #fd9483; color:#ffffff'></button></a>" + 
+      				" || <a href='/applier/downloadFile?userId=" + applierList[num].userId + "&docuName=Youngup'><button class='btn btn-sm glyphicon glyphicon-save' style='background-color: #fd9483; color:#ffffff'></button></a>" + 
+      				" || <a href='/applier/downloadFile?userId=" + applierList[num].userId + "&docuName=Saup'><button class='btn btn-sm glyphicon glyphicon-save' style='background-color: #fd9483; color:#ffffff'></button></a>" + 
+      				"</td>" +
+      			"<tr>"); 
+		} else if (applierList[num].success == "x") {
+			$("#applyTable").append(""+
+					"<tr>" + 
+						"<td></td>" +
+	      				"<td><a href='/truck/read?userId=" + applierList[num].userId + "'>" + applierList[num].applierName + "</a></td>" +
+	      				"<td>" + applierList[num].regdate + "</td>" +
+	      				"<td style='color: red'>거절</td>" + 
+	      				"<td></td>" +
+	      			"<tr>");
+		} else {
+			$("#applyTable").append(""+
+					"<tr data-applierId='" + applierList[num].applierId + "' >" + 
+						"<td><input type='checkbox' class='check' id='" + applierList[num].applierId + "' /></td>" +
+	      				"<td><a href='/truck/read?userId=" + applierList[num].userId + "'>" + applierList[num].applierName + "</a></td>" +
+	      				"<td>" + applierList[num].regdate + "</td>" +
+	      				"<td style='color: #a69926'>대기</td>" + 
+	      				"<td> <button class='btn btn-success confirm'>수락</button> <button class='btn btn-warning deny' id='deny'>거절</button></td>" +
+	      			"<tr>");
+		}
+	}
+	
+	$("#checkEntire").on("click", function() {
+		if ($(this).prop("checked")) {
+			$("input[type=checkbox]").prop("checked",true);
+		} else {
+			$("input[type=checkbox]").prop("checked",false);
+		}
+	});
+	
+	$(".confirm").on("click", function() {
+		if (confirm("취소가 불가능합니다. 정말 수락하시겠습니까?") == true){
+    		$.ajax({
+    			url : "/applier/confirm",
+    			type : "post",
+    			data : {
+    				applierId : $(this).parent().parent().attr("data-applierId")
+    			},
+    			dataType : "text",
+    			success : function(result) {
+    				if (result == "success") {
+    					location.reload();
+    				}
+    			}
+    		});
+		} else {
+			return;
+		}
+	});
+	
+	$(".deny").on("click", function() {
+		if (confirm("취소가 불가능합니다. 정말 거절하시겠습니까?") == true){
+    		$.ajax({
+    			url : "/applier/deny",
+    			type : "post",
+    			data : {
+    				applierId : $(this).parent().parent().attr("data-applierId")
+    			},
+    			dataType : "text",
+    			success : function(result) {
+    				if (result == "success") {
+    					location.reload();
+    				}
+    			}
+    		});
+		} else {
+			return;
+		}
+	});
+	
+	$("#checkConfirm").on("click", function() {
+		if (confirm("취소가 불가능합니다. 정말 수락하시겠습니까?") == true){
+    		var checkedList = $(".check");
+    		var confirmList = "";
+    		for ( var num in checkedList) {
+    			if (checkedList[num].checked) {
+    				confirmList += checkedList[num].id + "-";
+    			}
+    		}
+    		
+    		$.ajax({
+    			url : "/applier/checkConfirm",
+    			type : "post",
+    			data : {
+    				confirmList : confirmList
+    			},
+    			dataType : "text",
+    			success : function(result) {
+    				if (result == "success") {
+    					location.reload();
+    				}
+    			}
+    		});
+		} else {
+			return;
+		}
+	});
+	
+	$("#checkDeny").on("click", function() {
+		if (confirm("취소가 불가능합니다. 정말 거절하시겠습니까?") == true){
+    		var checkedList = $(".check");
+    		var denyList = "";
+    		for ( var num in checkedList) {
+    			if (checkedList[num].checked) {
+    				denyList += checkedList[num].id + "-";
+    			}
+    		}
+    		
+    		$.ajax({
+    			url : "/applier/checkDeny",
+    			type : "post",
+    			data : {
+    				denyList : denyList
+    			},
+    			dataType : "text",
+    			success : function(result) {
+    				if (result == "success") {
+    					location.reload();
+    				}
+    			}
+    		});
+		} else {
+			return;
+		}
+	});
+});
 	
 </script>
 <body>
@@ -61,7 +201,7 @@ th {
                 <div class="action">
                   <div class="col-sm-12">
                     <h1 class="title">마이페이지</h1>
-                    <p>신청한 푸드트럭</p>
+                    <p>신청 현황</p>
                   </div>
                 </div>
               </div>
@@ -80,78 +220,27 @@ th {
     <div class="row">
       <div class="single-features">
         <div class="col-md-12">
-          <table class="table table-hover" style="text-align: center">
+          <h2>참가 확정 트럭</h2>
+          <table class="table table-hover" style="text-align: center" id="confirmTable">
             <tr>
-              <th style="width: 10px">No.</th>
-              <th>행사제목</th>
-              <th>작성자</th>
-              <th style="width: 180px">모집트럭수</th>
-              <th style="width: 180px">신청트럭수</th>
-              <th style="width: 60px">조회수</th>
+              <th style="width: 200px">트럭이름</th>
+              <th style="width: 90px">신청날짜</th>
+              <th style="width: 100px">서류 다운로드<br>등본 | 면허증 | 영업신청서 | 사업계획서</th>
             </tr>
-
-            <c:forEach items="${list }" var="event" varStatus="status">
-              <tr>
-                <td>${event.eventId}</td>
-                <td><a
-                  href='/event/detail${pageMaker.makeSearch(pageMaker.cri.page)}&eventId=${event.eventId }'>${event.title }</a></td>
-                <td>${event.writer}</td>
-                <td>${event.recruit}</td>
-                <td>${event.applierCnt }</td>
-                <td>${event.hit }</td>
-              </tr>
-
-            </c:forEach>
           </table>
-          <form class="form-inline">
-            <div class="text-center">
-              <div class="form-group">
-                <select class="form-control " name="searchType">
-                  <option value="n"
-                    <c:out value="${cri.searchType == null?'selected':'' }"/>>
-                    ---</option>
-
-                  <option value="t"
-                    <c:out value="${cri.searchType eq 't'?'selected':'' }"/>>
-                    제목</option>
-
-                  <option value="c"
-                    <c:out value="${cri.searchType eq 'c'?'selected':'' }"/>>
-                    내용</option>
-
-                  <option value="w"
-                    <c:out value="${cri.searchType eq 'w'?'selected':'' }"/>>
-                    작성자</option>
-                </select> <input type="text" class="form-control " name="keyword"
-                  id="keywordInput" value="${cri.keyword }" /> <input
-                  type="submit" class="btn btn-common" id="searchB"
-                  value="검색">
-
-              </div>
-            </div>
-          </form>
-
-          <div class="text-center">
-            <ul class="pagination">
-              <c:if test="${pageMaker.prev }">
-                <li><a
-                  href="list${pageMaker.makeSearch(pageMakekr.startPage-1 )}">&laquo;</a></li>
-              </c:if>
-
-              <c:forEach begin="${pageMaker.startPage }"
-                end="${pageMaker.endPage }" var="idx">
-                <li
-                  <c:out value="${pageMaker.cri.page == idx?'class=active':''}"/>>
-                  <a href="list${pageMaker.makeSearch(idx) }">${idx}</a>
-                </li>
-              </c:forEach>
-
-              <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-                <li><a
-                  href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
-              </c:if>
-            </ul>
-          </div>
+          <br>
+          <hr>
+          <br>
+          <h2>신청 트럭</h2>
+          <table class="table table-hover" style="text-align: center" id="applyTable">
+            <tr>
+              <th style="width: 20px"><input type="checkbox" id="checkEntire">전체</th>
+              <th style="width: 200px">트럭이름</th>
+              <th style="width: 70px">신청날짜</th>
+              <th style="width: 20px">승인여부</th>
+              <th style="width: 100px"> <button class="btn btn-success" id="checkConfirm">선택 수락</button> <button class="btn btn-warning" id="checkDeny">선택 거절</button></th>
+            </tr>
+          </table>
 
         </div>
       </div>

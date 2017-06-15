@@ -12,8 +12,8 @@
 			user_id,
 			event_id)
 		VALUES(
-			applier_id_seq,
-			n,
+			applier_id_seq.NEXTVAL,
+			'n',
 			sysdate,
 			#{userId},
 			#{eventId})
@@ -25,5 +25,35 @@
 		WHERE  event_id = #{eventId}
 	</update>
 	
+	<select id="list" resultType="Applier">
+		SELECT  a.applier_id applierId,
+				a.success,
+				TO_CHAR(a.regdate, 'YYYY/MM/DD') regdate,
+				a.user_id userId,
+				a.event_id eventId,
+				u.truck_name applierName
+		FROM 	applier a
+				JOIN users u
+				ON a.user_id = u.user_id
+		WHERE	a.event_id = #{eventId}
+	</select>
+		
+	<update id="confirm">
+		UPDATE applier
+		SET success = 'o'
+		WHERE applier_id = #{applierId}
+	</update>
+	
+	<update id="deny">
+		UPDATE applier
+		SET success = 'x'
+		WHERE applier_id = #{applierId}
+	</update>
+	
+	<select id="checkDup" resultType="int">
+		SELECT count(*)
+		FROM applier
+		WHERE user_id = #{userId} AND event_id=#{eventId}
+	</select>
 
 </mapper>

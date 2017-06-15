@@ -2,11 +2,13 @@ package com.kosta.abbo.applier.domain;
 
 public class Applier {
 	
-	private int applierId; 	// 신청 seq
-	private String success; // 참가 성공 여부(대기 : n, 성공 : o, 실패 : x)
-	private String regdate; // 신청날짜
-	private int userId; 	// 신청자
-	private int eventId; 	// 행사번호
+	private int applierId; 		// 신청 seq
+	private String success; 	// 참가 성공 여부(대기 : n, 성공 : o, 실패 : x)
+	private String regdate; 	// 신청날짜
+	private int userId; 		// 신청자
+	private int eventId; 		// 행사번호
+	private String applierName; // 트럭 이름
+	
 	
 	public Applier() { }
 
@@ -50,10 +52,18 @@ public class Applier {
 		this.eventId = eventId;
 	}
 
+	public String getApplierName() {
+		return applierName;
+	}
+
+	public void setApplierName(String applierName) {
+		this.applierName = applierName;
+	}
+
 	@Override
 	public String toString() {
 		return "Applier [applierId=" + applierId + ", success=" + success + ", regdate=" + regdate + ", userId="
-				+ userId + ", eventId=" + eventId + "]";
+				+ userId + ", eventId=" + eventId + ", applierName=" + applierName + "]";
 	}
 
 }

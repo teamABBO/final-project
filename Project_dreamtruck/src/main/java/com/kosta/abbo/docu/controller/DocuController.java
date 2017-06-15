@@ -35,11 +35,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.HomeController;
-import com.kosta.abbo.applier.domain.Applier;
-import com.kosta.abbo.applier.service.ApplierService;
 import com.kosta.abbo.docu.domain.Docu;
 import com.kosta.abbo.docu.service.DocuService;
-import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.service.NormalUserService;
 import com.kosta.abbo.util.UploadDocuUtils;

@@ -9,7 +9,7 @@ public class Event {
 	private String title; 		// 행사 제목
 	private String regdate; 	// 등록 날짜
 	private int guId; 			// 위치 번호
-	private String userId; 		// 등록자
+	private int userId; 		// 등록자
 	private String writer;
 	private int hit;			// 조회수
 	private int recruit;			// 모집트럭수
@@ -100,11 +100,11 @@ public class Event {
 		this.recruit = recruit;
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

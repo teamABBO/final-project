@@ -61,4 +61,15 @@ public class DocuServiceImpl implements DocuService {
 		return dao.list(userId);
 	}
 
+	/**
+	 * 파일경로 반환
+	 * @param userId
+	 * @param docuName
+	 * @return
+	 */
+	@Override
+	public String getPath(int userId, String docuName) {
+		return dao.getPath(userId, docuName);
+	}
+
 }

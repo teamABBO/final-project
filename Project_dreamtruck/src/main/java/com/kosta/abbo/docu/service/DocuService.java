@@ -36,5 +36,13 @@ public interface DocuService {
 	 * @return
 	 */
 	public List<Docu> list(int userId);
+	
+	/**
+	 * 파일경로 반환
+	 * @param userId
+	 * @param docuName
+	 * @return
+	 */
+	public String getPath(int userId, String docuName);
 
 }

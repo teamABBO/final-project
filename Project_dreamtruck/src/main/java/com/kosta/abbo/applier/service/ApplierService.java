@@ -37,6 +37,30 @@ public interface ApplierService {
 	 */
 	public List<Applier> list(int eventId);
 	
+	/**
+	 * 신청자 수 증가
+	 * @param eventId
+	 */
 	public void upCnt(int eventId);
+	
+	/**
+	 * 행사 신청 승인
+	 * @param applierId
+	 */
+	public void confirm(int applierId);
+	
+	/**
+	 * 행사 신청 거절
+	 * @param applierId
+	 */
+	public void deny(int applierId);
+	
+	/**
+	 * 행사 신청 중복 확인
+	 * @param userId
+	 * @param eventId
+	 * @return
+	 */
+	public int checkDup(int userId, int eventId);
 
 }
