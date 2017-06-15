@@ -1,12 +1,13 @@
 package com.kosta.abbo.docu.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.kosta.abbo.docu.domain.Docu;
 
@@ -61,6 +62,22 @@ public class DocuDaoImpl implements DocuDao {
 	@Override
 	public List<Docu> list(int userId) {
 		return sqlSession.selectList(namespace + ".list", userId);
+	}
+
+	/**
+	 * 파일경로 반환
+	 * @param userId
+	 * @param docuName
+	 * @return
+	 */
+	@Override
+	public String getPath(int userId, String docuName) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("userId", userId);
+		paramMap.put("docuName", docuName);
+		
+		return sqlSession.selectOne(namespace + ".getPath", paramMap);
 	}
 	
 }

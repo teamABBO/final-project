@@ -1,6 +1,8 @@
 package com.kosta.abbo.applier.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -22,7 +24,7 @@ public class ApplierDaoImpl implements ApplierDao {
 	 */
 	@Override
 	public void create(Applier applier) {
-
+		sqlSession.insert(namespace + ".create", applier);
 	}
 
 	/**
@@ -59,12 +61,50 @@ public class ApplierDaoImpl implements ApplierDao {
 	 */
 	@Override
 	public List<Applier> list(int eventId) {
-		return null;
+		return sqlSession.selectList(namespace + ".list", eventId);
 	}
 
+	/**
+	 * 신청자 수 증가
+	 */
 	@Override
 	public void upCnt(int eventId) {
 		sqlSession.update(namespace + ".upCnt", eventId);
+	}
+
+
+	/**
+	 * 행사 신청 승인
+	 * @param applierId
+	 */
+	@Override
+	public void confirm(int applierId) {
+		sqlSession.update(namespace + ".confirm", applierId);
+	}
+
+	/**
+	 * 행사 신청 거절
+	 * @param applierId
+	 */
+	@Override
+	public void deny(int applierId) {
+		sqlSession.update(namespace + ".deny", applierId);
+	}
+	
+	/**
+	 * 행사 신청 중복 확인
+	 * @param userId
+	 * @param eventId
+	 * @return
+	 */
+	@Override
+	public int checkDup(int userId, int eventId) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("userId", userId);
+		paramMap.put("eventId", eventId);
+		
+		return sqlSession.selectOne(namespace + ".checkDup", paramMap);
 	}
 
 }

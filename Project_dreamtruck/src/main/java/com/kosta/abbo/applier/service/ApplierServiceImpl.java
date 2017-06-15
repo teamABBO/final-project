@@ -60,8 +60,41 @@ public class ApplierServiceImpl implements ApplierService {
 		return dao.list(eventId);
 	}
 
+	/**
+	 * 신청자 수 증가
+	 * @param eventId
+	 */
 	@Override
 	public void upCnt(int eventId) {
 		dao.upCnt(eventId);
+	}
+	
+	/**
+	 * 행사 신청 승인
+	 * @param applierId
+	 */
+	@Override
+	public void confirm(int applierId) {
+		dao.confirm(applierId);
+	}
+	
+	/**
+	 * 행사 신청 거절
+	 * @param applierId
+	 */
+	@Override
+	public void deny(int applierId) {
+		dao.deny(applierId);
+	}
+	
+	/**
+	 * 행사 신청 중복 확인
+	 * @param userId
+	 * @param eventId
+	 * @return
+	 */
+	@Override
+	public int checkDup(int userId, int eventId) {
+		return dao.checkDup(userId, eventId);
 	}
 }

@@ -70,7 +70,7 @@
 			var deleteId = "delete" + kind;
 			var iconId = "icon" + kind
 			
-			if (confirm("정말 삭제하시겠습니까??") == true){
+			if (confirm("정말 삭제하시겠습니까?") == true){
 				$.ajax({
 					url : "deleteFile",
 					type : "post",

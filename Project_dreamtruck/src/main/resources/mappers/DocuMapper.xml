@@ -56,4 +56,10 @@
 		WHERE  docu_id = #{docuId}
 	</delete>
 	
+	<select id="getPath" resultType="string">
+		SELECT path
+		FROM   docu 
+ 		WHERE  user_id = #{userId} AND docu_name = #{docuName}
+	</select>
+	
 </mapper>
