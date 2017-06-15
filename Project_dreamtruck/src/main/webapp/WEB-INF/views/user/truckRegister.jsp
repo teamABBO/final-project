@@ -20,6 +20,35 @@
 <script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
 <script type="text/javascript" src="/resources/js/wow.min.js"></script>
 <script type="text/javascript" src="/resources/js/main.js"></script>
+<style type="text/css">
+<style type="text/css">
+.container{
+    margin-top:20px;
+}
+.image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+</style>
+
 <script type="text/javascript">
 	$(document).ready( function() {
 		
@@ -85,6 +114,25 @@
 				$("#imgInp").change(function() {
 					readURL(this);
 				});
+				
+				 $('#deleteImg').on("click",function(){
+		               $('#truckImg').val(null);
+		               $('#img-upload').attr('src',null);
+		            });
+		            
+		            function readURL(input) {
+		               if (input.files && input.files[0]) {
+		                  var reader = new FileReader();
+
+		                  reader.onload = function(e) {
+		                     $('#img-upload').attr('src', e.target.result);
+		                  }
+		                  reader.readAsDataURL(input.files[0]);
+		               }
+		            }
+		            $("#imgInp").change(function() {
+		               readURL(this);
+		            });
 			});
 </script> 
 </head>
@@ -298,28 +346,29 @@
 					</div>
 				</div>
 				
-				<!-- 트럭 이미지 -->
+				 <!-- 트럭 이미지 -->
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="contactphone">트럭 이미지 </label>
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="col-md-5">
-								<div class="form-group">
-									<div class="input-group">
-										<span class="input-group-btn"> 
-										<span class="btn btn-default btn-file" style="margin-left: 15px;">업로드
-									    <input type="file" name="file" id="imgInp">
-										</span>
-										</span> <input type="text" class="form-control" readonly style="margin-left: 20px;" id="truckImg" name="truckImg">
-									</div>
-									<img id='img-upload' style="margin-left: 20px; margin-top: 10px;" />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				
+               <label class="col-md-4 control-label" for="contactphone">파일 첨부 </label>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <div class="col-md-5">
+                        <div class="form-group">
+                           <div class="input-group">
+                              <span class="input-group-btn"> 
+                              <input type="text" class="form-control" readonly style="margin-left: 15px; margin-top: 2px;" id="truckImg" name="truckImg">
+                              <span class="btn btn-file image-preview-input" style="margin-right: 1px; margin-top: 2px; height: 40px;" >업로드
+                               <input type="file" name="file" id="imgInp">
+                              </span>
+                              <a type="button" id="deleteImg" class="btn btn-default image-preview-input" style="margin-right: 30px; margin-top: 2px; height: 40px;"><i class="fa fa-close"></i></a>
+                              </span>
+                              
+                           </div>
+                           <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" />
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div> 
 
 				<!-- 내용 -->
 				<div class="form-group">

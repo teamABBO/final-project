@@ -10,6 +10,8 @@ import org.apache.log4j.Logger;
 import org.imgscalr.Scalr;
 import org.springframework.util.FileCopyUtils;
 
+import com.kosta.abbo.user.domain.NormalUser;
+
 public class UploadUserUtils {
 	private static Logger logger = Logger.getLogger(UploadUserUtils.class);
 	

@@ -14,6 +14,33 @@
 <link href="/resources/css/lightbox.css" rel="stylesheet">
 <link href="/resources/css/main.css" rel="stylesheet">
 <link href="/resources/css/responsive.css" rel="stylesheet">
+<style type="text/css">
+.container{
+    margin-top:20px;
+}
+.image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+</style>
 <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 </head>
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
@@ -21,10 +48,7 @@
 <script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
 <script type="text/javascript" src="/resources/js/wow.min.js"></script>
 <script type="text/javascript" src="/resources/js/main.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<script id="template" type="text/x-handlebars-template">
 
-</script>
 <script type="text/javascript">
 	$(document).ready(
 				
@@ -67,6 +91,26 @@
 				$("#imgInp").change(function() {
 					readURL(this);
 				});
+				
+				 $('#deleteImg').on("click",function(){
+		               $('#truckImg').val(null);
+		               $('#img-upload').attr('src',null);
+		            });
+		            
+		            function readURL(input) {
+		               if (input.files && input.files[0]) {
+		                  var reader = new FileReader();
+
+		                  reader.onload = function(e) {
+		                     $('#img-upload').attr('src', e.target.result);
+		                  }
+		                  reader.readAsDataURL(input.files[0]);
+		               }
+		            }
+		            $("#imgInp").change(function() {
+		               readURL(this);
+		            });
+		    
 				
 				
 			});
@@ -432,7 +476,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="selectgu">관심 지역</label>
 					<div class="col-md-4">
-
+					
 						<select id="likeArea" name="likeArea" class="form-control">
 							<option value="">다시 선택 해 주세요.</option>
 							<option value="1">강남구</option>
@@ -470,7 +514,7 @@
 					<div class="col-md-4">
 
 						<select id="truckArea" name="truckArea" class="form-control">
-							<option value="">다시 선택 해 주세요.</option>
+							<option value="">기존 : ${login.truckArea}</option>
 							<option value="1">강남구</option>
 							<option value="2">강동구</option>
 							<option value="3">강북구</option>
@@ -551,40 +595,40 @@
 						</select>
 					</div>
 				</div>
-
-				 <!-- 트럭 이미지 -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="contactphone">트럭 이미지 </label>
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="col-md-5">
-								<div class="form-group">
-									<div class="input-group">
-										<span class="input-group-btn"> <span class="btn btn-default btn-file" style="margin-left: 15px;">업로드 <input type="file" name = "file" id="imgInp">
-										</span>
-										</span> <input type="text" id="truckImg" name="truckImg" class="form-control" readonly style="margin-left: 20px;" value="${login.truckImg}">
-									</div>
-									<c:if test="${empty login.truckImg}">
-									<img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/noimage.png" />
-									<label style="color: red; margin-left: 30px;">이미지가 없습니다..</label>
-									</c:if>
-									<c:if test="${not empty login.truckImg}">
-									<img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/${login.id}/${login.truckImg }" />
-									<small data-src="/user/${login.id}/${login.truckImg }" style="margin-left: 230px;">X</small>
-									</c:if>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> 
 				
+				<!-- 트럭 이미지 -->
+			   <div class="form-group">
+               <label class="col-md-4 control-label" for="contactphone">파일 첨부 </label>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <div class="col-md-5">
+                        <div class="form-group">
+                           <div class="input-group">
+                              <span class="input-group-btn"> 
+                              <input type="text" class="form-control" style="margin-left: 15px; margin-top: 2px;" id="truckImg" name="truckImg" value="${login.truckImg }">
+                              <span class="btn btn-file image-preview-input" style="margin-right: 1px; margin-top: 2px; height: 40px;" >업로드
+                               <input type="file" name="file" id="imgInp">
+                              </span>
+                              <a type="button" id="deleteImg" class="btn btn-default image-preview-input" style="margin-right: 30px; margin-top: 2px; height: 40px;"><i class="fa fa-close"></i></a>
+                              </span>
+                           </div>
+                           <c:if test="${empty login.truckImg}">
+                           <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/noimage.png" />
+                           </c:if>
+                           <c:if test="${not empty login.truckImg}">
+                           <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/${login.id}/${login.truckImg }" />
+                           </c:if>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
 				
-
 				<!-- 내용 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="info">내용</label>
 					<div class="col-md-5">
-						<textarea rows="8" cols="84" id="truckInfo" name="truckInfo" style="resize: none;">${login.truckInfo}</textarea>
+						<textarea rows="8" cols="84" id="truckInfo" name="truckInfo" style="resize: none;" class="form-control">${login.truckInfo}</textarea>
 					</div>
 				</div>
 

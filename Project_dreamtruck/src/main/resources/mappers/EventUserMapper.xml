@@ -40,5 +40,42 @@
            event_dep = #{eventDep}
 	WHERE  user_id = #{userId}
 	</update>
+	
+	<!-- 리스트 -->
+	<select id="list" resultType="EventUser">
+		SELECT e.event_id as eventId,
+       	e.user_id as userId,
+       	e.title,
+       	e.hit,
+       	u.name,
+       	e.recruit,
+       	e.applier_cnt as applierCnt,
+       	u.user_id
+	   	FROM   event e, users u
+		WHERE  e.user_id = u.user_id
+       	AND u.user_id = #{userId}
+	</select>
+	
+
+	<!-- 조회수 -->
+	<update id="hit">
+		UPDATE event
+		SET hit = hit + 1
+		WHERE event_id = #{event_id}
+	</update>
+	
+	<!-- 읽기 -->
+	<select id="read" resultType="EventUser">
+		select user_id as userId,
+							  id,
+							name,
+							type,
+						   email,
+						   phone,
+		   like_area as likeArea,
+		   event_dep as eventDep
+    	from users
+    	where user_id = #{userId}
+	</select>
 
 </mapper>

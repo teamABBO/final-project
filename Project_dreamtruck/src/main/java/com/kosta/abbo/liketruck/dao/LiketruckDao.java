@@ -33,7 +33,6 @@ public interface LiketruckDao {
 	public Liketruck read(int liketruckId);
 	
 	
-	
 	/**
 	 * 관심트럭 삭제
 	 * @param liketruckId
@@ -46,7 +45,11 @@ public interface LiketruckDao {
 	 */
 	public List<Liketruck> list(int userId);
 	
-	/*public List<Liketruck> listSearchCriteria(SearchCriteria cri, int userId) throws Exception;*/
+	/**
+	 * 검색 기능 추가 
+	 */
+	public List<Liketruck> listSearch(SearchCriteria cri) throws Exception;
 	
+	public int listSearchCount(SearchCriteria cri) throws Exception;
 
 }

@@ -73,10 +73,17 @@ public class LiketruckDaoImpl implements LiketruckDao {
 	public List<Liketruck> list(int userId) {
 		return SqlSession.selectList(namespace+".list",userId);
 	}
-
-	/*@Override
-	public List<Liketruck> listSearchCriteria(SearchCriteria cri, int userId) throws Exception {
-		return SqlSession.selectList(namespace+".listSearch",cri,userId);
-	}*/
+	/**
+	 * 검색 기능 추가 
+	 */
 	
+	@Override
+	public List<Liketruck> listSearch(SearchCriteria cri) throws Exception {
+		return SqlSession.selectList(namespace+".listSearch", cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return SqlSession.selectOne(namespace+".listSearchCount", cri);
+	}
 }

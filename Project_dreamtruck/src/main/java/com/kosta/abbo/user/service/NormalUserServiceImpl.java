@@ -83,6 +83,19 @@ public class NormalUserServiceImpl implements NormalUserService {
 		return dao.isUpload(userId);
 	}
 
-	
+	/**
+	 * 아이디 찾기
+	 */
+	@Override
+	public String idCheck(String name, String phone) {
+		return dao.idCheck(name, phone);
+	}
 
+	/**
+	 * 비밀번호 찾기
+	 */
+	@Override
+	public String pwCheck(String id, String email) {
+		return dao.pwCheck(id, email);
+	}
 }

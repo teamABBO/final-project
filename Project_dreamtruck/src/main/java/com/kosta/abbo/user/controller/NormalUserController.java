@@ -1,6 +1,7 @@
 package com.kosta.abbo.user.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -25,8 +26,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.HomeController;
+import com.kosta.abbo.docu.domain.Docu;
 import com.kosta.abbo.dto.LoginDTO;
+import com.kosta.abbo.page.domain.PageMaker;
+import com.kosta.abbo.page.domain.SearchCriteria;
 import com.kosta.abbo.user.domain.EventUser;
 import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.domain.TruckUser;
@@ -231,8 +236,6 @@ public class NormalUserController {
 
 	/**
 	 * 회원정보 수정
-	 * 
-	 * @param dto
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
@@ -242,8 +245,7 @@ public class NormalUserController {
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(Model model, MultipartFile file, @RequestParam("id") String id,
-			@RequestParam("type") String type, NormalUser normalUser, EventUser eventUser, TruckUser truckUser,
+	public String modifyPOST(Model model, MultipartFile file, @RequestParam("type") String type, NormalUser normalUser, EventUser eventUser, TruckUser truckUser,
 			RedirectAttributes rttr, HttpSession session, HttpServletResponse response, HttpServletRequest request)
 			throws Exception {
 		logger.info("회원 정보 수정 POST .....");
@@ -264,10 +266,11 @@ public class NormalUserController {
 			logger.info("contentType : " + file.getContentType());
 			
 			String path = uploadPath + "/user";
+			NormalUser normalUser2 = (NormalUser) session.getAttribute("login");
+			String id = normalUser2.getId();
 			
 			TruckUser findTruck = truckService.read(truckUser.getUserId());
 	         if (findTruck.getTruckImg() != null) {
-	            /*String[] parse = findTruck.getTruckImg().split("/");*/
 	            String sumnail = "s_"+ findTruck.getTruckImg();
 	            new File("C:/dt/user/" + id + "/" + findTruck.getTruckImg()).delete();
 	            new File("C:/dt/user/" + id + "/" + sumnail).delete();
@@ -294,23 +297,6 @@ public class NormalUserController {
 		}
 		return "user/login";
 	}
-
-	/*@ResponseBody*/
-	/*@RequestMapping(value="/sboard/deleteFile", method=RequestMethod.POST)*/
-	public ResponseEntity<String> deleteFile(String fileName){
-		logger.info("delete file : " + fileName);
-		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
-		MediaType mType = MediaUtils.getMediaType(formatName);
-		if(mType != null){
-			String front = fileName.substring(0, 12);
-			String end = fileName.substring(14);
-			new File(uploadPath + (front+end).replace('/', File.separatorChar)).delete();
-			}
-		new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
-		
-		return new ResponseEntity<String>("deleted",HttpStatus.OK);
-	}
-
 
 	/**
 	 * 회원 탈퇴
@@ -370,5 +356,52 @@ public class NormalUserController {
 		logger.info("아이디/비밀번호 GET .....");
 	}
 	
+	/** 목록 */
+	@RequestMapping(value = "/myboard", method = RequestMethod.GET)
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
+		logger.info("내가 쓴글 get");
+		NormalUser loginUser = (NormalUser) session.getAttribute("login");
+		
+		/*logger.info("@@@@@@@@"+ eventService.list(userId));*/
+		/*model.addAttribute("list", eventService.list(userId));*/
+		model.addAttribute("list", eventService.list(loginUser.getUserId()));
+		
+		
+	}
 	
+	/**
+	 * 아이디 찾기
+	 * @param name
+	 * @param phone
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+	public ResponseEntity<String> idCheckPOST(@RequestParam("name") String name, @RequestParam("phone") String phone) {
+		logger.info("아이디 찾기 POST .....");
+		logger.info("@@@@@@@@@@@"+normalService.idCheck(name, phone));
+		if(normalService.idCheck(name, phone) == null){
+		   return new ResponseEntity<String>("fail",HttpStatus.OK);
+		}else{
+		   return new ResponseEntity<String>(normalService.idCheck(name, phone),HttpStatus.OK);
+		}
+	}
+	
+	/**
+	 * 비밀번호 찾기
+	 * @param id
+	 * @param name
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
+	public ResponseEntity<String> pwCheckPOST(@RequestParam("id") String id, @RequestParam("email") String email) {
+		logger.info("비밀번호 찾기 POST .....");
+		logger.info("@@@@@@@@@@@"+normalService.pwCheck(id, email));
+		if(normalService.pwCheck(id, email) == null){
+		   return new ResponseEntity<String>("fail",HttpStatus.OK);
+		}else{
+		   return new ResponseEntity<String>(normalService.pwCheck(id, email),HttpStatus.OK);
+		}
+	}
 }

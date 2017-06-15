@@ -8,9 +8,24 @@ public class Liketruck {
 	private String truckImg; 	// 트럭 이미지
 	private String truckName; 	// 트럭 상호명
 	private String truckInfo; 	// 트럭 내용
+	private int truckLikecnt;   // 관심 트럭 수 
 
 	public Liketruck() {
 	}
+	
+
+	public int getTruckLikecnt() {
+		return truckLikecnt;
+	}
+
+
+	public void setTruckLikecnt(int truckLikecnt) {
+		this.truckLikecnt = truckLikecnt;
+	}
+
+
+
+
 
 	public int getLiketruckId() {
 		return liketruckId;
@@ -71,6 +86,8 @@ public class Liketruck {
 	@Override
 	public String toString() {
 		return "Liketruck [liketruckId=" + liketruckId + ", truckId=" + truckId + ", userId=" + userId + ", id=" + id
-				+ ", truckImg=" + truckImg + ", truckName=" + truckName + ", truckInfo=" + truckInfo + "]";
+				+ ", truckImg=" + truckImg + ", truckName=" + truckName + ", truckInfo=" + truckInfo + ", truckLikecnt="
+				+ truckLikecnt + "]";
 	}
+
 }

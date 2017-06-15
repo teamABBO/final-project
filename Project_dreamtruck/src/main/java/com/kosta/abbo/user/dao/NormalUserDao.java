@@ -19,6 +19,21 @@ public interface NormalUserDao {
 	 */
 	public void create(NormalUser normalUser);
 	
+	/**
+	 * 아이디 찾기
+	 * @param name
+	 * @param phone
+	 * @return
+	 */
+	public String idCheck(String name ,String phone);
+	
+	/**
+	 * 비밀번호 찾기
+	 * @param id
+	 * @param name
+	 * @return
+	 */
+	public String pwCheck(String id,String emial);
 	
 	/**
 	 * 일반회원 상세보기

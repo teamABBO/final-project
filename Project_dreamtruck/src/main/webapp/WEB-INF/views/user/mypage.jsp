@@ -17,6 +17,7 @@
 </head>
 <script type="text/javascript">
 var result = '${msg}';
+console.log("${login.type}");
 if (result == 'success') {
    alert("수정이 완료되었습니다..");
    self.location = "login";
@@ -50,15 +51,18 @@ if (result == 'success') {
    </div>
    </section>
     <!-- 배너 -->
-    <form method="post" role="form"  class="form-horizontal" >
-    <input type="hidden" id="userId" name="userId" value="${login.userId}">
-    </form>
-			<section id="services">
-			<div class="container">
-				<div class="row">
-        <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+    
+		<section id="services">
+		<div class="container">
+			<div class="row">
+		 <c:if test="${login.type == 'normal'}">
+		 	<!-- 회원정보 수정 -->
+        	<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
             <div class="single-service2" >
               <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
+              <form action="">
+      			<input type="hidden" id="type" name="type" value="${login.type}">        
+              </form>
                 <a href="modify"><img src="/resources/images/regist/modify.png" alt=""></a>
               </div>
               <h2>정보수정</h2>
@@ -69,21 +73,28 @@ if (result == 'success') {
           <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
             <div class="single-service2">
               <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-                <a href="/liketruck/list?userId=${login.userId}"><img src="/resources/images/regist/trucklist.png" alt=""></a>
+                <a href="/liketruck/list"><img src="/resources/images/regist/trucklist.png" alt=""></a>
               </div>
               <h2>관심트럭 목록</h2>
             </div>
           </div>
           
+          </c:if>
+          
+          <c:if test="${login.type == 'event'}">
+          
           <!-- 내가 쓴 글 -->
           <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
             <div class="single-service2">
               <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-                <a href="#"><img src="/resources/images/regist/myboard.png" alt=""></a>
+                <a href="myboard"><img src="/resources/images/regist/myboard.png" alt=""></a>
               </div>
-              <h2>내가 쓴글</h2>
+              <h2>나의 행사 목록</h2>
             </div>
           </div>
+          
+          </c:if>
+          
 					<c:if test="${login.type == 'truck' }">
 					<!-- 스케쥴 -->
 					<div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms" style="margin-left: 200px;">

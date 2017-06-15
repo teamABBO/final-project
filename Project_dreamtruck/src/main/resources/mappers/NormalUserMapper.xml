@@ -55,6 +55,24 @@
     	   AND pw = #{pw}
 	</delete>
 	
+	<!-- 아이디 찾기 -->
+	<select id="idCheck" resultType="String">
+	SELECT id
+	FROM   users
+	WHERE  NAME = #{name}
+    AND phone = #{phone}
+	
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="pwCheck" resultType="String">
+	SELECT pw
+	FROM   users
+	WHERE  ID = #{id}
+    AND email = #{email}
+	
+	</select>
+	
 	<!-- 정보수정 -->
 	<update id="update">
 	UPDATE  users 

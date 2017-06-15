@@ -14,7 +14,6 @@ public interface NormalUserService {
 	public NormalUser login(LoginDTO dto);
 
 	
-	
 	/**
 	 * 일반회원 등록
 	 * @param normalUser
@@ -47,6 +46,21 @@ public interface NormalUserService {
 	 */
 	public List<NormalUser> list();
 	
+	/**
+	 * 아이디 찾기
+	 * @param name
+	 * @param phone
+	 * @return
+	 */
+	public String idCheck(String name, String phone);
+	
+	/**
+	 * 비밀번호 찾기
+	 * @param id
+	 * @param name
+	 * @return
+	 */
+	public String pwCheck(String id, String email);
 
 	public void checkDocu(int userId);
 

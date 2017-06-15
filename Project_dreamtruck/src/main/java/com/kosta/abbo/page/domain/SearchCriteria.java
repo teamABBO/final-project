@@ -2,7 +2,6 @@
 package com.kosta.abbo.page.domain;
 
 public class SearchCriteria extends Criteria {
-
 	
 	private String searchType;
 	private String keyword;
