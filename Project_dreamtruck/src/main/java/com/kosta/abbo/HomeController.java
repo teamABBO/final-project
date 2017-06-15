@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -22,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kosta.abbo.plan.service.PlanService;
 import com.kosta.abbo.util.MediaUtils;
 
 /**
@@ -29,6 +33,8 @@ import com.kosta.abbo.util.MediaUtils;
  */
 @Controller
 public class HomeController {
+	@Inject
+	private PlanService planservice;
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 	
@@ -92,6 +98,14 @@ public class HomeController {
 		}
 
 		return entity; 
+	}
+	
+	@RequestMapping(value = "/map", method = RequestMethod.GET)
+	public void map(Model model) throws Exception {
+		logger.info("트럭지도 페이지");
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonlist = objectMapper.writeValueAsString(planservice.truck());
+		model.addAttribute("list", jsonlist);
 	}
 
 }

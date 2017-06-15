@@ -11,13 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.plan.domain.Plan;
 import com.kosta.abbo.plan.service.PlanService;
@@ -76,6 +80,40 @@ public class PlanController {
 	public void searchMap(){
 		logger.info("지도 페이지");
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/modifyForm", method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	public ResponseEntity<String> modifyForm(int planId) throws JsonProcessingException{
+		logger.info("스케줄 수정요청!!");
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonlist = objectMapper.writeValueAsString(service.read(planId));
+		return new ResponseEntity<String>(jsonlist, HttpStatus.OK);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
+	public ResponseEntity<String> delete(int planId) throws JsonProcessingException{
+		logger.info("스케줄 삭제!!");
+		service.delete(planId);
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/modify", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	public ResponseEntity<String> modify(int planId, String title, String open, String close, 
+			                             String x, String y, String day){
+		logger.info("스케줄 수정!!");
+		Plan plan = new Plan();
+		plan.setPlanId(planId);
+		plan.setTitle(title);
+		plan.setOpen(open);
+		plan.setClose(close);
+		plan.setX(x);
+		plan.setY(y);
+		plan.setDay(day);
+		service.update(plan);
+		return new ResponseEntity<String>("modify", HttpStatus.OK);
 	}
 	
 }

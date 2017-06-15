@@ -32,7 +32,7 @@ public class PlanDaoImpl implements PlanDao {
 	 */
 	@Override
 	public Plan read(int planId) {
-		return null;
+		return SqlSession.selectOne(namespace+".read", planId);
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class PlanDaoImpl implements PlanDao {
 	 */
 	@Override
 	public void update(Plan plan) {
-		
+		SqlSession.update(namespace+".modify", plan);
 	}
 	
 	/**
@@ -50,7 +50,7 @@ public class PlanDaoImpl implements PlanDao {
 	 */
 	@Override
 	public void delete(int planId) {
-		
+		SqlSession.delete(namespace+".delete", planId);
 	}
 	
 	/**
@@ -60,6 +60,14 @@ public class PlanDaoImpl implements PlanDao {
 	@Override
 	public List<Plan> list(int userId) {
 		return SqlSession.selectList(namespace+".list", userId);
+	}
+
+	/**
+	 * 트럭 지도
+	 */
+	@Override
+	public List<Plan> truck() {
+		return SqlSession.selectList(namespace+".search");
 	}
 	
 }

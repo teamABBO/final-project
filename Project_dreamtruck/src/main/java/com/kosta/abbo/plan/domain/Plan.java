@@ -9,6 +9,14 @@ public class Plan {
 	private String open; 	// 오픈시간
 	private String close; 	// 마감시간
 	private String userId; 	// 회원번호
+	
+	/* 트럭지도를 위한 추가 변수 */
+	private String truckImg;
+	private String truckName;
+	private String truckFood;
+	private String phone;
+	private String email;
+	private String id;
 
 	public Plan() {
 	}
@@ -76,11 +84,59 @@ public class Plan {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
+	public String getTruckImg() {
+		return truckImg;
+	}
+
+	public void setTruckImg(String truckImg) {
+		this.truckImg = truckImg;
+	}
+
+	public String getTruckName() {
+		return truckName;
+	}
+
+	public void setTruckName(String truckName) {
+		this.truckName = truckName;
+	}
+
+	public String getTruckFood() {
+		return truckFood;
+	}
+
+	public void setTruckFood(String truckFood) {
+		this.truckFood = truckFood;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	@Override
 	public String toString() {
 		return "Plan [planId=" + planId + ", day=" + day + ", title=" + title + ", x=" + x + ", y=" + y + ", open="
-				+ open + ", close=" + close + ", userId=" + userId + "]";
+				+ open + ", close=" + close + ", userId=" + userId + ", truckImg=" + truckImg + ", truckName="
+				+ truckName + ", truckFood=" + truckFood + ", phone=" + phone + ", email=" + email + ", id=" + id + "]";
 	}
-
 }

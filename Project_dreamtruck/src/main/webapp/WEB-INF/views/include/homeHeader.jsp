@@ -51,7 +51,7 @@
                   <li><a href="/event/list">목록</a></li>
                   <li><a href="/event/upload">등록</a></li>
                 </ul></li>
-              <li><a href="#">트럭지도</a></li>
+              <li><a href="/map">트럭지도</a></li>
             </ul>
           </div>
           <div class="search">

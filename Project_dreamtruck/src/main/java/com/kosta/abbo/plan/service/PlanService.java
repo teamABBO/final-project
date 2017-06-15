@@ -36,5 +36,11 @@ public interface PlanService {
 	 * @return
 	 */
 	public List<Plan> list(int userId);
+	
+	/**
+	 * 트럭지도
+	 * @return
+	 */
+	public List<Plan> truck();
 
 }

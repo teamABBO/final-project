@@ -1,4 +1,4 @@
-<%@ page language="java"  pageEncoding="UTF-8"%>
+<%@ page language="java"   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -491,85 +491,175 @@ Main components
     transform: translateX(0);
   }
 }
+.btn-sm{
+	background-color: #fd9691;
+	color: #ffffff;
+}
+.btn-sm:hover{
+	background-color: #fdf2f6;
+	border-color: #fd9691;
+	color: #fd9691;
+}
+.btn-sm:focus{
+	background-color: #fdf2f6;
+	border-color: #fd9691;
+	color: #fd9691;
+}
+
+.btn-warning:hover{
+	background-color: #fdf2f6;
+	border-color: #fd9691;
+	color: #fd9691;
+}
+.btn-warning:focus{
+	background-color: #fdf2f6;
+	border-color: #fd9691;
+	color: #fd9691;
+}
+.btn-warning:active{
+	background-color: #fdf2f6;
+	border-color: #fd9691;
+	color: #fd9691;
+}
+.form-control-Hong{
+	border: 1px solid #fd9483;
+    font-weight: 300;
+    outline: none;
+    box-shadow: none;
+    height: 40px;
+    border-radius: 4px;
+}
 </style>
 <script type = "text/javascript"
  src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAHwzmzrIszazfIsbVDKdROzIYy-UClUFg"></script>
 
 <script>
+
+function setChildValue(target, name, num){
+	   if(target=='place'){
+		   $("#iaddress"+num).val(name);
+	   }
+	   else if(target=='point'){
+		   $("#x"+num).val(name.lat());
+		   $("#y"+num).val(name.lng());
+	   }
+}
+
 $(document).ready(function(){
 var geocoder;
 var address = "";
-var GreenIcon = new google.maps.MarkerImage(
-		   "http://labs.google.com/ridefinder/images/mm_20_green.png",
-		   new google.maps.Size(12, 20),
-		   new google.maps.Point(0, 0),
-		   new google.maps.Point(6, 20));
-		// 녹색 마커 아이콘을 정의하는 부분
 		
 geocoder =  new google.maps.Geocoder();
-		
-function reversegeo(day,count,x, y) {
+/* 좌표->주소 변경 함수
+   type = 0 : 스케줄 리스트 for문 용 타입
+   type = 1 : 스케줄 수정용 타입
+   type = 2 : 스케줄 수정 취소 타입
+*/		
+function reversegeo(type,day,count,x, y) {
 	var latlng = new google.maps.LatLng(x, y);
 	geocoder.geocode({'latLng' : latlng}, function(results, status) {
 		  if (status == google.maps.GeocoderStatus.OK)  {
-		   if (results[1]){
-			  $("#"+day+count).append(results[1].formatted_address);
+		   	   if(type==0){
+		   		if (results[1]){
+					  $("#"+day+count).append(results[1].formatted_address);
+				   }
+				else{
+					  setTimeout(function(){   //단위 시간당 요청 제한이 있어 재 요청 시간조절
+						  reversegeo(day, count,x, y);
+					  	} ,500);
+				  }
+			   }else if(type==1){
+				   $("#"+day+count).val(results[1].formatted_address);
+			   }else if(type==2){
+				   $("."+day+count).html(results[1].formatted_address);
+			   }
 		   }
-		  }else{
-			  setTimeout(function(){
-				  reversegeo(day, count,x, y);
-			  	} ,500);
-		  }
 		 });
 }
 
+function popupOpen(num){
+
+	   var popUrl = "searchMap";   //팝업창에 출력될 페이지 URL
+
+	   var popOption = "width=650, height=650, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+
+	   window.open(popUrl,"",popOption);
+
+	   $("#param").val(num);
+}
+
+
+
+
 	var list = ${list };
 	var count = [0,0,0,0,0,0,0];  //일 , 월, 화, 수, 목, 금, 토 카운트 스케줄 개수에 따라 지그재그로 출력하기 위한 카운트
+	/* 스케줄 동적 생성 및 지그재그 배치 */
 	for ( var num in list) {
 		if(list[num].day%2==0 && count[list[num].day]%2 == 0){
 			var marginLeft = 0+50*count[list[num].day];
-			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-left" style="margin-top: '+marginLeft+'px;">'+
-										   '	<h2>'+list[num].title+'</h2>'+
-										   '	<p>'+list[num].open+'~'+list[num].close+'</p>'+
-										   '	<h2 id="'+list[num].day+count[list[num].day]+'"></h2>'+
-										   '	<button type="button" id="detailMap" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'">지도보기</button>'+
+			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-left" id="sche'+list[num].planId+'" style="margin-top: '+marginLeft+'px;">'+
+										   '	<h2 id="title'+list[num].planId+'">'+list[num].title+'</h2>'+
+										   '	<p id="time'+list[num].planId+'">'+list[num].open+'~'+list[num].close+'</p>'+
+										   '	<h2 class="address'+list[num].planId+'" id="'+list[num].day+count[list[num].day]+'"></h2>'+
+										   '    <div id="button'+list[num].planId+'">'+
+										   '	   <button type="button" class="btn btn-sm glyphicon glyphicon-globe" id="detailMap'+list[num].planId+'" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'"> 지도보기</button>'+
+										   '       <input type="button" class="btn btn-sm btn-warning" id="map'+list[num].planId+'" data-src="'+list[num].planId+'" value="삭제">'+
+										   '       <input type="button" class="btn btn-sm btn-warning" id="ok'+list[num].planId+'" data-src="'+list[num].planId+'" value="수정">'+
+										   '       <input type="hidden" class="btn btn-sm btn-warning" id="cancel'+list[num].planId+'" data-src="'+list[num].planId+'" value="취소">'+
+										   '    </div>'+
 										   '	<hr><div id="map_canvas'+list[num].day+count[list[num].day]+'" class="toggleMap" style="width: 300px; height: 300px;"></div>'+
 										   '</div> <!-- cd-timeline-content -->');
 		}else if(list[num].day%2==0 && count[list[num].day]%2 == 1){
 			var marginRight = 100+50*count[list[num].day];
-			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-right" style="margin-top: '+marginRight+'px;">'+
-					   					   '	<h2>'+list[num].title+'</h2>'+
-					   					   '	<p>'+list[num].open+'~'+list[num].close+'</p>'+
-					   					   '	<h2 id="'+list[num].day+count[list[num].day]+'"></h2>'+
-					   					   '	<button type="button" id="detailMap" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'">지도보기</button>'+
+			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-right" id="sche'+list[num].planId+'" style="margin-top: '+marginRight+'px;">'+
+					   					   '	<h2 id="title'+list[num].planId+'">'+list[num].title+'</h2>'+
+					   					   '	<p id="time'+list[num].planId+'">'+list[num].open+'~'+list[num].close+'</p>'+
+					   					   '	<h2 class="address'+list[num].planId+'" id="'+list[num].day+count[list[num].day]+'"></h2>'+
+					   					   '    <div id="button'+list[num].planId+'">'+
+					   					   '	    <button type="button" class="btn btn-sm glyphicon glyphicon-globe" id="detailMap'+list[num].planId+'" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'"> 지도보기</button>'+
+					   					   '        <input type="button" class="btn btn-sm btn-warning" id="map'+list[num].planId+'" data-src="'+list[num].planId+'" value="삭제">'+
+					   					   '        <input type="button" class="btn btn-sm btn-warning" id="ok'+list[num].planId+'" data-src="'+list[num].planId+'" value="수정">'+
+					   					   '        <input type="hidden" class="btn btn-sm btn-warning" id="cancel'+list[num].planId+'" data-src="'+list[num].planId+'" value="취소">'+
+					   					   '    </div>'+
 					   					   '	<hr><div id="map_canvas'+list[num].day+count[list[num].day]+'" class="toggleMap" style="width: 300px; height: 300px;"></div>'+
 					   					   '</div> <!-- cd-timeline-content -->');
 		}else if(list[num].day%2==1 && count[list[num].day]%2 == 0){
 			var marginRight = 0+50*count[list[num].day];
-			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-right" style="margin-top: '+marginRight+'px;">'+
-					   '	<h2>'+list[num].title+'</h2>'+
-					   '	<p>'+list[num].open+'~'+list[num].close+'</p>'+
-					   '	<h2 id="'+list[num].day+count[list[num].day]+'"></h2>'+
-					   '	<button type="button" id="detailMap" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'">지도보기</button>'+
+			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-right" id="sche'+list[num].planId+'" style="margin-top: '+marginRight+'px;">'+
+					   '	<h2 id="title'+list[num].planId+'">'+list[num].title+'</h2>'+
+					   '	<p id="time'+list[num].planId+'">'+list[num].open+'~'+list[num].close+'</p>'+
+					   '	<h2 class="address'+list[num].planId+'" id="'+list[num].day+count[list[num].day]+'"></h2>'+
+					   '    <div id="button'+list[num].planId+'">'+
+					   '	   <button type="button" class="btn btn-sm glyphicon glyphicon-globe" id="detailMap'+list[num].planId+'" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'"> 지도보기</button>'+
+					   '       <input type="button" class="btn btn-sm btn-warning" id="map'+list[num].planId+'" data-src="'+list[num].planId+'" value="삭제">'+
+					   '       <input type="button" class="btn btn-sm btn-warning" id="ok'+list[num].planId+'" data-src="'+list[num].planId+'" value="수정">'+
+					   '       <input type="hidden" class="btn btn-sm btn-warning" id="cancel'+list[num].planId+'" data-src="'+list[num].planId+'" value="취소">'+
+					   '    </div>'+
 					   '	<hr><div id="map_canvas'+list[num].day+count[list[num].day]+'" class="toggleMap" style="width: 300px; height: 300px;"></div>'+
 					   '</div> <!-- cd-timeline-content -->');
 }
 		else if(list[num].day%2==1 && count[list[num].day]%2 == 1){
 			var marginLeft = 100+50*count[list[num].day];
-			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-left" style="margin-top: '+marginRight+'px;">'+
-					   					   '	<h2>'+list[num].title+'</h2>'+
-					   					   '	<p>'+list[num].open+'~'+list[num].close+'</p>'+
-					   					   '	<h2 id="'+list[num].day+count[list[num].day]+'"></h2>'+
-					   					   '	<button type="button" id="detailMap" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'">지도보기</button>'+
+			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-left" id="sche'+list[num].planId+'" style="margin-top: '+marginRight+'px;">'+
+					   					   '	<h2 id="title'+list[num].planId+'">'+list[num].title+'</h2>'+
+					   					   '	<p id="time'+list[num].planId+'">'+list[num].open+'~'+list[num].close+'</p>'+
+					   					   '	<h2 class="address'+list[num].planId+'" id="'+list[num].day+count[list[num].day]+'"></h2>'+
+					   					   '    <div id="button'+list[num].planId+'">'+
+					   					   '	    <button type="button" class="btn btn-sm glyphicon glyphicon-globe" id="detailMap'+list[num].planId+'" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'"> 지도보기</button>'+
+					   					   '        <input type="button" class="btn btn-sm btn-warning" id="map'+list[num].planId+'" data-src="'+list[num].planId+'" value="삭제">'+
+					   					   '        <input type="button" class="btn btn-sm btn-warning" id="ok'+list[num].planId+'" data-src="'+list[num].planId+'" value="수정">'+
+					   					   '        <input type="hidden" class="btn btn-sm btn-warning" id="cancel'+list[num].planId+'" data-src="'+list[num].planId+'" value="취소">'+
+					   					   '    </div>'+
 					   					   '	<hr><div id="map_canvas'+list[num].day+count[list[num].day]+'" class="toggleMap" style="width: 300px; height: 300px;"></div>'+
 					   					   '</div> <!-- cd-timeline-content -->');
 		}
-		reversegeo(list[num].day, count[list[num].day], list[num].x, list[num].y);
+		reversegeo(0, list[num].day, count[list[num].day], list[num].x, list[num].y);
 		count[list[num].day]++;
 	}
 	
 	var date = new Date();
 	var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
+	/* 오늘 날짜를 기반으로 이번주요일 생성 */
 	for (var i = 0; i < 7; i++) {
 		if(i!=date.getDay()){
 			date.setDate(date.getDate()-date.getDay()+i);
@@ -579,19 +669,119 @@ function reversegeo(day,count,x, y) {
 		}
 	}
 	
+	/* 스케줄 지도보기 */
 	$("button").on("click", function(){
 		var parse = $(this).val().split(',');
-		if($(this).html()=='지도보기'){
-			$(this).html('지도닫기');
+		if($(this).html()==' 지도보기'){
+			$(this).html(' 지도닫기');
 			$("#map_canvas"+parse[2]).show();
 			initialize(parse[0],parse[1],parse[2]);
 		}else{
-			$(this).html('지도보기');
+			$(this).html(' 지도보기');
 			$("#map_canvas"+parse[2]).hide();
 		}
-		
+		$(this).blur();
 	});
 	
+	/* 수정 삭제를 위한 버튼 이벤트 */
+	$("input").on("click", function(){
+		if($(this).val()=='수정'){
+			$(this).val('확인');
+			$("#detailMap"+$(this).attr("data-src")).hide();
+			$("#map"+$(this).attr("data-src")).val('지도');
+			$("#cancel"+$(this).attr("data-src")).attr("type", "button");
+			$.ajax({
+			url : "modifyForm",
+			type : "get",
+			data : {
+				planId: $(this).attr("data-src")
+			},
+			dataType : "json",
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+			success : function(result) {
+				/* 기존 값을 불러와 수정폼 만들기 */
+				$("#title"+result.planId).html('<input type="text" class="form-control-Hong" id="ititle'+result.planId+'" value="'+result.title+'">');
+				$("#time"+result.planId).html('<input type="text" class="form-control-Hong" id="itime'+result.planId+'" value="'+result.open+"~"+result.close+'"><br><br>'+
+										      '<select class="form-control-Hong" id="iday'+result.planId+'">'+
+										         '<option value="0">일</option>'+
+										         '<option value="1">월</option>'+
+			               						 '<option value="2">화</option>'+
+			               						 '<option value="3">수</option>'+
+			               						 '<option value="4">목</option>'+
+			               						 '<option value="5">금</option>'+
+			               						 '<option value="6">토</option>'+
+			            					  '</select>');
+				$(".address"+result.planId).html('<input type="text" class="form-control-Hong" id="iaddress'+result.planId+'" size="45" >'+
+						                         '<input type="hidden" id="ix'+result.planId+'" value="'+result.x+'">'+
+						                         '<input type="hidden" id="iy'+result.planId+'" value="'+result.y+'"">');
+				reversegeo(1, "iaddress", result.planId, result.x, result.y);
+				$("#iday"+result.planId +" option:eq("+result.day+")").attr("selected", "selected");
+			}
+		  }); 
+		}else if($(this).val()=='삭제'){
+			var del = confirm('정말 삭제하시겠습니까?');
+			if(del){
+				$.ajax({
+					url : "delete",
+					type : "post",
+					data : {
+						planId: $(this).attr("data-src")
+					},
+					dataType : "text",
+					success : function(result) {
+						if(result == 'deleted'){
+							alert('삭제되었습니다.');
+							location.reload();
+						}
+					}
+				  });
+			}
+		}else if($(this).val()=='확인'){
+			var parseTime = $("#itime"+$(this).attr("data-src")).val().split('~');
+			$.ajax({
+				url : "modify",
+				type : "post",
+				data : {
+					planId: $(this).attr("data-src"),
+					title: $("#ititle"+$(this).attr("data-src")).val(),
+					open: parseTime[0],
+					close: parseTime[1],
+					x: $("#ix"+$(this).attr("data-src")).val(),
+					y: $("#iy"+$(this).attr("data-src")).val(),
+					day: $("#iday"+$(this).attr("data-src")).val()
+				},
+				dataType : "text",
+				success : function(result) {
+					if(result == 'modify'){
+						alert('수정되었습니다.');
+						location.reload();
+					}
+				}
+			  });
+		}else if($(this).val()=='취소'){
+			$("#detailMap"+$(this).attr("data-src")).show();
+			$(this).attr("type", "hidden");
+			$("#map"+$(this).attr("data-src")).val('삭제');
+			$("#ok"+$(this).attr("data-src")).val('수정');
+			$.ajax({
+				url : "modifyForm",
+				type : "get",
+				data : {
+					planId: $(this).attr("data-src")
+				},
+				dataType : "json",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+				success : function(result) {
+					$("#title"+result.planId).html(result.title);
+					$("#time"+result.planId).html(result.open+"~"+result.close);
+					reversegeo(2, "address", result.planId, result.x, result.y);
+				}
+			});
+		}else if($(this).val()=='지도'){
+			popupOpen($(this).attr("data-src"));
+		}
+		$(this).blur();
+	});
 	$(".toggleMap").hide();
 	
 	function initialize(x, y, target){
@@ -609,6 +799,7 @@ function reversegeo(day,count,x, y) {
 			   map: map
 			  } ));
 	}
+	
 });
 </script>
 </head>
@@ -630,7 +821,7 @@ function reversegeo(day,count,x, y) {
                     <h1 class="title">마이페이지</h1>
                     <p>스케줄관리</p>
                   </div>
-                </div>
+                </div> 
               </div>
             </div>
           </div>
@@ -643,6 +834,8 @@ function reversegeo(day,count,x, y) {
   <!-- 배너 -->
     <!--/#action-->
 <div class="single-features">
+	<input type="hidden" id="where" value="sche">
+	<input type="hidden" id="param">
 	<a href="upload"><input type="button" class="btn btn-common" style="float: right; margin-right: 300px;" value="등록"></a>
 </div>
 <section id="cd-timeline" class="cd-container">
@@ -650,7 +843,6 @@ function reversegeo(day,count,x, y) {
 		<c:forEach begin="0" end="6" varStatus="status">
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-picture" id="day${status.index }">
-					
 				</div> <!-- cd-timeline-img -->
 				<div id="div${status.index }">
 				
