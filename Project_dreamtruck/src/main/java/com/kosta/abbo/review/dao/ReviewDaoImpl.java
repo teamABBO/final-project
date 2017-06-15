@@ -61,7 +61,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	 * 리뷰목록 페이징
 	 */
 	@Override
-	public List<Review> listPage(int targetId, Criteria cri) throws Exception {
+	public List<Review> listPage(int targetId,Criteria cri) throws Exception {
 
 		Map<String, Object> paramMap = new HashMap<>();
 		

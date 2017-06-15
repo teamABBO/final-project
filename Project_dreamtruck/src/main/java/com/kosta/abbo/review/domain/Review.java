@@ -7,6 +7,16 @@ public class Review {
 	private int star; 		// 리뷰별점
 	private int writerId; 	// 리뷰작성자
 	private int targetId; 	// 리뷰대상
+	private String writerName;
+	
+
+	public String getWriterName() {
+		return writerName;
+	}
+
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
+	}
 
 	public Review() {
 	}
@@ -62,7 +72,9 @@ public class Review {
 	@Override
 	public String toString() {
 		return "Review [reviewId=" + reviewId + ", regdate=" + regdate + ", content=" + content + ", star=" + star
-				+ ", writerId=" + writerId + ", targetId=" + targetId + "]";
+				+ ", writerId=" + writerId + ", targetId=" + targetId + ", writerName=" + writerName + "]";
 	}
 
+	
+	
 }
