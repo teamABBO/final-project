@@ -56,7 +56,7 @@
               <li><a href="/event/list" style="color: #fd9691">목록</a></li>
               <li><a href="/event/upload" style="color: #fd9691">등록</a></li>
             </ul></li>
-          <li><a href="#" style="color: #fd9691">트럭지도</a></li>
+          <li><a href="/map" style="color: #fd9691">트럭지도</a></li>
         </ul>
       </div>
       <div class="search">

@@ -36,5 +36,11 @@ public interface PlanDao {
 	 * @return
 	 */
 	public List<Plan> list(int userId);
+	
+	/**
+	 * 트럭 지도
+	 * @return
+	 */
+	public List<Plan> truck();
 
 }

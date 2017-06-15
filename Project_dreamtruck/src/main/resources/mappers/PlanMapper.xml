@@ -10,9 +10,59 @@
 	</insert>
 	
 	<select id="list" resultType="Plan">
-		select plan_id planId, day, title, x, y, open, close, user_id userId
+		select plan_id planId, 
+		       day, 
+		       title, 
+		       x, 
+		       y, 
+		       open, 
+		       close, 
+		       user_id userId
 		from   plan
 		where  user_id = #{userId}
 	</select>
+	
+	<select id="search" resultType="Plan">
+		select p.plan_id      planId, 
+		       p.day          day, 
+		       p.title        title, 
+		       p.x            x, 
+		       p.y            y, 
+		       p.open         open, 
+		       p.close        close, 
+		       p.user_id      userId, 
+		       u.truck_img    truckImg, 
+		       u.truck_name   truckName, 
+		       u.truck_food   truckFood, 
+		       u.phone        phone, 
+		       u.email        email,
+		       u.id           id
+		from   plan p , users u
+		where  p.user_id = u.user_id         and 
+		       to_char(sysdate, 'd')-1 = day and 
+		       to_char(SYSDATE , 'HH24:MI:SS') between open and close
+	</select>
+	
+	<select id="read" resultType="Plan">
+		select plan_id planId, day, title, x, y, open, close, user_id userId
+		from   plan
+		where  plan_id = #{planId}
+	</select>
+	
+	<delete id="delete">
+		delete from plan
+		where  plan_id = #{planId}
+	</delete>
+	
+	<update id="modify">
+		update plan
+		set    title = #{title},  
+		       open = #{open}, 
+		       close = #{close}, 
+		       x = #{x}, 
+		       y = #{y}, 
+		       day = #{day}
+		where  plan_id = #{planId}
+	</update>
 
 </mapper>

@@ -35,13 +35,14 @@ form{
 
 function popupOpen(num){
 
-   var popUrl = "searchMap?num="+num+"";   //팝업창에 출력될 페이지 URL
+   var popUrl = "searchMap";   //팝업창에 출력될 페이지 URL
 
    var popOption = "width=650, height=650, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 
-      window.open(popUrl,"",popOption);
+   window.open(popUrl,"",popOption);
 
-   }
+   $("#param").val(num);
+}
    
 function setChildValue(target, name, num){
    if(target=='place'){
@@ -56,59 +57,63 @@ function setChildValue(target, name, num){
 <script>
 $(document).ready(function(){
    var count=0;
-   var str = '';
-   str += '<fieldset>'+
-      '<div class="form-group">' +
-      '<label class="col-md-4 control-label" for="title">제목</label>'+
-         '<div class="col-md-5">'+
-            '<input id="title" name="title" type="text" placeholder="제목을 입력 해 주세요." class="form-control input-md" required>'+
-         '</div>'+
-         '<div class="col-md-5">'+
-            '<input id="x" name="x" type="hidden" class="form-control input-md x" required>'+
-            '<input id="y" name="y" type="hidden" class="form-control input-md y" required>'+
-         '</div>'+
-   '</div>'+
-   '<div class="form-group">'+
-         '<label class="col-md-4 control-label" for="place">장소</label>'+
-         '<div class="col-md-5">'+
-            '<input id="placename" name="placename" type="text" placeholder="지도를 이용해주세요." class="form-control input-md placename" required>'+
-         '</div>'+
-         '<div class="col-md-1">'+
-            '<input class="btn btn-common" style="margin-top: -2px;" type="button" id="map" value="지도">'+
-         '</div>'+
-   '</div>'+
-   '<div class="form-group">'+
-         '<label class="col-md-4 control-label" for="date">일시</label>'+
-         '<div class="col-md-1">'+
-            '<select id="day" name="day" class="form-control input-md" style="width:70px;" required>'+
-               '<option value="1">월</option>'+
-               '<option value="2">화</option>'+
-               '<option value="3">수</option>'+
-               '<option value="4">목</option>'+
-               '<option value="5">금</option>'+
-               '<option value="6">토</option>'+
-               '<option value="0">일</option>'+
-            '</select>'+
-         '</div>'+
-         '<div class="col-xs-2">'+
-            '<input id="open" name="open" type="time" class="form-control input-md" required>'+
-         '</div>'+
-         '<div class="col-xs-1">'+
-            '<label>~</label>'+
-         '</div>'+
-         '<div class="col-xs-2">'+
-            '<input id="close" name="close" type="time" class="form-control input-md" required>'+
-         '</div>'+
-   '</div>'+
-   '<hr>'+
-   '</fieldset>';
-   document.getElementById('form').innerHTML = str;
+   function makestr(num){
+	   var str = '';
+	   str += '<fieldset>'+
+	      '<div class="form-group">' +
+	      '<label class="col-md-4 control-label" for="title">제목</label>'+
+	         '<div class="col-md-5">'+
+	            '<input id="title" name="title" type="text" placeholder="제목을 입력 해 주세요." class="form-control input-md" required>'+
+	         '</div>'+
+	         '<div class="col-md-5">'+
+	            '<input id="x" name="x" type="hidden" class="form-control input-md x" required>'+
+	            '<input id="y" name="y" type="hidden" class="form-control input-md y" required>'+
+	         '</div>'+
+	   '</div>'+
+	   '<div class="form-group">'+
+	         '<label class="col-md-4 control-label" for="place">장소</label>'+
+	         '<div class="col-md-5">'+
+	            '<input id="placename" name="placename" type="text" placeholder="지도를 이용해주세요." class="form-control input-md placename" required>'+
+	         '</div>'+
+	         '<div class="col-md-1">'+
+	            '<input class="btn btn-common" style="margin-top: -2px;" type="button" id="map" data-src="'+num+'" value="지도">'+
+	         '</div>'+
+	   '</div>'+
+	   '<div class="form-group">'+
+	         '<label class="col-md-4 control-label" for="date">일시</label>'+
+	         '<div class="col-md-1">'+
+	            '<select id="day" name="day" class="form-control input-md" style="width:70px;" required>'+
+	               '<option value="1">월</option>'+
+	               '<option value="2">화</option>'+
+	               '<option value="3">수</option>'+
+	               '<option value="4">목</option>'+
+	               '<option value="5">금</option>'+
+	               '<option value="6">토</option>'+
+	               '<option value="0">일</option>'+
+	            '</select>'+
+	         '</div>'+
+	         '<div class="col-xs-2">'+
+	            '<input id="open" name="open" type="time" class="form-control input-md" required>'+
+	         '</div>'+
+	         '<div class="col-xs-1">'+
+	            '<label>~</label>'+
+	         '</div>'+
+	         '<div class="col-xs-2">'+
+	            '<input id="close" name="close" type="time" class="form-control input-md" required>'+
+	         '</div>'+
+	   '</div>'+
+	   '<hr>'+
+	   '</fieldset>';
+	   return str;
+   }
+   
+   document.getElementById('form').innerHTML = makestr(1);
    $("#add").click(function(){
       if(count==13){
          alert("스케줄은 최대 14개만 합시다.");
       }else{
          count++;
-           document.getElementById('addForm'+count).innerHTML = str;
+         document.getElementById('addForm'+count).innerHTML = makestr(count+1);
       }
    });
    $("#remove").click(function(){
@@ -120,47 +125,13 @@ $(document).ready(function(){
       }
    });
    $("#form").on("click", "#map", function(){
-      popupOpen(1);
+      popupOpen($(this).attr("data-src"));
    });
-   $("#addForm1").on("click", "#map", function(){
-      popupOpen(2);
-   });   
-   $("#addForm2").on("click", "#map", function(){
-      popupOpen(3);
-   });   
-   $("#addForm3").on("click", "#map", function(){
-      popupOpen(4);
-   });   
-   $("#addForm4").on("click", "#map", function(){
-      popupOpen(5);
-   });   
-   $("#addForm5").on("click", "#map", function(){
-      popupOpen(6);
-   });   
-   $("#addForm6").on("click", "#map", function(){
-      popupOpen(7);
-   });   
-   $("#addForm7").on("click", "#map", function(){
-      popupOpen(8);
-   });   
-   $("#addForm8").on("click", "#map", function(){
-      popupOpen(9);
-   });   
-   $("#addForm9").on("click", "#map", function(){
-      popupOpen(10);
-   });   
-   $("#addForm10").on("click", "#map", function(){
-      popupOpen(11);
-   });   
-   $("#addForm11").on("click", "#map", function(){
-      popupOpen(12);
-   });   
-   $("#addForm12").on("click", "#map", function(){
-      popupOpen(13);
-   });   
-   $("#addForm13").on("click", "#map", function(){
-      popupOpen(14);
-   });   
+   for (var i = 0; i < 15; i++) {
+	   $("#addForm"+i).on("click", "#map", function(){
+		      popupOpen($(this).attr("data-src"));
+	   }); 
+   }
 });
 </script>
 </head>
@@ -196,7 +167,8 @@ $(document).ready(function(){
 <section id="home-slider">
 <div class="container">
    <div class="row">
-   
+   	 <input type="hidden" id="param">
+   	 <input type="hidden" id="where" value="upload">
       <div class="single-features">
          <form class="form-horizontal" method="post" role="form" >
             <input type="button" class="circle3" id="add" value="+" >

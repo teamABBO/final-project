@@ -96,10 +96,14 @@ function codeCoordinate(event) {
 }
 //
 $(document).ready(function(){
+	initialize();
+
+	$("#num").val(opener.document.getElementById("param").value);
+	$("#where").val(opener.document.getElementById("where").value);
 	var button = document.getElementById('place');
 	button.onclick = function(){
-		opener.setChildValue('place', address, ${param.num});
-		opener.setChildValue('point', point, ${param.num});
+		opener.setChildValue('place', address, $("#num").val());
+		opener.setChildValue('point', point, $("#num").val());
 		window.close();
 	}
 });
@@ -111,8 +115,9 @@ $(document).ready(function(){
 LI {list-style-type:circle}
 </style>
 </head>
-<body onload="initialize()">
-
+<body>
+<input type="hidden" id="num" name="num">
+<input type="hidden" id="where" name="where">
 <div style="margin:auto;  margin-top: 20px;">
 	<table>
 		<tr>

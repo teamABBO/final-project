@@ -61,4 +61,9 @@ public class PlanServiceImpl implements PlanService {
 		return dao.list(userId);
 	}
 
+	@Override
+	public List<Plan> truck() {
+		return dao.truck();
+	}
+
 }
