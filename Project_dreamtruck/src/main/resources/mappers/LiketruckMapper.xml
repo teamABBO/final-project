@@ -21,7 +21,7 @@
 	
 	<!-- 트럭에 관심트럭 등록 업데이트 (create와 같이 사용)  -->
 	<update id="update">
-	update users set #{truck_likecnt} = #{truck_likecnt}+1 where user_id = #{truckId};
+	update users set #{truckLikecnt} = #{truckLikecnt}+1 where user_id = #{truckId};
 	</update>
 	
 	<!-- 관심트럭 삭제 -->

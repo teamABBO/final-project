@@ -214,12 +214,59 @@ $(function(){
 					});
 					
 				});
-				
-				
-				
 			});
 		</script>
+<script>
+$(document).ready(function(){
+	
+	if ("${login.userId}" == "") {
+		
+		$('#like').hide();
+		$('#unlike').show();
+		
+		$('#liketruck').click(function(){
+			alertify.alert("로그인 후 사용 가능합니다");
+		});
+		
+	} else if("${login.userId}" != ""){
+		
+		var userId = "${login.userId}";
+		var truckId = "${truckUser.userId}";
+		var truckLikecnt = "${truckUser.truckLikecnt}";
+		console.log(userId);
+		console.log(truckId);
+		console.log(truckLikecnt);
+		
+		/* $('#unlike').hide();
+		$('#like').show();
+		
+		if ($('#like').show()) {
+			
+			$('#liketruck').click(function(){
+			
+					$('#like').hide();
+					$('#unlike').show();
+					alert("${truckUser.truckLikecnt-1} 입니다");
+				 
+				
+			});
+			
+		}else{
 
+			$('#liketruck').click(function(){
+				
+					$('#unlike').hide();
+					$('#like').show();
+					alert("${truckUser.truckLikecnt+1} 입니다");
+				
+			});
+		} */
+	 
+	} 
+});
+
+
+</script>
 		<script id="template" type="text/x-handlebars-template">
 		{{#each .}}
 			<li class="reviewLi" data-reviewId={{reviewId}}>
@@ -237,7 +284,7 @@ $(function(){
 			</li>
 		{{/each}}
 		</script>
-		
+	
 		<script>
 $(document).ready(function(){
  
@@ -336,7 +383,8 @@ $("#confirm").on( 'click', function () {
 																		<p>${truckUser.truckInfo }</p>
 																		<div class="post-bottom overflow">
 																				<ul class="nav navbar-nav post-nav">
-																						<li><a href="#"><i class="fa fa-heart"></i>${truckUser.truckLikecnt }
+																						<li id="liketruck"><a href="#"><i class="fa fa-heart" id="like"></i>
+																										<i class="fa fa-heart-o" id="unlike"></i>${truckUser.truckLikecnt }
 																										Love</a></li>
 
 																				</ul>
