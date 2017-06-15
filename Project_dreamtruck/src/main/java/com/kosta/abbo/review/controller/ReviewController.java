@@ -32,67 +32,70 @@ public class ReviewController {
 	@Inject
 	private ReviewService service;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@ResponseBody
-	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public ResponseEntity<String> register(@RequestParam("content") String content, @RequestParam("writerId") int writerId, @RequestParam("targetId") int targetId){
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<String> register(@RequestParam("content") String content, @RequestParam("star") int star,
+			@RequestParam("writerId") int writerId, @RequestParam("targetId") int targetId) {
 		logger.info("댓글 등록 컨트롤러");
 		ResponseEntity<String> entity = null;
-		 Review review = new Review();
+		Review review = new Review();
 		review.setContent(content);
-		review.setTargetId(targetId);
+		review.setStar(star);
 		review.setWriterId(writerId);
-		try{
-		service.create(review);
-		entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		}catch(Exception e){
-		entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		review.setTargetId(targetId);
+		try {
+			service.create(review);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			logger.info(entity.toString());
+		} catch (Exception e) {
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-		return entity;	
+		return entity;
 	}
-	
-	
-	@RequestMapping(value="/all/{targetId}", method=RequestMethod.GET)
-	public ResponseEntity<List<Review>> list(@PathVariable("targetId") int targetId){
+
+	@RequestMapping(value = "/all/{targetId}", method = RequestMethod.GET)
+	public ResponseEntity<List<Review>> list(@PathVariable("targetId") int targetId) {
 		ResponseEntity<List<Review>> entity = null;
-		
-		try{
+
+		try {
 			entity = new ResponseEntity<>(service.list(targetId), HttpStatus.OK);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
-	
-	
-	
-	@RequestMapping(value="/{reviewId}", method={RequestMethod.POST})
-	public ResponseEntity<String> update(@PathVariable("reviewId") int reviewId, @RequestParam("content") String content){
-		
+
+	@RequestMapping(value = "/{reviewId}", method = { RequestMethod.POST })
+	public ResponseEntity<String> update(@PathVariable("reviewId") int reviewId,
+			@RequestParam("content") String content, @RequestParam("star") int star,
+			@RequestParam("regdate") String regdate) {
+
 		logger.info("수정컨트롤러 실행!");
-		
-		ResponseEntity<String>entity = null;
+
+		ResponseEntity<String> entity = null;
 		Review review = new Review();
 		review.setContent(content);
-		
+		review.setStar(star);
+		review.setRegdate(regdate);
+
 		try {
 			review.setReviewId(reviewId);
 			service.update(review);
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK	);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-		
-		
+
 		return entity;
 	}
-	
-	@RequestMapping(value="/{reviewId}", method=RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("reviewId") int reviewId){
+
+	@RequestMapping(value = "/{reviewId}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@PathVariable("reviewId") int reviewId) {
 		ResponseEntity<String> entity = null;
-		
+
 		try {
 			service.delete(reviewId);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
@@ -100,44 +103,44 @@ public class ReviewController {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-		
-		
+
 		return entity;
 	}
-	
-	@RequestMapping(value="/{targetId}/{page}", method=RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("targetId") int targetId, @PathVariable("page") int page) {
+
+	@RequestMapping(value = "/{targetId}/{page}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("targetId") int targetId,
+			@PathVariable("page") int page) {
 		ResponseEntity<Map<String, Object>> entity = null;
-		
-		
+
 		
 		try {
-			
+
 			Criteria cri = new Criteria();
 			cri.setPage(page);
-			
+
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(cri);
-			
+
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<Review> list = service.listReviewPage(targetId, cri);
-			
+
 			map.put("list", list);
-			
+
 			int reviewCount = service.count(targetId);
 			pageMaker.setTotalCount(reviewCount);
-			
+
 			map.put("pageMaker", pageMaker);
-			
-			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
-			
-			
-			
+
+			logger.info("11111"+list.toString());
+			logger.info("22222"+pageMaker.toString());
+			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
 		}
+
 		return entity;
-		
+
 	}
 }

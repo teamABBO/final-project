@@ -13,14 +13,16 @@
 	
 	<!-- 댓글 목록 -->
 	<select id="list" resultType="Review">
-		select review_id, regdate, content, star, writer_id, target_id
-		from review
-		where target_id = #{targetId} order by regdate desc
+		
+		select r.review_id, r.regdate, r.content, r.star, r.writer_id, r.target_id, u.id as writername
+		from review r join users u on r.writer_id = u.user_id
+		where target_id =#{targetId} order by regdate desc;
+		
 	</select>
 	
 	<!-- 댓글 수정 -->
 	<update id="update">
-		update review set content = #{content} where review_id = #{reviewId}
+		update review set content = #{content}, star=#{star}, regdate=sysdate where review_id = #{reviewId}
 	</update>
 	
 	<!-- 댓글 삭제 -->
@@ -30,14 +32,15 @@
 	
 	<!-- 댓글 목록 페이징 -->
 	<select id="listPage" resultType="Review">
-	 SELECT review_id as reviewId, regdate, content, star, writer_id as writerId, target_id as targetId
-        FROM  (SELECT ROW_NUMBER() OVER (ORDER BY regdate DESC) page, 
-                         review_id, regdate, content, star, writer_id, target_id
-                   FROM   review 
-                   WHERE  review_id > 0 AND target_id = #{targetId}
-                   ORDER  BY review_id DESC, 
+	SELECT reviewId, regdate, content, star, writerId, targetId, writerName
+        FROM  (SELECT ROW_NUMBER() OVER (ORDER BY r.regdate DESC) page, 
+                r.review_id as reviewId, r.regdate as regdate, r.content as content, r.star as star, r.writer_id as writerId, r.target_id as targetId, u.id as writerName
+               from review r join users u on r.writer_id = u.user_id
+               WHERE  review_id > 0 AND target_id = #{targetId}
+               ORDER  BY review_id DESC, 
                              regdate DESC) 
-        WHERE  page BETWEEN #{cri.pageStart} AND #{cri.pageStart} + #{cri.perPageNum}
+         WHERE  page BETWEEN #{cri.pageStart} AND #{cri.pageStart} + #{cri.perPageNum}
+	
 	</select>
 	
 	<select id="count" resultType="int">
