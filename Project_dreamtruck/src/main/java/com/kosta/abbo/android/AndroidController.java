@@ -98,24 +98,19 @@ public class AndroidController {
 	}
 	
 	@RequestMapping("/truckjoinus")
-	public void truckJoinUs(HttpServletRequest request, HttpServletResponse response,@RequestParam("id") String id, TruckUser truckUser, RedirectAttributes rttr, MultipartFile file, Model model)
+	public void truckJoinUs(HttpServletRequest request, HttpServletResponse response,@RequestParam("id") String id, TruckUser truckUser, RedirectAttributes rttr, Model model)
 	throws Exception{
 		response.setContentType("text/html; charset=utf-8");
 		
 		
 		logger.info("트럭 회원가입 POST .....");
 		
-		logger.info("originalName: " + file.getOriginalFilename());
-		logger.info("size : " + file.getSize());
-		logger.info("contentType : " + file.getContentType());
-		
-		String path = uploadPath + "/user";
+		logger.info(truckUser.toString());
 
-		String savedName = UploadUserUtils.uploadFile(id, path, file.getOriginalFilename(), file.getBytes());
 				
+		truckUser.setTruckImg("/noimage.png");
 		truckService.create(truckUser);
 
-		model.addAttribute("savedName",savedName);
 		model.addAttribute("truckUser",truckUser);
 		logger.info(truckUser.toString());
 		
@@ -133,6 +128,28 @@ public class AndroidController {
 		
 	}
 	
+	
+	
+//	@RequestMapping("/firebaseTest")
+//	public String firebase(){
+//		return "/FfirebaseTest";
+//	}
+	
+	
+	@RequestMapping("/mapMarker")
+	public void mapMarker(HttpServletRequest request, HttpServletResponse response){
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.println("37.481227,126.886211,준서네 군만두");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 	
 	
