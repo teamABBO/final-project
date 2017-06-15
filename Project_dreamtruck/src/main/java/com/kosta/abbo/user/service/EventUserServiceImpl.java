@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.kosta.abbo.page.domain.Criteria;
+import com.kosta.abbo.page.domain.SearchCriteria;
 import com.kosta.abbo.user.dao.EventUserDao;
 import com.kosta.abbo.user.domain.EventUser;
 
@@ -57,8 +59,30 @@ public class EventUserServiceImpl implements EventUserService {
 	 * @return
 	 */
 	@Override
-	public List<EventUser> list() {
-		return dao.list();
+	public List<EventUser> list(int userId) {
+		return dao.list(userId);
+	}
+	
+	/**페이징*/ 
+	@Override
+	public List<EventUser> listCriteria(Criteria cri) {
+		return dao.listCriteria(cri);
+	}
+
+	@Override
+	public int listCountCriteria(Criteria cri) {
+		return dao.countPaging(cri);
+	}
+
+	/** 검색 */
+	@Override
+	public List<EventUser> listSearchCriteria(SearchCriteria cri) {
+		return dao.listSearch(cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) {
+		return dao.listSearchCount(cri);
 	}
 
 }

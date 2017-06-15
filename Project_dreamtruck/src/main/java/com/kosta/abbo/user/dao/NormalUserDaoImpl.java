@@ -91,5 +91,26 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	public String isUpload(int userId) {
 		return SqlSession.selectOne(namespace + ".isUpload", userId);
 	}
-		
+
+	/**
+	 * 아이디 찾기
+	 */
+	@Override
+	public String idCheck(String name, String phone) {
+		Map<String, Object> paramMap = new HashMap<String,Object>();
+		paramMap.put("name", name);
+		paramMap.put("phone", phone);
+		return SqlSession.selectOne(namespace + ".idCheck",paramMap);
+	}
+
+	/**
+	 * 비밀번호 찾기
+	 */
+	@Override
+	public String pwCheck(String id, String email) {
+		Map<String, Object> paramMap = new HashMap<String,Object>();
+		paramMap.put("id", id);
+		paramMap.put("email", email);
+		return SqlSession.selectOne(namespace + ".pwCheck",paramMap);
+	}
 }

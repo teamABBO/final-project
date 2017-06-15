@@ -2,6 +2,8 @@ package com.kosta.abbo.user.service;
 
 import java.util.List;
 
+import com.kosta.abbo.page.domain.Criteria;
+import com.kosta.abbo.page.domain.SearchCriteria;
 import com.kosta.abbo.user.domain.EventUser;
 
 public interface EventUserService {
@@ -35,6 +37,18 @@ public interface EventUserService {
 	 * 행사회원 목록
 	 * @return
 	 */
-	public List<EventUser> list();
+	public List<EventUser> list(int userId);
+	
+	/** 페이징 */
+	public List<EventUser> listCriteria(Criteria cri);
+	
+	public int listCountCriteria(Criteria cri);
+	
+
+	/** 검색 */
+	public List<EventUser> listSearchCriteria(SearchCriteria cri);
+	
+	public int listSearchCount(SearchCriteria cri);
+
 
 }

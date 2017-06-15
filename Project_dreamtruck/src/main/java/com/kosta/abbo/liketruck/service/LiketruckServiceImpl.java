@@ -75,6 +75,5 @@ public class LiketruckServiceImpl implements LiketruckService {
 		return dao.list(userId);
 	}
 
-	
 
 }
