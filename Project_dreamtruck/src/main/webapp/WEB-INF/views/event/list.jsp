@@ -19,7 +19,8 @@
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <link href="/resources/css/sweetalert.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
-<link rel="shortcut icon" href="/resources/images/ico/5.ico">
+
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
   href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"

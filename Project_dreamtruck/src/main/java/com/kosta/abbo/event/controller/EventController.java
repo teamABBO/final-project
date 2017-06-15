@@ -1,5 +1,6 @@
 package com.kosta.abbo.event.controller;
 
+import java.io.File;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,7 @@ import com.kosta.abbo.event.domain.SearchCriteria;
 import com.kosta.abbo.event.sevice.EventService;
 import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.service.NormalUserService;
+import com.kosta.abbo.util.MediaUtils;
 import com.kosta.abbo.util.UploadEventUtils;
 
 @Controller
@@ -111,7 +114,7 @@ public class EventController {
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(Event event, RedirectAttributes rttr, MultipartFile file, Model model,
+	public String modifyPOST(Event event,  RedirectAttributes rttr, MultipartFile file, Model model,
 			HttpServletRequest request, int userId) throws Exception {
 		logger.info("mod post!!!");
 
@@ -123,7 +126,13 @@ public class EventController {
 			logger.info("originalName: " + file.getOriginalFilename());
 			logger.info("size : " + file.getSize());
 			logger.info("contentType : " + file.getContentType());
-
+			Event findEvent = service.read(event.getEventId());
+			if (findEvent.getImg() != null) {
+				String[] parse = findEvent.getImg().split("/");
+				String sumnail = "s_"+parse[2];
+				new File("C:/dt/event" + findEvent.getImg()).delete();
+				new File("C:/dt/event/" + userId + "/" + sumnail).delete();
+			} 
 			UUID uid = UUID.randomUUID();
 			String imgName = uid.toString() + "_" + file.getOriginalFilename();
 			String imgPath = "/" + userId + "/" + imgName;
@@ -139,6 +148,8 @@ public class EventController {
 			return "redirect:/event/list";
 		}
 	}
+	
+	
 	
 	/**
 	 * 행사 신청

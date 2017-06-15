@@ -42,8 +42,8 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="/">홈</a></li>
-              <li><a href="#">회사소개</a></li>
-              <li><a href="#">이용안내</a></li>
+              <li><a href="/introduction">회사소개</a></li>
+              <li><a href="/info">이용안내</a></li>
               <li><a href="/truck/list">트럭소개</a></li>
               <li class="dropdown"><a>행사 <i
                   class="fa fa-angle-down"></i></a>

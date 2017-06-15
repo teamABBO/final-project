@@ -40,7 +40,7 @@
               푸드트럭 영업<br>어디서 해야하죠?
             </h1>
             <p>
-              불법영업과 축제행사만 전전긍긍하고있나요?<br>푸드트럭 영업이 허용된 장소와<br>내가
+              불법영업과 축제행사에만 전전긍긍하고있나요?<br>푸드트럭 영업이 허용된 장소와<br>내가
               원했던 장소에 대한 상담을 해보세요.
             </p>
             <a href="#" class="btn btn-common">영업허용 구역에 대한 정보 보러가기</a>
@@ -62,50 +62,10 @@
   <!--/#home-slider-->
 
   <br><br>
-  <section id="services" style="margin-top: 0px">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4 text-center padding wow fadeIn"
-          data-wow-duration="1000ms" data-wow-delay="300ms">
-          <div class="single-service">
-            <div class="wow scaleIn" data-wow-duration="500ms"
-              data-wow-delay="300ms">
-              <img src="/resources/images/home/icon1.png" alt="">
-            </div>
-            <h2>원클릭 서비스</h2>
-            <p>기관마다 다른 서류와 방문해야하는 면접제출 시스템 등의 복잡한 푸드트럭 영업신고 절차를 클릭 한번으로 해결할 수 있습니다.</p>
-          </div>
-        </div>
-        <div class="col-sm-4 text-center padding wow fadeIn"
-          data-wow-duration="1000ms" data-wow-delay="600ms">
-          <div class="single-service">
-            <div class="wow scaleIn" data-wow-duration="500ms"
-              data-wow-delay="600ms">
-              <img src="/resources/images/home/icon2.png" alt="">
-            </div>
-            <h2>영업 허용구역 규제</h2>
-            <p>푸드트럭 합법 영업 구역이 생겨날 때 마다 드림트럭에서 새로운 정보를 확인해 볼 수 있습니다. </p>
-          </div>
-        </div>
-        <div class="col-sm-4 text-center padding wow fadeIn"
-          data-wow-duration="1000ms" data-wow-delay="900ms">
-          <div class="single-service">
-            <div class="wow scaleIn" data-wow-duration="500ms"
-              data-wow-delay="900ms">
-              <img src="/resources/images/home/icon3.png" alt="">
-            </div>
-            <h2>위생,청결 관리</h2>
-            <p>위생 관리와 청결 유지를 위해 필요한 노하우와 정보들을 제공 받아 나의 트럭을  
-            스스로 관리 하는 방법을 알수있습니다.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--/#services-->
+  
 
 
-  <hr style="color: #fc978f">
+<!--   <hr style="color: #fc978f"> -->
   <section id="features">
     <div class="container">
       <div class="row">
@@ -150,6 +110,20 @@
             나와 가까운 푸드트럭은 어디 있는지 찾아보세요! </P>
           </div>
         </div>
+        <div class="single-features">
+          <div class="col-sm-6 col-sm-offset-1 align-right wow fadeInLeft"
+            data-wow-duration="500ms" data-wow-delay="300ms">
+            <h2>관심트럭 알림서비스</h2>
+            <P>관심 트럭이 영업을 시작하거나 나의 근처에 있다면 휴대폰 알림서비스 어쩌고 저쩌고 !!  
+         </P>
+          </div>
+          <div class="col-sm-5 wow fadeInRight"
+            data-wow-duration="500ms" data-wow-delay="300ms">
+            <img src="/resources/images/home/image4.png" class="img-responsive" alt="">
+          </div>
+        </div>
+        
+        
       </div>
     </div>
 
