@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page language="java"   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +8,20 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>드림트럭</title>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="/resources/js/wow.min.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="/resources/css/animate.min.css" rel="stylesheet">
 <link href="/resources/css/lightbox.css" rel="stylesheet">
 <link href="/resources/css/main.css" rel="stylesheet">
 <link href="/resources/css/responsive.css" rel="stylesheet">
-<script type="text/javascript" src="/resources/js/jquery.js"></script>
 <link href="/resources/css/sweetalert.css" rel="stylesheet">
-<script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
-<link rel="shortcut icon" href="/resources/images/ico/5.ico">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
   href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -45,7 +47,29 @@ th {
 }
 </style>
 <script >
-
+$(document).ready(function () {
+	var eventList = ${eventList};
+	
+	for ( var num in eventList) {
+		var listElements = "" +
+      	"<tr>" +
+      	"	<td>"+eventList[num].EVENTID+"</td>" +
+      	"	<td><a href='/event/detail?eventId="+eventList[num].EVENTID+"'>"+eventList[num].TITLE+"</a></td>" +
+      	"	<td>"+eventList[num].WRITER+"</td>" +
+      	"	<td>"+eventList[num].RECRUIT+"</td>" +
+      	"	<td>"+eventList[num].APPLIERCNT+"</td>" +
+      	"	<td>"+eventList[num].REGDATE+"</td>"
+		if (eventList[num].SUCCESS == "o") {
+			listElements += "<td style='color: yellowgreen'>참가확정</td></tr>";
+		} else if (eventList[num].success == "x") {
+			listElements += "<td style='color: red'>거절</td></tr>";
+		} else {
+			listElements += "<td style='color: orange'>승인대기</td></tr>";
+		}
+      	$("#table").append(listElements);
+      	
+	}
+});
 </script>
 <body>
   <%@include file="../include/header.jsp"%> <!--/#header-->
@@ -87,25 +111,18 @@ th {
       <br>
       <br>
       <br>
-        <table class="table table-hover" style="text-align: center" >
-          <tr >
+        <table class="table table-hover" style="text-align: center">
+        <tbody id="table">
+          <tr>
             <th style="width: 10px">No.</th>
-            <th>행사제목</th>
-            <th>작성자</th>
-            <th style="width: 180px">모집트럭수</th>
-            <th style="width: 60px">승인여부</th>
+            <th style="width: 200px">행사제목</th>
+            <th style="width: 50px">작성자</th>
+            <th style="width: 40px">모집트럭수</th>
+            <th style="width: 20px">지원자수</th>
+            <th style="width: 50px">신청날짜</th>
+            <th style="width: 30px">승인여부</th>
           </tr>
-          
-          <c:forEach items="${list }" var="list" varStatus="status">
-            <tr>
-              <td>${list.eventId}</td>
-              <td><a href='/event/detail?eventId=${list.eventId }'>${list.title }</a></td>
-              <td>${list.name}</td>
-              <td>${list.recruit }</td>
-              <td>${list.success }</td>
-            </tr>
-
-          </c:forEach>
+        </tbody>
         </table>
         
       </div>
@@ -116,10 +133,5 @@ th {
 
 <%@include file="../include/footer.jsp"%> <!--/#footer-->
 
-  <script type="text/javascript" src="../resources/js/jquery.js"></script>
-  <script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-  <script type="text/javascript" src="../resources/js/wow.min.js"></script>
-  <script type="text/javascript" src="../resources/js/main.js"></script>
 </body>
 </html>

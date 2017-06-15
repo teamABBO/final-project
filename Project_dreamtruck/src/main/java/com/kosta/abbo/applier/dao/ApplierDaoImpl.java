@@ -107,4 +107,14 @@ public class ApplierDaoImpl implements ApplierDao {
 		return sqlSession.selectOne(namespace + ".checkDup", paramMap);
 	}
 
+	/**
+	 * 내가 신청한 행사 목록
+	 * @param userId
+	 * @return
+	 */
+	@Override
+	public List<Map<String, Object>> myEvent(int userId) {
+		return sqlSession.selectList(namespace + ".myEvent", userId);
+	}
+
 }

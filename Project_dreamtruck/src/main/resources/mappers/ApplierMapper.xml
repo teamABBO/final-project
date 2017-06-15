@@ -55,5 +55,28 @@
 		FROM applier
 		WHERE user_id = #{userId} AND event_id=#{eventId}
 	</select>
+	
+	<select id="myEvent" resultType="map">
+		SELECT	pre.eventId eventId,
+				pre.title title,
+				u.name writer,
+				pre.recruit recruit,
+				pre.applierCnt applierCnt,
+				pre.regdate regdate,
+				pre.success success
+		FROM 	users u
+		JOIN 	(SELECT 	e.event_id eventId, 
+							e.title title, 
+							e.user_id writerId, 
+							e.recruit recruit,
+							e.applier_cnt applierCnt, 
+							TO_CHAR(a.regdate, 'YYYY/MM/DD') regdate, 
+							a.success
+				FROM	 	event e
+							JOIN applier a
+							ON e.event_id = a.event_id
+				WHERE		a.user_id = #{userId}) pre
+		ON 		u.user_id = pre.writerId
+	</select>
 
 </mapper>

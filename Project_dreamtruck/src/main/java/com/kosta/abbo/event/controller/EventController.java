@@ -166,6 +166,10 @@ public class EventController {
 		
 		userService.checkDocu(user.getUserId());
 		String isUpload = userService.isUpload(user.getUserId());
+		if (applierService.checkDup(user.getUserId(), eventId) > 0) {
+			logger.info("중복 신청");
+			return new ResponseEntity<String>("dup", HttpStatus.BAD_REQUEST);
+		}
 
 		if (isUpload.equals("x")) {
 			logger.info("파일 수 부족!");

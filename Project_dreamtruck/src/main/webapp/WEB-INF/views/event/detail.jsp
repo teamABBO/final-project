@@ -46,21 +46,30 @@
 		});
 		
 		$("#one").on("click", function() {
-			$.ajax({
-                url: "apply",
-                type: "POST",
-                data : {
-    				eventId : "${event.eventId}"
-    			},
-              dataType: "text",
-              success: function(result) {
-              	if (result == "success") {
-					alert("${event.title}에 성공적으로 영업신청하였습니다.");
-  				}
-              },
+  			$.ajax({
+                  url: "apply",
+                  type: "POST",
+                  data : {
+      				eventId : "${event.eventId}"
+      			},
+                dataType: "text",
+                success: function(result) {
+                	if (result == "success") {
+  					alert("${event.title}에 성공적으로 영업신청하였습니다.");
+    				}
+                },
     			error: function(result) {
-					alert("필요 서류가 부족합니다! 서류를 등록/수정해주세요. 확인을 누르시면 서류관리 페이지로 이동합니다.");
-					self.location = "/docu/list";
+    				if (result == "fail") {
+    					if(alert("필요 서류가 부족합니다! 서류를 등록/수정해주세요. 확인을 누르시면 서류관리 페이지로 이동합니다.") == true) {
+    						self.location = "/docu/list";
+    					} else {
+    						return;
+    					}
+					} else if (result == "dup") {
+						alert("이미 신청한 행사입니다.");
+					} else {
+						return;
+					}
 				}
             });
 		});

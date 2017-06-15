@@ -71,7 +71,7 @@ $(document).ready(function () {
 						"<td><input type='checkbox' class='check' id='" + applierList[num].applierId + "' /></td>" +
 	      				"<td><a href='/truck/read?userId=" + applierList[num].userId + "'>" + applierList[num].applierName + "</a></td>" +
 	      				"<td>" + applierList[num].regdate + "</td>" +
-	      				"<td style='color: #a69926'>대기</td>" + 
+	      				"<td style='color: orange'>대기</td>" + 
 	      				"<td> <button class='btn btn-success confirm'>수락</button> <button class='btn btn-warning deny' id='deny'>거절</button></td>" +
 	      			"<tr>");
 		}
