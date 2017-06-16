@@ -66,4 +66,9 @@ public class PlanServiceImpl implements PlanService {
 		return dao.truck();
 	}
 
+	@Override
+	public Plan uploadCheck(Plan plan) {
+		return dao.uploadCheck(plan);
+	}
+
 }

@@ -132,6 +132,46 @@ $(document).ready(function(){
 		      popupOpen($(this).attr("data-src"));
 	   }); 
    }
+   $(".placename").on("click", function(){
+	   alert("지도를 이용해주세요");
+   });
+   $("#submit").on("click",function(){
+	   if($(this).attr('type')=='button'){
+		   var dayValue = "";
+		   var openValue = "";
+		   var closeValue = "";
+		   for (var i = 0; i <= count; i++) {
+			   if(i!=0){
+				   dayValue += ","+$("select[name=day]")[i].value;
+				   openValue += ","+$("input[name=open]")[i].value;
+				   closeValue += ","+$("input[name=close]")[i].value;
+			   }else{
+				   dayValue += $("select[name=day]")[i].value;
+				   openValue += $("input[name=open]")[i].value;
+				   closeValue += $("input[name=close]")[i].value;
+			   }
+		   }
+		   $.ajax({
+				url : "uploadCheck",
+				type : "post",
+				data : {
+					userId: ${login.userId},
+					day: dayValue,
+					open: openValue,
+					close: closeValue
+				},
+				dataType : "text",
+				success : function(result) {
+					if(result == 'OK'){
+						$("#submit").attr("type", "submit");
+						$("#submit").trigger("click");
+					}else if(result == 'NO'){
+						alert('입력하신 시간에 등록되어있는 스케줄이 있습니다.');
+					}
+				}
+			});
+	   }
+   });
 });
 </script>
 </head>
@@ -170,7 +210,7 @@ $(document).ready(function(){
    	 <input type="hidden" id="param">
    	 <input type="hidden" id="where" value="upload">
       <div class="single-features">
-         <form class="form-horizontal" method="post" role="form" >
+         <form class="form-horizontal" method="post" action="" id="uploadForm" >
             <input type="button" class="circle3" id="add" value="+" >
             <input type="button" class="circle3" id="remove" value="-" >
             <hr>
@@ -181,7 +221,9 @@ $(document).ready(function(){
                </c:forEach>
                
                <input type="hidden" id="userId" name="userId" value="${login.userId }">
-               <input class="btn btn-common" type="submit" value="등록">
+               <input class="btn btn-common" type="button" id="submit" value="등록">
+               <div class="hide">
+               </div>
                <a href="schedule"><input class="btn btn-common" type="button" value="취소"></a>
          </form>
       </div>

@@ -42,5 +42,11 @@ public interface PlanDao {
 	 * @return
 	 */
 	public List<Plan> truck();
+	
+	/**
+	 * 스케줄 등록 유호성 검사
+	 * @return
+	 */
+	public Plan uploadCheck(Plan plan);
 
 }

@@ -588,15 +588,28 @@ function popupOpen(num){
 	   $("#param").val(num);
 }
 
+	var date = new Date();
+	/* 월요일 오전 3시를 기준으로 DB 초기화 */
+	var week = new Array('일', '월', '화', '수', '목', '금', '토');
+	/* 오늘 날짜를 기반으로 이번주요일 생성 */
+	for (var i = 0; i < 7; i++) {
+		if(i!=date.getDay()){
+			date.setDate(date.getDate()-date.getDay()+i);
+			$("#day"+i).html("<br>"+(date.getMonth()+1)+"."+date.getDate()+"<br>"+week[i]);
+		}else{
+			$("#day"+i).html("<br>"+(date.getMonth()+1)+"."+date.getDate()+"<br>"+week[i]);
+		}
+	}	
 
-
+	
+	
 
 	var list = ${list };
 	var count = [0,0,0,0,0,0,0];  //일 , 월, 화, 수, 목, 금, 토 카운트 스케줄 개수에 따라 지그재그로 출력하기 위한 카운트
 	/* 스케줄 동적 생성 및 지그재그 배치 */
 	for ( var num in list) {
-		if(list[num].day%2==0 && count[list[num].day]%2 == 0){
-			var marginLeft = 0+50*count[list[num].day];
+		if(num%2 == 0){
+			var marginLeft = 0+150*count[list[num].day];
 			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-left" id="sche'+list[num].planId+'" style="margin-top: '+marginLeft+'px;">'+
 										   '	<h2 id="title'+list[num].planId+'">'+list[num].title+'</h2>'+
 										   '	<p id="time'+list[num].planId+'">'+list[num].open+'~'+list[num].close+'</p>'+
@@ -609,38 +622,9 @@ function popupOpen(num){
 										   '    </div>'+
 										   '	<hr><div id="map_canvas'+list[num].day+count[list[num].day]+'" class="toggleMap" style="width: 300px; height: 300px;"></div>'+
 										   '</div> <!-- cd-timeline-content -->');
-		}else if(list[num].day%2==0 && count[list[num].day]%2 == 1){
-			var marginRight = 100+50*count[list[num].day];
+		}else if(num%2 == 1){
+			var marginRight = 0+150*count[list[num].day];
 			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-right" id="sche'+list[num].planId+'" style="margin-top: '+marginRight+'px;">'+
-					   					   '	<h2 id="title'+list[num].planId+'">'+list[num].title+'</h2>'+
-					   					   '	<p id="time'+list[num].planId+'">'+list[num].open+'~'+list[num].close+'</p>'+
-					   					   '	<h2 class="address'+list[num].planId+'" id="'+list[num].day+count[list[num].day]+'"></h2>'+
-					   					   '    <div id="button'+list[num].planId+'">'+
-					   					   '	    <button type="button" class="btn btn-sm glyphicon glyphicon-globe" id="detailMap'+list[num].planId+'" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'"> 지도보기</button>'+
-					   					   '        <input type="button" class="btn btn-sm btn-warning" id="map'+list[num].planId+'" data-src="'+list[num].planId+'" value="삭제">'+
-					   					   '        <input type="button" class="btn btn-sm btn-warning" id="ok'+list[num].planId+'" data-src="'+list[num].planId+'" value="수정">'+
-					   					   '        <input type="hidden" class="btn btn-sm btn-warning" id="cancel'+list[num].planId+'" data-src="'+list[num].planId+'" value="취소">'+
-					   					   '    </div>'+
-					   					   '	<hr><div id="map_canvas'+list[num].day+count[list[num].day]+'" class="toggleMap" style="width: 300px; height: 300px;"></div>'+
-					   					   '</div> <!-- cd-timeline-content -->');
-		}else if(list[num].day%2==1 && count[list[num].day]%2 == 0){
-			var marginRight = 0+50*count[list[num].day];
-			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-right" id="sche'+list[num].planId+'" style="margin-top: '+marginRight+'px;">'+
-					   '	<h2 id="title'+list[num].planId+'">'+list[num].title+'</h2>'+
-					   '	<p id="time'+list[num].planId+'">'+list[num].open+'~'+list[num].close+'</p>'+
-					   '	<h2 class="address'+list[num].planId+'" id="'+list[num].day+count[list[num].day]+'"></h2>'+
-					   '    <div id="button'+list[num].planId+'">'+
-					   '	   <button type="button" class="btn btn-sm glyphicon glyphicon-globe" id="detailMap'+list[num].planId+'" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'"> 지도보기</button>'+
-					   '       <input type="button" class="btn btn-sm btn-warning" id="map'+list[num].planId+'" data-src="'+list[num].planId+'" value="삭제">'+
-					   '       <input type="button" class="btn btn-sm btn-warning" id="ok'+list[num].planId+'" data-src="'+list[num].planId+'" value="수정">'+
-					   '       <input type="hidden" class="btn btn-sm btn-warning" id="cancel'+list[num].planId+'" data-src="'+list[num].planId+'" value="취소">'+
-					   '    </div>'+
-					   '	<hr><div id="map_canvas'+list[num].day+count[list[num].day]+'" class="toggleMap" style="width: 300px; height: 300px;"></div>'+
-					   '</div> <!-- cd-timeline-content -->');
-}
-		else if(list[num].day%2==1 && count[list[num].day]%2 == 1){
-			var marginLeft = 100+50*count[list[num].day];
-			$("#div"+list[num].day).append('<div class="cd-timeline-content cd-left" id="sche'+list[num].planId+'" style="margin-top: '+marginRight+'px;">'+
 					   					   '	<h2 id="title'+list[num].planId+'">'+list[num].title+'</h2>'+
 					   					   '	<p id="time'+list[num].planId+'">'+list[num].open+'~'+list[num].close+'</p>'+
 					   					   '	<h2 class="address'+list[num].planId+'" id="'+list[num].day+count[list[num].day]+'"></h2>'+
@@ -657,17 +641,8 @@ function popupOpen(num){
 		count[list[num].day]++;
 	}
 	
-	var date = new Date();
-	var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
-	/* 오늘 날짜를 기반으로 이번주요일 생성 */
-	for (var i = 0; i < 7; i++) {
-		if(i!=date.getDay()){
-			date.setDate(date.getDate()-date.getDay()+i);
-			$("#day"+i).html((date.getMonth()+1)+"월<br>"+date.getDate()+"일<br>"+week[i]);
-		}else{
-			$("#day"+i).html((date.getMonth()+1)+"월<br>"+date.getDate()+"일<br>"+week[i]);
-		}
-	}
+	
+	
 	
 	/* 스케줄 지도보기 */
 	$("button").on("click", function(){

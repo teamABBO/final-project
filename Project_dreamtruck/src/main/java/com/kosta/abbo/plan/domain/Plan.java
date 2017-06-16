@@ -8,7 +8,7 @@ public class Plan {
 	private String y; 		// 스케줄경도
 	private String open; 	// 오픈시간
 	private String close; 	// 마감시간
-	private String userId; 	// 회원번호
+	private int userId; 	// 회원번호
 	
 	/* 트럭지도를 위한 추가 변수 */
 	private String truckImg;
@@ -77,11 +77,11 @@ public class Plan {
 		this.close = close;
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	

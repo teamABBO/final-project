@@ -42,5 +42,11 @@ public interface PlanService {
 	 * @return
 	 */
 	public List<Plan> truck();
+	
+	/**
+	 * 스케줄 등록 유효성 검사
+	 * @return
+	 */
+	public Plan uploadCheck(Plan plan);
 
 }

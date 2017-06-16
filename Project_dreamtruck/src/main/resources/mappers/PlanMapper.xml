@@ -20,6 +20,7 @@
 		       user_id userId
 		from   plan
 		where  user_id = #{userId}
+		order by day asc
 	</select>
 	
 	<select id="search" resultType="Plan">
@@ -64,5 +65,22 @@
 		       day = #{day}
 		where  plan_id = #{planId}
 	</update>
+	
+	<select id="checkOpen" resultType="Plan">
+		select plan_id planId, day, title, x, y, open, close, user_id userId
+		from   plan
+		where  user_id = #{userId} and
+		       day = #{day} and
+		       to_char(to_date(#{open} , 'hh24:mi:ss'), 'HH24:MI') between open and close;
+	</select>
+	
+	<select id="uploadCheck" resultType="Plan">
+		select plan_id planId, day, title, x, y, open, close, user_id userId
+		from   (select plan_id, day, title, x, y, open, close, user_id
+      			from   plan
+      			where  user_id = #{userId} and day = #{day})
+		where  to_char(to_date(#{open} , 'hh24:mi'), 'HH24:MI') between open and close OR 
+		       to_char(to_date(#{close} , 'hh24:mi'), 'HH24:MI') between open and close
+	</select>
 
 </mapper>

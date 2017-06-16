@@ -116,4 +116,23 @@ public class PlanController {
 		return new ResponseEntity<String>("modify", HttpStatus.OK);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/uploadCheck", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	public ResponseEntity<String> uploadCheck(int userId, String day, String open, String close) throws JsonProcessingException{
+		logger.info("스케줄 등록 유효성검사!!");
+		logger.info("@@@@userId : "+userId);
+		logger.info("@@@@day : "+day);
+		for (int i = 0; i < day.split(",").length; i++) {
+			Plan plan = new Plan();
+			plan.setUserId(userId);
+			plan.setDay(day.split(",")[i]);
+			plan.setOpen(open.split(",")[i]);
+			plan.setClose(close.split(",")[i]);
+			if (service.uploadCheck(plan) != null) {
+				return new ResponseEntity<String>("NO", HttpStatus.OK);
+			}
+		}
+		return new ResponseEntity<String>("OK", HttpStatus.OK);
+	}
+	
 }

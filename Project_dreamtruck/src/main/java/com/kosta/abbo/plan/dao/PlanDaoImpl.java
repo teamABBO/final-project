@@ -69,5 +69,10 @@ public class PlanDaoImpl implements PlanDao {
 	public List<Plan> truck() {
 		return SqlSession.selectList(namespace+".search");
 	}
+
+	@Override
+	public Plan uploadCheck(Plan plan) {
+		return SqlSession.selectOne(namespace+".uploadCheck", plan);
+	}
 	
 }
