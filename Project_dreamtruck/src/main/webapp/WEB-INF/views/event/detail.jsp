@@ -73,6 +73,13 @@
 				}
             });
 		});
+		var login = "${login.userId}";
+			if(login == ${event.userId}){
+				$('#modify').attr("type","button");
+			}else{
+				$('#modify').attr("type","hidden");
+			}
+		
 
 	});
 </script>
@@ -221,7 +228,6 @@
             <h3>신청트럭 수:</h3>
             <p>${event.applierCnt }</p>
           </div>
-          <hr style="background-color: #fd8c86;" />
            <c:choose>
             <c:when test="${login.type=='truck'}">
             <button type="button" id="one" name="one"
@@ -232,22 +238,19 @@
         </div>
     </div>
     <div style="margin-left: 190px; margin-top: 20px" >
-            <div class="col-md-6">
-              <textarea class="form-control col-md-12" name="content"  rows="12" readonly="readonly" style="width: 700px; background-color: #ffffff"> ${event.content }</textarea>
+     <hr style="background-color: #fd8c86; margin-right: 210px;" />
+            <div class="col-md-12 ">
+              <textarea class="form-control col-md-12" name="content"  rows="12" readonly="readonly" style="width: 720px; background-color: #ffffff"> ${event.content }</textarea>
             </div>
              <!-- 버튼 -->
             
             <div class="form-group" >
                <label class="col-md-4 control-label" for="save"></label>
-               <div class="col-md-8" style="margin-top: 20px">
-                  <button type="button" id="list" name="list" class="btn btn-common">목록</button>
-               <c:choose>
-            <c:when test="${login.type=='event'}">
-              <button type="button" id="modify" name="modify" class="btn btn-common" style="margin-left: 20px">수정</button>
-            </c:when>
-       </c:choose>
-               </div>
-            </div>
+          <div class="col-md-12" style="margin-top: 20px; margin-left: 550px" >
+            <input type="hidden" id="modify" name="modify" class="btn btn-common"  value="수정" >
+            <button type="button" id="list" name="list" class="btn btn-common" >목록</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
