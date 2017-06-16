@@ -99,7 +99,7 @@ $(document).ready(
       
        <c:choose>
             <c:when test="${login.type=='event'}">
-              <input type="button" class="btn btn-common" id="newB" value="등록" style="float: right;">
+              <input type="button" class="btn btn-common" id="newB" value="등록" style="float: right; margin-bottom: 20px">
             </c:when>
        </c:choose>
     

@@ -42,7 +42,9 @@
 		});
 
 		$("#list").on("click", function() {
-			self.location = "/event/list";
+			formObj.attr("method", "get");
+			formObj.attr("action", "/event/list");
+			formObj.submit();
 		});
 		
 		$("#one").on("click", function() {
@@ -117,9 +119,14 @@
   <!-- 배너 -->
 
   <!-- 행사등록 -->
-<form method="post" role="form"  class="form-horizontal" >
+<form method="post" role="form"  class="form-horizontal" action="modify" >
 <input type="hidden" name="eventId" value="${event.eventId }">
+<input type="hidden" name="page" value="${cri.page }">
+<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+<input type="hidden" name="searchType" value="${cri.searchType}">
+<input type="hidden" name="keyword" value="${cri.searchType}">
 </form>
+
 
   <section id="portfolio-information" class="padding-top">
   
@@ -133,19 +140,23 @@
           </c:if>
           <c:if test="${empty event.img }">
             <img src="/displayFile?fileName=/event/noimage.png" alt=""
-              class="img-rounded" style="width: 300px; height: auto; margin-left: 200px" />
+              class="img-rounded" />
           </c:if>
         </div>
         <div class="col-sm-6">
           <div class="skills overflow">
-            <h3>행사시작날짜:</h3>
-            <p>${event.startDate }</p>
-            <h3>행사기간:</h3>
-            <p>${event.duration }</p>
-            <h3>모집트럭 수:</h3>
-            <p>${event.recruit }</p>
-            <span><h3>영업장소:</h3>
-              <p>
+          <table class="table table-hover" style="text-align: center" >
+          <tr>
+            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>행사기간 :</strong> ${event.startDate }부터 ${event.duration }일</h3></td>
+          </tr>
+          <tr>
+            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>모집트럭 수 :</strong> ${event.recruit }</h3></td>
+            </tr>
+          <tr>
+            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>신청한 트럭 수 :</strong> ${event.applierCnt }</h3></td>
+            </tr>
+          <tr>
+            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>영업장소 :</strong> 
                 서울시
                 <c:choose>
                   <c:when test="${event.guId  eq '1'}">
@@ -224,9 +235,9 @@
                     중랑구
                     </c:when>
                 </c:choose>
-              </p></span>
-            <h3>신청트럭 수:</h3>
-            <p>${event.applierCnt }</p>
+                </h3></td>
+                </tr>
+                </table>
           </div>
            <c:choose>
             <c:when test="${login.type=='truck'}">
@@ -247,8 +258,9 @@
             <div class="form-group" >
                <label class="col-md-4 control-label" for="save"></label>
           <div class="col-md-12" style="margin-top: 20px; margin-left: 550px" >
+          <button type="submit" id="list" name="list" class="btn btn-common" >목록</button>
             <input type="hidden" id="modify" name="modify" class="btn btn-common"  value="수정" >
-            <button type="button" id="list" name="list" class="btn btn-common" >목록</button>
+            
           </div>
         </div>
       </div>
