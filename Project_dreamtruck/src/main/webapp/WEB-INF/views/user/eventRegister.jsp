@@ -13,12 +13,81 @@
 <link href="/resources/css/lightbox.css" rel="stylesheet">
 <link href="/resources/css/main.css" rel="stylesheet">
 <link href="/resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/sweetalert.css" rel="stylesheet">
 <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
 <script type="text/javascript" src="/resources/js/wow.min.js"></script>
 <script type="text/javascript" src="/resources/js/main.js"></script>
+<script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
+<script type="text/javascript">
+	$(document).ready( function(){
+		var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+		var reg_phone = $("#phone").val();
+		var reg_name = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+		
+	
+		//비밀번호 유효성검사(영문숫자 조합 8~16자 내외)
+		   $("#pw").keyup(function() {
+		      var pw = $(this).val();
+		      if(pw.length <= 6 ) {
+		         $("#pwLabel").text("6~15자리 영문숫자조합").css("color","red");
+		      }else if (reg_pw.test($("#pw").val()) &&  pw.length > 6 && pw.length <= 15){
+		         $("#pwLabel").text("사용가능").css("color","green");
+		      }
+		   });
+		   $("#repw").keyup(function() {
+			  var repw = $(this).val();
+		      if(repw.length <= 6){
+		    	  $("#repwLabel").text("6~15자리 영문숫자조합").css("color","red")
+		      }else if($("#repw").val() != $("#pw").val()){
+		         $("#repwLabel").text("비밀번호가 다릅니다").css("color","red")
+		      }else if($("#repw").val() == $("#pw").val() && reg_pw.test($("#repw").val())){
+		         $("#repwLabel").text("사용가능").css("color","green");
+		      }
+		   });
+		   
+		 	//이름 유효성검사(한글,영문만 사용가능 2~25자 내외)
+		   $("#name").keyup(function() {
+		      var name = $(this).val();
+		      if(name == ""){
+		    	  $("#nameLabel").text("").css("color","red");
+		      }else if(!reg_name.test(name)){
+		         $("#nameLabel").text("올바르게 입력해주십시오").css("color","red");
+		      } else {
+		         $("#nameLabel").text("완료").css("color","green");
+		      }
+		   });
+	});
+</script>
+<script type="text/javascript">
+function isMember() {
+	
+	      var id = $('#id').val();
+	      if(id == ""){
+	    	  swal("중복체크","아이디를 입력 해 주세요.")
+	      }else{
+	    	 
+	         $.ajax({
+	         async : true,
+	         type : "post",
+	         url : "isMember",
+	         dataType : "text",
+	         data: {
+	           "id" : id
+	            },  
+	         success : function(data) {
+	        	if(data == "fail"){
+	        		swal("중복체크","가입 가능한 아이디 입니다.")
+	        	}else{
+	           		swal("중복체크","이미 가입된 아이디 입니다.")
+	        	}
+	         }
+	      });
+	      }
+	   }
+</script>
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
@@ -53,12 +122,13 @@
     
     <img alt="" src="/resources/images/home/joinus.png" style="margin-left: 590px; height: 100px;">
     <br>
-	<form class="form-horizontal" method="post" role="form">
+	<form class="form-horizontal" method="post" role="form" onsubmit="return Check();">
 			<fieldset>
 				<!-- 아이디 -->
 				<div class="form-group">
 				<br><br>
 					<label class="col-md-4 control-label" for="name">아이디</label>
+					<button type="button" class="btn btn-common" onclick="isMember();">중복확인</button>
 					<div class="col-md-4">
 						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" required>
 					</div>
@@ -67,6 +137,7 @@
 				<!-- 비밀번호 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label">비밀번호</label>
+					<label id="pwLabel"></label>
 					<div class="col-md-4">
 						<input id="pw" name="pw" type="password" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" required>
 					</div>
@@ -75,6 +146,7 @@
 				<!-- 비밀번호 확인 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label">비밀번호 확인</label>
+					<label id="repwLabel"></label>
 					<div class="col-md-4">
 						<input id="repw" name="repw" type="password" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" required>
 					</div>
@@ -92,6 +164,7 @@
 				<!-- 이름 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="rpassword">이름</label>
+					<label id="nameLabel"></label>
 					<div class="col-md-4">
 						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" required>
 					</div>
@@ -152,13 +225,23 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="save"></label>
 					<div class="col-md-8">
-						<button type="submit" id="save" name="save" class="btn btn-success">가입</button>
-						<a class="btn btn-primary" href="#primary" data-toggle="modal">취소</a>
+						<button type="submit" id="save" name="save" class="btn btn-common">가입</button>
+						<a class="btn btn-common" href="#primary" data-toggle="modal">취소</a>
 					</div>
 				</div>
 			</fieldset>
 			</form>
-
+			<script type="text/javascript">
+			function Check(form) {
+				   var likearea = $("#likeArea option:selected").val();
+					
+					if(likearea == ""){
+						swal("회원 가입 중 에러", "관심 지역을 설정 해 주세요!")
+						return false;
+					}
+			}
+			</script>
+			
 	<br>
 	<%@include file="../include/footer.jsp"%>
 	

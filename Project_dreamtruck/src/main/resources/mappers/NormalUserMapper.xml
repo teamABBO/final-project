@@ -24,6 +24,12 @@
       	    AND  pw = #{pw}
 	</select>
 	
+	<!-- 아이디  중복 -->
+	<select id="isMember" resultType="String">
+	SELECT id
+	FROM   users
+	WHERE  id = #{id}
+	</select>
 	
 	<!-- 회원가입 -->
 	<insert id="create">
@@ -64,7 +70,7 @@
 	
 	</select>
 	
-	<!-- 아이디 찾기 -->
+	<!-- 비밀번호 찾기 찾기 -->
 	<select id="pwCheck" resultType="String">
 	SELECT pw
 	FROM   users

@@ -113,4 +113,9 @@ public class NormalUserDaoImpl implements NormalUserDao {
 		paramMap.put("email", email);
 		return SqlSession.selectOne(namespace + ".pwCheck",paramMap);
 	}
+
+	@Override
+	public String isMember(String id) {
+		return SqlSession.selectOne(namespace + ".isMember",id);
+	}
 }

@@ -20,7 +20,12 @@ public interface NormalUserService {
 	 */
 	public void create(NormalUser normalUser);
 	
-	
+	/**
+	 * 회원 중복
+	 * @param id
+	 * @return 
+	 */
+	public String isMember(String id);
 	/**
 	 * 일반회원 상세보기
 	 * @param normalUserId

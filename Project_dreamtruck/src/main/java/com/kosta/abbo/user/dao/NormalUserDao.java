@@ -20,6 +20,14 @@ public interface NormalUserDao {
 	public void create(NormalUser normalUser);
 	
 	/**
+	 * 회원 중복
+	 * @param id
+	 * @return 
+	 */
+	public String isMember(String id);
+	
+	
+	/**
 	 * 아이디 찾기
 	 * @param name
 	 * @param phone

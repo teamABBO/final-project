@@ -54,15 +54,8 @@
 	   	FROM   event e, users u
 		WHERE  e.user_id = u.user_id
        	AND u.user_id = #{userId}
+       	ORDER BY e.regdate DESC
 	</select>
-	
-
-	<!-- 조회수 -->
-	<update id="hit">
-		UPDATE event
-		SET hit = hit + 1
-		WHERE event_id = #{event_id}
-	</update>
 	
 	<!-- 읽기 -->
 	<select id="read" resultType="EventUser">
@@ -77,5 +70,35 @@
     	from users
     	where user_id = #{userId}
 	</select>
+	
+	<select id="listSearchCount" resultType="int">
+		SELECT Count(event_id) 
+		FROM   event e, 
+		      		 users u 
+		WHERE event_id > 0 
+		     AND e.user_id = u.user_id 
+		<include refid="search"></include>
+	</select>
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				AND title LIKE '%'|| #{keyword} ||'%'
+			</if>
+			<if test="searchType == 'c'.toString()">
+				AND content LIKE '%'|| #{keyword} ||'%'
+			</if>
+			<if test="searchType == 'w'.toString()">
+				AND name LIKE '%'|| #{keyword} ||'%'
+			</if>
+		</if>
+	</sql>
+
+	<!-- 조회수 -->
+	<update id="hit">
+		UPDATE event 
+		SET    hit = hit + 1 
+		WHERE  event_id = #{event_id} 
+	</update>
 
 </mapper>
