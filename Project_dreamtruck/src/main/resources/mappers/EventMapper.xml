@@ -21,7 +21,7 @@
             			(event_id_seq.NEXTVAL, 
                         #{duration}, 
                         #{img}, 
-                        #{startdate}, 
+                        #{startDate}, 
                         #{content}, 
                         #{title}, 
                         #{guId}, 

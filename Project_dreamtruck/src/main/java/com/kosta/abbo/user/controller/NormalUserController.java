@@ -356,18 +356,6 @@ public class NormalUserController {
 		logger.info("아이디/비밀번호 GET .....");
 	}
 	
-	/** 목록 */
-	@RequestMapping(value = "/myboard", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
-		logger.info("내가 쓴글 get");
-		NormalUser loginUser = (NormalUser) session.getAttribute("login");
-		
-		/*logger.info("@@@@@@@@"+ eventService.list(userId));*/
-		/*model.addAttribute("list", eventService.list(userId));*/
-		model.addAttribute("list", eventService.list(loginUser.getUserId()));
-		
-		
-	}
 	
 	/**
 	 * 아이디 찾기
@@ -402,6 +390,22 @@ public class NormalUserController {
 		   return new ResponseEntity<String>("fail",HttpStatus.OK);
 		}else{
 		   return new ResponseEntity<String>(normalService.pwCheck(id, email),HttpStatus.OK);
+		}
+	}
+	
+	/**
+	 * 회원 중복
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/isMember", method = RequestMethod.POST)
+	public ResponseEntity<String> isMember(@RequestParam("id") String id) {
+		logger.info("회원 중복 찾기 POST .....");
+		if(normalService.isMember(id) == null){
+		   return new ResponseEntity<String>("fail",HttpStatus.OK);
+		}else{
+		   return new ResponseEntity<String>(normalService.isMember(id), HttpStatus.OK);
 		}
 	}
 }

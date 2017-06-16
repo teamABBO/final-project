@@ -115,6 +115,8 @@
 							speed : 800,
 							offset : 200
 						});
+						
+						
 
 					});
 </script>
@@ -231,10 +233,10 @@
                           href="read${pageMaker.makeSearch(pageMaker.cri.page)}&userId=${truckUser.userId }"><i
                             class="fa fa-link"></i></a></li>
                         <li><a
-                          href="/displayFile?fileName=/user/${truckUser.id}/${truckUser.truckImg }" 
-                          data-lightbox="example-set"><i
+                          href="/displayFile?fileName=/user/${truckUser.id}/${truckUser.truckImg}" 
+                          data-lightbox="example-set" id="img"><i
                             class="fa fa-eye"></i></a></li>
-                        <li><a><i class="fa fa-heart"></i>${truckUser.truckLikecnt }
+                        <li><a><i class="fa fa-heart" id="like"></i>${truckUser.truckLikecnt }
                         </a></li>
                         <h4 style="color: white">${truckUser.truckFood}</h4>
                       </ul>

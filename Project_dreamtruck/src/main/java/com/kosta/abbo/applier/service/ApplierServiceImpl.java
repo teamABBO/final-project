@@ -1,6 +1,7 @@
 package com.kosta.abbo.applier.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -96,5 +97,15 @@ public class ApplierServiceImpl implements ApplierService {
 	@Override
 	public int checkDup(int userId, int eventId) {
 		return dao.checkDup(userId, eventId);
+	}
+
+	/**
+	 * 내가 신청한 행사 목록
+	 * @param userId
+	 * @return
+	 */
+	@Override
+	public List<Map<String, Object>> myEvent(int userId) {
+		return dao.myEvent(userId);
 	}
 }

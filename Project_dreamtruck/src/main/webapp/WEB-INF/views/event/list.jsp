@@ -103,9 +103,6 @@ $(document).ready(
             </c:when>
        </c:choose>
     
-      <br>
-      <br>
-      <br>
         <table class="table table-hover" style="text-align: center" >
           <tr >
             <th style="width: 10px">No.</th>

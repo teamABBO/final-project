@@ -98,4 +98,12 @@ public class NormalUserServiceImpl implements NormalUserService {
 	public String pwCheck(String id, String email) {
 		return dao.pwCheck(id, email);
 	}
+
+	/**
+	 * 회원 중복
+	 */
+	@Override
+	public String isMember(String id) {
+		return dao.isMember(id);
+	}
 }

@@ -315,10 +315,10 @@
         </div>
         <div class="modal-footer">
           <input type="submit" class="btn" style="color: green" value="저장">
-          <input type="reset" class="btn btn-warning" value="취소">
+          <input type="reset" class="btn btn-warning" value="취소"> 
         </div>
       </form>
     </div>
   </div>
 </body>
-</html>
+</html> 

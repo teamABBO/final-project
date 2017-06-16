@@ -1,6 +1,7 @@
 package com.kosta.abbo.applier.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kosta.abbo.applier.domain.Applier;
 
@@ -62,4 +63,11 @@ public interface ApplierDao {
 	 * @return
 	 */
 	public int checkDup(int userId, int eventId);
+	
+	/**
+	 * 내가 신청한 행사 목록
+	 * @param userId
+	 * @return
+	 */
+	public List<Map<String, Object>> myEvent(int userId);
 }

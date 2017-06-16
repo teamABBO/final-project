@@ -50,9 +50,30 @@
 <script type="text/javascript" src="/resources/js/main.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(
+	$(document).ready(function() {
+			var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;	
 				
-			 function() {
+			$("#pw").keyup(function() {
+		      var pw = $(this).val();
+		      if(pw.length <= 6 ) {
+		         $("#pwLabel").text("6~15자리 영문숫자조합").css("color","red");
+		      }else if (reg_pw.test($("#pw").val()) &&  pw.length > 6 && pw.length <= 15){
+		         $("#pwLabel").text("사용가능").css("color","green");
+		      }
+		  	 });
+		   $("#repw").keyup(function() {
+			  var repw = $(this).val();
+		      if(repw.length <= 6){
+		    	  $("#repwLabel").text("6~15자리 영문숫자조합").css("color","red")
+		      }else if($("#repw").val() != $("#pw").val()){
+		         $("#repwLabel").text("비밀번호가 다릅니다").css("color","red")
+		      }else if($("#repw").val() == $("#pw").val() && reg_pw.test($("#repw").val())){
+		         $("#repwLabel").text("사용가능").css("color","green");
+		      }
+		   });
+		
+				
+		
 				$(document).on(
 						'change',
 						'.btn-file :file',
@@ -165,6 +186,7 @@
 				<!-- 비밀번호 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="phone">비밀번호</label>
+					<label id="pwLabel"></label>
 					<div class="col-md-4">
 						<input id="pw" name="pw" type="password" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md">
 					</div>
@@ -173,6 +195,7 @@
 				<!-- 비밀번호 확인 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="phone">비밀번호 확인</label>
+					<label id="repwLabel"></label>
 					<div class="col-md-4">
 						<input id="repw" name="repw" type="password" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md">
 					</div>
@@ -244,9 +267,9 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="save"></label>
 					<div class="col-md-8">
-						<a class="btn btn-danger" href="delete">회원 탈퇴</a>
-						<button type="submit" id="save" name="save" class="btn btn-success">수정</button>
-						<a class="btn btn-primary" href="#primary" data-toggle="modal">취소</a>
+						<a class="btn btn-common" href="delete">회원 탈퇴</a>
+						<button type="submit" id="save" name="save" class="btn btn-common">수정</button>
+						<a class="btn btn-common" href="#primary" data-toggle="modal">취소</a>
 					</div>
 				</div>
 			</fieldset>
@@ -296,6 +319,7 @@
 				<!-- 비밀번호 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="phone">비밀번호</label>
+					<label id="pwLabel"></label>
 					<div class="col-md-4">
 						<input id="pw" name="pw" type="password" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md">
 					</div>
@@ -304,6 +328,7 @@
 				<!-- 비밀번호 확인 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="phone">비밀번호 확인</label>
+					<label id="repwLabel"></label>
 					<div class="col-md-4">
 						<input id="repw" name="repw" type="password" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md">
 					</div>
@@ -381,9 +406,9 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="save"></label>
 					<div class="col-md-8">
-						<a class="btn btn-danger" href="delete">회원 탈퇴</a>
-						<button type="submit" id="save" name="save" class="btn btn-success">수정</button>
-						<a class="btn btn-primary" href="#primary" data-toggle="modal">취소</a>
+						<a class="btn btn-common" href="delete">회원 탈퇴</a>
+						<button type="submit" id="save" name="save" class="btn btn-common">수정</button>
+						<a class="btn btn-common" href="#primary" data-toggle="modal">취소</a>
 					</div>
 				</div>
 			</fieldset>
@@ -434,6 +459,7 @@
 				<!-- 비밀번호 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="phone">비밀번호</label>
+					<label id="pwLabel"></label>
 					<div class="col-md-4">
 						<input id="pw" name="pw" type="password" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" >
 					</div>
@@ -442,6 +468,7 @@
 				<!-- 비밀번호 확인 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="phone">비밀번호 확인</label>
+					<label id="repwLabel"></label>
 					<div class="col-md-4">
 						<input id="repw" name="repw" type="password" placeholder="비밀번호를 다시 입력 해 주세요." class="form-control input-md" >
 					</div>
@@ -514,7 +541,7 @@
 					<div class="col-md-4">
 
 						<select id="truckArea" name="truckArea" class="form-control">
-							<option value="">기존 : ${login.truckArea}</option>
+							<option value="">다시 선택 해 주세요.</option>
 							<option value="1">강남구</option>
 							<option value="2">강동구</option>
 							<option value="3">강북구</option>
@@ -636,9 +663,9 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="save"></label>
 					<div class="col-md-8">
-						<a class="btn btn-danger" href="delete">회원 탈퇴</a>
-						<button type="submit" id="save" name="save" class="btn btn-success">수정</button>
-						<a class="btn btn-primary" href="#primary" data-toggle="modal">취소</a>
+						<a class="btn btn-common" href="delete">회원 탈퇴</a>
+						<button type="submit" id="save" name="save" class="btn btn-common">수정</button>
+						<a class="btn btn-common" href="#primary" data-toggle="modal">취소</a>
 					</div>
 				</div>
 			</fieldset>
