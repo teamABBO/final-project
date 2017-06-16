@@ -123,6 +123,8 @@
 <input type="hidden" name="eventId" value="${event.eventId }">
 <input type="hidden" name="page" value="${cri.page }">
 <input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+<input type="hidden" name="searchType" value="${cri.searchType}">
+<input type="hidden" name="keyword" value="${cri.searchType}">
 </form>
 
 

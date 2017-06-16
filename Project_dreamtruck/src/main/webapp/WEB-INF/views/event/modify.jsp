@@ -62,12 +62,12 @@
 		console.log(formObj);
 		
 		$("#save").on("click", function() {
-			formObj.submit();v
+			formObj.submit();
 			
 		});
 		
 		$("#list").on("click", function() {
-			self.location = "/event/list";
+			self.location = "/event/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 		});
 		
 		// 이미지 변경
@@ -151,7 +151,11 @@
   <!-- 배너 -->
 
 <!-- 행사수정 -->
-  <form class="form-horizontal" method="post" role="form" id="form1" enctype="multipart/form-data">
+  <form class="form-horizontal" method="post" role="form" id="form1" enctype="multipart/form-data" action="modify" >
+    <input type="hidden" name="page" value="${cri.page }">
+    <input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+    <input type="hidden" name="searchType" value="${cri.searchType}">
+<input type="hidden" name="keyword" value="${cri.searchType}">
          <fieldset>
          <!-- 행사 게시판 번호 -->
          <div class="form-group">
