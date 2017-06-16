@@ -140,19 +140,23 @@
           </c:if>
           <c:if test="${empty event.img }">
             <img src="/displayFile?fileName=/event/noimage.png" alt=""
-              class="img-rounded" style="width: 300px; height: auto; margin-left: 200px" />
+              class="img-rounded" />
           </c:if>
         </div>
         <div class="col-sm-6">
           <div class="skills overflow">
-            <h3>행사시작날짜:</h3>
-            <p>${event.startDate }</p>
-            <h3>행사기간:</h3>
-            <p>${event.duration }</p>
-            <h3>모집트럭 수:</h3>
-            <p>${event.recruit }</p>
-            <span><h3>영업장소:</h3>
-              <p>
+          <table class="table table-hover" style="text-align: center" >
+          <tr>
+            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>행사기간 :</strong> ${event.startDate }부터 ${event.duration }일</h3></td>
+          </tr>
+          <tr>
+            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>모집트럭 수 :</strong> ${event.recruit }</h3></td>
+            </tr>
+          <tr>
+            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>신청한 트럭 수 :</strong> ${event.applierCnt }</h3></td>
+            </tr>
+          <tr>
+            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>영업장소 :</strong> 
                 서울시
                 <c:choose>
                   <c:when test="${event.guId  eq '1'}">
@@ -231,9 +235,9 @@
                     중랑구
                     </c:when>
                 </c:choose>
-              </p></span>
-            <h3>신청트럭 수:</h3>
-            <p>${event.applierCnt }</p>
+                </h3></td>
+                </tr>
+                </table>
           </div>
            <c:choose>
             <c:when test="${login.type=='truck'}">
