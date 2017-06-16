@@ -140,6 +140,7 @@
 <%@include file="../include/header.jsp"%>
 	<input type="hidden" name="userId" value="${login.userId}">
 	<input type="hidden" name="type" value="${login.type}">
+	
 	 <c:choose>
 	<c:when test="${login.type == 'normal'}">
 			<!-- 배너 -->
@@ -177,9 +178,10 @@
 				<br><br>
 					<label class="col-md-4 control-label" for="name">아이디</label>
 					<div class="col-md-4">
-						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" value="${login.id}" disabled>
+						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" value="${normal.id}" disabled>
 						<input id="type" name="type" type="hidden" value="${login.type}">
 						<input id="userId" name="userId" type="hidden" value="${login.userId}">
+						<input type="hidden" id="id" name="id" value="${login.id}">
 					</div>
 				</div>
 
@@ -206,7 +208,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">전화번호 </label>
 					<div class="col-md-4">
-						<input id="phone" name="phone"  type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" value="${login.phone}">
+						<input id="phone" name="phone"  type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" value="${normal.phone}">
 					</div>
 					
 				</div>
@@ -215,7 +217,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="rpassword">이름</label>
 					<div class="col-md-4">
-						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" value="${login.name}" disabled>
+						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" value="${normal.name}" disabled>
 					</div>
 				</div>
 				
@@ -223,7 +225,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">이메일</label>
 					<div class="col-md-4">
-						<input id="email" name="email" type="email" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required value="${login.email}">
+						<input id="email" name="email" type="email" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required value="${normal.email}">
 					</div>
 				</div>
 				
@@ -233,7 +235,83 @@
 					<div class="col-md-4">
 					
 						<select id="likeArea" name="likeArea" class="form-control">
-							<option value="">다시 선택 해 주세요.</option>
+						<c:choose>
+                		  <c:when test="${normal.likeArea eq '1'}">
+                   			  <option value="1">강남구</option>
+                    	  </c:when>
+                  		<c:when test="${normal.likeArea eq '2'}">
+                    		  <option value="2">강동구</option>		
+                    	</c:when>
+                  		<c:when test="${normal.likeArea eq '3'}">
+                   			  <option value="3">강북구</option>
+                   		</c:when>
+                  		<c:when test="${normal.likeArea eq '4'}">
+                   			  <option value="4">강서구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea eq '5'}">
+                    		  <option value="5">관악구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea eq '6'}">
+                    		  <option value="6">광진구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '7'}">
+                    		  <option value="7">구로구</option>
+                   		</c:when>
+                  		<c:when test="${normal.likeArea  eq '8'}">
+                      		  <option value="8">금천구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '9'}">
+                   			  <option value="9">노원구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '10'}">
+                    		  <option value="10">도봉구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '11'}">
+                   			  <option value="11">동대문구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '12'}">
+                    		  <option value="12">동작구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '13'}">
+                     		  <option value="13">마포구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '14'}">
+                    		  <option value="14">서대문구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '15'}">
+                   			  <option value="15">서초구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '16'}">
+                    		  <option value="16">성동구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '17'}">
+                   			  <option value="17">성북구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '18'}">
+                    		  <option value="18">송파구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '19'}">
+                    		  <option value="19">양천구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '20'}">
+                    		  <option value="20">영등포구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '21'}">
+                    		  <option value="21">용산구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '22'}">
+                    		  <option value="22">은평구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '23'}">
+                              <option value="23">종로구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '24'}">
+                    		  <option value="24">중구</option>
+                    	</c:when>
+                  		<c:when test="${normal.likeArea  eq '25'}">
+                    		  <option value="25">중랑구</option>
+                    	</c:when>
+                </c:choose>
 							<option value="1">강남구</option>
 							<option value="2">강동구</option>
 							<option value="3">강북구</option>
@@ -312,7 +390,7 @@
 					<div class="col-md-4">
 						<input id="type" name="type" type="hidden" value="${login.type}">
 						<input id="userId" name="userId" type="hidden" value="${login.userId}">
-						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" disabled value="${login.id}">
+						<input id="id" name="id" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md" disabled value="${event.id}">
 					</div>
 				</div>
 
@@ -339,7 +417,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">전화번호 </label>
 					<div class="col-md-4">
-						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" value="${login.phone}">
+						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" value="${event.phone}">
 					</div>
 				</div>
 				
@@ -347,7 +425,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="rpassword">이름</label>
 					<div class="col-md-4">
-						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled value="${login.name}">
+						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled value="${event.name}">
 					</div>
 				</div>
 				
@@ -357,7 +435,83 @@
 					<div class="col-md-4">
 					
 						<select id="likeArea" name="likeArea" class="form-control">
-							<option value="">다시 선택 해 주세요.</option>
+						<c:choose>
+                		  <c:when test="${event.likeArea eq '1'}">
+                   			  <option value="1">강남구</option>
+                    	  </c:when>
+                  		<c:when test="${event.likeArea eq '2'}">
+                    		  <option value="2">강동구</option>		
+                    	</c:when>
+                  		<c:when test="${event.likeArea eq '3'}">
+                   			  <option value="3">강북구</option>
+                   		</c:when>
+                  		<c:when test="${event.likeArea eq '4'}">
+                   			  <option value="4">강서구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea eq '5'}">
+                    		  <option value="5">관악구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea eq '6'}">
+                    		  <option value="6">광진구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '7'}">
+                    		  <option value="7">구로구</option>
+                   		</c:when>
+                  		<c:when test="${event.likeArea  eq '8'}">
+                      		  <option value="8">금천구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '9'}">
+                   			  <option value="9">노원구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '10'}">
+                    		  <option value="10">도봉구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '11'}">
+                   			  <option value="11">동대문구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '12'}">
+                    		  <option value="12">동작구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '13'}">
+                     		  <option value="13">마포구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '14'}">
+                    		  <option value="14">서대문구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '15'}">
+                   			  <option value="15">서초구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '16'}">
+                    		  <option value="16">성동구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '17'}">
+                   			  <option value="17">성북구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '18'}">
+                    		  <option value="18">송파구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '19'}">
+                    		  <option value="19">양천구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '20'}">
+                    		  <option value="20">영등포구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '21'}">
+                    		  <option value="21">용산구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '22'}">
+                    		  <option value="22">은평구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '23'}">
+                              <option value="23">종로구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '24'}">
+                    		  <option value="24">중구</option>
+                    	</c:when>
+                  		<c:when test="${event.likeArea  eq '25'}">
+                    		  <option value="25">중랑구</option>
+                    	</c:when>
+                </c:choose>
 							<option value="1">강남구</option>
 							<option value="2">강동구</option>
 							<option value="3">강북구</option>
@@ -391,7 +545,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">이메일</label>
 					<div class="col-md-4">
-						<input id="email" name="email" type="email" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required value="${login.email}">
+						<input id="email" name="email" type="email" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required value="${event.email}">
 					</div>
 				</div>
 					
@@ -399,7 +553,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="contactname">담당부서명</label>
 					<div class="col-md-4">
-						<input id="eventDep" name="eventDep" type="text" placeholder="담당부서명을 입력 해 주세요." class="form-control input-md">
+						<input id="eventDep" name="eventDep" type="text" value="${event.eventDep}" class="form-control input-md">
 					</div>
 				</div>
 				<!-- 버튼 -->
@@ -452,7 +606,7 @@
 						<input id="type" name="type" type="hidden" value="${login.type}">
 						<input id="userId" name="userId" type="hidden" value="${login.userId}">
 						<input type="hidden" id="id" name="id" value="${login.id}">
-						<input id="id2" name="id2" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md"  value="${login.id}" disabled>
+						<input id="id2" name="id2" type="text" placeholder="아이디를 입력 해 주세요." class="form-control input-md"  value="${truck.id}" disabled>
 					</div>
 				</div>
 
@@ -479,7 +633,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">전화번호 </label>
 					<div class="col-md-4">
-						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" value="${login.phone}">
+						<input id="phone" name="phone" type="text" placeholder="전화번호를 입력 해 주세요. " class="form-control input-md" value="${truck.phone}">
 					</div>
 				</div>
 				
@@ -487,7 +641,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="rpassword">이름</label>
 					<div class="col-md-4">
-						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled value="${login.name}">
+						<input id="name" name="name" type="text" placeholder="이름을 입력 해 주세요." class="form-control input-md" disabled value="${truck.name}">
 					</div>
 				</div>
 				
@@ -495,7 +649,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">이메일</label>
 					<div class="col-md-4">
-						<input id="email" name="email" type="email" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required value="${login.email}">
+						<input id="email" name="email" type="email" placeholder="이메일을 입력 해 주세요." class="form-control input-md" required value="${truck.email}">
 					</div>
 				</div>
 				
@@ -505,7 +659,83 @@
 					<div class="col-md-4">
 					
 						<select id="likeArea" name="likeArea" class="form-control">
-							<option value="">다시 선택 해 주세요.</option>
+						<c:choose>
+                		  <c:when test="${truck.likeArea eq '1'}">
+                   			  <option value="1">강남구</option>
+                    	  </c:when>
+                  		<c:when test="${truck.likeArea eq '2'}">
+                    		  <option value="2">강동구</option>		
+                    	</c:when>
+                  		<c:when test="${truck.likeArea eq '3'}">
+                   			  <option value="3">강북구</option>
+                   		</c:when>
+                  		<c:when test="${truck.likeArea eq '4'}">
+                   			  <option value="4">강서구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea eq '5'}">
+                    		  <option value="5">관악구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea eq '6'}">
+                    		  <option value="6">광진구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '7'}">
+                    		  <option value="7">구로구</option>
+                   		</c:when>
+                  		<c:when test="${truck.likeArea  eq '8'}">
+                      		  <option value="8">금천구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '9'}">
+                   			  <option value="9">노원구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '10'}">
+                    		  <option value="10">도봉구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '11'}">
+                   			  <option value="11">동대문구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '12'}">
+                    		  <option value="12">동작구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '13'}">
+                     		  <option value="13">마포구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '14'}">
+                    		  <option value="14">서대문구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '15'}">
+                   			  <option value="15">서초구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '16'}">
+                    		  <option value="16">성동구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '17'}">
+                   			  <option value="17">성북구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '18'}">
+                    		  <option value="18">송파구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '19'}">
+                    		  <option value="19">양천구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '20'}">
+                    		  <option value="20">영등포구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '21'}">
+                    		  <option value="21">용산구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '22'}">
+                    		  <option value="22">은평구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '23'}">
+                              <option value="23">종로구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '24'}">
+                    		  <option value="24">중구</option>
+                    	</c:when>
+                  		<c:when test="${truck.likeArea  eq '25'}">
+                    		  <option value="25">중랑구</option>
+                    	</c:when>
+                </c:choose>
 							<option value="1">강남구</option>
 							<option value="2">강동구</option>
 							<option value="3">강북구</option>
@@ -541,7 +771,83 @@
 					<div class="col-md-4">
 
 						<select id="truckArea" name="truckArea" class="form-control">
-							<option value="">다시 선택 해 주세요.</option>
+						<c:choose>
+                		  <c:when test="${truck.truckArea eq '1'}">
+                   			  <option value="1">강남구</option>
+                    	  </c:when>
+                  		<c:when test="${truck.truckArea eq '2'}">
+                    		  <option value="2">강동구</option>		
+                    	</c:when>
+                  		<c:when test="${truck.truckArea eq '3'}">
+                   			  <option value="3">강북구</option>
+                   		</c:when>
+                  		<c:when test="${truck.truckArea eq '4'}">
+                   			  <option value="4">강서구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea eq '5'}">
+                    		  <option value="5">관악구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea eq '6'}">
+                    		  <option value="6">광진구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '7'}">
+                    		  <option value="7">구로구</option>
+                   		</c:when>
+                  		<c:when test="${truck.truckArea  eq '8'}">
+                      		  <option value="8">금천구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '9'}">
+                   			  <option value="9">노원구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '10'}">
+                    		  <option value="10">도봉구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '11'}">
+                   			  <option value="11">동대문구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '12'}">
+                    		  <option value="12">동작구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '13'}">
+                     		  <option value="13">마포구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '14'}">
+                    		  <option value="14">서대문구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '15'}">
+                   			  <option value="15">서초구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '16'}">
+                    		  <option value="16">성동구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '17'}">
+                   			  <option value="17">성북구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '18'}">
+                    		  <option value="18">송파구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '19'}">
+                    		  <option value="19">양천구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '20'}">
+                    		  <option value="20">영등포구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '21'}">
+                    		  <option value="21">용산구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '22'}">
+                    		  <option value="22">은평구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '23'}">
+                              <option value="23">종로구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '24'}">
+                    		  <option value="24">중구</option>
+                    	</c:when>
+                  		<c:when test="${truck.truckArea  eq '25'}">
+                    		  <option value="25">중랑구</option>
+                    	</c:when>
+                </c:choose>
 							<option value="1">강남구</option>
 							<option value="2">강동구</option>
 							<option value="3">강북구</option>
@@ -575,7 +881,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="address1">사업자번호</label>
 					<div class="col-md-4">
-						<input id="sid" name="sid" type="text" placeholder="사업자번호를 입력 해 주세요. " class="form-control input-md" value="${login.sid}" disabled>
+						<input id="sid" name="sid" type="text" placeholder="사업자번호를 입력 해 주세요. " class="form-control input-md" value="${truck.sid}" disabled>
 
 					</div>
 				</div>
@@ -584,7 +890,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="address1">차량번호</label>
 					<div class="col-md-4">
-						<input id="truckNum" name="truckNum" type="text" placeholder="차량번호를 입력 해 주세요." class="form-control input-md" value="${login.truckNum}" disabled>
+						<input id="truckNum" name="truckNum" type="text" placeholder="차량번호를 입력 해 주세요." class="form-control input-md" value="${truck.truckNum}" disabled>
 					</div>
 				</div>
 
@@ -592,7 +898,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="city">트럭상호명</label>
 					<div class="col-md-4">
-						<input id="truckName" name="truckName" type="text" placeholder="트럭상호명을 입력 해 주세요." class="form-control input-md" value="${login.truckName}">
+						<input id="truckName" name="truckName" type="text" placeholder="트럭상호명을 입력 해 주세요." class="form-control input-md" value="${truck.truckName}">
 
 					</div>
 				</div>
@@ -603,7 +909,7 @@
 					<div class="col-md-4">
 
 						<select id="truckFood" name="truckFood" class="form-control">
-							<option value="">다시 선택 해 주세요.</option>
+							<option value="${truck.truckFood}">${truck.truckFood}</option>
 							<option value="한식">한식</option>
 							<option value="일식">일식</option>
 							<option value="중식">중식</option>
@@ -632,18 +938,18 @@
                         <div class="form-group">
                            <div class="input-group">
                               <span class="input-group-btn"> 
-                              <input type="text" class="form-control" style="margin-left: 15px; margin-top: 2px;" id="truckImg" name="truckImg" value="${login.truckImg }">
+                              <input type="text" class="form-control" style="margin-left: 15px; margin-top: 2px;" id="truckImg" name="truckImg" value="${truck.truckImg }">
                               <span class="btn btn-file image-preview-input" style="margin-right: 1px; margin-top: 2px; height: 40px;" >업로드
                                <input type="file" name="file" id="imgInp">
                               </span>
                               <a type="button" id="deleteImg" class="btn btn-default image-preview-input" style="margin-right: 30px; margin-top: 2px; height: 40px;"><i class="fa fa-close"></i></a>
                               </span>
                            </div>
-                           <c:if test="${empty login.truckImg}">
+                           <c:if test="${empty truck.truckImg}">
                            <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/noimage.png" />
                            </c:if>
-                           <c:if test="${not empty login.truckImg}">
-                           <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/${login.id}/${login.truckImg }" />
+                           <c:if test="${not empty truck.truckImg}">
+                           <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/${truck.id}/${truck.truckImg }" />
                            </c:if>
                         </div>
                      </div>
@@ -655,7 +961,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="info">내용</label>
 					<div class="col-md-5">
-						<textarea rows="8" cols="84" id="truckInfo" name="truckInfo" style="resize: none;" class="form-control">${login.truckInfo}</textarea>
+						<textarea rows="8" cols="84" id="truckInfo" name="truckInfo" style="resize: none;" class="form-control">${truck.truckInfo}</textarea>
 					</div>
 				</div>
 

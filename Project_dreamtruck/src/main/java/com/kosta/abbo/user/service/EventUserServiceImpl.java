@@ -32,8 +32,8 @@ public class EventUserServiceImpl implements EventUserService {
 	 * @return
 	 */
 	@Override
-	public EventUser read(int eventUserId) {
-		return dao.read(eventUserId);
+	public EventUser read(int userId) {
+		return dao.read(userId);
 	}
 
 	/**

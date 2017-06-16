@@ -100,12 +100,12 @@ if (result == 'fale') {
 						<hr>
 						<div class="row">
 							<div class="col-xs-6 col-sm-6 col-md-6">
-								<button type="submit" class="btn btn-lg btn-danger btn-block" >탈퇴하기</button>
+								<button type="submit" class="btn btn-sm btn-common btn-block" >탈퇴하기</button>
 								<!-- <a class="btn btn-lg btn-danger btn-block" href="#primary" data-toggle="modal">탈퇴하기</a> -->
 							</div>
 
 							<div class="col-xs-6 col-sm-6 col-md-6">
-								<a href="../" class="btn btn-lg btn-primary btn-block">홈으로</a>
+								<a href="../" class="btn btn-sm btn-common btn-block">홈으로</a>
 							</div>
 						</div>
 						

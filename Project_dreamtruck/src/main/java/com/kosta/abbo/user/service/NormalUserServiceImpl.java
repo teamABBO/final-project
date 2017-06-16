@@ -64,6 +64,7 @@ public class NormalUserServiceImpl implements NormalUserService {
 		dao.delete(id,pw);
 	}
 
+	
 	/**
 	 * 일반회원 목록
 	 * @return

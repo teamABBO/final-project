@@ -2,6 +2,7 @@ package com.kosta.abbo.user.controller;
 
 import java.io.File;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -231,7 +232,6 @@ public class NormalUserController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public void mypageGET(NormalUser normalUser, Model model) {
 		logger.info("마이페이지 GET .....");
-
 	}
 
 	/**
@@ -239,9 +239,20 @@ public class NormalUserController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modifyGET(Model model, RedirectAttributes rttr) throws Exception {
+	public void modifyGET(Model model, HttpSession session) throws Exception {
 		logger.info("회원 정보 수정 GET .....");
-		/* model.addAttribute(normalService.read(userId)); */
+		NormalUser loginUser = (NormalUser) session.getAttribute("login");
+		if(loginUser.getType().equals("normal")){
+			logger.info(loginUser.getType());
+			model.addAttribute("normal",normalService.read(loginUser.getUserId()));
+		} else if(loginUser.getType().equals("event")){
+			logger.info(loginUser.getType());
+			model.addAttribute("event",eventService.read(loginUser.getUserId()));
+		} else if(loginUser.getType().equals("truck")){
+			logger.info(loginUser.getType());
+			model.addAttribute("truck",truckService.read(loginUser.getUserId()));
+		}
+		
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
@@ -266,8 +277,8 @@ public class NormalUserController {
 			logger.info("contentType : " + file.getContentType());
 			
 			String path = uploadPath + "/user";
-			NormalUser normalUser2 = (NormalUser) session.getAttribute("login");
-			String id = normalUser2.getId();
+			normalUser = (NormalUser) session.getAttribute("login");
+			String id = normalUser.getId();
 			
 			TruckUser findTruck = truckService.read(truckUser.getUserId());
 	         if (findTruck.getTruckImg() != null) {
@@ -276,31 +287,17 @@ public class NormalUserController {
 	            new File("C:/dt/user/" + id + "/" + sumnail).delete();
 	         } 
 			
-			
 			if (!file.getOriginalFilename().equals("") || file.getOriginalFilename().length() != 0) {
 				UploadUserUtils.uploadFile(id, path, file.getOriginalFilename(), file.getBytes());
 			}
 			truckService.update(truckUser);
 		}
-		model.addAttribute("modify", "modify");
-		Object obj = session.getAttribute("login");
-		if (obj != null) {
-			session.removeAttribute("login");
-			session.invalidate();
-			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-
-			if (loginCookie != null) {
-				loginCookie.setPath("/");
-				loginCookie.setMaxAge(0);
-				response.addCookie(loginCookie);
-			}
-		}
-		return "user/login";
+		rttr.addFlashAttribute("modify", "modify");
+		return "redirect:/user/mypage";
 	}
 
 	/**
 	 * 회원 탈퇴
-	 * 
 	 * @param dto
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -310,7 +307,6 @@ public class NormalUserController {
 
 	/**
 	 * 회원 탈퇴
-	 * 
 	 * @param id
 	 * @param pw
 	 * @param rttr
