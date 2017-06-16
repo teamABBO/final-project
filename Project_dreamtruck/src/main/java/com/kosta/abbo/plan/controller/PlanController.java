@@ -102,7 +102,7 @@ public class PlanController {
 	@ResponseBody
 	@RequestMapping(value="/modify", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	public ResponseEntity<String> modify(int planId, String title, String open, String close, 
-			                             String x, String y, String day){
+			                             String x, String y, String day, int userId){
 		logger.info("스케줄 수정!!");
 		Plan plan = new Plan();
 		plan.setPlanId(planId);
@@ -112,16 +112,20 @@ public class PlanController {
 		plan.setX(x);
 		plan.setY(y);
 		plan.setDay(day);
-		service.update(plan);
-		return new ResponseEntity<String>("modify", HttpStatus.OK);
+		plan.setUserId(userId);
+		
+		if (service.uploadCheck(plan) == null) {
+			service.update(plan);
+			return new ResponseEntity<String>("modify", HttpStatus.OK);
+		}else{
+			return new ResponseEntity<String>("fail", HttpStatus.OK);
+		}
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/uploadCheck", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	public ResponseEntity<String> uploadCheck(int userId, String day, String open, String close) throws JsonProcessingException{
 		logger.info("스케줄 등록 유효성검사!!");
-		logger.info("@@@@userId : "+userId);
-		logger.info("@@@@day : "+day);
 		for (int i = 0; i < day.split(",").length; i++) {
 			Plan plan = new Plan();
 			plan.setUserId(userId);

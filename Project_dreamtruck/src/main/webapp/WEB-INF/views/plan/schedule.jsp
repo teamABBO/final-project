@@ -540,8 +540,8 @@ function setChildValue(target, name, num){
 		   $("#iaddress"+num).val(name);
 	   }
 	   else if(target=='point'){
-		   $("#x"+num).val(name.lat());
-		   $("#y"+num).val(name.lng());
+		   $("#ix"+num).val(name.lat());
+		   $("#iy"+num).val(name.lng());
 	   }
 }
 
@@ -560,20 +560,17 @@ function reversegeo(type,day,count,x, y) {
 	geocoder.geocode({'latLng' : latlng}, function(results, status) {
 		  if (status == google.maps.GeocoderStatus.OK)  {
 		   	   if(type==0){
-		   		if (results[1]){
-					  $("#"+day+count).append(results[1].formatted_address);
-				   }
-				else{
-					  setTimeout(function(){   //단위 시간당 요청 제한이 있어 재 요청 시간조절
-						  reversegeo(day, count,x, y);
-					  	} ,500);
-				  }
+				   $("#"+day+count).append(results[1].formatted_address);
 			   }else if(type==1){
 				   $("#"+day+count).val(results[1].formatted_address);
 			   }else if(type==2){
 				   $("."+day+count).html(results[1].formatted_address);
 			   }
-		   }
+		  }else{
+			   setTimeout(function(){   //단위 시간당 요청 제한이 있어 재 요청 시간조절
+					  reversegeo(type, day, count,x, y);
+				 } ,1000);
+		  }
 		 });
 }
 
@@ -616,8 +613,8 @@ function popupOpen(num){
 										   '	<h2 class="address'+list[num].planId+'" id="'+list[num].day+count[list[num].day]+'"></h2>'+
 										   '    <div id="button'+list[num].planId+'">'+
 										   '	   <button type="button" class="btn btn-sm glyphicon glyphicon-globe" id="detailMap'+list[num].planId+'" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'"> 지도보기</button>'+
-										   '       <input type="button" class="btn btn-sm btn-warning" id="map'+list[num].planId+'" data-src="'+list[num].planId+'" value="삭제">'+
 										   '       <input type="button" class="btn btn-sm btn-warning" id="ok'+list[num].planId+'" data-src="'+list[num].planId+'" value="수정">'+
+										   '       <input type="button" class="btn btn-sm btn-warning" id="map'+list[num].planId+'" data-src="'+list[num].planId+'" value="삭제">'+
 										   '       <input type="hidden" class="btn btn-sm btn-warning" id="cancel'+list[num].planId+'" data-src="'+list[num].planId+'" value="취소">'+
 										   '    </div>'+
 										   '	<hr><div id="map_canvas'+list[num].day+count[list[num].day]+'" class="toggleMap" style="width: 300px; height: 300px;"></div>'+
@@ -630,8 +627,8 @@ function popupOpen(num){
 					   					   '	<h2 class="address'+list[num].planId+'" id="'+list[num].day+count[list[num].day]+'"></h2>'+
 					   					   '    <div id="button'+list[num].planId+'">'+
 					   					   '	    <button type="button" class="btn btn-sm glyphicon glyphicon-globe" id="detailMap'+list[num].planId+'" value="'+list[num].x+","+list[num].y+","+list[num].day+count[list[num].day]+'"> 지도보기</button>'+
-					   					   '        <input type="button" class="btn btn-sm btn-warning" id="map'+list[num].planId+'" data-src="'+list[num].planId+'" value="삭제">'+
 					   					   '        <input type="button" class="btn btn-sm btn-warning" id="ok'+list[num].planId+'" data-src="'+list[num].planId+'" value="수정">'+
+					   					   '        <input type="button" class="btn btn-sm btn-warning" id="map'+list[num].planId+'" data-src="'+list[num].planId+'" value="삭제">'+
 					   					   '        <input type="hidden" class="btn btn-sm btn-warning" id="cancel'+list[num].planId+'" data-src="'+list[num].planId+'" value="취소">'+
 					   					   '    </div>'+
 					   					   '	<hr><div id="map_canvas'+list[num].day+count[list[num].day]+'" class="toggleMap" style="width: 300px; height: 300px;"></div>'+
@@ -723,13 +720,16 @@ function popupOpen(num){
 					close: parseTime[1],
 					x: $("#ix"+$(this).attr("data-src")).val(),
 					y: $("#iy"+$(this).attr("data-src")).val(),
-					day: $("#iday"+$(this).attr("data-src")).val()
+					day: $("#iday"+$(this).attr("data-src")).val(),
+					userId: ${login.userId}
 				},
 				dataType : "text",
 				success : function(result) {
 					if(result == 'modify'){
 						alert('수정되었습니다.');
 						location.reload();
+					}else if(result == 'fail'){
+						alert('입력하신 시간에 등록되어있는 스케줄이 있습니다.');
 					}
 				}
 			  });

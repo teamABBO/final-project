@@ -29,6 +29,7 @@
 			   new google.maps.Point(0, 0),
 			   new google.maps.Point(6, 20));
 			// 녹색 마커 아이콘을 정의하는 부분
+		 var truckIcon = '/resources/images/truckMarker.png';
 		 var map;
 		 var maker=[];
 		 var latlng;
@@ -47,7 +48,7 @@
 					 latlng = new google.maps.LatLng(list[num].x, list[num].y);
 					 maker.push(new google.maps.Marker({
 						   position: latlng,
-						   icon: GreenIcon,
+						   icon: truckIcon,
 						   animation: google.maps.Animation.DROP,
 						   id: num,
 						   map: map

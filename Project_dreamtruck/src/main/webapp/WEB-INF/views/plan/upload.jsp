@@ -110,22 +110,25 @@ $(document).ready(function(){
    document.getElementById('form').innerHTML = makestr(1);
    $("#add").click(function(){
       if(count==13){
-         alert("스케줄은 최대 14개만 합시다.");
+    	  alert("스케줄은 최대 14개만 합시다.");
       }else{
          count++;
          document.getElementById('addForm'+count).innerHTML = makestr(count+1);
       }
+      $(this).blur();
    });
    $("#remove").click(function(){
       if(count==0){
-         alert("전부없앨수 없습니다.");
+    	  alert("전부없앨수 없습니다.");
       }else{
          $('#addForm'+count).empty();
          count--;
       }
+      $(this).blur();
    });
    $("#form").on("click", "#map", function(){
       popupOpen($(this).attr("data-src"));
+      $(this).blur();
    });
    for (var i = 0; i < 15; i++) {
 	   $("#addForm"+i).on("click", "#map", function(){
@@ -211,8 +214,8 @@ $(document).ready(function(){
    	 <input type="hidden" id="where" value="upload">
       <div class="single-features">
          <form class="form-horizontal" method="post" action="" id="uploadForm" >
-            <input type="button" class="circle3" id="add" value="+" >
-            <input type="button" class="circle3" id="remove" value="-" >
+            <input type="button" class="btn btn-common" id="add" value="추가" >
+            <input type="button" class="btn btn-common" id="remove" value="제거" >
             <hr>
             <div id="form"> </div>
                

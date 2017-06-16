@@ -66,14 +66,6 @@
 		where  plan_id = #{planId}
 	</update>
 	
-	<select id="checkOpen" resultType="Plan">
-		select plan_id planId, day, title, x, y, open, close, user_id userId
-		from   plan
-		where  user_id = #{userId} and
-		       day = #{day} and
-		       to_char(to_date(#{open} , 'hh24:mi:ss'), 'HH24:MI') between open and close;
-	</select>
-	
 	<select id="uploadCheck" resultType="Plan">
 		select plan_id planId, day, title, x, y, open, close, user_id userId
 		from   (select plan_id, day, title, x, y, open, close, user_id
