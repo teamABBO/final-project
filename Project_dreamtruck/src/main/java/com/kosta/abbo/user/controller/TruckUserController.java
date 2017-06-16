@@ -83,7 +83,7 @@ public class TruckUserController {
 	}
 
 	@RequestMapping(value="/read", method = RequestMethod.GET)
-	public void read(@RequestParam("userId") int userId, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
+	public void read(@RequestParam("userId") int userId, @RequestParam("page") int page, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
 		logger.info(userId+"**** ");
 		NormalUser loginUser = (NormalUser) session.getAttribute("login");
 		
@@ -98,6 +98,9 @@ public class TruckUserController {
 				model.addAttribute(service.read(userId));
 			}
 		}
+		cri.setPage(page);
+		model.addAttribute("cri", cri);
+		logger.info("페이지정보 : "+model.addAttribute("cri", cri).toString());
 		/*NormalUser loginUser = (NormalUser) session.getAttribute("login");*/
 		
 		/*likeservice.checkliketruck(loginUser.getUserId(), truckId);*/

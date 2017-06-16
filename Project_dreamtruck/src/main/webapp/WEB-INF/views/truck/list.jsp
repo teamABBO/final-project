@@ -223,7 +223,7 @@
 																						<ul class="nav nav-pills">
 																								<h2>
 
-																										<a href="read?userId=${truckUser.userId }"
+																										<a href="read${pageMaker.makeSearch(pageMaker.cri.page)}&userId=${truckUser.userId }"
 																												style="color: white" class="infoName">${truckUser.truckName }</a>
 																								</h2>
 

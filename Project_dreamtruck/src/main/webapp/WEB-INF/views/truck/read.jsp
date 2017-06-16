@@ -326,12 +326,14 @@ $(document).ready(function(){
 				<div class="container">
 						<div class="row">
 
-								<form role="form" method="post">
+								<form role="form" action="/list" method="post">
 										<input type="hidden" name="userId" value="${truckUser.userId}">
 										<input type="hidden" name="page" value="${cri.page }">
 										<input type="hidden" name="perPageNum"
-												value="${cri.perPageNum }"> <input type="hidden"
-												name="searchType" value="${cri.searchType }"> <input
+												value="${cri.perPageNum }"> 
+										<input type="hidden"
+												name="searchType" value="${cri.searchType }"> 
+												<input
 												type="hidden" name="keyword" value="${cri.keyword }">
 								</form>
 
