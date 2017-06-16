@@ -135,8 +135,7 @@
         <div class="col-sm-6">
           <c:if test="${!empty event.img }">
             <img src="/displayFile?fileName=/event${event.img}" alt=""
-              class="img-rounded"
-              style="width: 300px; height: auto; margin-left: 200px" />
+              class="img-rounded"/>
           </c:if>
           <c:if test="${empty event.img }">
             <img src="/displayFile?fileName=/event/noimage.png" alt=""
@@ -145,9 +144,9 @@
         </div>
         <div class="col-sm-6">
           <div class="skills overflow">
-          <table class="table table-hover" style="text-align: center" >
+          <table class="table " >
           <tr>
-            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>행사기간 :</strong> ${event.startDate }부터 ${event.duration }일</h3></td>
+            <td><h3><strong><i class="glyphicon glyphicon-triangle-right" ></i>행사기간 :</strong> ${event.startDate }부터 ${event.duration }일</h3></td>
           </tr>
           <tr>
             <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>모집트럭 수 :</strong> ${event.recruit }</h3></td>
@@ -248,18 +247,18 @@
           
         </div>
     </div>
-    <div style="margin-left: 190px; margin-top: 20px" >
-     <hr style="background-color: #fd8c86; margin-right: 210px;" />
+    <div>
+     <hr style="background-color: #fd8c86;"/>
             <div class="col-md-12 ">
-              <textarea class="form-control col-md-12" name="content"  rows="12" readonly="readonly" style="width: 720px; background-color: #ffffff"> ${event.content }</textarea>
+              <textarea class="form-control col-md-12" name="content"  rows="20" readonly="readonly" style="background-color: #ffffff; border: none; font-size: large;"> ${event.content }</textarea>
             </div>
              <!-- 버튼 -->
-            
             <div class="form-group" >
-               <label class="col-md-4 control-label" for="save"></label>
-          <div class="col-md-12" style="margin-top: 20px; margin-left: 550px" >
-          <button type="submit" id="list" name="list" class="btn btn-common" >목록</button>
-            <input type="hidden" id="modify" name="modify" class="btn btn-common"  value="수정" >
+               <label class="col-md-12 control-label" for="save"></label>
+          <div class="col-md-12">
+            <hr style="background-color: #fd8c86;"/>
+          <button type="submit" id="list" name="list" class="btn btn-common pull-right" >목록</button>
+            <input type="hidden" id="modify" name="modify" class="btn btn-common pull-right" value="수정"  style="margin-right: 5px">
             
           </div>
         </div>
