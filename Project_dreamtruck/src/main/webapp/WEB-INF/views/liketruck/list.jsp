@@ -89,6 +89,32 @@ body {
 </head>
 <!--/head-->
 
+<script>
+$(document).ready(function(){
+	$(".delete").on("click", function(){
+		var truckId = $(this).attr('id').split('delete')[1];
+		$.ajax({
+			type: 'post',
+			url: '/liketruck/delete',
+			data: {
+				userId : truckId
+				},
+			success: function(result){
+				console.log("result: "+result);
+					if (result == 'SUCCESS') {
+						alert("관심트럭 목록에서 삭제되었습니다!");
+						location.reload();
+						}
+				}
+			
+		});
+	});
+	
+	
+});
+
+</script>
+
 <body>
 	<%@include file="../include/header.jsp"%>
 	<!-- 배너 -->
@@ -139,7 +165,7 @@ body {
 									<div class="caption border">
 										<h4 style="color: #fd9483;">${liketruck.truckName}<span class="pull-right"><i class="fa fa-heart">&nbsp;${liketruck.truckLikecnt}</i></span>
 										</h4>
-										<a href="../truck/read?userId=${liketruck.truckId }" class=""><i class="fa fa-eye"> 상세보기</i></a> &nbsp;&nbsp;<a href="#" class=""><i class="fa fa-ban"> 제거</i></a>
+										<a href="../truck/read?userId=${liketruck.truckId }" class=""><i class="fa fa-eye"> 상세보기</i></a> &nbsp;&nbsp;<a class="delete" id="delete${liketruck.truckId}"><i class="fa fa-ban" > 제거</i></a>
 									</div>
 								</div>
 							</div>
