@@ -62,6 +62,7 @@ public interface NormalUserDao {
 	 */
 	public void delete(String id, String pw);
 	
+	
 	/**
 	 * 일반회원 목록
 	 * @return

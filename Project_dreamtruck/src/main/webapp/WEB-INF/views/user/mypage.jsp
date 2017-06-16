@@ -9,24 +9,25 @@
 <title>드림트럭</title>
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="/resources/css/animate.min.css" rel="stylesheet">
-<link href="/resources/css/lightbox.css" rel="stylesheet">
+<link href="/resources/css/animate.min.css" rel="stylesheet"> 
+<link href="/resources/css/lightbox.css" rel="stylesheet"> 
 <link href="/resources/css/main.css" rel="stylesheet">
 <link href="/resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/sweetalert.css" rel="stylesheet">
 <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
 <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
 <script type="text/javascript" src="/resources/js/wow.min.js"></script>
 <script type="text/javascript" src="/resources/js/main.js"></script>
+<script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
 </head>
-<script type="text/javascript">
-var result = '${msg}';
-console.log("${login.type}");
-if (result == 'success') {
-   alert("수정이 완료되었습니다..");
-   self.location = "login";
-}else{
+<script >
+var modify = '${modify}';
+
+console.log(modify);
+if (modify == 'modify') {
+	alert("회원정보가 수정되었습니다.");
 }
 </script>
 <body>

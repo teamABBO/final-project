@@ -6,19 +6,14 @@
 <mapper namespace="com.kosta.abbo.mapper.NormalUserMapper">
 	
 	<!-- 로그인 -->
-	<select id="login" resultType="TruckUser">
+	<select id="login" resultType="NormalUser">
 		SELECT user_id as userId,
       				id,
        			    pw,
        			  type,
        			  name,
        			  phone,
-       			  sid,
-       			  email,
-       			  truck_num as truckNum,
-       			  truck_name as truckName,
-       			  truck_info as truckInfo,
-       			  truck_img as truckImg
+       			  email
 		  FROM   users
 		  WHERE  id = #{id} 
       	    AND  pw = #{pw}
@@ -55,11 +50,11 @@
 	</insert> 
 	
 	<!-- 회원탈퇴 -->
-	<delete id="delete" >
-		DELETE FROM users
-		WHERE  id = #{id}
-    	   AND pw = #{pw}
-	</delete>
+   <delete id="delete" >
+      DELETE FROM users
+      WHERE  id = #{id}
+          AND pw = #{pw}
+   </delete>
 	
 	<!-- 아이디 찾기 -->
 	<select id="idCheck" resultType="String">

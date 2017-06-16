@@ -19,7 +19,7 @@ public interface EventUserService {
 	 * @param eventUserId
 	 * @return
 	 */
-	public EventUser read(int eventUserId);
+	public EventUser read(int userId);
 	
 	/**
 	 * 행사회원 수정

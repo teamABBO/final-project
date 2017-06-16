@@ -33,8 +33,8 @@ public class EventUserDaoImpl implements EventUserDao {
 	 * @return
 	 */
 	@Override
-	public EventUser read(int eventUserId) {
-		return null;
+	public EventUser read(int userId) {
+		return SqlSession.selectOne(namespace + ".read",userId);
 	}
 	
 	/**

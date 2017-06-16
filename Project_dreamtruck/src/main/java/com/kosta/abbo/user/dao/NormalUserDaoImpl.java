@@ -63,15 +63,16 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	 * 일반회원 삭제
 	 * @param normalUserId
 	 */
-	@Override
-	public void delete(String id, String pw) {
-		Map<String, Object> paramMap = new HashMap<String,Object>();
+	   @Override
+	   public void delete(String id, String pw) {
+	      Map<String, Object> paramMap = new HashMap<String,Object>();
 
-		paramMap.put("id", id);
-		paramMap.put("pw", pw);
-		
-		SqlSession.delete(namespace+".delete",paramMap);
-	}
+	      paramMap.put("id", id);
+	      paramMap.put("pw", pw);
+	      
+	      SqlSession.delete(namespace+".delete",paramMap);
+	   }
+
 	
 	/**
 	 * 일반회원 목록

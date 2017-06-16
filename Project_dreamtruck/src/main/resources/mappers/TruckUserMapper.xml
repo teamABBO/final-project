@@ -65,15 +65,19 @@
 	
 	<!-- 트럭상세보기 -->
 	<select id="read" resultType="TruckUser">
-		select user_id as userId, id, name, type, truck_img as truckImg, 
-                    truck_Name as truckName, 
-                    truck_Food as truckFood, 
-                    truck_info as truckInfo, 
-                    truck_area as truckArea, 
+		select user_id as userId, id, name, type, email, phone, sid,
+					like_area as likeArea,
+				    truck_img as truckImg,
+                    truck_Name as truckName,
+                    truck_Food as truckFood,
+                    truck_info as truckInfo,
+                    truck_area as truckArea,
+                    truck_num as truckNum,
                     truck_likecnt as truckLikecnt
     from users
     where user_id = #{userId}
 	</select>
+	
 	
 	<!-- 트럭 목록 -->
 	<select id="list" resultType="TruckUser">
