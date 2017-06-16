@@ -1,5 +1,7 @@
 package com.kosta.abbo.user.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kosta.abbo.HomeController;
+import com.kosta.abbo.liketruck.domain.Liketruck;
 import com.kosta.abbo.liketruck.service.LiketruckService;
 import com.kosta.abbo.page.domain.Criteria;
 import com.kosta.abbo.page.domain.PageMaker;
@@ -23,56 +26,64 @@ import com.kosta.abbo.page.domain.SearchCriteria;
 import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.service.TruckUserService;
 
-
-
 @Controller
 @RequestMapping("/truck")
 public class TruckUserController {
 	@Inject
 	private TruckUserService service;
-	
+
 	@Inject
 	private LiketruckService likeService;
-	
-	//@Inject
-	//private LiketruckService likeservice;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
-	
-	
+
 	/**
 	 * 페이징처리
+	 * 
 	 * @param cri
 	 * @param model
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/listCri", method=RequestMethod.GET)
-	public void listAll(Criteria cri, Model model) throws Exception{
+	@RequestMapping(value = "/listCri", method = RequestMethod.GET)
+	public void listAll(Criteria cri, Model model) throws Exception {
 		logger.info(".... show list Page with Criteria");
-		
+
 		model.addAttribute("list", service.listCriteria(cri));
 	}
-	
+
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model, HttpSession session) throws Exception{
 		
 		logger.info(cri.toString());
-		
-		model.addAttribute("list", service.listSearchCriteria(cri));
+		if (session.getAttribute("login")!=null) {
+			NormalUser loginUser = (NormalUser) session.getAttribute("login");
+			List<Liketruck> likeListAll = likeService.list(loginUser.getUserId());
+			logger.info(likeListAll.toString());
+			logger.info("size : " + likeListAll.size());
+			List<Liketruck> likeList = new ArrayList<Liketruck>();
+			if (likeListAll.size() > 5) {
+				for (int i = 0; i < 5; i++) {
+					likeList.add(likeListAll.get(i));
+				}
+				model.addAttribute("likeList", likeList);
+			} else {
+				model.addAttribute("likeList", likeListAll);
+			}
+
+		}
+		model.addAttribute("list",service.listSearchCriteria(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.listSearchCount(cri));
-		model.addAttribute("pageMaker", pageMaker);
-		
+		model.addAttribute("pageMaker",pageMaker);
+
 	}
 
-	
 	@RequestMapping(value="/read", method = RequestMethod.GET)
-	public void read(@RequestParam("userId") int userId, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
+	public void read(@RequestParam("userId") int userId, @RequestParam("page") int page, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
 		logger.info(userId+"**** ");
 		NormalUser loginUser = (NormalUser) session.getAttribute("login");
 		
@@ -87,11 +98,12 @@ public class TruckUserController {
 				model.addAttribute(service.read(userId));
 			}
 		}
+		cri.setPage(page);
+		model.addAttribute("cri", cri);
+		logger.info("페이지정보 : "+model.addAttribute("cri", cri).toString());
 		/*NormalUser loginUser = (NormalUser) session.getAttribute("login");*/
 		
 		/*likeservice.checkliketruck(loginUser.getUserId(), truckId);*/
 	}
-	
-	
-	
+
 }
