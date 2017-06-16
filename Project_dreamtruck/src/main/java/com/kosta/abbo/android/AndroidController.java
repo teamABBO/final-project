@@ -130,10 +130,10 @@ public class AndroidController {
 	
 	
 	
-//	@RequestMapping("/firebaseTest")
-//	public String firebase(){
-//		return "/FfirebaseTest";
-//	}
+	@RequestMapping("/firebaseTest")
+	public String firebase(){
+		return "/FfirebaseTest";
+	}
 	
 	
 	@RequestMapping("/mapMarker")
