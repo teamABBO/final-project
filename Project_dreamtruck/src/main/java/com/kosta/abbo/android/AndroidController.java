@@ -2,6 +2,7 @@ package com.kosta.abbo.android;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -15,17 +16,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.HomeController;
 import com.kosta.abbo.dto.LoginDTO;
+import com.kosta.abbo.plan.domain.Plan;
+import com.kosta.abbo.plan.service.PlanService;
 import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.service.EventUserService;
 import com.kosta.abbo.user.service.NormalUserService;
 import com.kosta.abbo.user.service.TruckUserService;
-import com.kosta.abbo.util.UploadUserUtils;
 
 @Controller
 @RequestMapping("/android")
@@ -39,6 +42,9 @@ public class AndroidController {
 	
 	@Inject
 	private EventUserService eventService;
+	
+	@Inject
+	private PlanService planService;
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -148,6 +154,26 @@ public class AndroidController {
 			e.printStackTrace();
 		}
 		
+		
+	}
+	
+	@RequestMapping("/mapmarkerlist")
+	public void mapMarkerList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=utf-8");
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		List<Plan> list = planService.truck();
+		
+		String jsonList = objectMapper.writeValueAsString(list);
+		
+		try {
+			PrintWriter out = response.getWriter();
+			out.println(jsonList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
