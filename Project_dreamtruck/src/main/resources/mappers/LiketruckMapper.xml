@@ -6,11 +6,11 @@
 <mapper namespace="com.kosta.abbo.mapper.LiketruckMapper">
 	
 	<!-- 관심트럭 등록 체크  -->
-	<!-- <select id="checkliketruck" resultType="Liketruck">
-		select l.truck_id 
-		from liketruck l join users u 
-		on l.truck_id = u.user_id  where l.user_id=#{userId} and l.truck_id = #{truckId};
-	</select> -->
+	<select id="checkliketruck" resultType="int">
+		select count(*) 
+		from liketruck
+		where user_id = #{userId} and truck_id = #{truckId}
+	</select> 
 
 	<!-- 트럭 목록 -->
 	<select id="list" resultType="Liketruck">
@@ -28,23 +28,29 @@
 	</select>
 	
 	<!-- 관심트럭 등록 (update와 같이 사용) -->
-	<!-- <insert id="create">
+	<insert id="create">
 		insert into liketruck
 								(liketruck_id, truck_id, user_id) 
-		values(liketruck_id_seq.nextval, #{truckId}, #{userId});
-	</insert> -->
+		values(liketruck_id_seq.nextval, #{truckId}, #{userId})
+	</insert> 
 	
 	<!-- 트럭에 관심트럭 등록 업데이트 (create와 같이 사용)  -->
 	<update id="update">
-	update users set #{truckLikecnt} = #{truckLikecnt}+1 where user_id = #{truckId};
+	update users set truck_likecnt = truck_likecnt+1 where user_id = #{truckId}
 	</update>
 
-	
+
+	<!-- 관심트럭 해제시 마이너스 카운트 (delete와 같이 사용) -->
+	<update id="minuscount">
+	update users set truck_likecnt = truck_likecnt-1 where user_id = #{truckId}
+	</update>
+		
 	<!-- 관심트럭 삭제 -->
-	<!-- <delete id="delete">
-	delete from liketruck where liketruck_id = #{liketruckId} ;
-	</delete> -->
+	<delete id="delete">
+	delete from liketruck where user_id = #{userId} and truck_id = #{truckId}
+	</delete> 
 	
+	<!-- 관심트럭 검색 -->
 	<sql id="search">
       <if test="searchType != null">
          <if test="searchType == 'truckName'.toString()">

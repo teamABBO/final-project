@@ -10,18 +10,18 @@ public interface LiketruckService {
 	 * 관심트럭 등록
 	 * @param liketruck
 	 */
-	public void create(Liketruck liketruck);
+	public void create(int userId, int truckId);
 	
 	/**
 	 * 관심트럭 수정
 	 * @param liketruck
 	 */
-	public void update(Liketruck liketruck);
+	public void update(int truckId);
 	
 	/**
 	 * 관심트럭 체크
 	 */
-	public void checkliketruck(int userId, int truckId);
+	public int checkliketruck(int userId, int truckId);
 	/**
 	 * 관심트럭 상세보기
 	 * @param liketruckId
@@ -35,7 +35,7 @@ public interface LiketruckService {
 	 * 관심트럭 삭제
 	 * @param liketruckId
 	 */
-	public void delete(int liketruckId);
+	public void delete(int userId, int truckId);
 	
 	/**
 	 * 관심트럭 목록

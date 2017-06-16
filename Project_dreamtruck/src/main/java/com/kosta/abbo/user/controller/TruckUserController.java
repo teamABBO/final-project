@@ -31,6 +31,9 @@ public class TruckUserController {
 	@Inject
 	private TruckUserService service;
 	
+	@Inject
+	private LiketruckService likeService;
+	
 	//@Inject
 	//private LiketruckService likeservice;
 	
@@ -55,7 +58,7 @@ public class TruckUserController {
 	}
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model) throws Exception{
+	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model, HttpSession session) throws Exception{
 		
 		logger.info(cri.toString());
 		
@@ -69,10 +72,21 @@ public class TruckUserController {
 
 	
 	@RequestMapping(value="/read", method = RequestMethod.GET)
-	public void read(@RequestParam("userId") int userId, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void read(@RequestParam("userId") int userId, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
 		logger.info(userId+"**** ");
-		model.addAttribute(service.read(userId));
+		NormalUser loginUser = (NormalUser) session.getAttribute("login");
 		
+		if (session.getAttribute("login")==null) {
+			model.addAttribute(service.read(userId));
+		}else{
+			if (likeService.checkliketruck(loginUser.getUserId(), userId) > 0) {
+				model.addAttribute("isLike", true);
+				model.addAttribute(service.read(userId));
+			} else {
+				model.addAttribute("isLike", false);
+				model.addAttribute(service.read(userId));
+			}
+		}
 		/*NormalUser loginUser = (NormalUser) session.getAttribute("login");*/
 		
 		/*likeservice.checkliketruck(loginUser.getUserId(), truckId);*/

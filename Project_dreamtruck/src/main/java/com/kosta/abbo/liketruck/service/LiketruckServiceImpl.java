@@ -22,9 +22,9 @@ public class LiketruckServiceImpl implements LiketruckService {
 	 */
 	@Transactional
 	@Override
-	public void create(Liketruck liketruck) {
-		dao.create(liketruck);
-		dao.update(liketruck);
+	public void create(int userId, int truckId) {
+		dao.create(userId,truckId);
+		dao.update(truckId);
 		
 	}
 	
@@ -33,15 +33,15 @@ public class LiketruckServiceImpl implements LiketruckService {
 	 * @param liketruck
 	 */
 	@Override
-	public void update(Liketruck liketruck) {
-		dao.update(liketruck);
+	public void update(int truckId) {
+		dao.update(truckId);
 	}
 	
 	
 	@Override
-	public void checkliketruck(int userId, int truckId) {
+	public int checkliketruck(int userId, int truckId) {
 
-		dao.checkliketruck(userId, truckId);
+		return dao.checkliketruck(userId, truckId);
 	}
 	
 
@@ -61,9 +61,11 @@ public class LiketruckServiceImpl implements LiketruckService {
 	 * 관심트럭 삭제
 	 * @param liketruckId
 	 */
+	@Transactional
 	@Override
-	public void delete(int liketruckId) {
-		dao.delete(liketruckId);
+	public void delete(int userId, int truckId) {
+		dao.delete(userId, truckId);
+		dao.minuscount(truckId);
 	}
 
 	/**

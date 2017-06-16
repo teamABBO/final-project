@@ -233,35 +233,61 @@ $(document).ready(function(){
 		var userId = "${login.userId}";
 		var truckId = "${truckUser.userId}";
 		var truckLikecnt = "${truckUser.truckLikecnt}";
-		console.log(userId);
-		console.log(truckId);
-		console.log(truckLikecnt);
 		
-		/* $('#unlike').hide();
-		$('#like').show();
 		
-		if ($('#like').show()) {
+		if ("${isLike}"=="true") {
+			$('#like').show();
+			$('#unlike').hide();
 			
-			$('#liketruck').click(function(){
+		} else {
+			$('#like').hide();
+			$('#unlike').show();
+		}
+		
+		$("#like").on("click", function(){
 			
-					$('#like').hide();
-					$('#unlike').show();
-					alert("${truckUser.truckLikecnt-1} 입니다");
-				 
+			$.ajax({
+				type: 'post',
+				url: '/liketruck/delete',
+				data: {
+					userId :truckId
+					},
+				success: function(result){
+					console.log("result: "+result);
+						if (result == 'SUCCESS') {
+							$('#like').hide();
+							$('#unlike').show();
+							alertify.alert("관심트럭 목록에서 삭제되었습니다!");
+							reviewPage=1;
+							getPage("/truck/read?userId="+targetId);
+							}
+					}
 				
-			});
+			});  
+		});
+		
+		$("#unlike").on("click", function(){
 			
-		}else{
-
-			$('#liketruck').click(function(){
+			$.ajax({
+				type: 'post',
+				url: '/liketruck/register',
+				data: {
+					userId :truckId
+					},
+				success: function(result){
+					console.log("result: "+result);
+						if (result == 'SUCCESS') {
+							$('#like').show();
+							$('#unlike').hide();
+							alertify.alert("관심트럭으로 등록되었습니다!");
+							reviewPage=1;
+							getPage("/truck/read?userId="+targetId);
+							}
+					}
 				
-					$('#unlike').hide();
-					$('#like').show();
-					alert("${truckUser.truckLikecnt+1} 입니다");
-				
-			});
-		} */
-	 
+			});  
+		});
+		
 	} 
 });
 
@@ -383,9 +409,9 @@ $("#confirm").on( 'click', function () {
 																		<p>${truckUser.truckInfo }</p>
 																		<div class="post-bottom overflow">
 																				<ul class="nav navbar-nav post-nav">
-																						<li id="liketruck"><a href="#"><i class="fa fa-heart" id="like"></i>
-																										<i class="fa fa-heart-o" id="unlike"></i>${truckUser.truckLikecnt }
-																										Love</a></li>
+																						<span><li id="liketruck"><a href="#"><i class="fa fa-heart" id="like"></i>
+																										<i class="fa fa-heart-o" id="unlike"></i></a><a>${truckUser.truckLikecnt }
+																										Love</a></li></span>
 
 																				</ul>
 																				<button id="listBtn" class="btn btn-primary"
