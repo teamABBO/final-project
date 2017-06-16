@@ -42,7 +42,9 @@
 		});
 
 		$("#list").on("click", function() {
-			self.location = "/event/list";
+			formObj.attr("method", "get");
+			formObj.attr("action", "/event/list");
+			formObj.submit();
 		});
 		
 		$("#one").on("click", function() {
@@ -117,9 +119,12 @@
   <!-- 배너 -->
 
   <!-- 행사등록 -->
-<form method="post" role="form"  class="form-horizontal" >
+<form method="post" role="form"  class="form-horizontal" action="modify" >
 <input type="hidden" name="eventId" value="${event.eventId }">
+<input type="hidden" name="page" value="${cri.page }">
+<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 </form>
+
 
   <section id="portfolio-information" class="padding-top">
   
@@ -247,8 +252,9 @@
             <div class="form-group" >
                <label class="col-md-4 control-label" for="save"></label>
           <div class="col-md-12" style="margin-top: 20px; margin-left: 550px" >
+          <button type="submit" id="list" name="list" class="btn btn-common" >목록</button>
             <input type="hidden" id="modify" name="modify" class="btn btn-common"  value="수정" >
-            <button type="button" id="list" name="list" class="btn btn-common" >목록</button>
+            
           </div>
         </div>
       </div>

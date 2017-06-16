@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.abbo.applier.domain.Applier;
 import com.kosta.abbo.applier.service.ApplierService;
+import com.kosta.abbo.event.domain.Criteria;
 import com.kosta.abbo.event.domain.Event;
 import com.kosta.abbo.event.domain.PageMaker;
 import com.kosta.abbo.event.domain.SearchCriteria;
@@ -103,7 +104,7 @@ public class EventController {
 
 	/** 상세 */
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public void detail(@RequestParam("eventId") int eventId, Model model) throws Exception {
+	public void detail(@RequestParam("eventId") int eventId, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
 		model.addAttribute(service.read(eventId));
 	}
 
