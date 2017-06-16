@@ -22,7 +22,6 @@ import com.kosta.abbo.liketruck.service.LiketruckService;
 import com.kosta.abbo.review.domain.Review;
 import com.kosta.abbo.user.domain.NormalUser;
 
-@RestController
 @Controller
 @RequestMapping("/liketruck")
 public class LiketruckController {
