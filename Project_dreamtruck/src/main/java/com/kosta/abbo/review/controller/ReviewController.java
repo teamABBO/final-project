@@ -79,9 +79,10 @@ public class ReviewController {
 		review.setContent(content);
 		review.setStar(star);
 		review.setRegdate(regdate);
+		review.setReviewId(reviewId);
 
 		try {
-			review.setReviewId(reviewId);
+			
 			service.update(review);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {

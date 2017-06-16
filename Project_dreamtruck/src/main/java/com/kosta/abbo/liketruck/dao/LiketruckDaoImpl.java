@@ -1,6 +1,8 @@
 package com.kosta.abbo.liketruck.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -24,24 +26,33 @@ public class LiketruckDaoImpl implements LiketruckDao {
 	 */
 	
 	@Override
-	public void create(Liketruck liketruck) {
-		SqlSession.insert(namespace+".create", liketruck);
+	public void create(int userId, int truckId) {
+		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		paramMap.put("userId", userId);
+		paramMap.put("truckId", truckId);
+		
+		SqlSession.insert(namespace+".create", paramMap);
 		
 	}
 	
 	/**
 	 * 관심트럭 체크
 	 */
-	public void checkliketruck(int userId, int truckId){
-		SqlSession.selectOne(namespace+".checkliketruck", truckId);
+	public int checkliketruck(int userId, int truckId){
+		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		
+		paramMap.put("userId", userId);
+		paramMap.put("truckId", truckId);
+		
+		return SqlSession.selectOne(namespace+".checkliketruck", paramMap);
 	}
 	/**
 	 * 관심트럭 수정
 	 * @param liketruck
 	 */
 	@Override
-	public void update(Liketruck liketruck) {
-		SqlSession.update(namespace+".update", liketruck);
+	public void update(int truckId) {
+		SqlSession.update(namespace+".update", truckId);
 	}
 	
 	
@@ -61,8 +72,12 @@ public class LiketruckDaoImpl implements LiketruckDao {
 	 * @param liketruckId
 	 */
 	@Override
-	public void delete(int liketruckId) {
-		SqlSession.delete(namespace+".delete", liketruckId);
+	public void delete(int userId, int truckId) {
+		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		paramMap.put("userId", userId);
+		paramMap.put("truckId", truckId);
+		
+		SqlSession.delete(namespace+".delete", paramMap);
 	}
 	
 	/**
@@ -85,5 +100,12 @@ public class LiketruckDaoImpl implements LiketruckDao {
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return SqlSession.selectOne(namespace+".listSearchCount", cri);
+	}
+
+	
+	/**삭제 시 마이너스 카운트 */
+	@Override
+	public void minuscount(int truckId) {
+		SqlSession.update(namespace+".minuscount", truckId);
 	}
 }
