@@ -51,7 +51,8 @@
                 <div class="col-sm-12 text-center">
                     <img src="resources/images/aboutus/abbo.png" class="margin-bottom" alt="">
                     <h1 class="margin-bottom">ABBO</h1>
-                    <p>Pork chop duis eu pig, labore sausage venison. Shankle fugiat duis, filet mignon tri-tip venison beef shank ribeye<br /> aliqua cillum dolore sed do in.</p>
+                    <p>KOSTA146기 수강생 6명이 만나 6개월간의 대장정을 마무리 하는 프로젝트 입니다.</p>
+                    <p>이쁘게 봐주세요.</p>
                 </div>
             </div>
         </div>
@@ -68,8 +69,8 @@
                                 <img src="resources/images/aboutus/6.png" class="img-responsive" alt="">
                             </div>
                             <div class="col-sm-7">
-                                <h3 class="top-zero">Who we are</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. <br> <br> Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                                <h3 class="top-zero">ABBO는</h3>
+                                <p></p>
                             </div>
                         </div>
                     </div>
