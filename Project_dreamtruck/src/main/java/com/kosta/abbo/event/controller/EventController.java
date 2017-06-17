@@ -117,6 +117,7 @@ public class EventController {
 	}
 	
 
+	@Transactional
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(Event event, SearchCriteria cri, RedirectAttributes rttr, MultipartFile file, Model model,
 			HttpServletRequest request, int userId) throws Exception {
