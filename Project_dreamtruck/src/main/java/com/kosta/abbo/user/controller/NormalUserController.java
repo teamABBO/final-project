@@ -1,8 +1,6 @@
 package com.kosta.abbo.user.controller;
 
 import java.io.File;
-import java.util.List;
-import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -14,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,19 +24,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.HomeController;
-import com.kosta.abbo.docu.domain.Docu;
 import com.kosta.abbo.dto.LoginDTO;
-import com.kosta.abbo.page.domain.PageMaker;
-import com.kosta.abbo.page.domain.SearchCriteria;
 import com.kosta.abbo.user.domain.EventUser;
 import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.service.EventUserService;
 import com.kosta.abbo.user.service.NormalUserService;
 import com.kosta.abbo.user.service.TruckUserService;
-import com.kosta.abbo.util.MediaUtils;
 import com.kosta.abbo.util.UploadUserUtils;
 
 @Controller

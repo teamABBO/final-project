@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.HomeController;
 import com.kosta.abbo.dto.LoginDTO;
@@ -26,7 +25,6 @@ import com.kosta.abbo.plan.domain.Plan;
 import com.kosta.abbo.plan.service.PlanService;
 import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.domain.TruckUser;
-import com.kosta.abbo.user.service.EventUserService;
 import com.kosta.abbo.user.service.NormalUserService;
 import com.kosta.abbo.user.service.TruckUserService;
 
@@ -39,9 +37,6 @@ public class AndroidController {
 	
 	@Inject
 	private TruckUserService truckService;
-	
-	@Inject
-	private EventUserService eventService;
 	
 	@Inject
 	private PlanService planService;

@@ -3,7 +3,6 @@ package com.kosta.abbo.util;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
 import org.springframework.util.FileCopyUtils;
 
 public class UploadDocuUtils {

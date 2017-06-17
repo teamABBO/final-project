@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,14 +24,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.abbo.applier.domain.Applier;
 import com.kosta.abbo.applier.service.ApplierService;
-import com.kosta.abbo.event.domain.Criteria;
 import com.kosta.abbo.event.domain.Event;
 import com.kosta.abbo.event.domain.PageMaker;
 import com.kosta.abbo.event.domain.SearchCriteria;
 import com.kosta.abbo.event.sevice.EventService;
+import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.service.NormalUserService;
-import com.kosta.abbo.util.MediaUtils;
+import com.kosta.abbo.user.service.TruckUserService;
 import com.kosta.abbo.util.UploadEventUtils;
 
 @Controller
@@ -49,6 +48,9 @@ public class EventController {
 	
 	@Inject
 	private NormalUserService userService;
+
+	@Inject
+	private TruckUserService truckService;
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -159,15 +161,18 @@ public class EventController {
 	 * @param session
 	 * @param eventId
 	 * @return
+	 * @throws Exception 
 	 */
 	@ResponseBody
 	@Transactional
 	@RequestMapping(value = "/apply", method = RequestMethod.POST)
-	public ResponseEntity<String> eventApply(HttpSession session, int eventId) {
+	public ResponseEntity<String> eventApply(HttpSession session, int eventId) throws Exception {
 		logger.info("행사신청서 등록");
-		TruckUser user = (TruckUser) session.getAttribute("login");
+		NormalUser loginUser = (NormalUser) session.getAttribute("login");
 		
-		userService.checkDocu(user.getUserId());
+		userService.checkDocu(loginUser.getUserId());
+		TruckUser user = truckService.read(loginUser.getUserId());
+		
 		String isUpload = userService.isUpload(user.getUserId());
 		if (applierService.checkDup(user.getUserId(), eventId) > 0) {
 			logger.info("중복 신청");

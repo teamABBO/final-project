@@ -1,39 +1,15 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>드림트럭</title>
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="/resources/css/animate.min.css" rel="stylesheet">
-<link href="/resources/css/lightbox.css" rel="stylesheet">
-<link href="/resources/css/main.css" rel="stylesheet">
-<link href="/resources/css/responsive.css" rel="stylesheet">
-<script type="text/javascript" src="/resources/js/jquery.js"></script>
-
-<link rel="shortcut icon" href="../resources/images/ico/favicon.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-  href="../resources/images/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-  href="../resources/images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-  href="../resources/images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-  href="../resources/images/ico/apple-touch-icon-57-precomposed.png">
+<%@include file="../include/references.jsp"%>
 </head>
 <script>
 
 	// 수정 리스트로돌아가기
 	$(document).ready(function() {
 		var formObj = $("form[role='form']");
-		console.log(formObj);
 
 		$("#modify").on("click", function() {
 			formObj.attr("action", "/event/modify?");
@@ -58,16 +34,15 @@
                 success: function(result) {
                 	if (result == "success") {
   					alert("${event.title}에 성공적으로 영업신청하였습니다.");
+  					sendAlarm();
     				}
                 },
-    			error: function(result) {
-    				if (result == "fail") {
-    					if(alert("필요 서류가 부족합니다! 서류를 등록/수정해주세요. 확인을 누르시면 서류관리 페이지로 이동합니다.") == true) {
+    			error: function(xhr, status, error) {
+    				if (xhr.responseText == "fail") {
+    					alert("필요 서류가 부족합니다! 서류를 등록/수정해주세요. 서류관리 페이지로 이동합니다.");
     						self.location = "/docu/list";
-    					} else {
-    						return;
-    					}
-					} else if (result == "dup") {
+    				
+					} else if (xhr.responseText == "dup") {
 						alert("이미 신청한 행사입니다.");
 					} else {
 						return;
@@ -76,12 +51,41 @@
             });
 		});
 		var login = "${login.userId}";
-			if(login == ${event.userId}){
-				$('#modify').attr("type","button");
-			}else{
-				$('#modify').attr("type","hidden");
-			}
+		if(login == ${event.userId}){
+			$('#modify').attr("type","button");
+		}else{
+			$('#modify').attr("type","hidden");
+		}
 		
+		function sendAlarm(){
+			 $.ajax({
+	             url : 'https://fcm.googleapis.com/fcm/send',
+	             type: "post",
+	              headers : {
+	                 'Content-Type' : 'application/json',
+	                 'Authorization' : 'key=AAAAhlGBbq0:APA91bFr0dGj6GP3thL0zkKtpuCZEnj2jZ5YzypbSDI3iAH6FD-J9Q0KnE6jFKMsIEqVRPowSfM-JkvVEj8lhWGgHyThn5GU-sl5tMMd3Yhlo_X7H_MS8q1TjIo4NwHxmTKRDsF3I477'
+	              },
+	              data : JSON.stringify({
+	                  "notification": {
+	                      "title": "Dream Truck",
+	                      "body": "등록하신 행사에 영업신청이 들어왔습니다! 신청현황 페이지를 확인하세요."
+	                    },
+	                 "to" : "cj4CNWrg5yg:APA91bGyScw4dpOzAEbJxvy8IBnqEP_pAUXEHGy1P_qdcDt5bHPREQGIf5tSlIrOTVEiWbQ0jdkjoUO4KSOIwldCn3sgh6M6pXgoU401YvLemdOA-DGOiK01OmpkqVwcc006bLN-_p0Z",
+	                 
+	                 
+	              }),
+	           success: function(error, response, body) {
+	              if (error) {
+	                 console.error(error, response, body);
+	              } else if (response.statusCode >= 400) {
+	                 console.error('HTTP Error: ' + response.statusCode + ' - '
+	                       + response.statusMessage + '\n' + body);
+	              } else {
+	                 console.log('JSON 메세지 전송 성공!')
+	              }
+	           }
+	       });
+		}
 
 	});
 </script>
@@ -272,23 +276,7 @@
   <br>
 
 
-
-
-
-
-
-
-
-
-
-
   <%@include file="../include/footer.jsp"%>
   <!--/#footer-->
-
-  <script type="text/javascript" src="../resources/js/jquery.js"></script>
-  <script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../resources/js/lightbox.min.js"></script>
-  <script type="text/javascript" src="../resources/js/wow.min.js"></script>
-  <script type="text/javascript" src="../resources/js/main.js"></script>
 </body>
 </html>

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.kosta.abbo.liketruck.domain.Liketruck;
 import com.kosta.abbo.page.domain.SearchCriteria;
-import com.kosta.abbo.user.domain.TruckUser;
 
 public interface LiketruckDao {
 	
