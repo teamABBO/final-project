@@ -20,7 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,9 +31,9 @@ import com.kosta.abbo.applier.domain.Applier;
 import com.kosta.abbo.applier.service.ApplierService;
 import com.kosta.abbo.docu.service.DocuService;
 import com.kosta.abbo.event.sevice.EventService;
-import com.kosta.abbo.page.domain.SearchCriteria;
-import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.domain.NormalUser;
+import com.kosta.abbo.user.domain.TruckUser;
+import com.kosta.abbo.user.service.TruckUserService;
 
 @Controller
 @RequestMapping("/applier")
@@ -51,6 +50,9 @@ public class ApplierController {
 	@Inject
 	private EventService eventService;
 	
+	@Inject
+	private	TruckUserService truckService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Transactional
@@ -58,7 +60,9 @@ public class ApplierController {
 	public String list(Model model, HttpSession session,@PathVariable("eventId") int eventId) throws Exception {
 		logger.info("신청트럭 목록 화면");
 		
-		TruckUser loginUser = (TruckUser) session.getAttribute("login");
+		NormalUser user = (NormalUser) session.getAttribute("login");
+		
+		TruckUser loginUser = truckService.read(user.getUserId());
 		
 		int loginUserId = loginUser.getUserId();
 		int eventUserId = eventService.read(eventId).getUserId();
@@ -155,7 +159,9 @@ public class ApplierController {
 	public String event(Model model, HttpSession session) throws Exception {
 		logger.info("신청 행사 목록 화면");
 		
-		TruckUser loginUser = (TruckUser) session.getAttribute("login");
+		NormalUser user = (NormalUser) session.getAttribute("login");
+		
+		TruckUser loginUser = truckService.read(user.getUserId());
 		
 		int loginUserId = loginUser.getUserId();
 		

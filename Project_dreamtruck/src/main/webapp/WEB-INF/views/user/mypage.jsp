@@ -1,26 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page contentType="text/html; charset=utf-8"%>
-
-
+<%@ page language="java"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>드림트럭</title>
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="/resources/css/animate.min.css" rel="stylesheet"> 
-<link href="/resources/css/lightbox.css" rel="stylesheet"> 
-<link href="/resources/css/main.css" rel="stylesheet">
-<link href="/resources/css/responsive.css" rel="stylesheet">
-<link href="/resources/css/sweetalert.css" rel="stylesheet">
-<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
-<script type="text/javascript" src="/resources/js/jquery.js"></script>
-<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="/resources/js/wow.min.js"></script>
-<script type="text/javascript" src="/resources/js/main.js"></script>
-<script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
+<%@include file="../include/references.jsp"%>
 </head>
 <script >
 var modify = '${modify}';
@@ -123,16 +106,6 @@ if (modify == 'modify') {
             </div>
           </div>
           
-          <!-- 신청 트럭 보기  -->
-          <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms" style="margin-left: 400px;">
-            <div class="single-service2">
-              <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-                <a href="#"><img src="/resources/images/regist/mytrucklist.png" alt=""></a>
-              </div>
-              <h2>신청 트럭 보기</h2>
-            </div>
-          </div>
-          
           </c:if>
           
 			<c:if test="${login.type == 'truck' }">
@@ -183,7 +156,7 @@ if (modify == 'modify') {
 		  <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 			<div class="single-service2">
 			 <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-			 	<a href="#"><img src="/resources/images/regist/myevent.png" alt=""></a>
+			 	<a href="/applier/event"><img src="/resources/images/regist/myevent.png" alt=""></a>
 			 </div>
 			 <h2>내가 신청한 행사</h2>
 			</div>
@@ -193,7 +166,7 @@ if (modify == 'modify') {
 		  <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
 			<div class="single-service2">
 			 <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-			 	<a href="#"><img src="/resources/images/regist/onclick.png" alt=""></a>
+			 	<a href="/docu/apply"><img src="/resources/images/regist/onclick.png" alt=""></a>
 			 </div>
 			 <h2>원 클릭 신청</h2>
 			</div>

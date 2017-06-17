@@ -9,6 +9,7 @@ public class Plan {
 	private String open; 	// 오픈시간
 	private String close; 	// 마감시간
 	private int userId; 	// 회원번호
+	private String regdate;
 	
 	/* 트럭지도를 위한 추가 변수 */
 	private String truckImg;
@@ -132,11 +133,22 @@ public class Plan {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
 
 	@Override
 	public String toString() {
 		return "Plan [planId=" + planId + ", day=" + day + ", title=" + title + ", x=" + x + ", y=" + y + ", open="
-				+ open + ", close=" + close + ", userId=" + userId + ", truckImg=" + truckImg + ", truckName="
-				+ truckName + ", truckFood=" + truckFood + ", phone=" + phone + ", email=" + email + ", id=" + id + "]";
+				+ open + ", close=" + close + ", userId=" + userId + ", regdate=" + regdate + ", truckImg=" + truckImg
+				+ ", truckName=" + truckName + ", truckFood=" + truckFood + ", phone=" + phone + ", email=" + email
+				+ ", id=" + id + "]";
 	}
+
+	
 }

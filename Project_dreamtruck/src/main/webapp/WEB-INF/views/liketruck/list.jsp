@@ -1,33 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
+<%@ page language="java"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>드림트럭</title>
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="/resources/css/animate.min.css" rel="stylesheet">
-<link href="/resources/css/lightbox.css" rel="stylesheet">
-<link href="/resources/css/main.css" rel="stylesheet">
-<link href="/resources/css/responsive.css" rel="stylesheet">
-<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resources/images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resources/images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed" href="/resources/images/ico/apple-touch-icon-57-precomposed.png">
-<script type="text/javascript" src="/resources/js/jquery.js"></script>
-<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="/resources/js/wow.min.js"></script>
-<script type="text/javascript" src="/resources/js/main.js"></script>
-
+<%@include file="../include/references.jsp"%>
 <script>
 	$(function() {
 		$('img').on('click', function() {
@@ -89,6 +65,32 @@ body {
 </head>
 <!--/head-->
 
+<script>
+$(document).ready(function(){
+	$(".delete").on("click", function(){
+		var truckId = $(this).attr('id').split('delete')[1];
+		$.ajax({
+			type: 'post',
+			url: '/liketruck/delete',
+			data: {
+				userId : truckId
+				},
+			success: function(result){
+				console.log("result: "+result);
+					if (result == 'SUCCESS') {
+						alert("관심트럭 목록에서 삭제되었습니다!");
+						location.reload();
+						}
+				}
+			
+		});
+	});
+	
+	
+});
+
+</script>
+
 <body>
 	<%@include file="../include/header.jsp"%>
 	<!-- 배너 -->
@@ -139,7 +141,7 @@ body {
 									<div class="caption border">
 										<h4 style="color: #fd9483;">${liketruck.truckName}<span class="pull-right"><i class="fa fa-heart">&nbsp;${liketruck.truckLikecnt}</i></span>
 										</h4>
-										<a href="../truck/read?userId=${liketruck.truckId }" class=""><i class="fa fa-eye"> 상세보기</i></a> &nbsp;&nbsp;<a href="#" class=""><i class="fa fa-ban"> 제거</i></a>
+										<a href="../truck/read?userId=${liketruck.truckId }" class=""><i class="fa fa-eye"> 상세보기</i></a> &nbsp;&nbsp;<a class="delete" id="delete${liketruck.truckId}"><i class="fa fa-ban" > 제거</i></a>
 									</div>
 								</div>
 							</div>
@@ -149,11 +151,6 @@ body {
 			</c:if>
 		</div>
 	</div>
-	
-	</div>
-	</div>
-	</div>
-	</section>
 	<!--/#projects-->
 	<%@include file="../include/footer.jsp"%>
 
