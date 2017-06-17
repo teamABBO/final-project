@@ -64,67 +64,51 @@
 		
 				
 		
-				$(document).on(
-						'change',
-						'.btn-file :file',
-						function() {
-							var input = $(this), label = input.val().replace(
-									/\\/g, '/').replace(/.*\//, '');
-							input.trigger('fileselect', [ label ]);
-						}); 
-				
-				$('.btn-file :file').on(
-						'fileselect',
-						function(event, label) {
+		// 이미지 변경
+           $(document).on(
+                 'change',
+                 '.btn-file :file',
+                 function() {
+                    var input = $(this), label = input.val().replace(
+                          /\\/g, '/').replace(/.*\//, '');
+                    input.trigger('fileselect', [ label ]);
+                 }); 
+           
+           $('.btn-file :file').on(
+                 'fileselect',
+                 function(event, label) {
 
-							var input = $(this).parents('.input-group').find(
-									':text'), log = label;
+                    var input = $(this).parents('.input-group').find(
+                          ':text'), log = label;
 
-							if (input.length) {
-								input.val(log);
-							} else {
-								if (log)
-									alert(log);
-							}
+                    if (input.length) {
+                       input.val(log);
+                    } else {
+                       if (log)
+                          alert(log);
+                    }
 
-						});
-				
-				function readURL(input) {
-					if (input.files && input.files[0]) {
-						var reader = new FileReader();
+                 });
+           
+           $('#deleteImg').on("click",function(){
+               $('#truckImg').val(null);
+               $('#img-upload').attr('src',null);
+            });
+           
+           function readURL(input) {
+              if (input.files && input.files[0]) {
+                 var reader = new FileReader();
 
-						reader.onload = function(e) {
-							$('#img-upload').attr('src', e.target.result);
-						}
-						reader.readAsDataURL(input.files[0]);
-					}
-				}
-				$("#imgInp").change(function() {
-					readURL(this);
-				});
-				
-				 $('#deleteImg').on("click",function(){
-		               $('#truckImg').val(null);
-		               $('#img-upload').attr('src',null);
-		            });
-		            
-		            function readURL(input) {
-		               if (input.files && input.files[0]) {
-		                  var reader = new FileReader();
-
-		                  reader.onload = function(e) {
-		                     $('#img-upload').attr('src', e.target.result);
-		                  }
-		                  reader.readAsDataURL(input.files[0]);
-		               }
-		            }
-		            $("#imgInp").change(function() {
-		               readURL(this);
-		            });
-		    
-				
-				
-			});
+                 reader.onload = function(e) {
+                    $('#img-upload').attr('src', e.target.result);
+                 }
+                 reader.readAsDataURL(input.files[0]);
+              }
+           }
+           $("#imgInp").change(function() {
+              readURL(this);
+           });
+ });
 </script> 
 <body>
 <%@include file="../include/header.jsp"%>
@@ -919,8 +903,8 @@
 					</div>
 				</div>
 				
-				<!-- 트럭 이미지 -->
-			   <div class="form-group">
+				<!-- 첨부파일 -->
+            <div class="form-group">
                <label class="col-md-4 control-label" for="contactphone">파일 첨부 </label>
                <div class="col-md-4">
                   <div class="form-group">
@@ -928,7 +912,7 @@
                         <div class="form-group">
                            <div class="input-group">
                               <span class="input-group-btn"> 
-                              <input type="text" class="form-control" style="margin-left: 15px; margin-top: 2px;" id="truckImg" name="truckImg" value="${truck.truckImg }">
+                              <input type="text" class="form-control" style="margin-left: 15px; margin-top: 2px;" id="truckImg" name="truckImg"  value="${truck.truckImg}">
                               <span class="btn btn-file image-preview-input" style="margin-right: 1px; margin-top: 2px; height: 40px;" >업로드
                                <input type="file" name="file" id="imgInp">
                               </span>
@@ -939,7 +923,7 @@
                            <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/noimage.png" />
                            </c:if>
                            <c:if test="${not empty truck.truckImg}">
-                           <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/${truck.id}/${truck.truckImg }" />
+                           <img id='img-upload' style="margin-left: 20px; margin-top: 10px;" src="/displayFile?fileName=/user/${truck.id}/${truck.truckImg}"/>
                            </c:if>
                         </div>
                      </div>
