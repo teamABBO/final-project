@@ -37,8 +37,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.HomeController;
 import com.kosta.abbo.docu.domain.Docu;
 import com.kosta.abbo.docu.service.DocuService;
+import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.domain.TruckUser;
 import com.kosta.abbo.user.service.NormalUserService;
+import com.kosta.abbo.user.service.TruckUserService;
 import com.kosta.abbo.util.UploadDocuUtils;
 
 @Controller
@@ -52,6 +54,9 @@ public class DocuController {
 
 	@Inject
 	private NormalUserService userService;
+	
+	@Inject
+	private TruckUserService truckService;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -65,11 +70,14 @@ public class DocuController {
 	 * @return
 	 * @throws Exception
 	 */
+	@Transactional
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String docu(Model model, HttpSession session) throws Exception {
 		logger.info("서류관리 페이지");
 
-		TruckUser loginUser = (TruckUser) session.getAttribute("login");
+		NormalUser user = (NormalUser) session.getAttribute("login");
+		
+		TruckUser loginUser = truckService.read(user.getUserId());
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
@@ -281,15 +289,17 @@ public class DocuController {
 	 * @param session
 	 * @param location
 	 * @return
-	 * @throws IOException
+	 * @throws Exception 
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
 	@Transactional
-	public ResponseEntity<String> send(Model model, HttpSession session, String location) throws IOException {
+	public ResponseEntity<String> send(Model model, HttpSession session, String location) throws Exception {
 		logger.info("영업신청서 전송");
 
-		TruckUser user = (TruckUser) session.getAttribute("login");
+		NormalUser loginUser = (NormalUser) session.getAttribute("login");
+		
+		TruckUser user = truckService.read(loginUser.getUserId());
 
 		userService.checkDocu(user.getUserId());
 		String isUpload = userService.isUpload(user.getUserId());

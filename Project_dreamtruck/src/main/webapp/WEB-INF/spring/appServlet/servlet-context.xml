@@ -61,12 +61,16 @@
 		
 		<interceptor>
 			<mapping path="/event/upload"/>
+			<mapping path="/event/modify"/>
+			<mapping path="/user/myboard"/>
+			<mapping path="/applier/list"/>
 			<beans:ref bean="eventCheckInterceptor"/>
 		</interceptor>
 		
 		<interceptor>
 			<mapping path="/docu/*"/>
 			<mapping path="/plan/*"/>
+			<mapping path="/applier/event"/>
 			<beans:ref bean="truckCheckInterceptor"/>
 		</interceptor>
 		
