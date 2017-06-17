@@ -5,8 +5,8 @@
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.kosta.abbo.mapper.PlanMapper">
 	<insert id="create">
-		insert into plan(plan_id, day, title, x, y, open, close, user_id)
-		values (plan_id_seq.nextval,#{day}, #{title}, #{x}, #{y}, #{open}, #{close}, #{userId})
+		insert into plan(plan_id, day, title, x, y, open, close, user_id, regdate)
+		values (plan_id_seq.nextval,#{day}, #{title}, #{x}, #{y}, #{open}, #{close}, #{userId}, sysdate)
 	</insert>
 	
 	<select id="list" resultType="Plan">
@@ -17,9 +17,12 @@
 		       y, 
 		       open, 
 		       close, 
-		       user_id userId
+		       user_id userId,
+		       regdate
 		from   plan
-		where  user_id = #{userId}
+		where  user_id = 5 and 
+               to_char(regdate, 'yy/mm/dd/') between to_char( sysdate-( (select to_char(sysdate,'D') from dual) -2 )-1, 'yy/mm/dd') and 
+                                                     to_char( sysdate-( (select to_char(sysdate,'D') from dual) -2 )+6, 'yy/mm/dd')
 		order by day asc
 	</select>
 	
@@ -41,7 +44,9 @@
 		from   plan p , users u
 		where  p.user_id = u.user_id         and 
 		       to_char(sysdate, 'd')-1 = day and 
-		       to_char(SYSDATE , 'HH24:MI:SS') between open and close
+		       to_char(SYSDATE , 'HH24:MI:SS') between open and close and
+		       to_char(p.regdate, 'yy/mm/dd/') between to_char( sysdate-( (select to_char(sysdate,'D') from dual) -2 )-1, 'yy/mm/dd') and 
+                                                       to_char( sysdate-( (select to_char(sysdate,'D') from dual) -2 )+6, 'yy/mm/dd')
 	</select>
 	
 	<select id="read" resultType="Plan">

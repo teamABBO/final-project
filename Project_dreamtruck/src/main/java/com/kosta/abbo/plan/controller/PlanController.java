@@ -110,7 +110,12 @@ public class PlanController {
 			service.update(plan);
 			return new ResponseEntity<String>("modify", HttpStatus.OK);
 		}else{
-			return new ResponseEntity<String>("fail", HttpStatus.OK);
+			if(service.uploadCheck(plan).getPlanId() == planId){
+				service.update(plan);
+				return new ResponseEntity<String>("modify", HttpStatus.OK);
+			}else{
+				return new ResponseEntity<String>("fail", HttpStatus.OK);
+			}
 		}
 	}
 	
