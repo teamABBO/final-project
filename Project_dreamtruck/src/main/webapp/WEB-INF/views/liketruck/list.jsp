@@ -141,7 +141,7 @@ $(document).ready(function(){
 									<div class="caption border">
 										<h4 style="color: #fd9483;">${liketruck.truckName}<span class="pull-right"><i class="fa fa-heart">&nbsp;${liketruck.truckLikecnt}</i></span>
 										</h4>
-										<a href="../truck/read?userId=${liketruck.truckId }" class=""><i class="fa fa-eye"> 상세보기</i></a> &nbsp;&nbsp;<a class="delete" id="delete${liketruck.truckId}"><i class="fa fa-ban" > 제거</i></a>
+										<a href="../truck/read?page=1&perPageNum=9&searchType&keyword=&userId=${liketruck.truckId }" class=""><i class="fa fa-eye"> 상세보기</i></a> &nbsp;&nbsp;<a class="delete" id="delete${liketruck.truckId}" href=""><i class="fa fa-ban" > 제거</i></a>
 									</div>
 								</div>
 							</div>

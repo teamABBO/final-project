@@ -235,7 +235,7 @@ $(document).ready(function () {
           <h2>신청 트럭</h2>
           <table class="table table-hover" style="text-align: center" id="applyTable">
             <tr>
-              <th style="width: 20px"><input type="checkbox" id="checkEntire">전체</th>
+              <th style="width: 20px"><input type="checkbox" id="checkEntire" style="margin-right: 10px;">전체</th>
               <th style="width: 200px">트럭이름</th>
               <th style="width: 70px">신청날짜</th>
               <th style="width: 20px">승인여부</th>

@@ -59,15 +59,6 @@
           <li><a href="/map" style="color: #fd9691">트럭지도</a></li>
         </ul>
       </div>
-      <div class="search">
-        <form role="form">
-          <i class="fa fa-search" style="color: #fd9691"></i>
-          <div class="field-toggle">
-            <input type="text" class="search-form" autocomplete="off"
-              placeholder="Search">
-          </div>
-        </form>
-      </div>
     </div>
   </div>
  

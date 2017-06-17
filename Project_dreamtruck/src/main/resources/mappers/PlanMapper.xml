@@ -20,7 +20,7 @@
 		       user_id userId,
 		       regdate
 		from   plan
-		where  user_id = 5 and 
+		where  user_id = #{userId} and 
                to_char(regdate, 'yy/mm/dd/') between to_char( sysdate-( (select to_char(sysdate,'D') from dual) -2 )-1, 'yy/mm/dd') and 
                                                      to_char( sysdate-( (select to_char(sysdate,'D') from dual) -2 )+6, 'yy/mm/dd')
 		order by day asc
