@@ -234,7 +234,8 @@ function isMember() {
 			<script type="text/javascript">
 			function Check(form) {
 				   var likearea = $("#likeArea option:selected").val();
-					
+				   var repwLabel = $("#repwLabel").val();
+				   
 					if(likearea == ""){
 						swal("회원 가입 중 에러", "관심 지역을 설정 해 주세요!")
 						return false;
