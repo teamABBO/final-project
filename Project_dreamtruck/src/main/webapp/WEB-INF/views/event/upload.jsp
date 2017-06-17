@@ -91,7 +91,7 @@ $(document).ready( function() {
    	              data : JSON.stringify({
    	                  "notification": {
    	                      "title": "Dream Truck",
-   	                      "body": "등록하신 서류가 만료되었습니다! 서류관리 페이지를 확인하세요."
+   	                      "body": "회원님의 관심지역에 새로운 행사가 등록되었습니다! 행사 목록을 확인하세요!"
    	                    },
    	                 "to" : "cj4CNWrg5yg:APA91bGyScw4dpOzAEbJxvy8IBnqEP_pAUXEHGy1P_qdcDt5bHPREQGIf5tSlIrOTVEiWbQ0jdkjoUO4KSOIwldCn3sgh6M6pXgoU401YvLemdOA-DGOiK01OmpkqVwcc006bLN-_p0Z",
    	                 
