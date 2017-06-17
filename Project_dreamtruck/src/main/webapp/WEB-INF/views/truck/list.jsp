@@ -185,7 +185,7 @@
                       <c:if test="${not empty truckUser.truckImg}">
                         <img
                           src="/displayFile?fileName=/user/${truckUser.id}/${truckUser.truckImg }"
-                          class="img-responsive" alt="">
+                          class="img-responsive" style="height: 440px; width: 220px;" alt="">
                       </c:if>
 
                     </div>
@@ -267,7 +267,7 @@
                   <ul class="nav navbar-stacked">
                     <c:forEach items="${likeList}" var="liketruck">
                       <li><a
-                        href="/truck/read?userId=${liketruck.truckId }">${liketruck.truckName}</a></li>
+                        href="/truck/read?page=1&perPageNum=9&searchType&keyword=&userId=${liketruck.truckId }">${liketruck.truckName}</a></li>
                     </c:forEach>
                     <li></li>
                     <li><a href="/liketruck/list">더보기</a></li>

@@ -139,7 +139,7 @@
         <div class="col-sm-6">
           <c:if test="${!empty event.img }">
             <img src="/displayFile?fileName=/event${event.img}" alt=""
-              class="img-rounded"/>
+              class="img-rounded" style="max-width: 500px;"/>
           </c:if>
           <c:if test="${empty event.img }">
             <img src="/displayFile?fileName=/event/noimage.png" alt=""

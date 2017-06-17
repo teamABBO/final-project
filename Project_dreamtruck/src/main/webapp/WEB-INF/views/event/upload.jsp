@@ -177,7 +177,7 @@ $(document).ready( function() {
                <label class="col-md-4 control-label">행사기간</label>
                <label id="duration"></label>
                <div class="col-md-4">
-               <input id="duration" name="duration" type="number" placeholder="행사기간을 입력해주세요." class="form-control input-md" maxlength="16">
+               <input id="duration" name="duration" type="number" min="1" placeholder="행사기간을 입력해주세요." class="form-control input-md" maxlength="16">
                   
                </div>
             </div>
@@ -188,7 +188,7 @@ $(document).ready( function() {
             <div class="form-group">
                <label class="col-md-4 control-label" for="recruit">모집트럭 수</label>
                <div class="col-md-4">
-                  <input id="recruit" name="recruit" type="number" placeholder="모집트럭 수를 입력 해 주세요." class="form-control input-md" required>
+                  <input id="recruit" name="recruit" type="number" min="1" placeholder="모집트럭 수를 입력 해 주세요." class="form-control input-md" required>
                </div>
             </div>
             
@@ -249,7 +249,7 @@ $(document).ready( function() {
                         <div class="form-group">
                            <div class="input-group">
                               <span class="input-group-btn"> 
-                              <input type="text" class="form-control" readonly style="margin-left: 15px; margin-top: 2px;" id="truckImg" name="truckImg">
+                              <input type="text" class="form-control" placeholder="" style="margin-left: 15px; margin-top: 2px;" id="truckImg" name="truckImg">
                               <span class="btn btn-file image-preview-input" style="margin-right: 1px; margin-top: 2px; height: 40px;" >업로드
                                <input type="file" name="file" id="imgInp">
                               </span>

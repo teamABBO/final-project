@@ -68,7 +68,8 @@ public class EventController {
 		logger.info("upload post..........................................");
 		logger.info(event.toString());
 
-		if (file.getOriginalFilename().equals(null) || file.getOriginalFilename().length() == 0) {
+		if (file.getSize() == 0) {
+			event.setImg("/noimage.png");
 			service.create(event);
 			rttr.addFlashAttribute("msg", "success");
 			return "redirect:/event/list";
