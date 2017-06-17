@@ -1,31 +1,9 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>드림트럭</title>
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="/resources/css/animate.min.css" rel="stylesheet">
-<link href="/resources/css/lightbox.css" rel="stylesheet">
-<link href="/resources/css/main.css" rel="stylesheet">
-<link href="/resources/css/responsive.css" rel="stylesheet">
-<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-  href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-  href="/resources/images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-  href="/resources/images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-  href="/resources/images/ico/apple-touch-icon-57-precomposed.png">
-<script type="text/javascript" src="/resources/js/jquery.js"></script>
-<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="/resources/js/wow.min.js"></script>
-<script type="text/javascript" src="/resources/js/main.js"></script>
+<%@include file="../include/references.jsp"%>
 <script>
 	$(document).ready(function() {
 		console.log("${login.userId}");
@@ -54,6 +32,7 @@
 				
 				if (betweenDay <= 0) {
 					$("#icon" + name).attr("style", "color: red");
+					sendAlarm();
 				} else if (betweenDay > 0 && betweenDay <= 28) {
 					$("#icon" + name).attr("style", "color: #e7b903");
 				} else {
@@ -113,6 +92,36 @@
 			$("[name='docuId']").attr("value", $(this).attr("data-id"));
 			$("[name='path']").attr("value", $(this).attr("data-path"));
 		});
+		
+		function sendAlarm(){
+			 $.ajax({
+	             url : 'https://fcm.googleapis.com/fcm/send',
+	             type: "post",
+	              headers : {
+	                 'Content-Type' : 'application/json',
+	                 'Authorization' : 'key=AAAAhlGBbq0:APA91bFr0dGj6GP3thL0zkKtpuCZEnj2jZ5YzypbSDI3iAH6FD-J9Q0KnE6jFKMsIEqVRPowSfM-JkvVEj8lhWGgHyThn5GU-sl5tMMd3Yhlo_X7H_MS8q1TjIo4NwHxmTKRDsF3I477'
+	              },
+	              data : JSON.stringify({
+	                  "notification": {
+	                      "title": "Dream Truck",
+	                      "body": "등록하신 서류가 만료되었습니다! 서류관리 페이지를 확인하세요."
+	                    },
+	                 "to" : "cj4CNWrg5yg:APA91bGyScw4dpOzAEbJxvy8IBnqEP_pAUXEHGy1P_qdcDt5bHPREQGIf5tSlIrOTVEiWbQ0jdkjoUO4KSOIwldCn3sgh6M6pXgoU401YvLemdOA-DGOiK01OmpkqVwcc006bLN-_p0Z",
+	                 
+	                 
+	              }),
+	           success: function(error, response, body) {
+	              if (error) {
+	                 console.error(error, response, body);
+	              } else if (response.statusCode >= 400) {
+	                 console.error('HTTP Error: ' + response.statusCode + ' - '
+	                       + response.statusMessage + '\n' + body);
+	              } else {
+	                 console.log('JSON 메세지 전송 성공!')
+	              }
+	           }
+	       });
+		}
 		
 	});
 </script>

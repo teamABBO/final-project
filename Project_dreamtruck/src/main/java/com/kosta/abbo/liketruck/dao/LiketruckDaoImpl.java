@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.kosta.abbo.liketruck.domain.Liketruck;
 import com.kosta.abbo.page.domain.SearchCriteria;
-import com.kosta.abbo.user.domain.TruckUser;
 
 @Repository
 public class LiketruckDaoImpl implements LiketruckDao {

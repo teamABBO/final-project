@@ -14,19 +14,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.HomeController;
 import com.kosta.abbo.dto.LoginDTO;
+import com.kosta.abbo.liketruck.service.LiketruckService;
+import com.kosta.abbo.page.domain.PageMaker;
+import com.kosta.abbo.page.domain.SearchCriteria;
 import com.kosta.abbo.plan.domain.Plan;
 import com.kosta.abbo.plan.service.PlanService;
 import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.domain.TruckUser;
-import com.kosta.abbo.user.service.EventUserService;
 import com.kosta.abbo.user.service.NormalUserService;
 import com.kosta.abbo.user.service.TruckUserService;
 
@@ -34,14 +36,15 @@ import com.kosta.abbo.user.service.TruckUserService;
 @RequestMapping("/android")
 public class AndroidController {
 	
+
+	@Inject
+	private LiketruckService likeService;
+	
 	@Inject
 	private NormalUserService normalService;
 	
 	@Inject
 	private TruckUserService truckService;
-	
-	@Inject
-	private EventUserService eventService;
 	
 	@Inject
 	private PlanService planService;
@@ -177,6 +180,28 @@ public class AndroidController {
 		
 	}
 	
+	
+	@RequestMapping("/trucklist")
+	public void truckList(@ModelAttribute("cri")SearchCriteria cri, Model model, HttpSession session,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=utf-8");
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		List<TruckUser> list =  truckService.list();
+		
+		String jsonList = objectMapper.writeValueAsString(list);
+		
+		try {
+			PrintWriter out = response.getWriter();
+			out.println(jsonList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 	
 	

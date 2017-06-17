@@ -1,33 +1,9 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ page language="java"   pageEncoding="UTF-8"%>
+<%@ page language="java"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>드림트럭</title>
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="/resources/css/animate.min.css" rel="stylesheet">
-<link href="/resources/css/lightbox.css" rel="stylesheet">
-<link href="/resources/css/main.css" rel="stylesheet">
-<link href="/resources/css/responsive.css" rel="stylesheet">
-<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
-<script type="text/javascript" src="/resources/js/jquery.js"></script>
-
-<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-  href="/resources/images/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-  href="/resources/images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-  href="/resources/images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-  href="/resources/images/ico/apple-touch-icon-57-precomposed.png">
+<%@include file="../include/references.jsp"%>
 </head>
 <style type="text/css">
 .container{
@@ -58,7 +34,8 @@
 </style>
 <script type="text/javascript">
 $(document).ready( function() {
-		   
+		    $("#save").hide();
+	
 			$("#list").on("click", function() {
 				self.location = "/event/list";
 			});
@@ -102,6 +79,38 @@ $(document).ready( function() {
             $("#imgInp").change(function() {
                readURL(this);
             });
+            
+            $("#upload").on("click", function() {
+            	$.ajax({
+   	             url : 'https://fcm.googleapis.com/fcm/send',
+   	             type: "post",
+   	              headers : {
+   	                 'Content-Type' : 'application/json',
+   	                 'Authorization' : 'key=AAAAhlGBbq0:APA91bFr0dGj6GP3thL0zkKtpuCZEnj2jZ5YzypbSDI3iAH6FD-J9Q0KnE6jFKMsIEqVRPowSfM-JkvVEj8lhWGgHyThn5GU-sl5tMMd3Yhlo_X7H_MS8q1TjIo4NwHxmTKRDsF3I477'
+   	              },
+   	              data : JSON.stringify({
+   	                  "notification": {
+   	                      "title": "Dream Truck",
+   	                      "body": "회원님의 관심지역에 새로운 행사가 등록되었습니다! 행사 목록을 확인하세요!"
+   	                    },
+   	                 "to" : "cj4CNWrg5yg:APA91bGyScw4dpOzAEbJxvy8IBnqEP_pAUXEHGy1P_qdcDt5bHPREQGIf5tSlIrOTVEiWbQ0jdkjoUO4KSOIwldCn3sgh6M6pXgoU401YvLemdOA-DGOiK01OmpkqVwcc006bLN-_p0Z",
+   	                 
+   	                 
+   	              }),
+   	           success: function(error, response, body) {
+   	              if (error) {
+   	                 console.error(error, response, body);
+   	              } else if (response.statusCode >= 400) {
+   	                 console.error('HTTP Error: ' + response.statusCode + ' - '
+   	                       + response.statusMessage + '\n' + body);
+   	              } else {
+   	                 console.log('JSON 메세지 전송 성공!')
+   	              }
+   	           }
+   	       });
+            	$("#save").click();
+            });
+            
          });
 
 </script> 
@@ -144,7 +153,7 @@ $(document).ready( function() {
             <br><br>
                <label class="col-md-4 control-label" for="title">제목</label>
                <div class="col-md-4">
-                  <input id="title" name="title"  type="text" placeholder="제목을 입력하세요." class="form-control input-md" required="">
+                  <input id="title" name="title"  type="text" placeholder="제목을 입력하세요." class="form-control input-md" required>
                   <label class="col-md-4 control-label" for="title"></label>
                </div>
             </div>
@@ -179,7 +188,7 @@ $(document).ready( function() {
             <div class="form-group">
                <label class="col-md-4 control-label" for="recruit">모집트럭 수</label>
                <div class="col-md-4">
-                  <input id="recruit" name="recruit" type="number" placeholder="모집트럭 수를 입력 해 주세요." class="form-control input-md" required="">
+                  <input id="recruit" name="recruit" type="number" placeholder="모집트럭 수를 입력 해 주세요." class="form-control input-md" required>
                </div>
             </div>
             
@@ -259,37 +268,13 @@ $(document).ready( function() {
             <div class="form-group">
                <label class="col-md-4 control-label" for="save"></label>
                <div class="col-md-8 text-center">
-                  <button type="submit" id="save" name="save" class="btn btn-common">등록</button>
+                  <button type="button" id="upload" class="btn btn-common">등록</button>
+                  <button type="submit"  id="save" name="save"></button>
                   <button type="button" id="list" name="list" class="btn btn-common">취소</button>
                </div>
             </div>
          </fieldset>
          </form>
-         
-         <!-- 맨위로 -->
-         <a href="#" class="top">Top</a>
-         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <%@include file="../include/footer.jsp"%> <!--/#footer-->
-
-  <script type="text/javascript" src="/resources/js/jquery.js"></script>
-  <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
-  <script type="text/javascript" src="/resources/js/wow.min.js"></script>
-  <script type="text/javascript" src="/resources/js/main.js"></script>
 </body>
 </html>

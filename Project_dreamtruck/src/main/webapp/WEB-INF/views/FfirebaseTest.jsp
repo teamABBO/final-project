@@ -1,20 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" %>
-<%@ page language="java"   pageEncoding="UTF-8"%>
-
+<%@ page language="java"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Insert title here</title>
-
-<script type="text/javascript" src="/resources/js/jquery.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-messaging.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-
-
+<%@include file="include/references.jsp"%>
   <script>
 	 
   $(document).ready(function() {
