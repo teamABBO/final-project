@@ -63,7 +63,7 @@
 			<mapping path="/event/upload"/>
 			<mapping path="/event/modify"/>
 			<mapping path="/user/myboard"/>
-			<mapping path="/applier/list"/>
+			<mapping path="/applier/list/*"/>
 			<beans:ref bean="eventCheckInterceptor"/>
 		</interceptor>
 		

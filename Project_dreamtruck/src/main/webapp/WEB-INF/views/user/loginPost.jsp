@@ -10,7 +10,7 @@
 <script type="text/javascript">
 var result = '${msg}';
 if (result == 'success') {
-	alert("회원 정보를 확인 해 주세요.");
+	swal("실패!","회원 정보를 확인 해 주세요.", "error");
     self.location = "login";
 }else{
    self.location = "../";

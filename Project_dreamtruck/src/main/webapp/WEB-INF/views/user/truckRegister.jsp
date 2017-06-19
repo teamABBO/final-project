@@ -91,7 +91,7 @@
 	                        input.val(log);
 	                     } else {
 	                        if (log)
-	                           alert(log);
+	                           swal("오류!",log,"error");
 	                     }
 
 	                  });

@@ -21,15 +21,8 @@ th {
 }
 </style>
 <script >
-
-var result = '${msg}';
-if (result == 'success') {
-	swal("처리완료");
-}
-
 $(document).ready(
 		function() {
-			console.log("${login.userId}");
 			$('#searchB').on(
 					"click", function (event) {
 						self.location = "list"

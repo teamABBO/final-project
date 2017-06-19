@@ -8,7 +8,7 @@
 
 var result = '${msg}';
 if (result == 'fale') {
-   alert("회원 정보를 확인 해 주세요.");
+   swal("오류!", "회원 정보를 확인 해 주세요.", "warning");
 }
 
 </script>
@@ -97,13 +97,13 @@ if (result == 'fale') {
 						<script type="text/javascript">
 							function check(){
 								if($.trim($("#id").val())==""){
-								alert("아이디를 입력하세요!");
+								swal("오류!", "아이디를 입력하세요!", "error");
 								$("#id").val("").focus();
 								return false;
 								}
 					
 								if($.trim($("#pw").val())==""){
-								alert("비번을 입력하세요!");
+								swal("오류!", "비밀번호를 입력하세요!", "error");
 								$("#pw").val("").focus();
 								return false;
 								}

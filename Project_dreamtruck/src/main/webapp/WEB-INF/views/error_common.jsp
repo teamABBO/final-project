@@ -66,8 +66,9 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
-	$(#"viewError").on("click", function() {
-		$("#errorDetails").attr("hidden", false);
+	$(".error").hide();
+	$("#viewError").on("click", function() {
+		$(".error").show();
 	});
 });
 </script>
@@ -83,16 +84,14 @@ $(document).ready(function() {
         <p>
         자세한 오류 메세지를 보시려면 <a href="" id="viewError">여기</a> 를 클릭하세요
         </p>
-        <div id="errorDetails" hidden="true">
-          <p>${exception.getMessage() }
+          <p class="error">${exception.getMessage() }
             <br />
           </p>
-          <ul>
+          <ul class="error">
           <c:forEach items="${exception.getStackTrace() }" var="stack">
-            <li>${stack.toString() }</li>
+            <li class="error">${stack.toString() }</li>
           </c:forEach>
           </ul>
-          </div>
         </div>
     </div>
 </html>

@@ -24,6 +24,7 @@
 		});
 		
 		$("#one").on("click", function() {
+			console.log("신청버튼");
   			$.ajax({
                   url: "apply",
                   type: "POST",
@@ -58,10 +59,11 @@
 					}
 				}
             });
-  			this.blur();
 		});
 		
 		var login = "${login.userId}";
+		if(login == ${event.userId}){
+	         $('#modify').attr("type","button");
 		}else{
 			$('#modify').attr("type","hidden");
 		}

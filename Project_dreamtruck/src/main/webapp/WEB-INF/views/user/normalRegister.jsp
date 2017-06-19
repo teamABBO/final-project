@@ -49,7 +49,7 @@ function isMember() {
 	
 	      var id = $('#id').val();
 	      if(id == ""){
-	    	  swal("중복체크","아이디를 입력 해 주세요.")
+	    	  swal("중복체크","아이디를 입력 해 주세요.", "error")
 	      }else{
 	    	 
 	         $.ajax({
@@ -62,10 +62,10 @@ function isMember() {
 	            },  
 	         success : function(data) {
 	        	if(data == "fail"){
-	        		swal("중복체크","가입 가능한 아이디 입니다.")
+	        		swal("중복체크","가입 가능한 아이디 입니다.","success")
 	        		$("#checkid").val("확인");
 	        	}else{
-	           		swal("중복체크","이미 가입된 아이디 입니다.")
+	           		swal("중복체크","이미 가입된 아이디 입니다.","error")
 	           		$("#checkid").val("취소");
 	        	}
 	         }
@@ -224,15 +224,15 @@ function isMember() {
 				   var check = $("#checkid").val();
 				   
 					if(likearea == "" ){
-						swal("회원 가입 중 에러", "관심 지역을 설정 해 주세요!")
+						swal("회원 가입 중 에러", "관심 지역을 설정 해 주세요!", "error")
 						return false;
 					} 
 					if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
-						swal("회원 가입 중 에러", "비밀 번호를 확인 해 주세요!")
+						swal("회원 가입 중 에러", "비밀 번호를 확인 해 주세요!", "error")
 						return false;
 					}
 					if(check == "취소" || check == "확인 해 주세요."){
-						swal("회원 가입 중 에러", "아이디 중복 확인 해 주세요!")
+						swal("회원 가입 중 에러", "아이디 중복 확인 해 주세요!", "error")
 						return false;
 					}
 					

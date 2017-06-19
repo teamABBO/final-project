@@ -8,9 +8,8 @@
 <script >
 var modify = '${modify}';
 
-console.log(modify);
 if (modify == 'modify') {
-	alert("회원정보가 수정되었습니다.");
+	swal("완료!","회원정보가 수정되었습니다.","success");
 }
 </script>
 <body>

@@ -66,12 +66,13 @@ $(document).ready(function () {
 			  confirmButtonText: '수락',
 			  cancelButtonText: '취소'
 			}).then(function () {
-				sendAlarm();
+				
+	    		sendAlarm();
 	    		$.ajax({
 	    			url : "/applier/confirm",
 	    			type : "post",
 	    			data : {
-	    				applierId : $(this).parent().parent().attr("data-applierId")
+	    				applierId : $(".confirm").parent().parent().attr("data-applierId")
 	    			},
 	    			dataType : "text",
 	    			success : function(result) {
@@ -99,12 +100,12 @@ $(document).ready(function () {
 			  confirmButtonText: '거절',
 			  cancelButtonText: '취소'
 			}).then(function () {
-				sendAlarm();
+				
 				$.ajax({
 	    			url : "/applier/deny",
 	    			type : "post",
 	    			data : {
-	    				applierId : $(this).parent().parent().attr("data-applierId")
+	    				applierId : $(".deny").parent().parent().attr("data-applierId")
 	    			},
 	    			dataType : "text",
 	    			success : function(result) {
@@ -132,7 +133,6 @@ $(document).ready(function () {
 			  confirmButtonText: '수락',
 			  cancelButtonText: '취소'
 			}).then(function () {
-				sendAlarm();
 	    		var checkedList = $(".check");
 	    		var confirmList = "";
 	    		for ( var num in checkedList) {
@@ -140,6 +140,16 @@ $(document).ready(function () {
 	    				confirmList += checkedList[num].id + "-";
 	    			}
 	    		}
+	    		if(confirmList == "") {
+	    			swal(
+	    				    '오류!',
+	    				    '트럭을 선택해주세요!',
+	    				    'error'
+	    				  );
+	    			return;
+	    		} else {
+	    			
+				sendAlarm();
 	    		
 	    		$.ajax({
 	    			url : "/applier/checkConfirm",
@@ -159,6 +169,7 @@ $(document).ready(function () {
 			    '선택하신 트럭의 참가를 수락하였습니다',
 			    'success'
 			  );
+	    		}
 			});
 	});
 	
@@ -180,6 +191,14 @@ $(document).ready(function () {
 	    				denyList += checkedList[num].id + "-";
 	    			}
 	    		}
+	    		if(denyList == "") {
+	    			swal(
+	    				    '오류!',
+	    				    '트럭을 선택해주세요!',
+	    				    'error'
+	    				  );
+	    			return;
+	    		} else {
 	    		
 	    		$.ajax({
 	    			url : "/applier/checkDeny",
@@ -199,6 +218,7 @@ $(document).ready(function () {
 			    '선택하신 트럭의 참가를 거절하였습니다',
 			    'success'
 			  );
+			}
 			});
 	});
 	function sendAlarm(){

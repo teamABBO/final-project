@@ -8,12 +8,10 @@
 var result = '${msg}';
 var modify = '${modify}';
 
-console.log(result);
-console.log(modify);
 if (result == 'success') {
-	alert("처리 완료.");
+	swal("탈퇴!", "정상적으로 탈퇴되었습니다.", "success");
 }else if (modify == 'modify'){
-	alert("회원정보가 수정되었습니다. 다시 로그인 해 주세요.");
+	swal("로그인 필요!","회원정보가 수정되었습니다. 다시 로그인 해 주세요.", "warning");
 }
 </script>
 		
@@ -107,13 +105,13 @@ if (result == 'success') {
 				<script type="text/javascript">
 				function check(){
 					if($.trim($("#id").val())==""){
-						alert("아이디를 입력하세요!");
+						swal("오류!", "아이디를 입력하세요!", "warning");
 						$("#id").val("").focus();
 						return false;
 					}
 					
 					if($.trim($("#pw").val())==""){
-						alert("비밀번호를 입력하세요!");
+						alert("오류!", "비밀번호를 입력하세요!", "warning");
 						$("#pw").val("").focus();
 						return false;
 					}
