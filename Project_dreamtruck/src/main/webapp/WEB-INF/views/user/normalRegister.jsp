@@ -14,15 +14,15 @@
 		//비밀번호 유효성검사(영문숫자 조합 8~16자 내외)
 		   $("#pw").keyup(function() {
 		      var pw = $(this).val();
-		      if(pw.length <= 6 ) {
+		      if(pw.length < 6 ) {
 		         $("#pwLabel").text("6~15자리 영문숫자조합").css("color","red");
-		      }else if (reg_pw.test($("#pw").val()) &&  pw.length > 6 && pw.length <= 15){
+		      }else if (reg_pw.test($("#pw").val()) &&  pw.length >= 6 && pw.length <= 15){
 		         $("#pwLabel").text("사용가능").css("color","green");
 		      }
 		   });
 		   $("#repw").keyup(function() {
 			  var repw = $(this).val();
-		      if(repw.length <= 6){
+		      if(repw.length < 6){
 		    	  $("#repwLabel").text("6~15자리 영문숫자조합").css("color","red")
 		      }else if($("#repw").val() != $("#pw").val()){
 		         $("#repwLabel").text("비밀번호가 다릅니다").css("color","red")
