@@ -48,7 +48,7 @@
 				<br>
 				<p style="font-size: 20px; color: #5C5C5C;">로그인을 하시면 보다 더 많은 서비스를 이용하실 수 있습니다.</p>
 				
-				<br> <a href="login" class="btn btn-common">로그인</a> <br>
+				<br> <a href="../" class="btn btn-common">홈으로</a> <br>
 				<br>
 			</div>
 
