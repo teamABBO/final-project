@@ -408,6 +408,7 @@ public class NormalUserController {
 		if (normalService.isMember(id) == null) {
 			return new ResponseEntity<String>("fail", HttpStatus.OK);
 		} else {
+			/*return new ResponseEntity<String>("true", HttpStatus.OK); */
 			return new ResponseEntity<String>(normalService.isMember(id), HttpStatus.OK);
 		}
 	}

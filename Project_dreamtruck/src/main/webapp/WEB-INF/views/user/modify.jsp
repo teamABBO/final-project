@@ -14,6 +14,14 @@
 <link href="/resources/css/lightbox.css" rel="stylesheet">
 <link href="/resources/css/main.css" rel="stylesheet">
 <link href="/resources/css/responsive.css" rel="stylesheet">
+<link href="/resources/css/sweetalert.css" rel="stylesheet">
+<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
+<script type="text/javascript" src="/resources/js/wow.min.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>
+<script type="text/javascript" src="/resources/js/sweetalert.min.js"></script> 
 <style type="text/css">
 .container{
     margin-top:20px;
@@ -41,14 +49,6 @@
     margin-left:2px;
 }
 </style>
-<link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
-</head>
-<script type="text/javascript" src="/resources/js/jquery.js"></script>
-<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/js/lightbox.min.js"></script>
-<script type="text/javascript" src="/resources/js/wow.min.js"></script>
-<script type="text/javascript" src="/resources/js/main.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 			var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;	
@@ -155,7 +155,7 @@
    <!-- 배너 -->
    		
    			<!-- 일반 사용자 회원가입 -->
-			<form class="form-horizontal" method="post" role="form">
+			<form class="form-horizontal" method="post" role="form" onsubmit="return Check(this);">
 			<fieldset>
 				<!-- 아이디 -->
 				<div class="form-group">
@@ -336,6 +336,25 @@
 				</div>
 			</fieldset>
 			</form>
+			
+			<script type="text/javascript">
+			function Check(form) {
+				   var likearea = $("#likeArea option:selected").val();
+				   var pw = $("#pw").val();
+				   var repw = $("#repw").val();
+				   var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+				   
+					if(likearea == "" ){
+						swal("회원 가입 중 에러", "관심 지역을 설정 해 주세요!")
+						return false;
+					} 
+					if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
+						swal("회원 가입 중 에러", "비밀 번호를 확인 해 주세요!")
+						return false;
+					}
+			}
+			
+			</script>
 		 </c:when> 
 		
 	 <c:when test="${login.type == 'event'}">
@@ -365,7 +384,7 @@
    </div>
    </section>
    <!-- 배너 -->
-	<form class="form-horizontal" method="post" role="form">
+	<form class="form-horizontal" method="post" role="form" onsubmit="return Check(this);">
 			<fieldset>
 				<!-- 아이디 -->
 				<div class="form-group">
@@ -551,6 +570,24 @@
 				</div>
 			</fieldset>
 			</form>
+			<script type="text/javascript">
+			function Check(form) {
+				   var likearea = $("#likeArea option:selected").val();
+				   var pw = $("#pw").val();
+				   var repw = $("#repw").val();
+				   var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+				   
+					if(likearea == "" ){
+						swal("회원 가입 중 에러", "관심 지역을 설정 해 주세요!")
+						return false;
+					} 
+					if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
+						swal("회원 가입 중 에러", "비밀 번호를 확인 해 주세요!")
+						return false;
+					}
+			}
+			
+			</script>
 		</c:when>
 		
 		<c:when test="${login.type == 'truck' }">
@@ -580,7 +617,7 @@
    </div>
    </section>
    <!-- 배너 -->
-	<form class="form-horizontal" id="form1" enctype="multipart/form-data" method="post" role="form">
+	<form class="form-horizontal" id="form1" enctype="multipart/form-data" method="post" role="form" onsubmit="return Check(this);">
 			<fieldset>
 				<!-- 아이디 -->
 				<div class="form-group">
@@ -960,6 +997,31 @@
 				</div>
 			</fieldset>
 			</form> 
+			<script type="text/javascript">
+			function Check(form) {
+				   var likearea = $("#likeArea option:selected").val();
+				   var truckarea = $("#truckArea option:selected").val();
+				   var truckfood = $("#truckFood option:selected").val();
+				   var pw = $("#pw").val();
+				   var repw = $("#repw").val();
+				   var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+				   
+				   
+					if(likearea == ""){
+						swal("회원 수정 중 에러", "관심 지역을 설정 해 주세요!")
+						return false;
+					}else if(truckarea == ""){
+						swal("회원 수정 중 에러", "영업 지역을 설정 해 주세요!")
+						return false;
+					}else if(truckfood == ""){
+						swal("회원 수정 중 에러", "음식 종류를 설정 해 주세요!")
+						return false;
+					}else if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
+						swal("회원 수정 중 에러", "비밀 번호를 확인 해 주세요!")
+						return false;
+					}
+			}
+			</script>
 	
 	</c:when>
 	</c:choose> 

@@ -80,8 +80,10 @@ function isMember() {
 	         success : function(data) {
 	        	if(data == "fail"){
 	        		swal("중복체크","가입 가능한 아이디 입니다.")
+	        		$("#checkid").val("확인");
 	        	}else{
 	           		swal("중복체크","이미 가입된 아이디 입니다.")
+	           		$("#checkid").val("취소");
 	        	}
 	         }
 	      });
@@ -121,7 +123,7 @@ function isMember() {
    </div>
    </section>
     <!-- 배너 -->
-   			
+   			<input type="hidden" id="checkid" value="확인 해 주세요.">
    			<!-- 일반 사용자 회원가입 -->
    			<img alt="" src="/resources/images/home/joinus.png" style="margin-left: 590px; height: 100px;">
     		<br>
@@ -140,6 +142,7 @@ function isMember() {
 				<!-- 비밀번호 -->
 				<div class="form-group">
 					<label class="col-md-4 control-label">비밀번호</label>
+					
 					<label id="pwLabel"></label>
 					<div class="col-md-4">
 						<input id="pw" name="pw" type="password" placeholder="비밀번호를 입력 해 주세요." class="form-control input-md" maxlength="16">
@@ -232,11 +235,24 @@ function isMember() {
 			<script type="text/javascript">
 			function Check(form) {
 				   var likearea = $("#likeArea option:selected").val();
-					
-					if(likearea == ""){
+				   var pw = $("#pw").val();
+				   var repw = $("#repw").val();
+				   var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+				   var check = $("#checkid").val();
+				   
+					if(likearea == "" ){
 						swal("회원 가입 중 에러", "관심 지역을 설정 해 주세요!")
 						return false;
+					} 
+					if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
+						swal("회원 가입 중 에러", "비밀 번호를 확인 해 주세요!")
+						return false;
 					}
+					if(check == "취소" || check == "확인 해 주세요."){
+						swal("회원 가입 중 에러", "아이디 중복 확인 해 주세요!")
+						return false;
+					}
+					
 			}
 			
 			</script>

@@ -164,13 +164,15 @@ function isMember() {
 	         data: {
 	           "id" : id
 	            },  
-	         success : function(data) {
-	        	if(data == "fail"){
-	        		swal("중복체크","가입 가능한 아이디 입니다.")
-	        	}else{
-	           		swal("중복체크","이미 가입된 아이디 입니다.")
-	        	}
-	         }
+	            success : function(data) {
+		        	if(data == "fail"){
+		        		swal("중복체크","가입 가능한 아이디 입니다.")
+		        		$("#checkid").val("확인");
+		        	}else{
+		           		swal("중복체크","이미 가입된 아이디 입니다.")
+		           		$("#checkid").val("취소");
+		        	}
+		         }
 	      });
 	      }
 	   }
@@ -206,6 +208,7 @@ function isMember() {
    </section>
     <!-- 배너 -->
     
+    <input type="hidden" id="checkid" value="확인 해 주세요.">
     <img alt="" src="/resources/images/home/joinus.png" style="margin-left: 590px; height: 100px;">
     <br>
 	<form class="form-horizontal" id="form1" enctype="multipart/form-data" method="post" role="form" onsubmit="return Check();">
@@ -436,6 +439,10 @@ function isMember() {
 				   var likearea = $("#likeArea option:selected").val();
 				   var truckarea = $("#truckArea option:selected").val();
 				   var truckfood = $("#truckFood option:selected").val();
+				   var pw = $("#pw").val();
+				   var repw = $("#repw").val();
+				   var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+				   var check = $("#checkid").val();
 				   
 					if(likearea == ""){
 						swal("회원 가입 중 에러", "관심 지역을 설정 해 주세요!")
@@ -445,6 +452,12 @@ function isMember() {
 						return false;
 					}else if(truckfood == ""){
 						swal("회원 가입 중 에러", "음식 종류를 설정 해 주세요!")
+						return false;
+					}else if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
+						swal("회원 가입 중 에러", "비밀 번호를 확인 해 주세요!")
+						return false;
+					}else if(check == "취소" || check == "확인 해 주세요."){
+						swal("회원 가입 중 에러", "아이디 중복 확인 해 주세요!")
 						return false;
 					}
 			}
