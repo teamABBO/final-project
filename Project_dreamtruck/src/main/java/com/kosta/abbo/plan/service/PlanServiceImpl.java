@@ -71,4 +71,9 @@ public class PlanServiceImpl implements PlanService {
 		return dao.uploadCheck(plan);
 	}
 
+	@Override
+	public Plan searchUser(int userId) {
+		return dao.searchUser(userId);
+	}
+
 }

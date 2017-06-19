@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.HomeController;
 import com.kosta.abbo.liketruck.domain.Liketruck;
 import com.kosta.abbo.liketruck.service.LiketruckService;
 import com.kosta.abbo.page.domain.Criteria;
 import com.kosta.abbo.page.domain.PageMaker;
 import com.kosta.abbo.page.domain.SearchCriteria;
+import com.kosta.abbo.plan.service.PlanService;
 import com.kosta.abbo.user.domain.NormalUser;
 import com.kosta.abbo.user.service.TruckUserService;
 
@@ -31,6 +33,9 @@ import com.kosta.abbo.user.service.TruckUserService;
 public class TruckUserController {
 	@Inject
 	private TruckUserService service;
+	
+	@Inject
+	private PlanService planservice;
 
 	@Inject
 	private LiketruckService likeService;
@@ -100,7 +105,16 @@ public class TruckUserController {
 			}
 		}
 		cri.setPage(page);
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonlist = objectMapper.writeValueAsString(planservice.list(userId));
+		String planlist = objectMapper.writeValueAsString(planservice.searchUser(userId));
+		
 		model.addAttribute("cri", cri);
+		model.addAttribute("list", jsonlist);
+		model.addAttribute("plan", planlist);
+		
+		logger.info(planservice.list(userId).toString());
 		logger.info("페이지정보 : "+model.addAttribute("cri", cri).toString());
 		/*NormalUser loginUser = (NormalUser) session.getAttribute("login");*/
 		

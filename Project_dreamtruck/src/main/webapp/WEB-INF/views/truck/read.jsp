@@ -242,6 +242,56 @@ $(document).ready(function(){
 		});
 		
 	} 
+	
+	//지도생성
+	var map;
+	var geocoder;
+	var address = "";
+	var marker = [];
+	var plan = ${plan};
+	var infowindow = new google.maps.InfoWindow( 
+		     { content: plan.truckName, 
+			       size: new google.maps.Size(100,100) 
+			     });
+	function reversegeo(day,x, y) {
+		var latlng = new google.maps.LatLng(x, y);
+		geocoder.geocode({'latLng' : latlng}, function(results, status) {
+			  if (status == google.maps.GeocoderStatus.OK)  {
+				   $("#address"+day).append(results[1].formatted_address);
+			  }else{
+				   setTimeout(function(){   //단위 시간당 요청 제한이 있어 재 요청 시간조절
+						  reversegeo(type, day, count,x, y);
+					 } ,1000);
+			  }
+			 });
+	}
+	geocoder =  new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(37.555172, 126.970788);
+    var myOptions = {
+		zoom: 11,
+		center:latlng,
+		mapTypeId: google.maps.MapTypeId.ROADMAP   
+	};
+    
+	map = new google.maps.Map(document.getElementById("map"), myOptions);
+	
+	if(plan!=null){
+		latlng = new google.maps.LatLng(plan.x, plan.y);
+		marker.push(new google.maps.Marker({
+			   position: latlng,
+			   map: map
+			  } ));
+		infowindow.open(map, marker[0]);
+	}
+	
+	
+	var planList = ${list};
+	for ( var num in planList) {
+		$("#sche"+planList[num].day).html('제목 : ' + planList[num].title + '<br>' + 
+				                            '장소 : ' + '<a id="address'+planList[num].day+'"></a>' + '<br>' +
+				                            '시간 : ' + planList[num].open + '~' + planList[num].close);
+		reversegeo(planList[num].day, planList[num].x, planList[num].y);
+	}
 });
 
 
@@ -329,7 +379,58 @@ $(document).ready(function(){
                   </h3>
 
                   <p>${truckUser.truckInfo }</p>
+                  
+                  <div class="col-md-6" >
+                  		<table class="table talbe-hover">
+                  			<tr>
+                  	  			<th colspan="2" style="text-align: center;">현재 위치</th>
+                  	  		</tr>
+                  	  		<tr>
+                  	  			<td id="map" style="height: 539px;">
+                  	  			</td>
+                  	  		</tr>
+                  		</table>
+                  </div>
+                  
+                  <div class="col-md-6">
+                  	  <table class="table talbe-hover">
+                  	  		<tr>
+                  	  			<th colspan="2" style="text-align: center;">트럭 스케줄</th>
+                  	  		</tr>
+                  	    	<tr>
+                  	  			<td><br>일요일<br></td>
+                  	  			<td id="sche0"><br><br><br></td>
+                  	  		</tr>
+                  	  		<tr>
+                  	  			<td><br>월요일<br></td>
+                  	  			<td id="sche1"><br><br><br></td>
+                  	  		</tr>
+                  	  		<tr>
+                  	  			<td><br>화요일<br></td>
+                  	  			<td id="sche2"><br><br><br></td>
+                  	  		</tr>
+                  	  		<tr>
+                  	  			<td><br>수요일<br></td>
+                  	  			<td id="sche3"><br><br><br></td>
+                  	  		</tr>
+                  	  		<tr>
+                  	  			<td><br>목요일<br></td>
+                  	  			<td id="sche4"><br><br><br></td>
+                  	  		</tr>
+                  	  		<tr>
+                  	  			<td><br>금요일<br></td>
+                  	  			<td id="sche5"><br><br><br></td>
+                  	  		</tr>
+                  	  		<tr>
+                  	  			<td><br>토요일<br></td>
+                  	  			<td id="sche6"><br><br><br></td>
+                  	  		</tr>
+                  	  </table>
+                  </div>
+                  
+                  
                   <div class="post-bottom overflow">
+                  <br>
                     <ul class="nav navbar-nav post-nav">
                       <span><li id="liketruck"><a href="#"><i
                             class="fa fa-heart" id="like"></i> <i

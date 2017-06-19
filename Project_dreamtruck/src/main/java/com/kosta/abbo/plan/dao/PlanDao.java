@@ -48,5 +48,12 @@ public interface PlanDao {
 	 * @return
 	 */
 	public Plan uploadCheck(Plan plan);
+	
+	/**
+	 * 트럭상세보기에서 지도보여주기
+	 * @param userId
+	 * @return
+	 */
+	public Plan searchUser(int userId);
 
 }
