@@ -68,6 +68,11 @@
 		WHERE  event_id > 0 
    		]]>
 	</select>
+	
+	<!-- Android 리스트 불러오기 -->
+	<select id="list" resultType="Event">
+		
+	</select>
 
 	<!-- 리스트 -->
 	<select id="listSearch" resultType="Event">
