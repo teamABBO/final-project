@@ -63,7 +63,7 @@ $(document).ready(function() {
                     <img src="resources/images/aboutus/abbo.png" class="margin-bottom" alt="">
                     <h1 class="margin-bottom">ABBO</h1>
                     <p>ABBO는 푸드트럭의 대중화를 위해 드림트럭을 운영하고 있습니다. </p>
-                    <p>매년 겨울, 타코야끼 트럭이 어디 있을 지 몰라 항상 현금 3천원을 지니고 다닌 경험에서 시작되어s 저희는 고객들의 행복한 푸드트럭 문화를 위해 나아가고 있습니다. </p>
+                    <p>매년 겨울, 타코야끼 트럭이 어디 있을 지 몰라 항상 현금 3천원을 지니고 다닌 경험에서 시작되어 저희는 고객들의 행복한 푸드트럭 문화를 위해 나아가고 있습니다. </p>
                     <p>지금 이 마음 간직해, 국내 푸드트럭 문화 증진에 앞장서 고객이 간편하게 이용할 수 있는 푸드트럭 시스템을 위해 발전하겠습니다.</p>
                 </div>
             </div>
@@ -92,33 +92,11 @@ $(document).ready(function() {
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-5 wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms">
-                        <div class="our-skills">
-                            <div class="single-skill">
-                                <h3>Design</h3>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  data-transition="60">60%</div>
-                                </div>
-                            </div>
-                            <div class="single-skill">
-                                <h3>JAVA</h3>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  data-transition="80">80%</div>
-                                </div>
-                            </div>
-                            <div class="single-skill">
-                                <h3>HTML</h3>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  data-transition="60">60%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--/#company-information-->
+    <!--/#company-information--> 
     
     
     <section id="map-section">

@@ -67,13 +67,14 @@ $(function(){
 				
 				$("#reviewDiv").on("click", function(){
 					
-					if ($(".timeline li").size() > 1) {
-						$("#reviewDiv a").html('트럭 리뷰 펼치기');
+					if ($("#reviewopen").html() == "트럭 리뷰 접기") {
 						$(".reviewLi").remove();
+						$("#reviewDiv a").html('트럭 리뷰 펼치기');
 						return;
-					}
-					$("#reviewopen").html("트럭 리뷰 접기");
+					}else{
 					getPage("/review/"+targetId+"/1");
+					$("#reviewopen").html("트럭 리뷰 접기");
+				}
 				});
 				
 				$(".pagination").on("click","a", function(){
@@ -214,6 +215,7 @@ $(document).ready(function(){
 							swal("삭제 성공!", "관심트럭 목록에서 삭제되었습니다.", "success");
 							reviewPage=1;
 							getPage("/truck/read?userId="+targetId);
+							location.reload();
 							}
 					}
 				
@@ -235,6 +237,7 @@ $(document).ready(function(){
 							swal("등록 성공!", "관심트럭으로 등록되었습니다.", "success");
 							reviewPage=1;
 							getPage("/truck/read?userId="+targetId);
+							location.reload();
 							}
 					}
 				
@@ -249,10 +252,14 @@ $(document).ready(function(){
 	var address = "";
 	var marker = [];
 	var plan = ${plan};
-	var infowindow = new google.maps.InfoWindow( 
-		     { content: plan.truckName, 
-			       size: new google.maps.Size(100,100) 
-			     });
+	var infowindow;
+	if(plan!=null){
+		infowindow = new google.maps.InfoWindow( 
+			     { content: plan.truckName, 
+				       size: new google.maps.Size(100,100) 
+				     });
+	}
+	
 	function reversegeo(day,x, y) {
 		var latlng = new google.maps.LatLng(x, y);
 		geocoder.geocode({'latLng' : latlng}, function(results, status) {
@@ -432,7 +439,7 @@ $(document).ready(function(){
                   <div class="post-bottom overflow">
                   <br>
                     <ul class="nav navbar-nav post-nav">
-                      <span><li id="liketruck"><a href="#"><i
+                      <span><li id="liketruck"><a href=""><i
                             class="fa fa-heart" id="like"></i> <i
                             class="fa fa-heart-o" id="unlike"></i></a><a>${truckUser.truckLikecnt }
                             Love</a></li></span>

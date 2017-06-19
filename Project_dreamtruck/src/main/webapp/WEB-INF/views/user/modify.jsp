@@ -77,7 +77,7 @@
                        input.val(log);
                     } else {
                        if (log)
-                          alert(log);
+                          swal("오류!", log, "error");
                     }
 
                  });
@@ -328,11 +328,11 @@
 				   var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
 				   
 					if(likearea == "" ){
-						swal("회원 수정 중 에러", "관심 지역을 설정 해 주세요!")
+						swal("회원 수정 중 에러", "관심 지역을 설정 해 주세요!", "error")
 						return false;
 					} 
 					if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
-						swal("회원 수정 중 에러", "비밀 번호를 확인 해 주세요!")
+						swal("회원 수정 중 에러", "비밀 번호를 확인 해 주세요!", "error")
 						return false;
 					}
 			}
@@ -561,11 +561,11 @@
 				   var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
 				   
 					if(likearea == "" ){
-						swal("회원 수정 중 에러", "관심 지역을 설정 해 주세요!")
+						swal("회원 수정 중 에러", "관심 지역을 설정 해 주세요!", "error")
 						return false;
 					} 
 					if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
-						swal("회원 수정 중 에러", "비밀 번호를 확인 해 주세요!")
+						swal("회원 수정 중 에러", "비밀 번호를 확인 해 주세요!", "error")
 						return false;
 					}
 			}
@@ -991,16 +991,16 @@
 				   
 				   
 					if(likearea == ""){
-						swal("회원 수정 중 에러", "관심 지역을 설정 해 주세요!")
+						swal("회원 수정 중 에러", "관심 지역을 설정 해 주세요!", "error")
 						return false;
 					}else if(truckarea == ""){
-						swal("회원 수정 중 에러", "영업 지역을 설정 해 주세요!")
+						swal("회원 수정 중 에러", "영업 지역을 설정 해 주세요!"", "error")
 						return false;
 					}else if(truckfood == ""){
-						swal("회원 수정 중 에러", "음식 종류를 설정 해 주세요!")
+						swal("회원 수정 중 에러", "음식 종류를 설정 해 주세요!", "error")
 						return false;
 					}else if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
-						swal("회원 수정 중 에러", "비밀 번호를 확인 해 주세요!")
+						swal("회원 수정 중 에러", "비밀 번호를 확인 해 주세요!", "error")
 						return false;
 					}
 			}

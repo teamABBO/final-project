@@ -45,7 +45,7 @@
               <li><a href="/introduction">회사소개</a></li>
               <li><a href="/info">이용안내</a></li>
               <li><a href="/truck/list">트럭소개</a></li>
-              <li class="dropdown"><a>행사 <i
+              <li class="dropdown"><a href="/event/list">행사 <i
                   class="fa fa-angle-down"></i></a>
                 <ul role="menu" class="sub-menu">
                   <li><a href="/event/list">목록</a></li>
