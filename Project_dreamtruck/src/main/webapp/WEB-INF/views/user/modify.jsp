@@ -53,6 +53,7 @@
 	$(document).ready(function() {
 			var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;	
 				
+			// 비밀번호 유효성 검사
 			$("#pw").keyup(function() {
 		      var pw = $(this).val();
 		      if(pw.length <= 6 ) {
@@ -72,9 +73,8 @@
 		      }
 		   });
 		
-				
 		
-		// 이미지 변경
+		   // 이미지 변경
            $(document).on(
                  'change',
                  '.btn-file :file',
@@ -125,13 +125,14 @@
 	<input type="hidden" name="userId" value="${login.userId}">
 	<input type="hidden" name="type" value="${login.type}">
 	
-	 <c:choose>
+	<c:choose>
 	<c:when test="${login.type == 'normal'}">
-			<!-- 배너 -->
+	
+	<!-- 배너 -->
 	<br><br>
   	<section id="services" style="margin-top: 0px">
     <div class="container">
-      <div class="row">
+    <div class="row">
    
 	<section id="page-breadcrumb">
     <div class="vertical-center sun">
@@ -345,11 +346,11 @@
 				   var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
 				   
 					if(likearea == "" ){
-						swal("회원 가입 중 에러", "관심 지역을 설정 해 주세요!")
+						swal("회원 수정 중 에러", "관심 지역을 설정 해 주세요!")
 						return false;
 					} 
 					if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
-						swal("회원 가입 중 에러", "비밀 번호를 확인 해 주세요!")
+						swal("회원 수정 중 에러", "비밀 번호를 확인 해 주세요!")
 						return false;
 					}
 			}
@@ -578,11 +579,11 @@
 				   var reg_pw = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
 				   
 					if(likearea == "" ){
-						swal("회원 가입 중 에러", "관심 지역을 설정 해 주세요!")
+						swal("회원 수정 중 에러", "관심 지역을 설정 해 주세요!")
 						return false;
 					} 
 					if(pw != repw || pw.length <= 6 || !reg_pw.test(pw)){
-						swal("회원 가입 중 에러", "비밀 번호를 확인 해 주세요!")
+						swal("회원 수정 중 에러", "비밀 번호를 확인 해 주세요!")
 						return false;
 					}
 			}
