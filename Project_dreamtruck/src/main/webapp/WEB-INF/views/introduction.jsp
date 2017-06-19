@@ -4,6 +4,28 @@
 <html>
 <head>
 <%@include file="include/references.jsp"%>
+<script >
+//지도생성
+$(document).ready(function() {
+	var map;
+	var marker = [];
+	 var latlng = new google.maps.LatLng(37.478873,126.881313);
+	 var myOptions = {
+	   zoom: 16,
+	   center:latlng,
+	   mapTypeId: google.maps.MapTypeId.ROADMAP   
+	};
+	 latlng = new google.maps.LatLng(37.478873,126.881313);
+	 marker.push(new google.maps.Marker({
+		   position: latlng,
+		   map: map
+		  } ));
+	    
+	map = new google.maps.Map(document.getElementById("map"), myOptions);
+});
+
+</script>
+
 </head>
 <body>
 <%@include file="include/header.jsp"%>
@@ -40,7 +62,9 @@
                 <div class="col-sm-12 text-center">
                     <img src="resources/images/aboutus/abbo.png" class="margin-bottom" alt="">
                     <h1 class="margin-bottom">ABBO</h1>
-                    <p>Pork chop duis eu pig, labore sausage venison. Shankle fugiat duis, filet mignon tri-tip venison beef shank ribeye<br /> aliqua cillum dolore sed do in.</p>
+                    <p>ABBO는 푸드트럭의 대중화를 위해 드림트럭을 운영하고 있습니다. </p>
+                    <p>매년 겨울, 타코야끼 트럭이 어디 있을 지 몰라 항상 현금 3천원을 지니고 다닌 경험에서 시작되어s 저희는 고객들의 행복한 푸드트럭 문화를 위해 나아가고 있습니다. </p>
+                    <p>지금 이 마음 간직해, 국내 푸드트럭 문화 증진에 앞장서 고객이 간편하게 이용할 수 있는 푸드트럭 시스템을 위해 발전하겠습니다.</p>
                 </div>
             </div>
         </div>
@@ -54,11 +78,17 @@
                     <div class="col-sm-7 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
                         <div class="row">
                             <div class="col-sm-5">
-                                <img src="resources/images/aboutus/6.png" class="img-responsive" alt="">
+                                <img src="resources/images/aboutus/kosta.png" class="img-responsive" alt="">
                             </div>
                             <div class="col-sm-7">
-                                <h3 class="top-zero">Who we are</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. <br> <br> Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                                <h3 class="top-zero">드림트럭 본사</h3>
+                                <p>회사명 : Team ABBO</p>
+                                <p>주소 : 서울시 금천구 가산디지털1로 151-0 이노플렉스1차 </p>
+                                <p>2층 한국소프트웨어기술진흥협회</p>
+                                <p>대표이사 : 윤현재 外 5인</p>
+                                <p>설립일: 2017년 5월 29일</p>
+                                <p>사업장 : 가산디지털단지</p>
+                                <p>임직원수 : 6명</p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +97,7 @@
                             <div class="single-skill">
                                 <h3>Design</h3>
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  data-transition="35">35%</div>
+                                    <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  data-transition="60">60%</div>
                                 </div>
                             </div>
                             <div class="single-skill">
@@ -89,195 +119,31 @@
         </div>
     </section>
     <!--/#company-information-->
-
-    <section id="team">
+    
+    
+    <section id="map-section">
         <div class="container">
-            <div class="row">
-                <h1 class="title text-center wow fadeInDown" data-wow-duration="500ms" data-wow-delay="300ms">팀원 소개</h1>
-                <p class="text-center wow fadeInDown" data-wow-duration="400ms" data-wow-delay="400ms">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-                Ut enim ad minim veniam, quis nostrud </p>
-                <div id="team-carousel" class="carousel slide wow fadeIn" data-ride="carousel" data-wow-duration="400ms" data-wow-delay="400ms">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators visible-xs">
-                        <li data-target="#team-carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#team-carousel" data-slide-to="1"></li>
-                    </ol>
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="team-single-wrapper">
-                                    <div class="team-single">
-                                        <div class="person-thumb">
-                                            <img src="resources/images/aboutus/1.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="social-profile">
-                                            <ul class="nav nav-pills">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="person-info">
-                                        <h2>John Doe</h2>
-                                        <p>CEO &amp; Developer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="team-single-wrapper">
-                                    <div class="team-single">
-                                        <div class="person-thumb">
-                                            <img src="resources/images/aboutus/2.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="social-profile">
-                                            <ul class="nav nav-pills">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="person-info">
-                                        <h2>John Doe</h2>
-                                        <p>CEO &amp; Developer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="team-single-wrapper">
-                                    <div class="team-single">
-                                        <div class="person-thumb">
-                                            <img src="resources/images/aboutus/3.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="social-profile">
-                                            <ul class="nav nav-pills">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="person-info">
-                                        <h2>John Doe</h2>
-                                        <p>CEO &amp; Developer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="team-single-wrapper">
-                                    <div class="team-single">
-                                        <div class="person-thumb">
-                                            <img src="resources/images/aboutus/1.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="social-profile">
-                                            <ul class="nav nav-pills">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="person-info">
-                                        <h2>John Doe</h2>
-                                        <p>CEO &amp; Developer</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="team-single-wrapper">
-                                    <div class="team-single">
-                                        <div class="person-thumb">
-                                            <img src="resources/images/aboutus/4.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="social-profile">
-                                            <ul class="nav nav-pills">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="person-info">
-                                        <h2>John Doe</h2>
-                                        <p>CEO &amp; Developer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="team-single-wrapper">
-                                    <div class="team-single">
-                                        <div class="person-thumb">
-                                            <img src="resources/images/aboutus/3.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="social-profile">
-                                            <ul class="nav nav-pills">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="person-info">
-                                        <h2>John Doe</h2>
-                                        <p>CEO &amp; Developer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="team-single-wrapper">
-                                    <div class="team-single">
-                                        <div class="person-thumb">
-                                            <img src="resources/images/aboutus/2.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="social-profile">
-                                            <ul class="nav nav-pills">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="person-info">
-                                        <h2>John Doe</h2>
-                                        <p>CEO &amp; Developer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="team-single-wrapper">
-                                    <div class="team-single">
-                                        <div class="person-thumb">
-                                            <img src="resources/images/aboutus/1.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="social-profile">
-                                            <ul class="nav nav-pills">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="person-info">
-                                        <h2>John Doe</h2>
-                                        <p>CEO &amp; Developer</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div id="map" style="height: 440px"></div>
+            <div class="contact-info">
+                <h2>연락처</h2>
+                <address>
+                E-mail: <a href="mailto:someone@example.com">dreamtruck146@gmail.com</a> <br> 
+                Phone: +82 (010) 9263 7153 <br> 
+                </address>
 
-                    <!-- Controls -->
-                    <a class="left team-carousel-control hidden-xs" href="#team-carousel" data-slide="prev">left</a>
-                    <a class="right team-carousel-control hidden-xs" href="#team-carousel" data-slide="next">right</a>
-                </div>
+                <h2>주소</h2>
+                <address>
+                서울시 금천구 가산디지털1로 151-0  <br> 
+                이노플렉스1차 2층 <br> 
+                한국소프트웨어기술진흥협회 <br> 
+                </address>
             </div>
         </div>
-    </section>
-    <!--/#team-->
+    </section> <!--/#map-section-->
+        
+    <br>
+    <br>
+    <br>
     
     
 <%@include file="include/footer.jsp"%>
