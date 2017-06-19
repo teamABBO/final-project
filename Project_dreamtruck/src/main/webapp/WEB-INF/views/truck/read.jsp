@@ -48,7 +48,6 @@ $(function(){
 
   $('.starrr').on('starrr:change', function(e, value){
     ratingsField = ratingsField.val(value);
-    console.log(ratingsField);
   });
 });
 
@@ -67,12 +66,14 @@ $(function(){
 				});
 				
 				$("#reviewDiv").on("click", function(){
+					
 					if ($(".timeline li").size() > 1) {
+						$("#reviewDiv a").html('트럭 리뷰 펼치기');
+						$(".reviewLi").remove();
 						return;
 					}
-				
+					$("#reviewopen").html("트럭 리뷰 접기");
 					getPage("/review/"+targetId+"/1");
-					console.log("reviewDiv실행");
 				});
 				
 				$(".pagination").on("click","a", function(){
@@ -85,13 +86,16 @@ $(function(){
 				$("#reviewAddBtn").on("click", function(){
 					if ("${login.userId}"=="") {
 						var writerId = "";
-					 	alertify.alert("로그인 후 사용 가능합니다");
+					 	swal("실패!", "로그인 후 사용 가능합니다", "warning");
 					}else if("${login.userId}"!=""){
 						var writerId ="${login.userId}";
 						var reviewtextObj = $("#newReviewText");
 						var reviewText = reviewtextObj.val();
 						var starObj = $("#ratings-hidden");
 						var star = starObj.val();
+						if(star == ""){
+							star = 0;
+						}
 						$.ajax({
 							type: 'post',
 							url: '/review/register',
@@ -102,9 +106,8 @@ $(function(){
 								targetId: targetId
 								},
 							success: function(result){
-								console.log("result: "+result);
 									if (result == 'SUCCESS') {
-										alertify.alert("등록되었습니다!");
+										swal("등록 성공!", "리뷰가 등록되었습니다.", "success");
 										reviewPage=1;
 										getPage("/review/"+targetId+"/"+reviewPage);
 										reviewtextObj.val("");
@@ -115,7 +118,6 @@ $(function(){
 					
 				});
 				$(".timeline").on("click", ".reviewLi", function(event){
-					console.log("수정창 뜬다!!");
 					var review = $(this);
 					var star = $("#ratings-hidden").val();
 					$("#reviewtext").val(review.find('.timeline-body').text());
@@ -124,22 +126,24 @@ $(function(){
 				});
 				
 				$("#reviewModBtn").on("click", function(){
-					console.log("수정버튼 눌림!!");
 					var reviewId = $(".modal-title").html();
 					var reviewtext = $("#reviewtext").val();
 					var time = $("#time").val();
 					var star = $("#ratings-hidden").val();
-
+					if(star == ""){
+						star = 0;
+					}
+	
 					$.ajax({
 					type: 'post',
 						url: '/review/'+reviewId,
 						data: { star : star, content: reviewtext, regdate:time },
 						dataType: 'text',
 						success: function(result){
-							console.log("result: "+result);
 							if (result=='SUCCESS') {
-								alert("수정되었습니다.");
 								getPage("/review/"+targetId+"/"+reviewPage);
+								$(".btn-default").click();
+								swal("수정 성공!", "리뷰가 수정되었습니다.", "success");
 							}
 						}
 					});
@@ -154,10 +158,10 @@ $(function(){
 						url: '/review/'+reviewId,
 						dataType: 'text',
 						success:function(result){
-							console.log("result: "+result);
 							if (result =='SUCCESS') {
-								alert("삭제 되었습니다.");
+								$(".btn-default").click();
 								getPage("/review/"+targetId+"/"+reviewPage);
+								swal("삭제 성공!", "리뷰가 정상적으로 삭제 되었습니다.", "success");
 							}
 							
 						}
@@ -176,7 +180,7 @@ $(document).ready(function(){
 		$('#unlike').show();
 		
 		$('#liketruck').click(function(){
-			alertify.alert("로그인 후 사용 가능합니다");
+			swal("실패!", "로그인 후 사용 가능합니다", "warning");
 		});
 		
 	} else if("${login.userId}" != ""){
@@ -204,11 +208,10 @@ $(document).ready(function(){
 					userId :truckId
 					},
 				success: function(result){
-					console.log("result: "+result);
 						if (result == 'SUCCESS') {
 							$('#like').hide();
 							$('#unlike').show();
-							alertify.alert("관심트럭 목록에서 삭제되었습니다!");
+							swal("삭제 성공!", "관심트럭 목록에서 삭제되었습니다.", "success");
 							reviewPage=1;
 							getPage("/truck/read?userId="+targetId);
 							}
@@ -226,11 +229,10 @@ $(document).ready(function(){
 					userId :truckId
 					},
 				success: function(result){
-					console.log("result: "+result);
 						if (result == 'SUCCESS') {
 							$('#like').show();
 							$('#unlike').hide();
-							alertify.alert("관심트럭으로 등록되었습니다!");
+							swal("등록 성공!", "관심트럭으로 등록되었습니다.", "success");
 							reviewPage=1;
 							getPage("/truck/read?userId="+targetId);
 							}
@@ -250,8 +252,8 @@ $(document).ready(function(){
 			<h4 class="timeline-header" ><span id="user"><i class="fa fa-user" style="color: #ff6262" id="user"></i>{{writerName}}</span></h4>
 				<div class="timeline-item">
 					<div class="timeline-body1 text-right" id="star" style="color: #ff6565; font-size: 20px">{{showstar star}}</div>
-					<div class="timeline-body" >{{content}}</div>
-					<span class="time text-right" id="time" style="color: #fd9483">
+					<div class="timeline-body" style="margin-bottom: 10px;">{{content}}</div>
+					<span class="time text-right" id="time" style="color: #fd9483;">
 						<i class="fa fa-clock-o" id="time"></i>{{prettifyDate regdate}}
 					</span>
 					<div class="timeline-footer text-right" id="modifyDiv">
@@ -307,7 +309,7 @@ $(document).ready(function(){
             <div class="col-md-12 col-sm-12">
               <div class="single-blog blog-details two-column">
                 <div class="post-thumb">
-                  <a href="#"> <c:if
+                  <a > <c:if
                       test="${empty truckUser.truckImg}">
                       <img id='img-upload' class="img-responsive"
                         src="/displayFile?fileName=/user/noimage.png" />
@@ -320,10 +322,10 @@ $(document).ready(function(){
                 </div>
                 <div class="post-content overflow">
                   <h2 class="post-title bold">
-                    <a href="#">${truckUser.truckName }</a>
+                    <a >${truckUser.truckName }</a>
                   </h2>
                   <h3 class="post-author">
-                    <a href="#">${truckUser.name }</a>
+                    <a >${truckUser.name }</a>
                   </h3>
 
                   <p>${truckUser.truckInfo }</p>
@@ -341,7 +343,7 @@ $(document).ready(function(){
                   <div class="col-md-12">
                     <div class="box box-success">
                       <div class="box-header">
-                        <h2 class="bold box-title">Comments</h2>
+                        <h2 class="bold box-title">댓글 남기기</h2>
                       </div>
                       <c:choose>
                         <c:when test="${empty login.userId}">
@@ -367,11 +369,11 @@ $(document).ready(function(){
                           <div class="box-body">
 
                             <input id="ratings-hidden" name="rating"
-                              type="hidden">
+                              type="hidden" value="0">
 
                             <textarea class="form-control" cols="50"
                               id="newReviewText" name="comment"
-                              placeholder="Enter your review here..."
+                              placeholder="댓글을 남겨주세요"
                               rows="5"></textarea>
                             <div class="box-footer text-right">
                               <div class="stars starrr" data-rating="0"
@@ -395,9 +397,8 @@ $(document).ready(function(){
                   <div>
                     <ul class="timeline">
                       <li class="time-label" id="reviewDiv"
-                        style="border: 2px"><span><i
-                          class="fa fa-comments" style="color: #fd9483">트럭
-                            리뷰</i></span></li>
+                        style="color: #fd9483; border: 2px; font-size: 20px"><i
+                          class="fa fa-comments" style="color: #fd9483; margin-right: 10px;"></i><a id="reviewopen" style="color: #fd9483;">트럭 리뷰 펼치기</a></span></li>
                     </ul>
                     <div class="text-center">
                       <ul id="pagination"
@@ -422,7 +423,7 @@ $(document).ready(function(){
                           <div class="stars starrr" data-rating="0"
                             id="star">
                             <input id="ratings-hidden" name="rating"
-                              type="hidden">
+                              type="hidden" value="0">
                           </div>
                           <input type="text" id="reviewtext"
                             class="form-control">
@@ -501,7 +502,6 @@ var printData = function(reviewArr, target, templateObject){
 	var html = template(reviewArr);
 	$(".reviewLi").remove();
 	target.after(html);
-	console.log("printData실행");
 }
 
 function getPage(pageInfo){
@@ -526,9 +526,6 @@ var printPaging = function(pageMaker, target){
 		str += "<li><a data-src='"+(pageMaker.endPage+1)+"'> >> </a></li>";
 	}
 	target.html(str);
-	
-	console.log("getPage실행");
-	console.log("총합:"+i+"Page실행");
 };
 
 

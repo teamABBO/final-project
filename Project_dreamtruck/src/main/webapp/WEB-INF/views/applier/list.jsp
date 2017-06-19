@@ -56,101 +56,150 @@ $(document).ready(function () {
 	});
 	
 	$(".confirm").on("click", function() {
-		if (confirm("취소가 불가능합니다. 정말 수락하시겠습니까?") == true){
-			sendAlarm();
-    		$.ajax({
-    			url : "/applier/confirm",
-    			type : "post",
-    			data : {
-    				applierId : $(this).parent().parent().attr("data-applierId")
-    			},
-    			dataType : "text",
-    			success : function(result) {
-    				if (result == "success") {
-    					location.reload();
-    				}
-    			}
-    		});
-		} else {
-			return;
-		}
+		swal({
+			  title: '정말 수락하시겠습니까?',
+			  text: "수락하시면 취소가 불가능합니다.",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '수락',
+			  cancelButtonText: '취소'
+			}).then(function () {
+				sendAlarm();
+	    		$.ajax({
+	    			url : "/applier/confirm",
+	    			type : "post",
+	    			data : {
+	    				applierId : $(this).parent().parent().attr("data-applierId")
+	    			},
+	    			dataType : "text",
+	    			success : function(result) {
+	    				if (result == "success") {
+	    					location.reload();
+	    				}
+	    			}
+	    		});
+			  swal(
+			    '완료!',
+			    '해당 트럭의 참가를 수락하였습니다',
+			    'success'
+			  );
+			});
 	});
 	
 	$(".deny").on("click", function() {
-		if (confirm("취소가 불가능합니다. 정말 거절하시겠습니까?") == true){
-    		$.ajax({
-    			url : "/applier/deny",
-    			type : "post",
-    			data : {
-    				applierId : $(this).parent().parent().attr("data-applierId")
-    			},
-    			dataType : "text",
-    			success : function(result) {
-    				if (result == "success") {
-    					location.reload();
-    				}
-    			}
-    		});
-		} else {
-			return;
-		}
+		swal({
+			  title: '정말 거절하시겠습니까?',
+			  text: "거절하시면 취소가 불가능합니다.",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '거절',
+			  cancelButtonText: '취소'
+			}).then(function () {
+				sendAlarm();
+				$.ajax({
+	    			url : "/applier/deny",
+	    			type : "post",
+	    			data : {
+	    				applierId : $(this).parent().parent().attr("data-applierId")
+	    			},
+	    			dataType : "text",
+	    			success : function(result) {
+	    				if (result == "success") {
+	    					location.reload();
+	    				}
+	    			}
+	    		});
+			  swal(
+			    '완료!',
+			    '해당 트럭의 참가를 거절하였습니다',
+			    'success'
+			  );
+			});
 	});
 	
 	$("#checkConfirm").on("click", function() {
-		if (confirm("취소가 불가능합니다. 정말 수락하시겠습니까?") == true){
-			sendAlarm();
-    		var checkedList = $(".check");
-    		var confirmList = "";
-    		for ( var num in checkedList) {
-    			if (checkedList[num].checked) {
-    				confirmList += checkedList[num].id + "-";
-    			}
-    		}
-    		
-    		$.ajax({
-    			url : "/applier/checkConfirm",
-    			type : "post",
-    			data : {
-    				confirmList : confirmList
-    			},
-    			dataType : "text",
-    			success : function(result) {
-    				if (result == "success") {
-    					location.reload();
-    				}
-    			}
-    		});
-		} else {
-			return;
-		}
+		swal({
+			  title: '정말 수락하시겠습니까?',
+			  text: "수락하시면 취소가 불가능합니다.",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '수락',
+			  cancelButtonText: '취소'
+			}).then(function () {
+				sendAlarm();
+	    		var checkedList = $(".check");
+	    		var confirmList = "";
+	    		for ( var num in checkedList) {
+	    			if (checkedList[num].checked) {
+	    				confirmList += checkedList[num].id + "-";
+	    			}
+	    		}
+	    		
+	    		$.ajax({
+	    			url : "/applier/checkConfirm",
+	    			type : "post",
+	    			data : {
+	    				confirmList : confirmList
+	    			},
+	    			dataType : "text",
+	    			success : function(result) {
+	    				if (result == "success") {
+	    					location.reload();
+	    				}
+	    			}
+	    		});
+			  swal(
+			    '완료!',
+			    '선택하신 트럭의 참가를 수락하였습니다',
+			    'success'
+			  );
+			});
 	});
 	
 	$("#checkDeny").on("click", function() {
-		if (confirm("취소가 불가능합니다. 정말 거절하시겠습니까?") == true){
-    		var checkedList = $(".check");
-    		var denyList = "";
-    		for ( var num in checkedList) {
-    			if (checkedList[num].checked) {
-    				denyList += checkedList[num].id + "-";
-    			}
-    		}
-    		
-    		$.ajax({
-    			url : "/applier/checkDeny",
-    			type : "post",
-    			data : {
-    				denyList : denyList
-    			},
-    			dataType : "text",
-    			success : function(result) {
-    				if (result == "success") {
-    					location.reload();
-    				}
-    			}
-    		});
-		} else {
-			return;
-		}
+		swal({
+			  title: '정말 거절하시겠습니까?',
+			  text: "거절하시면 취소가 불가능합니다.",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '거절',
+			  cancelButtonText: '취소'
+			}).then(function () {
+				var checkedList = $(".check");
+	    		var denyList = "";
+	    		for ( var num in checkedList) {
+	    			if (checkedList[num].checked) {
+	    				denyList += checkedList[num].id + "-";
+	    			}
+	    		}
+	    		
+	    		$.ajax({
+	    			url : "/applier/checkDeny",
+	    			type : "post",
+	    			data : {
+	    				denyList : denyList
+	    			},
+	    			dataType : "text",
+	    			success : function(result) {
+	    				if (result == "success") {
+	    					location.reload();
+	    				}
+	    			}
+	    		});
+			  swal(
+			    '완료!',
+			    '선택하신 트럭의 참가를 거절하였습니다',
+			    'success'
+			  );
+			});
 	});
 	function sendAlarm(){
 		 $.ajax({
@@ -235,7 +284,7 @@ $(document).ready(function () {
           <h2>신청 트럭</h2>
           <table class="table table-hover" style="text-align: center" id="applyTable">
             <tr>
-              <th style="width: 20px"><input type="checkbox" id="checkEntire">전체</th>
+              <th style="width: 20px"><input type="checkbox" id="checkEntire" style="margin-right: 10px;">전체</th>
               <th style="width: 200px">트럭이름</th>
               <th style="width: 70px">신청날짜</th>
               <th style="width: 20px">승인여부</th>

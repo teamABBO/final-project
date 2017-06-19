@@ -14,7 +14,7 @@ th {
 
 var result = '${msg}';
 if (result == 'success') {
-	swal("처리완료");
+	swal("완료!", "처리가 완료되었습니다.", "success");
 }
 
 $(document).ready(
@@ -104,10 +104,6 @@ $(document).ready(
         <div class="text-center">
         <div class="form-group"  >
           <select class="form-control " name="searchType">
-            <option value="n"
-              <c:out value="${cri.searchType == null?'selected':'' }"/>>
-              ---</option>
-
             <option value="t"
               <c:out value="${cri.searchType eq 't'?'selected':'' }"/>>
               제목</option>
@@ -119,6 +115,10 @@ $(document).ready(
             <option value="w"
               <c:out value="${cri.searchType eq 'w'?'selected':'' }"/>>
               작성자</option>
+              
+             <option value="n" hidden="true"
+              <c:out value="${cri.searchType == null?'':'' }"/>>
+               </option>
           </select> 
           <input type="text" class="form-control " name="keyword" id="keywordInput" value="${cri.keyword }" />
           <input type="submit" class="btn btn-common" id="searchB"value="검색">

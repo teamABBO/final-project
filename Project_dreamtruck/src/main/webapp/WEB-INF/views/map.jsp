@@ -51,7 +51,7 @@
 							infowindow.close();
 					 });
 					 maker[num].addListener('click', function(){
-							self.location.href = "/truck/read?userId="+list[this.id].userId;
+							self.location.href = "/truck/read?page=1&perPageNum=9&searchType&keyword=&userId="+list[this.id].userId;
 					 });
 				}
 				 latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);

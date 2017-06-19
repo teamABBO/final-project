@@ -20,7 +20,7 @@
 		       user_id userId,
 		       regdate
 		from   plan
-		where  user_id = 5 and 
+		where  user_id = #{userId} and 
                to_char(regdate, 'yy/mm/dd/') between to_char( sysdate-( (select to_char(sysdate,'D') from dual) -2 )-1, 'yy/mm/dd') and 
                                                      to_char( sysdate-( (select to_char(sysdate,'D') from dual) -2 )+6, 'yy/mm/dd')
 		order by day asc
@@ -73,7 +73,7 @@
 	
 	<select id="uploadCheck" resultType="Plan">
 		select plan_id planId, day, title, x, y, open, close, user_id userId
-		from   (select plan_id, day, title, x, y, open, close, user_id
+		from   (select plan_id, day, title, x, y, open, close,  user_id
       			from   plan
       			where  user_id = #{userId} and day = #{day})
 		where  to_char(to_date(#{open} , 'hh24:mi'), 'HH24:MI') between open and close OR 
