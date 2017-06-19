@@ -106,6 +106,7 @@ public class PlanController {
 		plan.setDay(day);
 		plan.setUserId(userId);
 		
+		//유효성검사
 		if (service.uploadCheck(plan) == null) {
 			service.update(plan);
 			return new ResponseEntity<String>("modify", HttpStatus.OK);

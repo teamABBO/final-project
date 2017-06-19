@@ -74,5 +74,10 @@ public class PlanDaoImpl implements PlanDao {
 	public Plan uploadCheck(Plan plan) {
 		return SqlSession.selectOne(namespace+".uploadCheck", plan);
 	}
+
+	@Override
+	public Plan searchUser(int userId) {
+		return SqlSession.selectOne(namespace+".searchUser", userId);
+	}
 	
 }
