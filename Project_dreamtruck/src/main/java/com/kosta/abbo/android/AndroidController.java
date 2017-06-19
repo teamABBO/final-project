@@ -22,6 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kosta.abbo.HomeController;
 import com.kosta.abbo.dto.LoginDTO;
+import com.kosta.abbo.event.domain.Event;
+import com.kosta.abbo.event.sevice.EventService;
 import com.kosta.abbo.liketruck.service.LiketruckService;
 import com.kosta.abbo.page.domain.PageMaker;
 import com.kosta.abbo.page.domain.SearchCriteria;
@@ -37,6 +39,9 @@ import com.kosta.abbo.user.service.TruckUserService;
 public class AndroidController {
 	
 
+	@Inject
+	private EventService eventSservice;
+	
 	@Inject
 	private LiketruckService likeService;
 	
@@ -184,7 +189,7 @@ public class AndroidController {
 	@RequestMapping("/trucklist")
 	public void truckList(@ModelAttribute("cri")SearchCriteria cri, Model model, HttpSession session,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
-		response.setContentType("text/html; charset=utf-8");
+		response.setContentType("text/json; charset=utf-8");
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
@@ -200,6 +205,26 @@ public class AndroidController {
 			e.printStackTrace();
 		}
 		
+		
+	}
+	
+	@RequestMapping("/eventlist")
+	public void eventList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		response.setContentType("text/json; charset=utf-8");
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		List<Event> list = eventSservice.list();
+		
+		String jsonList = objectMapper.writeValueAsString(list);
+		
+		try {
+			PrintWriter out = response.getWriter();
+			out.println(jsonList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
