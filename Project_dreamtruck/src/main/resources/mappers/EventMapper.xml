@@ -70,9 +70,20 @@
 	</select>
 	
 	<!-- Android 리스트 불러오기 -->
-	<select id="list" resultType="Event">
-		
-	</select>
+   <select id="list" resultType="Event">
+      SELECT event_id eventId, 
+             duration, 
+             start_date startDate, 
+             content, 
+             title, 
+             regdate, 
+             gu_id guId, 
+             applier_cnt applierCnt
+      FROM   event
+      <![CDATA[
+      WHERE  sysdate < start_date
+      ]]>
+   </select>
 
 	<!-- 리스트 -->
 	<select id="listSearch" resultType="Event">
