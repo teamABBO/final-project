@@ -36,7 +36,6 @@
 
   $(document).ready(function() {
 	  var formObj = $("form[role='form']");
-		console.log(formObj);
 		
 		$("#save").on("click", function() {
 			formObj.submit();

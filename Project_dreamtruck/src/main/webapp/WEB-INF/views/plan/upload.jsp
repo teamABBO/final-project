@@ -102,7 +102,7 @@ $(document).ready(function(){
    document.getElementById('form').innerHTML = makestr(1);
    $("#add").click(function(){
       if(count==13){
-    	  alert("스케줄은 최대 14개만 합시다.");
+    	  swal("너무 많습니다!", "스케줄은 최대 14개 까지 등록가능합니다.", 'warning');
       }else{
          count++;
          document.getElementById('addForm'+count).innerHTML = makestr(count+1);
@@ -111,7 +111,7 @@ $(document).ready(function(){
    });
    $("#remove").click(function(){
       if(count==0){
-    	  alert("전부없앨수 없습니다.");
+    	  swal("너무 작습니다!", "스케쥴을 더 이상 줄일 수 없습니다.", "warning");
       }else{
          $('#addForm'+count).empty();
          count--;
@@ -128,7 +128,7 @@ $(document).ready(function(){
 	   }); 
    }
    $(".placename").on("click", function(){
-	   alert("지도를 이용해주세요");
+	   swal("지도를 이용해주세요!", "위치 등록은 지도를 사용합니다.", "warning");
    });
    $("#submit").on("click",function(){
 	   if($(this).attr('type')=='button'){
@@ -162,7 +162,7 @@ $(document).ready(function(){
 						$("#submit").attr("type", "submit");
 						$("#submit").trigger("click");
 					}else if(result == 'NO'){
-						alert('입력하신 시간에 등록되어있는 스케줄이 있습니다.');
+						swal("실패!", '입력하신 시간에 등록되어있는 스케줄이 있습니다.', "error");
 					}
 				}
 			});

@@ -33,26 +33,35 @@
                 dataType: "text",
                 success: function(result) {
                 	if (result == "success") {
-  					alert("${event.title}에 성공적으로 영업신청하였습니다.");
+  					swal("신청 성공!","${event.title}에 성공적으로 영업신청하였습니다.","success");
   					sendAlarm();
     				}
                 },
     			error: function(xhr, status, error) {
     				if (xhr.responseText == "fail") {
-    					alert("필요 서류가 부족합니다! 서류를 등록/수정해주세요. 서류관리 페이지로 이동합니다.");
-    						self.location = "/docu/list";
-    				
+    					swal({
+    						  title: '필요 서류가 부족합니다.',
+    						  text: "서류를 등록/수정해주세요. 확인을 누르시면 서류관리 페이지로 이동합니다.",
+    						  type: 'warning',
+    						  showCancelButton: true,
+    						  confirmButtonColor: '#3085d6',
+    						  cancelButtonColor: '#d33',
+    						  confirmButtonText: '확인',
+    						  cancelButtonText: '취소'
+    						}).then(function () {
+    							self.location = "/docu/list";
+    						});
 					} else if (xhr.responseText == "dup") {
-						alert("이미 신청한 행사입니다.");
+						swal("신청 실패!","이미 신청한 행사입니다.","error");
 					} else {
 						return;
 					}
 				}
             });
+  			this.blur();
 		});
+		
 		var login = "${login.userId}";
-		if(login == ${event.userId}){
-			$('#modify').attr("type","button");
 		}else{
 			$('#modify').attr("type","hidden");
 		}

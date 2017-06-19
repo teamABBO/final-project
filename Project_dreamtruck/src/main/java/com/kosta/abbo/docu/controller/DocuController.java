@@ -298,10 +298,10 @@ public class DocuController {
 		logger.info("영업신청서 전송");
 
 		NormalUser loginUser = (NormalUser) session.getAttribute("login");
+		userService.checkDocu(loginUser.getUserId());
 		
 		TruckUser user = truckService.read(loginUser.getUserId());
 
-		userService.checkDocu(user.getUserId());
 		String isUpload = userService.isUpload(user.getUserId());
 
 		if (isUpload.equals("x")) {

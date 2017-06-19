@@ -14,7 +14,7 @@ th {
 
 var result = '${msg}';
 if (result == 'success') {
-	swal("처리완료");
+	swal("완료!", "처리가 완료되었습니다.", "success");
 }
 
 $(document).ready(

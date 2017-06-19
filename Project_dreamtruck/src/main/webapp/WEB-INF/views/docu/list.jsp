@@ -6,7 +6,6 @@
 <%@include file="../include/references.jsp"%>
 <script>
 	$(document).ready(function() {
-		console.log("${login.userId}");
 		var docuList = ${docuList};
 		var today = new Date();
 		
@@ -49,38 +48,48 @@
 			var deleteId = "delete" + kind;
 			var iconId = "icon" + kind
 			
-			if (confirm("정말 삭제하시겠습니까?") == true){
-				$.ajax({
-					url : "deleteFile",
-					type : "post",
-					data : {
-						fileName : $(this).attr("data-src"),
-						docuId : $(this).attr("data-id")
-					},
-					dataType : "text",
-					success : function(result) {
-						if (result == "deleted") {
-							$("#download" + kind).removeAttr("href");
-							$("#download" + kind + "Btn").attr("disabled", "disabled");
-							$("#regist" + kind + "Btn").removeAttr("disabled");
-							$("#modify" + kind + "Btn").attr("disabled", "disabled");
-							$("#delete" + kind).attr("disabled", "disabled");
-							$("#icon" + kind).attr("style", "color: black");
-							$("#regdate" + kind).attr("style", "color: black");
-							$("#regdate" + kind).html(" - ");
-							$("#expdate" + kind).html(" - ");
-							alert("삭제되었습니다.");
+			swal({
+				  title: '정말 삭제하시겠습니까?',
+				  text: "거절하시면 취소가 불가능합니다.",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '삭제',
+				  cancelButtonText: '취소'
+				}).then(function () {
+					$.ajax({
+						url : "deleteFile",
+						type : "post",
+						data : {
+							fileName : $(this).attr("data-src"),
+							docuId : $(this).attr("data-id")
+						},
+						dataType : "text",
+						success : function(result) {
+							if (result == "deleted") {
+								$("#download" + kind).removeAttr("href");
+								$("#download" + kind + "Btn").attr("disabled", "disabled");
+								$("#regist" + kind + "Btn").removeAttr("disabled");
+								$("#modify" + kind + "Btn").attr("disabled", "disabled");
+								$("#delete" + kind).attr("disabled", "disabled");
+								$("#icon" + kind).attr("style", "color: black");
+								$("#regdate" + kind).attr("style", "color: black");
+								$("#regdate" + kind).html(" - ");
+								$("#expdate" + kind).html(" - ");
+							}
 						}
-					}
+					});
+				  swal(
+				    '완료!',
+				    '해당 서류가 삭제되었습니다',
+				    'success'
+				  );
 				});
-			} else {
-			    return;
-			}
 		});
 		
 		/* 등록버튼 */
 		$(".btn-primary").on("click", function() {
-			console.log($(this).parent().parent().parent().parent().attr("id"));
 			var downName = $(this).parent().parent().parent().parent().attr("id");
 			$("[name='docuName']").attr("value", downName);
 		});

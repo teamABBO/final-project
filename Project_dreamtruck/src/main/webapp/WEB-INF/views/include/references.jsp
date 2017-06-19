@@ -25,6 +25,7 @@
 <script type="text/javascript" src="/resources/js/main.js"></script>
 <script type="text/javascript" src="/resources/js/alertify.min.js"></script>
 <script type="text/javascript" src="/resources/js/sweetalert.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.scrollfollow.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type = "text/javascript" src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAHwzmzrIszazfIsbVDKdROzIYy-UClUFg"></script>
 <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-app.js"></script>

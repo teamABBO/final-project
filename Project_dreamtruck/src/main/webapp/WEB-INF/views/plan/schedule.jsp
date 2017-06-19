@@ -679,23 +679,31 @@ function popupOpen(num){
 			}
 		  }); 
 		}else if($(this).val()=='삭제'){
-			var del = confirm('정말 삭제하시겠습니까?');
-			if(del){
-				$.ajax({
-					url : "delete",
-					type : "post",
-					data : {
-						planId: $(this).attr("data-src")
-					},
-					dataType : "text",
-					success : function(result) {
-						if(result == 'deleted'){
-							alert('삭제되었습니다.');
-							location.reload();
+			swal({
+				  title: '정말 삭제하시겠습니까?',
+				  text: "삭제된 스케쥴은 복구가 불가능합니다.",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '확인',
+				  cancelButtonText: '취소'
+				}).then(function () {
+					$.ajax({
+						url : "delete",
+						type : "post",
+						data : {
+							planId: $(this).attr("data-src")
+						},
+						dataType : "text",
+						success : function(result) {
+							if(result == 'deleted'){
+								swal('삭제 성공!', '해당 스케쥴을 삭제하였습니다.', 'success');
+								location.reload();
+							}
 						}
-					}
-				  });
-			}
+					  });
+				});
 		}else if($(this).val()=='확인'){
 			var parseTime = $("#itime"+$(this).attr("data-src")).val().split('~');
 			$.ajax({
@@ -714,10 +722,10 @@ function popupOpen(num){
 				dataType : "text",
 				success : function(result) {
 					if(result == 'modify'){
-						alert('수정되었습니다.');
+						swal('수정 성공!', '스케쥴이 정상적으로 수정되었습니다.', 'success');
 						location.reload();
 					}else if(result == 'fail'){
-						alert('입력하신 시간에 등록되어있는 스케줄이 있습니다.');
+						swal('수정 실패!', '입력하신 시간에 등록되어있는 스케줄이 있습니다.', 'error');
 					}
 				}
 			  });

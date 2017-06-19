@@ -76,9 +76,8 @@ $(document).ready(function(){
 				userId : truckId
 				},
 			success: function(result){
-				console.log("result: "+result);
 					if (result == 'SUCCESS') {
-						alert("관심트럭 목록에서 삭제되었습니다!");
+						swal("삭제 완료!", "관심트럭 목록에서 삭제되었습니다.", "success");
 						location.reload();
 						}
 				}

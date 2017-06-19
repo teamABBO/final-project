@@ -115,8 +115,18 @@
                 },
       			error: function(result) {
 					$("#loadingModal").hide();
-					alert("필요 서류가 부족합니다! 서류를 등록/수정해주세요. 확인을 누르시면 서류관리 페이지로 이동합니다.");
-					self.location = "list";
+					swal({
+						  title: '필요 서류가 부족합니다.',
+						  text: "서류를 등록/수정해주세요. 확인을 누르시면 서류관리 페이지로 이동합니다.",
+						  type: 'warning',
+						  showCancelButton: true,
+						  confirmButtonColor: '#3085d6',
+						  cancelButtonColor: '#d33',
+						  confirmButtonText: '확인',
+						  cancelButtonText: '취소'
+						}).then(function () {
+							self.location = "/docu/list";
+						});
 				}
               });
           }); 
