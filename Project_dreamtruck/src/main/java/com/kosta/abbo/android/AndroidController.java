@@ -24,8 +24,6 @@ import com.kosta.abbo.HomeController;
 import com.kosta.abbo.dto.LoginDTO;
 import com.kosta.abbo.event.domain.Event;
 import com.kosta.abbo.event.sevice.EventService;
-import com.kosta.abbo.liketruck.service.LiketruckService;
-import com.kosta.abbo.page.domain.PageMaker;
 import com.kosta.abbo.page.domain.SearchCriteria;
 import com.kosta.abbo.plan.domain.Plan;
 import com.kosta.abbo.plan.service.PlanService;
@@ -41,9 +39,6 @@ public class AndroidController {
 
 	@Inject
 	private EventService eventSservice;
-	
-	@Inject
-	private LiketruckService likeService;
 	
 	@Inject
 	private NormalUserService normalService;
