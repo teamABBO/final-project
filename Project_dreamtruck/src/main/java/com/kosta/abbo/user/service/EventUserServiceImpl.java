@@ -13,12 +13,13 @@ import com.kosta.abbo.user.domain.EventUser;
 
 @Service
 public class EventUserServiceImpl implements EventUserService {
-	
+
 	@Inject
 	private EventUserDao dao;
 
 	/**
 	 * 행사회원 등록
+	 * 
 	 * @param eventUser
 	 */
 	@Override
@@ -28,6 +29,7 @@ public class EventUserServiceImpl implements EventUserService {
 
 	/**
 	 * 행사회원 상세보기
+	 * 
 	 * @param eventUserId
 	 * @return
 	 */
@@ -38,6 +40,7 @@ public class EventUserServiceImpl implements EventUserService {
 
 	/**
 	 * 행사회원 수정
+	 * 
 	 * @param eventUser
 	 */
 	@Override
@@ -46,24 +49,16 @@ public class EventUserServiceImpl implements EventUserService {
 	}
 
 	/**
-	 * 행사회원 삭제
-	 * @param eventUserId
-	 */
-	@Override
-	public void delete(int eventUserId) {
-		dao.delete(eventUserId);
-	}
-
-	/**
 	 * 행사회원 목록
+	 * 
 	 * @return
 	 */
 	@Override
 	public List<EventUser> list(int userId) {
 		return dao.list(userId);
 	}
-	
-	/**페이징*/ 
+
+	/** 페이징 */
 	@Override
 	public List<EventUser> listCriteria(Criteria cri) {
 		return dao.listCriteria(cri);

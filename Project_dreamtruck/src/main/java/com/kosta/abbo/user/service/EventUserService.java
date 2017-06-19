@@ -28,12 +28,6 @@ public interface EventUserService {
 	public void update(EventUser eventUser);
 	
 	/**
-	 * 행사회원 삭제
-	 * @param eventUserId
-	 */
-	public void delete(int eventUserId);
-	
-	/**
 	 * 행사회원 목록
 	 * @return
 	 */

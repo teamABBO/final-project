@@ -16,61 +16,56 @@ public class EventUserDaoImpl implements EventUserDao {
 
 	@Inject
 	private SqlSession SqlSession;
-	private static final String namespace= "com.kosta.abbo.mapper.EventUserMapper";
-	
+	private static final String namespace = "com.kosta.abbo.mapper.EventUserMapper";
+
 	/**
 	 * 행사회원 등록
+	 * 
 	 * @param eventUser
 	 */
 	@Override
 	public void create(EventUser eventUser) {
-		SqlSession.insert(namespace + ".create",eventUser);
+		SqlSession.insert(namespace + ".create", eventUser);
 	}
-	
+
 	/**
 	 * 행사회원 상세보기
+	 * 
 	 * @param eventUserId
 	 * @return
 	 */
 	@Override
 	public EventUser read(int userId) {
-		return SqlSession.selectOne(namespace + ".read",userId);
+		return SqlSession.selectOne(namespace + ".read", userId);
 	}
-	
+
 	/**
 	 * 행사회원 수정
+	 * 
 	 * @param eventUser
 	 */
 	@Override
 	public void update(EventUser eventUser) {
-		SqlSession.update(namespace+".update", eventUser);
+		SqlSession.update(namespace + ".update", eventUser);
 	}
-	
-	/**
-	 * 행사회원 삭제
-	 * @param eventUserId
-	 */
-	@Override
-	public void delete(int eventUserId) {
-		
-	}
-	
+
 	/**
 	 * 행사회원 목록
+	 * 
 	 * @return
 	 */
 	@Override
 	public List<EventUser> list(int userId) {
-		return SqlSession.selectList(namespace+".list",userId);
+		return SqlSession.selectList(namespace + ".list", userId);
 	}
-	
-	/** 페이징*/
+
+	/** 페이징 */
 	@Override
 	public List<EventUser> listPage(int page) {
-		if (page <=0) {
+		if (page <= 0) {
 			page = 1;
 		}
-		page = (page - 1)*10;
+		page = (page - 1) * 10;
 		return SqlSession.selectList(namespace + ".listPage", page);
 	}
 
@@ -79,6 +74,9 @@ public class EventUserDaoImpl implements EventUserDao {
 		return SqlSession.selectList(namespace + ".listCriteria", cri);
 	}
 
+	/**
+	 * 목록 카운트
+	 */
 	@Override
 	public int countPaging(Criteria cri) {
 		return SqlSession.selectOne(namespace + ".countPaging", cri);
@@ -99,7 +97,7 @@ public class EventUserDaoImpl implements EventUserDao {
 	@Override
 	public void hit(int userId) {
 		SqlSession.update(namespace + ".hit", userId);
-		
+
 	}
-	
+
 }

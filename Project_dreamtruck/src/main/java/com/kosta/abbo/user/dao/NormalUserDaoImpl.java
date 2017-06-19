@@ -1,7 +1,6 @@
 package com.kosta.abbo.user.dao;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -17,31 +16,31 @@ public class NormalUserDaoImpl implements NormalUserDao {
 
 	@Inject
 	private SqlSession SqlSession;
-	private static final String namespace= "com.kosta.abbo.mapper.NormalUserMapper";
-	
-	
-	
+	private static final String namespace = "com.kosta.abbo.mapper.NormalUserMapper";
+
 	/**
 	 * 로그인
+	 * 
 	 * @param LoginDTO
 	 */
 	@Override
 	public NormalUser login(LoginDTO dto) {
-		return SqlSession.selectOne(namespace + ".login",dto);
+		return SqlSession.selectOne(namespace + ".login", dto);
 	}
 
 	/**
 	 * 일반회원 등록
+	 * 
 	 * @param normalUser
 	 */
 	@Override
 	public void create(NormalUser normalUser) {
-		SqlSession.insert(namespace + ".create",normalUser);
+		SqlSession.insert(namespace + ".create", normalUser);
 	}
-	
-	
+
 	/**
 	 * 일반회원 상세보기
+	 * 
 	 * @param normalUserId
 	 * @return
 	 */
@@ -49,45 +48,43 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	public NormalUser read(int userId) {
 		return SqlSession.selectOne(namespace + ".read", userId);
 	}
-	
+
 	/**
 	 * 일반회원 수정
+	 * 
 	 * @param normalUser
 	 */
 	@Override
 	public void update(NormalUser normalUser) {
-		SqlSession.update(namespace+".update", normalUser);
+		SqlSession.update(namespace + ".update", normalUser);
 	}
-	
+
 	/**
 	 * 일반회원 삭제
+	 * 
 	 * @param normalUserId
 	 */
-	   @Override
-	   public void delete(String id, String pw) {
-	      Map<String, Object> paramMap = new HashMap<String,Object>();
+	@Override
+	public void delete(String id, String pw) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
 
-	      paramMap.put("id", id);
-	      paramMap.put("pw", pw);
-	      
-	      SqlSession.delete(namespace+".delete",paramMap);
-	   }
+		paramMap.put("id", id);
+		paramMap.put("pw", pw);
 
-	
+		SqlSession.delete(namespace + ".delete", paramMap);
+	}
+
 	/**
-	 * 일반회원 목록
-	 * @return
+	 * 파일 등록 여부 체크
 	 */
 	@Override
-	public List<NormalUser> list() {
-		return null;
-	}
-
-	@Override
 	public void checkDocu(int userId) {
-	   SqlSession.update(namespace + ".checkDocu", userId);
+		SqlSession.update(namespace + ".checkDocu", userId);
 	}
 
+	/**
+	 * 파일 등록 여부
+	 */
 	@Override
 	public String isUpload(int userId) {
 		return SqlSession.selectOne(namespace + ".isUpload", userId);
@@ -98,10 +95,10 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	 */
 	@Override
 	public String idCheck(String name, String phone) {
-		Map<String, Object> paramMap = new HashMap<String,Object>();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("name", name);
 		paramMap.put("phone", phone);
-		return SqlSession.selectOne(namespace + ".idCheck",paramMap);
+		return SqlSession.selectOne(namespace + ".idCheck", paramMap);
 	}
 
 	/**
@@ -109,14 +106,17 @@ public class NormalUserDaoImpl implements NormalUserDao {
 	 */
 	@Override
 	public String pwCheck(String id, String email) {
-		Map<String, Object> paramMap = new HashMap<String,Object>();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("id", id);
 		paramMap.put("email", email);
-		return SqlSession.selectOne(namespace + ".pwCheck",paramMap);
+		return SqlSession.selectOne(namespace + ".pwCheck", paramMap);
 	}
 
+	/**
+	 * 아이디 중복 확인
+	 */
 	@Override
 	public String isMember(String id) {
-		return SqlSession.selectOne(namespace + ".isMember",id);
+		return SqlSession.selectOne(namespace + ".isMember", id);
 	}
 }

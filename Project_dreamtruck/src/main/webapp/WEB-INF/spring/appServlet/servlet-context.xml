@@ -56,6 +56,7 @@
 			<mapping path="/user/mypage"/>
 			<mapping path="/user/modify"/>
 			<mapping path="/user/delete"/>
+			<mapping path="/liketruck/list"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 		

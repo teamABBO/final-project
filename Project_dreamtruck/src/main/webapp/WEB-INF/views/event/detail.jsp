@@ -1,5 +1,5 @@
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,6 @@
 		});
 		
 		$("#one").on("click", function() {
-			console.log("신청버튼");
   			$.ajax({
                   url: "apply",
                   type: "POST",
@@ -86,14 +85,6 @@
 	                 
 	              }),
 	           success: function(error, response, body) {
-	              if (error) {
-	                 console.error(error, response, body);
-	              } else if (response.statusCode >= 400) {
-	                 console.error('HTTP Error: ' + response.statusCode + ' - '
-	                       + response.statusMessage + '\n' + body);
-	              } else {
-	                 console.log('JSON 메세지 전송 성공!')
-	              }
 	           }
 	       });
 		}
@@ -101,193 +92,208 @@
 	});
 </script>
 <body>
-  <%@include file="../include/header.jsp"%>
-  <!--/#header-->
+	<%@include file="../include/header.jsp"%>
+	<!--/#header-->
 
 
-  <!-- 배너 -->
-  <br>
-  <br>
-  <section id="services" style="margin-top: 0px">
-    <div class="container">
-      <div class="row">
+	<!-- 배너 -->
+	<br>
+	<br>
+	<section id="services" style="margin-top: 0px">
+		<div class="container">
+			<div class="row">
 
-        <section id="page-breadcrumb">
-          <div class="vertical-center sun">
-            <div class="container">
-              <div class="row">
-                <div class="action">
-                  <div class="col-sm-12">
-                    <h1 class="title">행사</h1>
-                    <p>행사 보기</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+				<section id="page-breadcrumb">
+					<div class="vertical-center sun">
+						<div class="container">
+							<div class="row">
+								<div class="action">
+									<div class="col-sm-12">
+										<h1 class="title">행사</h1>
+										<p>행사 보기</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-        </section>
-        <br>
-      </div>
-    </div>
-  </section>
-  <!-- 배너 -->
+				</section>
+				<br>
+			</div>
+		</div>
+	</section>
+	<!-- 배너 -->
 
-  <!-- 행사등록 -->
-<form method="post" role="form"  class="form-horizontal" action="modify" >
-<input type="hidden" name="eventId" value="${event.eventId }">
-<input type="hidden" name="page" value="${cri.page }">
-<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
-<input type="hidden" name="searchType" value="${cri.searchType}">
-<input type="hidden" name="keyword" value="${cri.searchType}">
-</form>
+	<!-- 행사등록 -->
+	<form method="post" role="form" class="form-horizontal" action="modify">
+		<input type="hidden" name="eventId" value="${event.eventId }">
+		<input type="hidden" name="page" value="${cri.page }"> <input
+			type="hidden" name="perPageNum" value="${cri.perPageNum}"> <input
+			type="hidden" name="searchType" value="${cri.searchType}"> <input
+			type="hidden" name="keyword" value="${cri.keyword}">
+	</form>
 
 
-  <section id="portfolio-information" class="padding-top">
-  
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6">
-          <c:if test="${!empty event.img }">
-            <img src="/displayFile?fileName=/event${event.img}" alt=""
-              class="img-rounded" style="max-width: 500px;"/>
-          </c:if>
-          <c:if test="${empty event.img }">
-            <img src="/displayFile?fileName=/event/noimage.png" alt=""
-              class="img-rounded" />
-          </c:if>
-        </div>
-        <div class="col-sm-6">
-          <div class="skills overflow">
-          <table class="table " >
-          <tr>
-            <td><h3><strong><i class="glyphicon glyphicon-triangle-right" ></i>행사기간 :</strong> ${event.startDate }부터 ${event.duration }일</h3></td>
-          </tr>
-          <tr>
-            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>모집트럭 수 :</strong> ${event.recruit }</h3></td>
-            </tr>
-          <tr>
-            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>신청한 트럭 수 :</strong> ${event.applierCnt }</h3></td>
-            </tr>
-          <tr>
-            <td><h3><strong><i class="glyphicon glyphicon-triangle-right"></i>영업장소 :</strong> 
-                서울시
-                <c:choose>
-                  <c:when test="${event.guId  eq '1'}">
+	<section id="portfolio-information" class="padding-top">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<c:if test="${!empty event.img }">
+						<img src="/displayFile?fileName=/event${event.img}" alt=""
+							class="img-rounded" style="max-width: 500px;" />
+					</c:if>
+					<c:if test="${empty event.img }">
+						<img src="/displayFile?fileName=/event/noimage.png" alt=""
+							class="img-rounded" />
+					</c:if>
+				</div>
+				<div class="col-sm-6">
+					<div class="skills overflow">
+						<table class="table ">
+							<tr>
+								<td><h3>
+										<strong><i class="glyphicon glyphicon-triangle-right"></i>행사기간
+											:</strong> ${event.startDate }부터 ${event.duration }일
+									</h3></td>
+							</tr>
+							<tr>
+								<td><h3>
+										<strong><i class="glyphicon glyphicon-triangle-right"></i>모집트럭
+											수 :</strong> ${event.recruit }
+									</h3></td>
+							</tr>
+							<tr>
+								<td><h3>
+										<strong><i class="glyphicon glyphicon-triangle-right"></i>신청한
+											트럭 수 :</strong> ${event.applierCnt }
+									</h3></td>
+							</tr>
+							<tr>
+								<td><h3>
+										<strong><i class="glyphicon glyphicon-triangle-right"></i>영업장소
+											:</strong> 서울시
+										<c:choose>
+											<c:when test="${event.guId  eq '1'}">
                      강남구
                     </c:when>
-                  <c:when test="${event.guId  eq '2'}">
+											<c:when test="${event.guId  eq '2'}">
                     강동구
                     </c:when>
-                  <c:when test="${event.guId  eq '3'}">
+											<c:when test="${event.guId  eq '3'}">
                     강북구
                     </c:when>
-                  <c:when test="${event.guId  eq '4'}">
+											<c:when test="${event.guId  eq '4'}">
                     강서구
                     </c:when>
-                  <c:when test="${event.guId  eq '5'}">
+											<c:when test="${event.guId  eq '5'}">
                     관악구
                     </c:when>
-                  <c:when test="${event.guId  eq '6'}">
+											<c:when test="${event.guId  eq '6'}">
                     광진구
                     </c:when>
-                  <c:when test="${event.guId  eq '7'}">
+											<c:when test="${event.guId  eq '7'}">
                     구로구
                     </c:when>
-                  <c:when test="${event.guId  eq '8'}">
+											<c:when test="${event.guId  eq '8'}">
                       금천구
                     </c:when>
-                  <c:when test="${event.guId  eq '9'}">
+											<c:when test="${event.guId  eq '9'}">
                     노원구
                     </c:when>
-                  <c:when test="${event.guId  eq '10'}">
+											<c:when test="${event.guId  eq '10'}">
                     도봉구
                     </c:when>
-                  <c:when test="${event.guId  eq '11'}">
+											<c:when test="${event.guId  eq '11'}">
                     동대문구
                     </c:when>
-                  <c:when test="${event.guId  eq '12'}">
+											<c:when test="${event.guId  eq '12'}">
                     동작구
                     </c:when>
-                  <c:when test="${event.guId  eq '13'}">
+											<c:when test="${event.guId  eq '13'}">
                       마포구
                     </c:when>
-                  <c:when test="${event.guId  eq '14'}">
+											<c:when test="${event.guId  eq '14'}">
                     서대문구
                     </c:when>
-                  <c:when test="${event.guId  eq '15'}">
+											<c:when test="${event.guId  eq '15'}">
                     서초구
                     </c:when>
-                  <c:when test="${event.guId  eq '16'}">
+											<c:when test="${event.guId  eq '16'}">
                     성동구
                     </c:when>
-                  <c:when test="${event.guId  eq '17'}">
+											<c:when test="${event.guId  eq '17'}">
                     성북구
                     </c:when>
-                  <c:when test="${event.guId  eq '18'}">
+											<c:when test="${event.guId  eq '18'}">
                     송파구
                     </c:when>
-                  <c:when test="${event.guId  eq '19'}">
+											<c:when test="${event.guId  eq '19'}">
                     양천구
                     </c:when>
-                  <c:when test="${event.guId  eq '20'}">
+											<c:when test="${event.guId  eq '20'}">
                     영등포구
                     </c:when>
-                  <c:when test="${event.guId  eq '21'}">
+											<c:when test="${event.guId  eq '21'}">
                     용산구
                     </c:when>
-                  <c:when test="${event.guId  eq '22'}">
+											<c:when test="${event.guId  eq '22'}">
                     은평구
                     </c:when>
-                  <c:when test="${event.guId  eq '23'}">
+											<c:when test="${event.guId  eq '23'}">
                     종로구
                     </c:when>
-                  <c:when test="${event.guId  eq '24'}">
+											<c:when test="${event.guId  eq '24'}">
                     중구
                     </c:when>
-                  <c:when test="${event.guId  eq '25'}">
+											<c:when test="${event.guId  eq '25'}">
                     중랑구
                     </c:when>
-                </c:choose>
-                </h3></td>
-                </tr>
-                </table>
-          </div>
-           <c:choose>
-            <c:when test="${login.type=='truck'}">
-            <button type="button" id="one" name="one"
-            class="btn btn-common">원클릭 신청</button>
-            </c:when>
-       </c:choose>
-          
-        </div>
-    </div>
-    <div>
-     <hr style="background-color: #fd8c86;"/>
-            <div class="col-md-12 ">
-              <textarea class="form-control col-md-12" name="content"  rows="20" readonly="readonly" style="background-color: #ffffff; border: none; font-size: large;"> ${event.content }</textarea>
-            </div>
-             <!-- 버튼 -->
-            <div class="form-group" >
-               <label class="col-md-12 control-label" for="save"></label>
-          <div class="col-md-12">
-            <hr style="background-color: #fd8c86;"/>
-          <button type="submit" id="list" name="list" class="btn btn-common pull-right" >목록</button>
-            <input type="hidden" id="modify" name="modify" class="btn btn-common pull-right" value="수정"  style="margin-right: 5px">
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+										</c:choose>
+									</h3></td>
+							</tr>
+						</table>
+					</div>
+					<c:choose>
+						<c:when test="${login.type=='truck'}">
+							<button type="button" id="one" name="one" class="btn btn-common">원클릭
+								신청</button>
+						</c:when>
+					</c:choose>
 
-  <br>
-  <br>
-  <br>
-  <br>
+				</div>
+			</div>
+			<div>
+				<hr style="background-color: #fd8c86;" />
+				<div class="col-md-12 ">
+					<textarea class="form-control col-md-12" name="content" rows="20"
+						readonly="readonly"
+						style="background-color: #ffffff; border: none; font-size: large;"> ${event.content }</textarea>
+				</div>
+				<!-- 버튼 -->
+				<div class="form-group">
+					<label class="col-md-12 control-label" for="save"></label>
+					<div class="col-md-12">
+						<hr style="background-color: #fd8c86;" />
+						<button type="submit" id="list" name="list"
+							class="btn btn-common pull-right">목록</button>
+						<input type="hidden" id="modify" name="modify"
+							class="btn btn-common pull-right" value="수정"
+							style="margin-right: 5px">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<br>
+	<br>
+	<br>
+	<br>
 
 
-  <%@include file="../include/footer.jsp"%>
-  <!--/#footer-->
+	<%@include file="../include/footer.jsp"%>
+	<!--/#footer-->
 </body>
 </html>

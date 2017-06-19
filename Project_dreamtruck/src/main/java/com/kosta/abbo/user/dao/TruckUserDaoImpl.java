@@ -16,57 +16,50 @@ public class TruckUserDaoImpl implements TruckUserDao {
 
 	@Inject
 	private SqlSession SqlSession;
-	
-	private static final String namespace= "com.kosta.abbo.mapper.TruckUserMapper";
-	
+
+	private static final String namespace = "com.kosta.abbo.mapper.TruckUserMapper";
+
 	/**
 	 * 트럭회원 등록
+	 * 
 	 * @param truckUser
 	 */
 	@Override
 	public void create(TruckUser truckUser) {
-		  SqlSession.insert(namespace+".create",truckUser);
+		SqlSession.insert(namespace + ".create", truckUser);
 	}
-	
-	
+
 	/**
 	 * 트럭회원 상세보기
+	 * 
 	 * @param truckUserId
 	 * @return
 	 */
 	@Override
 	public TruckUser read(int userId) {
-		return SqlSession.selectOne(namespace+".read", userId);
+		return SqlSession.selectOne(namespace + ".read", userId);
 	}
-	
+
 	/**
 	 * 트럭회원 수정
+	 * 
 	 * @param truckUser
 	 */
 	@Override
 	public void update(TruckUser truckUser) {
-		SqlSession.update(namespace+".update",truckUser);
+		SqlSession.update(namespace + ".update", truckUser);
 	}
-	
-	/**
-	 * 트럭회원 삭제
-	 * @param truckUserId
-	 */
-	@Override
-	public void delete(int truckUserId) {
-		
-	}
-	
+
 	/**
 	 * 트럭회원 목록
+	 * 
 	 * @return
 	 */
 	@Override
 	public List<TruckUser> list() {
-		return SqlSession.selectList(namespace+".list");
+		return SqlSession.selectList(namespace + ".list");
 	}
 
-	
 	/**
 	 * 트럭회원목록 페이징 처리
 	 */
@@ -75,41 +68,41 @@ public class TruckUserDaoImpl implements TruckUserDao {
 		if (page <= 0) {
 			page = 1;
 		}
-		page = (page-1)*10;
-		
-		return SqlSession.selectList(namespace+".listPage", page);
+		page = (page - 1) * 10;
+
+		return SqlSession.selectList(namespace + ".listPage", page);
 	}
 
-	
 	/**
 	 * 페이징처리 페이지 넘버 받기
 	 */
 	@Override
 	public List<TruckUser> listCriteria(Criteria cri) throws Exception {
-		return SqlSession.selectList(namespace+".listCriteria", cri);
+		return SqlSession.selectList(namespace + ".listCriteria", cri);
 	}
 
-	
 	/**
 	 * 카운트
 	 */
 	@Override
 	public int countPaging(Criteria cri) throws Exception {
-		return SqlSession.selectOne(namespace+".countPaging", cri);
+		return SqlSession.selectOne(namespace + ".countPaging", cri);
 	}
 
-	
 	/**
-	 * 검색 기능 추가 
+	 * 검색 기능 추가
 	 */
 	@Override
 	public List<TruckUser> listSearch(SearchCriteria cri) throws Exception {
-		return SqlSession.selectList(namespace+".listSearch", cri);
+		return SqlSession.selectList(namespace + ".listSearch", cri);
 	}
 
+	/**
+	 * 검색 기능 추가 카운트
+	 */
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
-		return SqlSession.selectOne(namespace+".listSearchCount", cri);
+		return SqlSession.selectOne(namespace + ".listSearchCount", cri);
 	}
-	
+
 }

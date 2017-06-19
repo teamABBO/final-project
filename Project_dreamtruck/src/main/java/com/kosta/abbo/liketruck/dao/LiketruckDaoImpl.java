@@ -54,18 +54,6 @@ public class LiketruckDaoImpl implements LiketruckDao {
 		SqlSession.update(namespace+".update", truckId);
 	}
 	
-	
-	/**
-	 * 관심트럭 상세보기
-	 * @param liketruckId
-	 * @return
-	 */
-	@Override
-	public Liketruck read(int liketruckId) {
-		return null;
-	}
-	
-	
 	/**
 	 * 관심트럭 삭제
 	 * @param liketruckId

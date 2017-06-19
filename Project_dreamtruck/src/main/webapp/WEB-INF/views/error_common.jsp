@@ -1,5 +1,5 @@
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,32 +66,30 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
-	$(".error").hide();
 	$("#viewError").on("click", function() {
-		$(".error").show();
+		$("#block_error").html("<p class='error'>${exception.getMessage() }" +
+		"<br />" +
+		"</p>"+
+		"<ul class='error'>"+
+			"<c:forEach items='${exception.getStackTrace() }' var='stack'>"+
+				"<li class='error'>${stack.toString() }</li>"+
+			"</c:forEach>"+
+		"</ul>");
 	});
 });
 </script>
 </head>
 <body marginwidth="0" marginheight="0">
-    <div id="block_error">
-        <div>
-         <h2>시스템 오류</h2>
-        <p>시스템 문제로 요청하신 페이지를 표시할 수 없습니다.
-        <br />
-        죄송합니다. 요청하신 페이지를 실행하는 데 문제가 발생했습니다. 관리자에게 문의하세요.
-        </p>
-        <p>
-        자세한 오류 메세지를 보시려면 <a href="" id="viewError">여기</a> 를 클릭하세요
-        </p>
-          <p class="error">${exception.getMessage() }
-            <br />
-          </p>
-          <ul class="error">
-          <c:forEach items="${exception.getStackTrace() }" var="stack">
-            <li class="error">${stack.toString() }</li>
-          </c:forEach>
-          </ul>
-        </div>
-    </div>
+	<div id="block_error">
+		<div>
+			<h2>시스템 오류</h2>
+			<p>
+				시스템 문제로 요청하신 페이지를 표시할 수 없습니다. <br /> 죄송합니다. 요청하신 페이지를 실행하는 데 문제가
+				발생했습니다. 관리자에게 문의하세요.
+			</p>
+			<p>
+				자세한 오류 메세지를 보시려면 <a id="viewError">여기</a> 를 클릭하세요
+			</p>
+		</div>
+	</div>
 </html>

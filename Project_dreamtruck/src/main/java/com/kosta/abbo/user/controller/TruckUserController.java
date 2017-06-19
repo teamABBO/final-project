@@ -33,7 +33,7 @@ import com.kosta.abbo.user.service.TruckUserService;
 public class TruckUserController {
 	@Inject
 	private TruckUserService service;
-	
+
 	@Inject
 	private PlanService planservice;
 
@@ -54,21 +54,26 @@ public class TruckUserController {
 	 */
 	@RequestMapping(value = "/listCri", method = RequestMethod.GET)
 	public void listAll(Criteria cri, Model model) throws Exception {
-		logger.info(".... show list Page with Criteria");
+		logger.info("트럭 목록 페이지 - 페이징만");
 
 		model.addAttribute("list", service.listCriteria(cri));
 	}
 
+	/**
+	 * 트럭 목록 - 검색, 페이징
+	 * 
+	 * @param cri
+	 * @param model
+	 * @param session
+	 * @throws Exception
+	 */
 	@Transactional
-	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model, HttpSession session) throws Exception{
-		
-		logger.info(cri.toString());
-		if (session.getAttribute("login")!=null) {
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
+		logger.info("트럭 목록 페이지 - 검색, 페이징");
+		if (session.getAttribute("login") != null) {
 			NormalUser loginUser = (NormalUser) session.getAttribute("login");
 			List<Liketruck> likeListAll = likeService.list(loginUser.getUserId());
-			logger.info(likeListAll.toString());
-			logger.info("size : " + likeListAll.size());
 			List<Liketruck> likeList = new ArrayList<Liketruck>();
 			if (likeListAll.size() > 5) {
 				for (int i = 0; i < 5; i++) {
@@ -78,24 +83,34 @@ public class TruckUserController {
 			} else {
 				model.addAttribute("likeList", likeListAll);
 			}
-
 		}
-		model.addAttribute("list",service.listSearchCriteria(cri));
+		model.addAttribute("list", service.listSearchCriteria(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.listSearchCount(cri));
-		model.addAttribute("pageMaker",pageMaker);
+		model.addAttribute("pageMaker", pageMaker);
 
 	}
 
-	@RequestMapping(value="/read", method = RequestMethod.GET)
-	public void read(@RequestParam("userId") int userId, @RequestParam("page") int page, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
-		logger.info(userId+"**** ");
+	/**
+	 * 트럭 상세보기
+	 * 
+	 * @param userId
+	 * @param page
+	 * @param cri
+	 * @param model
+	 * @param session
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public void read(@RequestParam("userId") int userId, @RequestParam("page") int page,
+			@ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session) throws Exception {
+		logger.info("트럭 상세보기");
 		NormalUser loginUser = (NormalUser) session.getAttribute("login");
-		
-		if (session.getAttribute("login")==null) {
+
+		if (session.getAttribute("login") == null) {
 			model.addAttribute(service.read(userId));
-		}else{
+		} else {
 			if (likeService.checkliketruck(loginUser.getUserId(), userId) > 0) {
 				model.addAttribute("isLike", true);
 				model.addAttribute(service.read(userId));
@@ -105,20 +120,14 @@ public class TruckUserController {
 			}
 		}
 		cri.setPage(page);
-		
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		String jsonlist = objectMapper.writeValueAsString(planservice.list(userId));
 		String planlist = objectMapper.writeValueAsString(planservice.searchUser(userId));
-		
+
 		model.addAttribute("cri", cri);
 		model.addAttribute("list", jsonlist);
 		model.addAttribute("plan", planlist);
-		
-		logger.info(planservice.list(userId).toString());
-		logger.info("페이지정보 : "+model.addAttribute("cri", cri).toString());
-		/*NormalUser loginUser = (NormalUser) session.getAttribute("login");*/
-		
-		/*likeservice.checkliketruck(loginUser.getUserId(), truckId);*/
 	}
 
 }

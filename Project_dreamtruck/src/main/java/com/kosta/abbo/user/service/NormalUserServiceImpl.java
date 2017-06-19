@@ -1,7 +1,5 @@
 package com.kosta.abbo.user.service;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -12,13 +10,13 @@ import com.kosta.abbo.user.domain.NormalUser;
 
 @Service
 public class NormalUserServiceImpl implements NormalUserService {
-	
+
 	@Inject
 	private NormalUserDao dao;
-	
-	
+
 	/**
 	 * 로그인
+	 * 
 	 * @param LoginDTO
 	 */
 	@Override
@@ -28,16 +26,17 @@ public class NormalUserServiceImpl implements NormalUserService {
 
 	/**
 	 * 일반회원 등록
+	 * 
 	 * @param normalUser
 	 */
 	@Override
 	public void create(NormalUser normalUser) {
 		dao.create(normalUser);
 	}
-	
 
 	/**
 	 * 일반회원 상세보기
+	 * 
 	 * @param normalUserId
 	 * @return
 	 */
@@ -48,6 +47,7 @@ public class NormalUserServiceImpl implements NormalUserService {
 
 	/**
 	 * 일반회원 수정
+	 * 
 	 * @param normalUser
 	 */
 	@Override
@@ -57,27 +57,18 @@ public class NormalUserServiceImpl implements NormalUserService {
 
 	/**
 	 * 일반회원 삭제
+	 * 
 	 * @param normalUserId
 	 */
 	@Override
 	public void delete(String id, String pw) {
-		dao.delete(id,pw);
-	}
-
-	
-	/**
-	 * 일반회원 목록
-	 * @return
-	 */
-	@Override
-	public List<NormalUser> list() {
-		return dao.list();
+		dao.delete(id, pw);
 	}
 
 	@Override
 	public void checkDocu(int userId) {
-		   dao.checkDocu(userId);
-		}
+		dao.checkDocu(userId);
+	}
 
 	@Override
 	public String isUpload(int userId) {

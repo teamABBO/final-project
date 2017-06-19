@@ -53,13 +53,13 @@ public class NormalUserController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
-	 * 로그인 get
+	 * 로그인
 	 * 
 	 * @param dto
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void loginGET(@ModelAttribute("dto") LoginDTO dto) {
-		logger.info("로그인 GET .....");
+		logger.info("로그인 페이지");
 	}
 
 	/**
@@ -71,14 +71,13 @@ public class NormalUserController {
 	 */
 	@RequestMapping(value = "/loginPost", method = RequestMethod.POST)
 	public void loginPOST(LoginDTO dto, HttpSession session, Model model) {
-		logger.info("로그인 POST .....");
+		logger.info("로그인");
 
 		NormalUser normalUser = normalService.login(dto);
 		if (normalUser == null) {
 			model.addAttribute("msg", "success");
 			return;
 		}
-		/* normalService.checkDocu(normalUser.getUserId()); */
 		model.addAttribute("normalUser", normalUser);
 	}
 
@@ -92,6 +91,7 @@ public class NormalUserController {
 	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		logger.info("로그아웃");
 		Object obj = session.getAttribute("login");
 
 		if (obj != null) {
@@ -116,12 +116,12 @@ public class NormalUserController {
 	 */
 	@RequestMapping(value = "/registertype", method = RequestMethod.GET)
 	public void registerType(@ModelAttribute("dto") LoginDTO dto) {
-		logger.info("회원 종류 GET .....");
+		logger.info("회원 종류 페이지");
 	}
 
 	@RequestMapping(value = "/normalRegister", method = RequestMethod.GET)
 	public void registGET(@ModelAttribute("dto") LoginDTO dto) {
-		logger.info("회원가입 GET .....");
+		logger.info("일반회원 회원가입 페이지");
 
 	}
 
@@ -132,21 +132,19 @@ public class NormalUserController {
 	 */
 	@RequestMapping(value = "/normalRegister", method = RequestMethod.POST)
 	public String registPOST(NormalUser normalUser, RedirectAttributes rttr, Model model) {
-		logger.info("회원가입 POST .....");
-		logger.info(normalUser.toString());
+		logger.info("일반회원 회원가입");
 
 		normalService.create(normalUser);
 
 		model.addAttribute("normalUser", normalUser);
 		rttr.addFlashAttribute("msg", "success");
 
-		// return "/user/success";
 		return "redirect:/user/success";
 	}
 
 	@RequestMapping(value = "/truckRegister", method = RequestMethod.GET)
 	public void truckRegistGET(@ModelAttribute("dto") LoginDTO dto) {
-		logger.info("트럭 회원가입 GET .....");
+		logger.info("트럭회원 회원가입 페이지");
 	}
 
 	/**
@@ -164,12 +162,12 @@ public class NormalUserController {
 	@RequestMapping(value = "/truckRegister", method = RequestMethod.POST)
 	public String truckRegistPOST(@RequestParam("id") String id, TruckUser truckUser, RedirectAttributes rttr,
 			MultipartFile file, Model model, HttpServletRequest request) throws Exception {
-		logger.info("트럭 회원가입 POST .....");
-
+		logger.info("트럭 회원가입");
+		logger.info("---------------------파일 업로드------------------------");
 		logger.info("originalName: " + file.getOriginalFilename());
 		logger.info("size : " + file.getSize());
 		logger.info("contentType : " + file.getContentType());
-
+		logger.info("--------------------------------------------------------");
 		String path = uploadPath + "/user";
 
 		if (!file.getOriginalFilename().equals("") || file.getOriginalFilename().length() != 0) {
@@ -179,17 +177,15 @@ public class NormalUserController {
 		truckService.create(truckUser);
 
 		model.addAttribute("truckUser", truckUser);
-		logger.info(truckUser.toString());
 
 		rttr.addFlashAttribute("msg", "success");
 
-		// return "user/success";
 		return "redirect:/user/success";
 	}
 
 	@RequestMapping(value = "/eventRegister", method = RequestMethod.GET)
 	public void EventRegistGET(@ModelAttribute("dto") LoginDTO dto) {
-		logger.info("이벤트 회원가입 GET .....");
+		logger.info("이벤트 회원가입 페이지");
 	}
 
 	/**
@@ -201,20 +197,23 @@ public class NormalUserController {
 	 */
 	@RequestMapping(value = "/eventRegister", method = RequestMethod.POST)
 	public String EventRegistPOST(EventUser eventUser, RedirectAttributes rttr) {
-		logger.info("이벤트 회원가입 POST .....");
-		logger.info(eventUser.toString());
+		logger.info("이벤트 회원가입");
 
 		eventService.create(eventUser);
 
 		rttr.addFlashAttribute("msg", "success");
 
-		// return "/user/success";
 		return "redirect:/user/success";
 	}
 
+	/**
+	 * 회원가입완료
+	 * 
+	 * @param dto
+	 */
 	@RequestMapping(value = "/success", method = RequestMethod.GET)
 	public void success(@ModelAttribute("dto") LoginDTO dto) {
-		logger.info("회원가입완료 .....");
+		logger.info("회원가입완료 페이지");
 	}
 
 	/**
@@ -224,52 +223,60 @@ public class NormalUserController {
 	 */
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public void mypageGET(NormalUser normalUser, Model model) {
-		logger.info("마이페이지 GET .....");
+		logger.info("마이페이지 페이지");
 	}
 
 	/**
-	 * 회원정보 수정
+	 * 회원정보 수정 페이지
 	 * 
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modifyGET(Model model, HttpSession session) throws Exception {
-		logger.info("회원 정보 수정 GET .....");
+		logger.info("회원 정보 수정 페이지");
 		NormalUser loginUser = (NormalUser) session.getAttribute("login");
 		if (loginUser.getType().equals("normal")) {
-			logger.info(loginUser.getType());
 			model.addAttribute("normal", normalService.read(loginUser.getUserId()));
 		} else if (loginUser.getType().equals("event")) {
-			logger.info(loginUser.getType());
 			model.addAttribute("event", eventService.read(loginUser.getUserId()));
 		} else if (loginUser.getType().equals("truck")) {
-			logger.info(loginUser.getType());
 			model.addAttribute("truck", truckService.read(loginUser.getUserId()));
 		}
 
 	}
 
+	/**
+	 * 회원정보 수정
+	 * 
+	 * @param model
+	 * @param file
+	 * @param type
+	 * @param normalUser
+	 * @param eventUser
+	 * @param truckUser
+	 * @param rttr
+	 * @param session
+	 * @param response
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@Transactional
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(Model model, MultipartFile file, @RequestParam("type") String type, NormalUser normalUser,
 			EventUser eventUser, TruckUser truckUser, RedirectAttributes rttr, HttpSession session,
 			HttpServletResponse response, HttpServletRequest request) throws Exception {
-		logger.info("회원 정보 수정 POST .....");
+		logger.info("회원 정보 수정");
 		if (type.equals("normal")) {
-			logger.info(type);
-			logger.info(normalUser.toString());
 			normalService.update(normalUser);
 		} else if (type.equals("event")) {
-			logger.info(type);
-			logger.info(eventUser.toString());
 			eventService.update(eventUser);
 		} else if (type.equals("truck")) {
-			logger.info(type);
-			logger.info(truckUser.toString());
-
+			logger.info("---------------------파일 업로드------------------------");
 			logger.info("originalName: " + file.getOriginalFilename());
 			logger.info("size : " + file.getSize());
 			logger.info("contentType : " + file.getContentType());
+			logger.info("--------------------------------------------------------");
 
 			String path = uploadPath + "/user";
 			normalUser = (NormalUser) session.getAttribute("login");
@@ -281,23 +288,23 @@ public class NormalUserController {
 				String sumnail = "s_" + findTruck.getTruckImg();
 				new File("C:/dt/user/" + id + "/" + findTruck.getTruckImg()).delete();
 				new File("C:/dt/user/" + id + "/" + sumnail).delete();
-				logger.info("수정페이지에서 파일 업로드 실행");
 				UploadUserUtils.uploadFile(id, path, file.getOriginalFilename(), file.getBytes());
 				truckUser.setTruckImg(file.getOriginalFilename());
 			}
 			truckService.update(truckUser);
 		}
-		rttr.addFlashAttribute("modify","modify");
-		return"redirect:/user/mypage";
+		rttr.addFlashAttribute("modify", "modify");
+		return "redirect:/user/mypage";
 	}
- 
+
 	/**
-	 * 회원 탈퇴
+	 * 회원 탈퇴 페이지
+	 * 
 	 * @param dto
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public void deleteGET(@ModelAttribute("dto") LoginDTO dto) {
-		logger.info("회원 탈퇴 GET .....");
+		logger.info("회원 탈퇴 페이지");
 	}
 
 	/**
@@ -314,7 +321,7 @@ public class NormalUserController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String deletePOST(@RequestParam("id") String id, @RequestParam("pw") String pw, RedirectAttributes rttr,
 			HttpSession session, HttpServletResponse response, HttpServletRequest request, Model model) {
-		logger.info("회원 탈퇴 POST .....");
+		logger.info("회원 탈퇴");
 
 		normalService.delete(id, pw);
 		model.addAttribute("msg", "success");
@@ -329,7 +336,6 @@ public class NormalUserController {
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(0);
 				response.addCookie(loginCookie);
-				// service.keepLogin()
 			}
 
 		} else if (obj == null) {
@@ -340,13 +346,13 @@ public class NormalUserController {
 	}
 
 	/**
-	 * 아이디비밀번호 찾기
+	 * 아이디비밀번호 찾기 페이지
 	 * 
 	 * @param dto
 	 */
 	@RequestMapping(value = "/find", method = RequestMethod.GET)
 	public void findGet(NormalUser normalUser, Model model) {
-		logger.info("아이디/비밀번호 GET .....");
+		logger.info("아이디/비밀번호 찾기 페이지");
 	}
 
 	/**
@@ -359,8 +365,7 @@ public class NormalUserController {
 	@ResponseBody
 	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
 	public ResponseEntity<String> idCheckPOST(@RequestParam("name") String name, @RequestParam("phone") String phone) {
-		logger.info("아이디 찾기 POST .....");
-		logger.info("@@@@@@@@@@@" + normalService.idCheck(name, phone));
+		logger.info("아이디 찾기");
 		if (normalService.idCheck(name, phone) == null) {
 			return new ResponseEntity<String>("fail", HttpStatus.OK);
 		} else {
@@ -378,8 +383,7 @@ public class NormalUserController {
 	@ResponseBody
 	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
 	public ResponseEntity<String> pwCheckPOST(@RequestParam("id") String id, @RequestParam("email") String email) {
-		logger.info("비밀번호 찾기 POST .....");
-		logger.info("@@@@@@@@@@@" + normalService.pwCheck(id, email));
+		logger.info("비밀번호 찾기");
 		if (normalService.pwCheck(id, email) == null) {
 			return new ResponseEntity<String>("fail", HttpStatus.OK);
 		} else {
@@ -396,11 +400,10 @@ public class NormalUserController {
 	@ResponseBody
 	@RequestMapping(value = "/isMember", method = RequestMethod.POST)
 	public ResponseEntity<String> isMember(@RequestParam("id") String id) {
-		logger.info("회원 중복 찾기 POST .....");
+		logger.info("회원 중복 찾기");
 		if (normalService.isMember(id) == null) {
 			return new ResponseEntity<String>("fail", HttpStatus.OK);
 		} else {
-			/*return new ResponseEntity<String>("true", HttpStatus.OK); */
 			return new ResponseEntity<String>(normalService.isMember(id), HttpStatus.OK);
 		}
 	}

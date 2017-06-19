@@ -22,14 +22,6 @@ public interface LiketruckService {
 	 * 관심트럭 체크
 	 */
 	public int checkliketruck(int userId, int truckId);
-	/**
-	 * 관심트럭 상세보기
-	 * @param liketruckId
-	 * @return
-	 */
-	public Liketruck read(int liketruckId);
-	
-	
 	
 	/**
 	 * 관심트럭 삭제

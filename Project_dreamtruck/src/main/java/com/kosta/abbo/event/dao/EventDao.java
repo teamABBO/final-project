@@ -28,12 +28,6 @@ public interface EventDao {
 	public void update(Event event);
 	
 	/**
-	 * 행사 삭제
-	 * @param eventId
-	 */
-	public void delete(int eventId);
-	
-	/**
 	 * 행사 목록
 	 * @return
 	 */
