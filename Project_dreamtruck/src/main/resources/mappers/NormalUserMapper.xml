@@ -37,6 +37,7 @@
                phone,
              regdate,
                email,
+               truck_doc,
              like_area)
 	VALUES  (user_id_seq.nextval,
             			   #{id},
@@ -46,6 +47,7 @@
             		    #{phone},
            				 sysdate,
            				#{email},
+           				'x',
             		 #{likeArea})
 	</insert> 
 	
@@ -108,7 +110,7 @@
                    FROM docu
                    WHERE user_id = #{userId} AND expdate > sysdate
                    )
-           ) >= 4
+           ) >= 4 AND user_id = #{userId}
     ]]>
 	</update>
 	

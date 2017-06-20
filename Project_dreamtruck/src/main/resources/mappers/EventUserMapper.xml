@@ -17,6 +17,7 @@
              regdate,
            like_area,
          	   email,
+         	   truck_doc,
            event_dep)
 	VALUES (user_id_seq.nextval,
             	     	  #{id},
@@ -27,6 +28,7 @@
             		    sysdate,
             	    #{likeArea},
           		  	   #{email},
+          		  	   'x',
                     #{eventDep})
 	</insert> 
 	
