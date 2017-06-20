@@ -78,6 +78,7 @@
              title, 
              regdate, 
              gu_id guId, 
+             recruit,
              applier_cnt applierCnt
       FROM   event
       <![CDATA[
