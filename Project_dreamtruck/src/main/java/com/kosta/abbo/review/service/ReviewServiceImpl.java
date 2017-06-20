@@ -12,22 +12,23 @@ import com.kosta.abbo.review.domain.Review;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
-	
+
 	@Inject
 	private ReviewDao dao;
 
-	
 	/**
 	 * 리뷰 등록
+	 * 
 	 * @param review
 	 */
 	@Override
-	public void create(Review review)  throws Exception{
+	public void create(Review review) throws Exception {
 		dao.create(review);
 	}
 
 	/**
 	 * 리뷰 수정
+	 * 
 	 * @param review
 	 */
 	@Override
@@ -37,6 +38,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	/**
 	 * 리뷰 삭제
+	 * 
 	 * @param reviewId
 	 */
 	@Override
@@ -46,6 +48,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	/**
 	 * 리뷰 목록
+	 * 
 	 * @return
 	 */
 	@Override
@@ -53,7 +56,6 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.list(targetId);
 	}
 
-	
 	/**
 	 * 리뷰목록 페이징
 	 */
@@ -62,6 +64,9 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.listPage(targetId, cri);
 	}
 
+	/**
+	 * 리뷰 카운트
+	 */
 	@Override
 	public int count(int targetId) throws Exception {
 		return dao.count(targetId);

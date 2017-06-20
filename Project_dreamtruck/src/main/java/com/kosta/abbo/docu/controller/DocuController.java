@@ -54,7 +54,7 @@ public class DocuController {
 
 	@Inject
 	private NormalUserService userService;
-	
+
 	@Inject
 	private TruckUserService truckService;
 
@@ -76,7 +76,6 @@ public class DocuController {
 		logger.info("서류관리 페이지");
 
 		NormalUser user = (NormalUser) session.getAttribute("login");
-		
 		TruckUser loginUser = truckService.read(user.getUserId());
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -101,10 +100,12 @@ public class DocuController {
 	 */
 	@RequestMapping(value = "/uploadForm", method = RequestMethod.POST)
 	public String uploadForm(MultipartFile file, Docu docu, Model model) throws IOException {
-		logger.info("post 방식 업로드 폼");
+
+		logger.info("---------------------파일 업로드------------------------");
 		logger.info("originalName : " + file.getOriginalFilename());
 		logger.info("size : " + file.getSize());
 		logger.info("contentTpye : " + file.getContentType());
+		logger.info("--------------------------------------------------------");
 
 		String originalName = file.getOriginalFilename();
 		String formmatName = originalName.substring(originalName.lastIndexOf(".")).toLowerCase();
@@ -115,8 +116,6 @@ public class DocuController {
 				file.getBytes());
 
 		service.create(docu);
-
-		logger.info("docu 정보 : " + docu);
 
 		return "redirect: list";
 	}
@@ -133,10 +132,11 @@ public class DocuController {
 	@Transactional
 	@RequestMapping(value = "/modifyForm", method = RequestMethod.POST)
 	public String modifyForm(MultipartFile file, Docu docu, Model model) throws IOException {
-		logger.info("post 방식 수정 폼");
+		logger.info("---------------------파일 수정------------------------");
 		logger.info("originalName : " + file.getOriginalFilename());
 		logger.info("size : " + file.getSize());
 		logger.info("contentTpye : " + file.getContentType());
+		logger.info("------------------------------------------------------");
 		new File(uploadPath + "/docu" + docu.getPath().replace('/', File.separatorChar)).delete();
 
 		String originalName = file.getOriginalFilename();
@@ -148,8 +148,6 @@ public class DocuController {
 				file.getBytes());
 
 		service.update(docu);
-
-		logger.info("docu 정보 : " + docu);
 
 		return "redirect: list";
 	}
@@ -167,8 +165,7 @@ public class DocuController {
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
 
-		logger.info("파일 다운로드");
-		logger.info("FILE NAME : " + fileName);
+		logger.info("파일 다운로드 : " + fileName);
 
 		try {
 			HttpHeaders headers = new HttpHeaders();
@@ -200,15 +197,14 @@ public class DocuController {
 	@ResponseBody
 	@RequestMapping(value = "/deleteFile", method = RequestMethod.POST)
 	public ResponseEntity<String> deleteFile(String fileName, int docuId) {
-		logger.info("파일 삭제");
+		logger.info("---------------------파일 삭제------------------------");
 		logger.info("delete file : " + fileName);
 		logger.info("docu_id :" + docuId);
-
+		logger.info("삭제 경로 : " + uploadPath + "/docu" + fileName);
+		logger.info("------------------------------------------------------");
 		new File(uploadPath + "/docu" + fileName.replace('/', File.separatorChar)).delete();
 
 		service.delete(docuId);
-
-		logger.info("삭제 경로 : " + uploadPath + "/docu" + fileName);
 
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 
@@ -276,8 +272,6 @@ public class DocuController {
 			message = gu + "청";
 		}
 
-		logger.info("시 : " + city + ", 구: " + gu);
-
 		return new ResponseEntity<String>(message, HttpStatus.OK);
 
 	}
@@ -289,7 +283,7 @@ public class DocuController {
 	 * @param session
 	 * @param location
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
@@ -299,7 +293,7 @@ public class DocuController {
 
 		NormalUser loginUser = (NormalUser) session.getAttribute("login");
 		userService.checkDocu(loginUser.getUserId());
-		
+
 		TruckUser user = truckService.read(loginUser.getUserId());
 
 		String isUpload = userService.isUpload(user.getUserId());
@@ -308,8 +302,7 @@ public class DocuController {
 			logger.info("파일 수 부족!");
 			return new ResponseEntity<String>("fail", HttpStatus.BAD_REQUEST);
 		}
-		
-		logger.info("파일 첨부 실행");
+
 		List<Docu> docuList = service.list(user.getUserId());
 
 		String fromMail = "dreamtruck146@gmail.com";
@@ -346,7 +339,7 @@ public class DocuController {
 					break;
 				}
 			}
-			logger.info("메일 전송");
+			logger.info("메일 전송 성공");
 			mailSender.send(message);
 		} catch (Exception e) {
 			logger.warn(e.toString());
@@ -364,9 +357,9 @@ public class DocuController {
 	 */
 	@RequestMapping(value = "/success", method = RequestMethod.GET)
 	public String success() throws Exception {
-		logger.info("제출 성공 화면");
+		logger.info("제출 성공 페이지");
 
 		return "/docu/success";
 	}
-	
+
 }

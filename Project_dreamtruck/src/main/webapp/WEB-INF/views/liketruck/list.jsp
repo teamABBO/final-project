@@ -1,5 +1,5 @@
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,6 @@
 			$('#enlargeImageModal').modal('show');
 		});
 	});
-	
 </script>
 <style type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -62,33 +61,31 @@ body {
 	transform: rotate(-10deg);
 }
 </style>
+<script>
+	$(document).ready(function() {
+		$(".delete").on("click", function() {
+			var truckId = $(this).attr('id').split('delete')[1];
+			$.ajax({
+				type : 'post',
+				url : '/liketruck/delete',
+				data : {
+					userId : truckId
+				},
+				dataType : "text",
+				success : function(result) {
+					
+				}
+			});
+			swal('삭제 성공!', '관심트럭 목록에서 삭제되었습니다.', 'success').then(function(){
+				location.reload();
+			});
+		});
+	});
+</script>
 </head>
 <!--/head-->
 
-<script>
-$(document).ready(function(){
-	$(".delete").on("click", function(){
-		var truckId = $(this).attr('id').split('delete')[1];
-		$.ajax({
-			type: 'post',
-			url: '/liketruck/delete',
-			data: {
-				userId : truckId
-				},
-			success: function(result){
-					if (result == 'SUCCESS') {
-						swal("삭제 완료!", "관심트럭 목록에서 삭제되었습니다.", "success");
-						location.reload();
-						}
-				}
-			
-		});
-	});
-	
-	
-});
 
-</script>
 
 <body>
 	<%@include file="../include/header.jsp"%>
@@ -117,30 +114,42 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</section>
-	
+
 	<div class="container">
-		
+
 		<div class="row">
 			<c:if test="${empty list}">
-				<label style="color: red; margin-left: 500px;">관심 트럭이 존재하지 않습니다.</label>
-				<br><br><br>
+				<label style="color: red; margin-left: 500px;">관심 트럭이 존재하지
+					않습니다.</label>
+				<br>
+				<br>
+				<br>
 			</c:if>
 			<c:if test="${not empty list}">
 				<c:forEach items="${list}" var="liketruck">
-					<div class="col-xs-6 col-sm-6 col-md-4 portfolio-item branded mobile">
+					<div
+						class="col-xs-6 col-sm-6 col-md-4 portfolio-item branded mobile">
 						<div class="portfolio-wrapper">
 							<div class="portfolio-single">
 								<div class="portfolio-thumb">
 									<c:if test="${empty liketruck.truckImg}">
-										<img src="/displayFile?fileName=/user/noimage.png" class="img-responsive" />
+										<img src="/displayFile?fileName=/user/noimage.png"
+											class="img-responsive" />
 									</c:if>
 									<c:if test="${not empty liketruck.truckImg}">
-										<img src="/displayFile?fileName=/user/${liketruck.id}/${liketruck.truckImg }" class="img-responsive" />
+										<img
+											src="/displayFile?fileName=/user/${liketruck.id}/${liketruck.truckImg }"
+											class="img-responsive" style="height: 280px; width: 300px; margin: auto;" />
 									</c:if>
 									<div class="caption border">
-										<h4 style="color: #fd9483;">${liketruck.truckName}<span class="pull-right"><i class="fa fa-heart">&nbsp;${liketruck.truckLikecnt}</i></span>
+										<h4 style="color: #fd9483;">${liketruck.truckName}<span
+												class="pull-right"><i class="fa fa-heart">&nbsp;${liketruck.truckLikecnt}</i></span>
 										</h4>
-										<a href="../truck/read?page=1&perPageNum=9&searchType&keyword=&userId=${liketruck.truckId }" class=""><i class="fa fa-eye"> 상세보기</i></a> &nbsp;&nbsp;<a class="delete" id="delete${liketruck.truckId}" href=""><i class="fa fa-ban" > 제거</i></a>
+										<a
+											href="../truck/read?page=1&perPageNum=9&searchType&keyword=&userId=${liketruck.truckId }"
+											class=""><i class="fa fa-eye"> 상세보기</i></a> &nbsp;&nbsp;<a
+											class="delete" id="delete${liketruck.truckId}"><i
+											class="fa fa-ban" style="cursor: pointer;"> 제거</i></a>
 									</div>
 								</div>
 							</div>

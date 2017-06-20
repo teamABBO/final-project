@@ -30,11 +30,20 @@ public class ReviewController {
 	private ReviewService service;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+	/**
+	 * 댓글 등록
+	 * 
+	 * @param content
+	 * @param star
+	 * @param writerId
+	 * @param targetId
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestParam("content") String content, @RequestParam("star") int star,
 			@RequestParam("writerId") int writerId, @RequestParam("targetId") int targetId) {
-		logger.info("댓글 등록 컨트롤러");
+		logger.info("댓글 등록");
 		ResponseEntity<String> entity = null;
 		Review review = new Review();
 		review.setContent(content);
@@ -44,15 +53,21 @@ public class ReviewController {
 		try {
 			service.create(review);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-			logger.info(entity.toString());
 		} catch (Exception e) {
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
 
+	/**
+	 * 댓글 목록
+	 * 
+	 * @param targetId
+	 * @return
+	 */
 	@RequestMapping(value = "/all/{targetId}", method = RequestMethod.GET)
 	public ResponseEntity<List<Review>> list(@PathVariable("targetId") int targetId) {
+		logger.info("댓글 목록");
 		ResponseEntity<List<Review>> entity = null;
 
 		try {
@@ -64,12 +79,21 @@ public class ReviewController {
 		return entity;
 	}
 
+	/**
+	 * 댓글 수정
+	 * 
+	 * @param reviewId
+	 * @param content
+	 * @param star
+	 * @param regdate
+	 * @return
+	 */
 	@RequestMapping(value = "/{reviewId}", method = { RequestMethod.POST })
 	public ResponseEntity<String> update(@PathVariable("reviewId") int reviewId,
 			@RequestParam("content") String content, @RequestParam("star") int star,
 			@RequestParam("regdate") String regdate) {
 
-		logger.info("수정컨트롤러 실행!");
+		logger.info("댓글 수정");
 
 		ResponseEntity<String> entity = null;
 		Review review = new Review();
@@ -79,7 +103,6 @@ public class ReviewController {
 		review.setReviewId(reviewId);
 
 		try {
-			
 			service.update(review);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
@@ -90,8 +113,15 @@ public class ReviewController {
 		return entity;
 	}
 
+	/**
+	 * 댓글 삭제
+	 * 
+	 * @param reviewId
+	 * @return
+	 */
 	@RequestMapping(value = "/{reviewId}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("reviewId") int reviewId) {
+		logger.info("댓글 삭제");
 		ResponseEntity<String> entity = null;
 
 		try {
@@ -105,12 +135,19 @@ public class ReviewController {
 		return entity;
 	}
 
+	/**
+	 * 댓글 목록 - 페이징
+	 * 
+	 * @param targetId
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping(value = "/{targetId}/{page}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("targetId") int targetId,
 			@PathVariable("page") int page) {
+		logger.info("댓글 목록 - 페이징");
 		ResponseEntity<Map<String, Object>> entity = null;
 
-		
 		try {
 
 			Criteria cri = new Criteria();
@@ -129,8 +166,6 @@ public class ReviewController {
 
 			map.put("pageMaker", pageMaker);
 
-			logger.info("11111"+list.toString());
-			logger.info("22222"+pageMaker.toString());
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 
 		} catch (Exception e) {

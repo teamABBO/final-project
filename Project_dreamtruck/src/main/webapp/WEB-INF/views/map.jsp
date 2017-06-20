@@ -1,10 +1,10 @@
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%@include file="include/references.jsp"%>
- <script>
+<script>
  $(document).ready(function(){
 	 var GreenIcon = new google.maps.MarkerImage(
 			   "http://labs.google.com/ridefinder/images/mm_20_green.png",
@@ -75,43 +75,43 @@
  </script>
 </head>
 <body>
-<%@include file="include/header.jsp"%>
-<!-- 배너 -->
-  <br>
-  <br>
-  <section id="services" style="margin-top: 0px">
-    <div class="container">
-      <div class="row">
+	<%@include file="include/header.jsp"%>
+	<!-- 배너 -->
+	<br>
+	<br>
+	<section id="services" style="margin-top: 0px">
+		<div class="container">
+			<div class="row">
 
-        <section id="page-breadcrumb">
-          <div class="vertical-center sun">
-            <div class="container">
-              <div class="row">
-                <div class="action">
-                  <div class="col-sm-12">
-                    <h1 class="title">트럭지도</h1>
-                    <p>주변트럭찾기</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+				<section id="page-breadcrumb">
+					<div class="vertical-center sun">
+						<div class="container">
+							<div class="row">
+								<div class="action">
+									<div class="col-sm-12">
+										<h1 class="title">트럭지도</h1>
+										<p>주변트럭찾기</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-        </section>
-        <br>
-      </div>
-    </div>
-  </section>
-  <!-- 배너 -->
-  <div class="container">
-  		<div class="row">
-    		<div class="single-features">
-      			<div id="map_canvas" class="col-sm-12" style="height: 500px;"></div>
-      			<div id="hidden"></div>
-      		</div>
-      	</div>
-  </div>
-<%@include file="include/footer.jsp"%>
-  
+				</section>
+				<br>
+			</div>
+		</div>
+	</section>
+	<!-- 배너 -->
+	<div class="container">
+		<div class="row">
+			<div class="single-features">
+				<div id="map_canvas" class="col-sm-12" style="height: 500px;"></div>
+				<div id="hidden"></div>
+			</div>
+		</div>
+	</div>
+	<%@include file="include/footer.jsp"%>
+
 </body>
 </html>

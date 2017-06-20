@@ -52,15 +52,6 @@ public class EventServiceImpl implements EventService {
 	}
 
 	/**
-	 * 행사 삭제
-	 * @param eventId
-	 */
-	@Override
-	public void delete(int eventId) {
-		dao.delete(eventId);
-	}
-
-	/**
 	 * 행사 목록
 	 * @return
 	 */

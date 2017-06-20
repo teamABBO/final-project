@@ -47,15 +47,6 @@ public class EventDaoImpl implements EventDao {
 	}
 	
 	/**
-	 * 행사 삭제
-	 * @param eventId
-	 */
-	@Override
-	public void delete(int eventId) {
-		
-	}
-	
-	/**
 	 * 행사 목록
 	 * @return
 	 */

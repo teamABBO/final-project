@@ -11,12 +11,13 @@ import com.kosta.abbo.plan.domain.Plan;
 
 @Service
 public class PlanServiceImpl implements PlanService {
-	
+
 	@Inject
 	private PlanDao dao;
 
 	/**
 	 * 스케줄 등록
+	 * 
 	 * @param plan
 	 */
 	@Override
@@ -26,6 +27,7 @@ public class PlanServiceImpl implements PlanService {
 
 	/**
 	 * 스케줄 상세보기
+	 * 
 	 * @param planId
 	 * @return
 	 */
@@ -36,6 +38,7 @@ public class PlanServiceImpl implements PlanService {
 
 	/**
 	 * 스케줄 수정
+	 * 
 	 * @param plan
 	 */
 	@Override
@@ -45,6 +48,7 @@ public class PlanServiceImpl implements PlanService {
 
 	/**
 	 * 스케줄 삭제
+	 * 
 	 * @param planId
 	 */
 	@Override
@@ -54,6 +58,7 @@ public class PlanServiceImpl implements PlanService {
 
 	/**
 	 * 스케줄 목록
+	 * 
 	 * @return
 	 */
 	@Override
@@ -61,16 +66,25 @@ public class PlanServiceImpl implements PlanService {
 		return dao.list(userId);
 	}
 
+	/**
+	 * 트럭지도
+	 */
 	@Override
 	public List<Plan> truck() {
 		return dao.truck();
 	}
 
+	/**
+	 * 스케줄 등록 유효성 검사
+	 */
 	@Override
 	public Plan uploadCheck(Plan plan) {
 		return dao.uploadCheck(plan);
 	}
 
+	/**
+	 * 트럭 상세보기 - 지도
+	 */
 	@Override
 	public Plan searchUser(int userId) {
 		return dao.searchUser(userId);

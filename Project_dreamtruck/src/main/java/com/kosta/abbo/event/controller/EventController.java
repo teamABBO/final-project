@@ -42,10 +42,10 @@ public class EventController {
 
 	@Inject
 	private EventService service;
-	
+
 	@Inject
 	private ApplierService applierService;
-	
+
 	@Inject
 	private NormalUserService userService;
 
@@ -58,15 +58,14 @@ public class EventController {
 	/** 등록 */
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
 	public void uploadGet() throws Exception {
-		logger.info("upload get............................................");
+		logger.info("이벤트 등록 페이지");
 
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String uploadPost(Event event, RedirectAttributes rttr, MultipartFile file, Model model,
 			HttpServletRequest request, int userId) throws Exception {
-		logger.info("upload post..........................................");
-		logger.info(event.toString());
+		logger.info("이벤트 등록");
 
 		if (file.getSize() == 0) {
 			event.setImg("/noimage.png");
@@ -74,9 +73,11 @@ public class EventController {
 			rttr.addFlashAttribute("msg", "success");
 			return "redirect:/event/list";
 		} else {
+			logger.info("---------------------파일 업로드------------------------");
 			logger.info("originalName: " + file.getOriginalFilename());
 			logger.info("size : " + file.getSize());
 			logger.info("contentType : " + file.getContentType());
+			logger.info("--------------------------------------------------------");
 
 			UUID uid = UUID.randomUUID();
 			String imgName = uid.toString() + "_" + file.getOriginalFilename();
@@ -97,7 +98,7 @@ public class EventController {
 	/** 목록 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-		logger.info(cri.toString());
+		logger.info("이벤트 목록 페이지");
 		model.addAttribute("list", service.listSearchCriteria(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -107,38 +108,45 @@ public class EventController {
 
 	/** 상세 */
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public void detail(@RequestParam("eventId") int eventId, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void detail(@RequestParam("eventId") int eventId, @ModelAttribute("cri") SearchCriteria cri, Model model)
+			throws Exception {
+		logger.info("이벤트 상세 페이지");
 		model.addAttribute(service.read(eventId));
 	}
 
 	/** 수정 */
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modifyGET(@RequestParam("eventId") int eventId, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void modifyGET(@RequestParam("eventId") int eventId, @ModelAttribute("cri") SearchCriteria cri, Model model)
+			throws Exception {
+		logger.info("이벤트 수정 페이지");
 		model.addAttribute(service.read(eventId));
 	}
-	
 
 	@Transactional
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(Event event, SearchCriteria cri, RedirectAttributes rttr, MultipartFile file, Model model,
 			HttpServletRequest request, int userId) throws Exception {
-		logger.info("mod post!!!");
+		logger.info("이벤트 수정");
 
-		if (file.getOriginalFilename().equals(null) || file.getOriginalFilename().length() == 0) {
+		if (file.getSize() == 0) {
+			event.setImg("/noimage.png");
 			service.update(event);
 			rttr.addFlashAttribute("msg", "success");
 			return "redirect:/event/list";
 		} else {
+			logger.info("---------------------파일 업로드------------------------");
 			logger.info("originalName: " + file.getOriginalFilename());
 			logger.info("size : " + file.getSize());
 			logger.info("contentType : " + file.getContentType());
+			logger.info("--------------------------------------------------------");
 			Event findEvent = service.read(event.getEventId());
-			if (findEvent.getImg() != null) {
+			logger.info("@@@@@@@@@@@"+findEvent.getImg());
+			if (!(findEvent.getImg().equals("/noimage.png"))) {
 				String[] parse = findEvent.getImg().split("/");
-				String sumnail = "s_"+parse[2];
+				String sumnail = "s_" + parse[2];
 				new File("C:/dt/event" + findEvent.getImg()).delete();
 				new File("C:/dt/event/" + userId + "/" + sumnail).delete();
-			} 
+			}
 			UUID uid = UUID.randomUUID();
 			String imgName = uid.toString() + "_" + file.getOriginalFilename();
 			String imgPath = "/" + userId + "/" + imgName;
@@ -153,17 +161,17 @@ public class EventController {
 			rttr.addFlashAttribute("page", cri.getPage());
 			rttr.addFlashAttribute("perPageNum", cri.getPerPageNum());
 			rttr.addFlashAttribute("msg", "success");
-			return "redirect:/event/list?page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
+			return "redirect:/event/list?page=" + cri.getPage() + "&perPageNum=" + cri.getPerPageNum();
 		}
 	}
-	
-	
+
 	/**
 	 * 행사 신청
+	 * 
 	 * @param session
 	 * @param eventId
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@ResponseBody
 	@Transactional
@@ -171,10 +179,10 @@ public class EventController {
 	public ResponseEntity<String> eventApply(HttpSession session, int eventId) throws Exception {
 		logger.info("행사신청서 등록");
 		NormalUser loginUser = (NormalUser) session.getAttribute("login");
-		
+
 		userService.checkDocu(loginUser.getUserId());
 		TruckUser user = truckService.read(loginUser.getUserId());
-		
+
 		String isUpload = userService.isUpload(user.getUserId());
 		if (applierService.checkDup(user.getUserId(), eventId) > 0) {
 			logger.info("중복 신청");
@@ -185,16 +193,14 @@ public class EventController {
 			logger.info("파일 수 부족!");
 			return new ResponseEntity<String>("fail", HttpStatus.BAD_REQUEST);
 		}
-		
+
 		Applier applier = new Applier();
 		applier.setEventId(eventId);
-		applier.setUserId(user.getUserId()); 
-		
+		applier.setUserId(user.getUserId());
+
 		applierService.create(applier);
 		applierService.upCnt(eventId);
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
-	
-	
 
 }

@@ -1,26 +1,12 @@
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%@include file="../include/references.jsp"%>
 <style type="text/css">
-.circle3 {
- width:50px;
- height:50px;
- border-radius:25px;
- -moz-border-radius : 25px;
- -webkit-border-radius : 25px;
- -ms-border-radius :25px;
- -khtml-border-radius : 25px;
- -o-border-radius :25px;
- background:#fd9483;
- font:normal 11px/50px "나눔고딕", "돋움", "굴림";
- color:#fff;
- text-align:center;
-}
-form{
-   text-align: center;
+form {
+	text-align: center;
 }
 </style>
 <script type="text/javascript">
@@ -186,14 +172,6 @@ $(document).ready(function(){
                
             }),
          success: function(error, response, body) {
-            if (error) {
-               console.error(error, response, body);
-            } else if (response.statusCode >= 400) {
-               console.error('HTTP Error: ' + response.statusCode + ' - '
-                     + response.statusMessage + '\n' + body);
-            } else {
-               console.log('JSON 메세지 전송 성공!')
-            }
          }
      });
 	}
@@ -202,59 +180,61 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<%@include file="../include/header.jsp"%>
-<!-- 배너 -->
-  <br>
-  <br>
-  <section id="services" style="margin-top: 0px">
-    <div class="container">
-      <div class="row">
-        <section id="page-breadcrumb">
-          <div class="vertical-center sun">
-            <div class="container">
-              <div class="row">
-                <div class="action">
-                  <div class="col-sm-12">
-                    <h1 class="title">마이페이지</h1>
-                    <p>스케쥴등록</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+	<%@include file="../include/header.jsp"%>
+	<!-- 배너 -->
+	<br>
+	<br>
+	<section id="services" style="margin-top: 0px">
+		<div class="container">
+			<div class="row">
+				<section id="page-breadcrumb">
+					<div class="vertical-center sun">
+						<div class="container">
+							<div class="row">
+								<div class="action">
+									<div class="col-sm-12">
+										<h1 class="title">마이페이지</h1>
+										<p>스케쥴등록</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-        </section>
-        <br>
-      </div>
-    </div>
-  </section>
-  <!-- 배너 -->
-<section id="home-slider">
-<div class="container">
-   <div class="row">
-   	 <input type="hidden" id="param">
-   	 <input type="hidden" id="where" value="upload">
-      <div class="single-features">
-         <form class="form-horizontal" method="post" action="" id="uploadForm" >
-            <input type="button" class="btn btn-common" id="add" value="추가" >
-            <input type="button" class="btn btn-common" id="remove" value="제거" >
-            <hr>
-            <div id="form"> </div>
-               
-               <c:forEach begin="1" end="13" varStatus="status">
-                  <div id="addForm${status.count }"> </div>
-               </c:forEach>
-               
-               <input type="hidden" id="userId" name="userId" value="${login.userId }">
-               <input class="btn btn-common" type="button" id="submit" value="등록">
-               <div class="hide">
-               </div>
-               <a href="schedule"><input class="btn btn-common" type="button" value="취소"></a>
-         </form>
-      </div>
-   </div>
-</div>
-</section>
-<%@include file="../include/footer.jsp"%>
+				</section>
+				<br>
+			</div>
+		</div>
+	</section>
+	<!-- 배너 -->
+	<section id="home-slider">
+		<div class="container">
+			<div class="row">
+				<input type="hidden" id="param"> <input type="hidden"
+					id="where" value="upload">
+				<div class="single-features">
+					<form class="form-horizontal" method="post" action=""
+						id="uploadForm">
+						<input type="button" class="btn btn-common" id="add" value="추가">
+						<input type="button" class="btn btn-common" id="remove" value="제거">
+						<hr>
+						<div id="form"></div>
+
+						<c:forEach begin="1" end="13" varStatus="status">
+							<div id="addForm${status.count }"></div>
+						</c:forEach>
+
+						<input type="hidden" id="userId" name="userId"
+							value="${login.userId }"> <input class="btn btn-common"
+							type="button" id="submit" value="등록">
+						<div class="hide"></div>
+						<a href="schedule"><input class="btn btn-common" type="button"
+							value="취소"></a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<%@include file="../include/footer.jsp"%>
 </body>
 </html>

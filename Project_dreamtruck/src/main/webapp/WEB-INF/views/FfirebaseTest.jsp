@@ -1,10 +1,10 @@
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%@include file="include/references.jsp"%>
-  <script>
+<script>
 	 
   $(document).ready(function() {
 	  $(".sendButton").on("click", function() {
@@ -28,30 +28,19 @@
 	                 
 	              }),
 	           success: function(error, response, body) {
-	              if (error) {
-	                 console.error(error, response, body);
-	              } else if (response.statusCode >= 400) {
-	                 console.error('HTTP Error: ' + response.statusCode + ' - '
-	                       + response.statusMessage + '\n' + body);
-	              } else {
-	                 console.log('JSON 메세지 전송 성공!')
-	              }
 	           }
     		});
   });
 	  
   });
 </script>
-
-
-
 </head>
 <body>
 
-<h2>파이어베이스 데이터보내기</h2>
-<form class="sendButton">
-  <input type="button" id="sendButton" name="sendButton">
-</form>
+	<h2>파이어베이스 데이터보내기</h2>
+	<form class="sendButton">
+		<input type="button" id="sendButton" name="sendButton">
+	</form>
 
 </body>
 </html>

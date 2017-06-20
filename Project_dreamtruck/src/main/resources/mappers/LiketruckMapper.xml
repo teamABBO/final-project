@@ -42,7 +42,10 @@
 
 	<!-- 관심트럭 해제시 마이너스 카운트 (delete와 같이 사용) -->
 	<update id="minuscount">
-	update users set truck_likecnt = truck_likecnt-1 where user_id = #{truckId}
+	<![CDATA[
+		update users set truck_likecnt = truck_likecnt-1 where user_id = #{truckId} 
+		and truck_likecnt > 0
+	]]>
 	</update>
 		
 	<!-- 관심트럭 삭제 -->

@@ -35,199 +35,155 @@ import com.kosta.abbo.user.service.TruckUserService;
 @Controller
 @RequestMapping("/android")
 public class AndroidController {
-	
 
 	@Inject
 	private EventService eventSservice;
-	
+
 	@Inject
 	private NormalUserService normalService;
-	
+
 	@Inject
 	private TruckUserService truckService;
-	
+
 	@Inject
 	private PlanService planService;
 
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@Resource(name = "uploadPath")
 	private String uploadPath;
-	
-	
+
+	/** 안드로이드 로그인 */
 	@RequestMapping("/ismember")
-	   public void ismember(HttpServletResponse response, LoginDTO dto, HttpSession session, Model model) {
-		
+	public void ismember(HttpServletResponse response, LoginDTO dto, HttpSession session, Model model) {
+		logger.info("안드로이드 로그인");
 		NormalUser normalUser = normalService.login(dto);
-		if(normalUser == null){
-			model.addAttribute("msg","success");
+		if (normalUser == null) {
+			model.addAttribute("msg", "success");
 			return;
 		}
-		
-		/*normalService.checkDocu(normalUser.getUserId());*/
-		model.addAttribute("normalUser",normalUser);
-		
-		
-	      // System.out.println(request.getParameter("test"));
-	      response.setContentType("text/html; charset=utf-8");
 
-	      try {
-	         PrintWriter out = response.getWriter();
-	         out.println(normalUser.getType());
-	      } catch (IOException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }
+		model.addAttribute("normalUser", normalUser);
 
-	   }
-
-
-	@RequestMapping("/normaljoinus")
-	public void normalJoinUs(HttpServletResponse response, NormalUser normalUser, RedirectAttributes rttr, Model model){
 		response.setContentType("text/html; charset=utf-8");
-		
-		
+
+		try {
+			PrintWriter out = response.getWriter();
+			out.println(normalUser.getType());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/** 일반회원 회원가입 */
+	@RequestMapping("/normaljoinus")
+	public void normalJoinUs(HttpServletResponse response, NormalUser normalUser, RedirectAttributes rttr,
+			Model model) {
+		logger.info("안드로이드 일반회원 회원가입");
+		response.setContentType("text/html; charset=utf-8");
+
 		normalService.create(normalUser);
-		
-		model.addAttribute("normalUser",normalUser);
-		rttr.addFlashAttribute("msg","success");
-		
-		// 선호구역 숫자화
-				
-		
+
+		model.addAttribute("normalUser", normalUser);
+		rttr.addFlashAttribute("msg", "success");
+
 		try {
 			PrintWriter out = response.getWriter();
 			out.println("OK");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	}
-	
-	@RequestMapping("/truckjoinus")
-	public void truckJoinUs(HttpServletRequest request, HttpServletResponse response,@RequestParam("id") String id, TruckUser truckUser, RedirectAttributes rttr, Model model)
-	throws Exception{
-		response.setContentType("text/html; charset=utf-8");
-		
-		
-		logger.info("트럭 회원가입 POST .....");
-		
-		logger.info(truckUser.toString());
 
-				
+	}
+
+	/** 트럭회원 회원가입 */
+	@RequestMapping("/truckjoinus")
+	public void truckJoinUs(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") String id,
+			TruckUser truckUser, RedirectAttributes rttr, Model model) throws Exception {
+		logger.info("안드로이드 트럭회원 회원가입");
+		response.setContentType("text/html; charset=utf-8");
+
 		truckUser.setTruckImg("/noimage.png");
 		truckService.create(truckUser);
 
-		model.addAttribute("truckUser",truckUser);
-		logger.info(truckUser.toString());
-		
-		rttr.addFlashAttribute("msg","success");
-		
-		
-		
+		model.addAttribute("truckUser", truckUser);
+		rttr.addFlashAttribute("msg", "success");
+
 		try {
 			PrintWriter out = response.getWriter();
 			out.println("OK");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
-	
+
 	@RequestMapping("/firebaseTest")
-	public String firebase(){
+	public String firebase() {
+		logger.info("안드로이드 firebase test");
 		return "/FfirebaseTest";
 	}
-	
-	
+
 	@RequestMapping("/mapMarker")
-	public void mapMarker(HttpServletRequest request, HttpServletResponse response){
+	public void mapMarker(HttpServletRequest request, HttpServletResponse response) {
+		logger.info("안드로이드 정적으로 마커찍기");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out;
 		try {
 			out = response.getWriter();
 			out.println("37.481227,126.886211,준서네 군만두");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
+
 	@RequestMapping("/mapmarkerlist")
-	public void mapMarkerList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public void mapMarkerList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("안드로이드 주변 트럭 찾기");
 		response.setContentType("text/html; charset=utf-8");
-		
 		ObjectMapper objectMapper = new ObjectMapper();
-		
 		List<Plan> list = planService.truck();
-		
 		String jsonList = objectMapper.writeValueAsString(list);
-		
+
 		try {
 			PrintWriter out = response.getWriter();
 			out.println(jsonList);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
+
 	@RequestMapping("/trucklist")
-	public void truckList(@ModelAttribute("cri")SearchCriteria cri, Model model, HttpSession session,
-			HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public void truckList(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("안드로이드 트럭 목록");
 		response.setContentType("text/json; charset=utf-8");
-		
 		ObjectMapper objectMapper = new ObjectMapper();
-		
-		List<TruckUser> list =  truckService.list();
-		
+		List<TruckUser> list = truckService.list();
 		String jsonList = objectMapper.writeValueAsString(list);
-		
+
 		try {
 			PrintWriter out = response.getWriter();
 			out.println(jsonList);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
+
 	@RequestMapping("/eventlist")
-	public void eventList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public void eventList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("안드로이드 행사 목록");
 		response.setContentType("text/json; charset=utf-8");
-		
 		ObjectMapper objectMapper = new ObjectMapper();
-		
 		List<Event> list = eventSservice.list();
-		
 		String jsonList = objectMapper.writeValueAsString(list);
-		
+
 		try {
 			PrintWriter out = response.getWriter();
 			out.println(jsonList);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }

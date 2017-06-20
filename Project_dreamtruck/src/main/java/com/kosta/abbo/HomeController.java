@@ -36,56 +36,49 @@ public class HomeController {
 	private PlanService planservice;
 	@Resource(name = "uploadPath")
 	private String uploadPath;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("메인 페이지");
-		
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+
 		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+
+		model.addAttribute("serverTime", formattedDate);
+
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "/fail", method = RequestMethod.GET)
 	public String fail(Model model) {
 		logger.info("잘못된 유저 타입");
-		
 		return "fail";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/displayFile")
 	public ResponseEntity<byte[]> displayFile(String fileName) throws IOException {
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
 
-		logger.info("화면에 파일 출력");
-		logger.info("FILE NAME : " + fileName);
+		logger.info("화면에 파일 출력 : " + fileName);
 
 		try {
 			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
 			MediaType mType = MediaUtils.getMediaType(formatName);
-			
+
 			HttpHeaders headers = new HttpHeaders();
 
 			in = new FileInputStream(uploadPath + fileName);
 
 			headers.setContentType(mType);
-			
-			/*파일 다운로드
-			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-			headers.add("Content-Disposition",
-					"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");*/
 
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
 
@@ -96,9 +89,9 @@ public class HomeController {
 			in.close();
 		}
 
-		return entity; 
+		return entity;
 	}
-	
+
 	@RequestMapping(value = "/map", method = RequestMethod.GET)
 	public void map(Model model) throws Exception {
 		logger.info("트럭지도 페이지");
@@ -106,17 +99,17 @@ public class HomeController {
 		String jsonlist = objectMapper.writeValueAsString(planservice.truck());
 		model.addAttribute("list", jsonlist);
 	}
-		
+
 	/** 이용안내 */
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public void info() throws Exception {
-		logger.info("info get............................................");
+		logger.info("이용안내 페이지");
 
 	}
-	
+
 	@RequestMapping(value = "/introduction", method = RequestMethod.GET)
 	public void introduction() throws Exception {
-		logger.info("introduction get............................................");
+		logger.info("회사소개 페이지");
 
 	}
 

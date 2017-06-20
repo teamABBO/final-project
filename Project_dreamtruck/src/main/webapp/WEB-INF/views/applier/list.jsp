@@ -1,5 +1,5 @@
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,15 +77,16 @@ $(document).ready(function () {
 	    			dataType : "text",
 	    			success : function(result) {
 	    				if (result == "success") {
-	    					location.reload();
+	    					swal('완료!',
+	    						 '해당 트럭의 참가를 수락하였습니다',
+	    						  'success').then(function(){
+	    							  location.reload();
+	    						  });
+	    					
 	    				}
 	    			}
 	    		});
-			  swal(
-			    '완료!',
-			    '해당 트럭의 참가를 수락하였습니다',
-			    'success'
-			  );
+			  
 			});
 	});
 	
@@ -110,15 +111,13 @@ $(document).ready(function () {
 	    			dataType : "text",
 	    			success : function(result) {
 	    				if (result == "success") {
-	    					location.reload();
+	    					swal('완료!','해당 트럭의 참가를 거절하였습니다','success').then(function(){
+	    							  location.reload();
+	    						  });
 	    				}
 	    			}
 	    		});
-			  swal(
-			    '완료!',
-			    '해당 트럭의 참가를 거절하였습니다',
-			    'success'
-			  );
+			  
 			});
 	});
 	
@@ -141,12 +140,11 @@ $(document).ready(function () {
 	    			}
 	    		}
 	    		if(confirmList == "") {
-	    			swal(
-	    				    '오류!',
-	    				    '트럭을 선택해주세요!',
-	    				    'error'
-	    				  );
-	    			return;
+	    			swal('오류!',
+	    				 '트럭을 선택해주세요!',
+	    				 'error').then(function(){
+	    					  return;
+	    				  });
 	    		} else {
 	    			
 				sendAlarm();
@@ -160,15 +158,15 @@ $(document).ready(function () {
 	    			dataType : "text",
 	    			success : function(result) {
 	    				if (result == "success") {
-	    					location.reload();
+	    					swal('완료!',
+	    						 '선택하신 트럭의 참가를 수락하였습니다',
+	    						 'success').then(function(){
+	    							  location.reload(); 
+	    						  });
 	    				}
 	    			}
 	    		});
-			  swal(
-			    '완료!',
-			    '선택하신 트럭의 참가를 수락하였습니다',
-			    'success'
-			  );
+			  
 	    		}
 			});
 	});
@@ -192,12 +190,11 @@ $(document).ready(function () {
 	    			}
 	    		}
 	    		if(denyList == "") {
-	    			swal(
-	    				    '오류!',
-	    				    '트럭을 선택해주세요!',
-	    				    'error'
-	    				  );
-	    			return;
+	    			swal('오류!',
+	    				 '트럭을 선택해주세요!',
+	    				 'error').then(function(){
+	    					  return;
+	    				  });
 	    		} else {
 	    		
 	    		$.ajax({
@@ -209,15 +206,15 @@ $(document).ready(function () {
 	    			dataType : "text",
 	    			success : function(result) {
 	    				if (result == "success") {
-	    					location.reload();
+	    					swal('완료!',
+	    					     '선택하신 트럭의 참가를 거절하였습니다',
+	    						 'success').then(function(){
+	    						location.reload();
+	    					});
 	    				}
 	    			}
 	    		});
-			  swal(
-			    '완료!',
-			    '선택하신 트럭의 참가를 거절하였습니다',
-			    'success'
-			  );
+			  
 			}
 			});
 	});
@@ -239,14 +236,6 @@ $(document).ready(function () {
                  
               }),
            success: function(error, response, body) {
-              if (error) {
-                 console.error(error, response, body);
-              } else if (response.statusCode >= 400) {
-                 console.error('HTTP Error: ' + response.statusCode + ' - '
-                       + response.statusMessage + '\n' + body);
-              } else {
-                 console.log('JSON 메세지 전송 성공!')
-              }
            }
        });
 	}
@@ -254,70 +243,78 @@ $(document).ready(function () {
 	
 </script>
 <body>
-  <%@include file="../include/header.jsp"%>
-  <!--/#header-->
+	<%@include file="../include/header.jsp"%>
+	<!--/#header-->
 
-  <!-- 배너 -->
-  <br>
-  <br>
-  <section id="services" style="margin-top: 0px">
-    <div class="container">
-      <div class="row">
+	<!-- 배너 -->
+	<br>
+	<br>
+	<section id="services" style="margin-top: 0px">
+		<div class="container">
+			<div class="row">
 
-        <section id="page-breadcrumb">
-          <div class="vertical-center sun">
-            <div class="container">
-              <div class="row">
-                <div class="action">
-                  <div class="col-sm-12">
-                    <h1 class="title">마이페이지</h1>
-                    <p>신청 현황</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+				<section id="page-breadcrumb">
+					<div class="vertical-center sun">
+						<div class="container">
+							<div class="row">
+								<div class="action">
+									<div class="col-sm-12">
+										<h1 class="title">마이페이지</h1>
+										<p>신청 현황</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-        </section>
-        <br>
-      </div>
-    </div>
-  </section>
-  <!-- 배너 -->
+				</section>
+				<br>
+			</div>
+		</div>
+	</section>
+	<!-- 배너 -->
 
 
-  <div class="container">
-    <div class="row">
-      <div class="single-features">
-        <div class="col-md-12">
-          <h2>참가 확정 트럭</h2>
-          <table class="table table-hover" style="text-align: center" id="confirmTable">
-            <tr>
-              <th style="width: 200px">트럭이름</th>
-              <th style="width: 90px">신청날짜</th>
-              <th style="width: 100px">서류 다운로드<br>등본 | 면허증 | 영업신청서 | 사업계획서</th>
-            </tr>
-          </table>
-          <br>
-          <hr>
-          <br>
-          <h2>신청 트럭</h2>
-          <table class="table table-hover" style="text-align: center" id="applyTable">
-            <tr>
-              <th style="width: 20px"><input type="checkbox" id="checkEntire" style="margin-right: 10px;">전체</th>
-              <th style="width: 200px">트럭이름</th>
-              <th style="width: 70px">신청날짜</th>
-              <th style="width: 20px">승인여부</th>
-              <th style="width: 100px"> <button class="btn btn-success" id="checkConfirm">선택 수락</button> <button class="btn btn-warning" id="checkDeny">선택 거절</button></th>
-            </tr>
-          </table>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <input type="hidden" id="sendAlarm" />
-  <%@include file="../include/footer.jsp"%>
-  <!--/#footer-->
+	<div class="container">
+		<div class="row">
+			<div class="single-features">
+				<div class="col-md-12">
+				<a href="/user/myboard"><button type="button" class="btn btn-common pull-right">목록</button></a>
+					<h2>참가 확정 트럭</h2>
+					<table class="table table-hover" style="text-align: center"
+						id="confirmTable">
+						<tr>
+							<th style="width: 200px">트럭이름</th>
+							<th style="width: 90px">신청날짜</th>
+							<th style="width: 100px">서류 다운로드<br>등본 | 면허증 | 영업신청서 |
+								사업계획서
+							</th>
+						</tr>
+					</table>
+					<br>
+					<hr>
+					<br>
+					<h2>신청 트럭</h2>
+					<table class="table table-hover" style="text-align: center"
+						id="applyTable">
+						<tr>
+							<th style="width: 20px"><input type="checkbox"
+								id="checkEntire" style="margin-right: 10px;">전체</th>
+							<th style="width: 200px">트럭이름</th>
+							<th style="width: 70px">신청날짜</th>
+							<th style="width: 20px">승인여부</th>
+							<th style="width: 100px">
+								<button class="btn btn-success" id="checkConfirm">선택 수락</button>
+								<button class="btn btn-warning" id="checkDeny">선택 거절</button>
+							</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="sendAlarm" />
+	<%@include file="../include/footer.jsp"%>
+	<!--/#footer-->
 </body>
 </html>

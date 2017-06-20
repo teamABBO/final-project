@@ -1,5 +1,5 @@
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -679,6 +679,7 @@ function popupOpen(num){
 			}
 		  }); 
 		}else if($(this).val()=='삭제'){
+			var that = $(this);
 			swal({
 				  title: '정말 삭제하시겠습니까?',
 				  text: "삭제된 스케쥴은 복구가 불가능합니다.",
@@ -693,13 +694,14 @@ function popupOpen(num){
 						url : "delete",
 						type : "post",
 						data : {
-							planId: $(this).attr("data-src")
+							planId: that.attr('data-src')
 						},
 						dataType : "text",
 						success : function(result) {
 							if(result == 'deleted'){
-								swal('삭제 성공!', '해당 스케쥴을 삭제하였습니다.', 'success');
-								location.reload();
+								swal('삭제 성공!', '해당 스케쥴을 삭제하였습니다.', 'success').then(function(){
+									location.reload();
+								});
 							}
 						}
 					  });
@@ -722,8 +724,9 @@ function popupOpen(num){
 				dataType : "text",
 				success : function(result) {
 					if(result == 'modify'){
-						swal('수정 성공!', '스케쥴이 정상적으로 수정되었습니다.', 'success');
-						location.reload();
+						swal('수정 성공!', '스케쥴이 정상적으로 수정되었습니다.', 'success').then(function(){
+							location.reload();
+						});
 					}else if(result == 'fail'){
 						swal('수정 실패!', '입력하신 시간에 등록되어있는 스케줄이 있습니다.', 'error');
 					}
@@ -775,54 +778,56 @@ function popupOpen(num){
 </script>
 </head>
 <body>
-<%@include file="../include/header.jsp"%>
-   <!-- 배너 -->
-  <br>
-  <br>
-  <section id="services" style="margin-top: 0px">
-    <div class="container">
-      <div class="row">
+	<%@include file="../include/header.jsp"%>
+	<!-- 배너 -->
+	<br>
+	<br>
+	<section id="services" style="margin-top: 0px">
+		<div class="container">
+			<div class="row">
 
-        <section id="page-breadcrumb">
-          <div class="vertical-center sun">
-            <div class="container">
-              <div class="row">
-                <div class="action">
-                  <div class="col-sm-12">
-                    <h1 class="title">마이페이지</h1>
-                    <p>스케줄관리</p>
-                  </div>
-                </div> 
-              </div>
-            </div>
-          </div>
+				<section id="page-breadcrumb">
+					<div class="vertical-center sun">
+						<div class="container">
+							<div class="row">
+								<div class="action">
+									<div class="col-sm-12">
+										<h1 class="title">마이페이지</h1>
+										<p>스케줄관리</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-        </section>
-        <br>
-      </div>
-    </div>
-  </section>
-  <!-- 배너 -->
-    <!--/#action-->
-<div class="single-features">
-	<input type="hidden" id="where" value="sche">
-	<input type="hidden" id="param">
-	<a href="upload"><input type="button" class="btn btn-common" style="float: right; margin-right: 300px;" value="등록"></a>
-</div>
-<section id="cd-timeline" class="cd-container">
-		
+				</section>
+				<br>
+			</div>
+		</div>
+	</section>
+	<!-- 배너 -->
+	<!--/#action-->
+	<div class="single-features">
+		<input type="hidden" id="where" value="sche"> <input
+			type="hidden" id="param"> <a href="upload"><input
+			type="button" class="btn btn-common"
+			style="float: right; margin-right: 300px;" value="등록"></a>
+	</div>
+	<section id="cd-timeline" class="cd-container">
+
 		<c:forEach begin="0" end="6" varStatus="status">
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-picture" id="day${status.index }">
-				</div> <!-- cd-timeline-img -->
-				<div id="div${status.index }">
-				
 				</div>
-			</div> <!-- cd-timeline-block -->
+				<!-- cd-timeline-img -->
+				<div id="div${status.index }"></div>
+			</div>
+			<!-- cd-timeline-block -->
 		</c:forEach>
-		
-</section> <!-- cd-timeline -->
-<br>
-<%@include file="../include/footer.jsp"%>
+
+	</section>
+	<!-- cd-timeline -->
+	<br>
+	<%@include file="../include/footer.jsp"%>
 </body>
 </html>

@@ -70,11 +70,17 @@ public class PlanDaoImpl implements PlanDao {
 		return SqlSession.selectList(namespace+".search");
 	}
 
+	/**
+	 * 스케줄 등록 유효성 검사
+	 */
 	@Override
 	public Plan uploadCheck(Plan plan) {
 		return SqlSession.selectOne(namespace+".uploadCheck", plan);
 	}
 
+	/**
+	 *  트럭 상세보기 - 지도
+	 */
 	@Override
 	public Plan searchUser(int userId) {
 		return SqlSession.selectOne(namespace+".searchUser", userId);

@@ -22,7 +22,7 @@ public class TruckCheckInterceptor extends HandlerInterceptorAdapter {
 		}
 
 		if (req.getMethod().equals("GET")) {
-			logger.info("dest:" + (uri + query));
+			logger.info("경로 저장 : " + (uri + query));
 			req.getSession().setAttribute("dest", uri + query);
 		}
 	}
@@ -32,7 +32,7 @@ public class TruckCheckInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("login") == null) {
-			logger.info("current user is not logined");
+			logger.info("로그인되지 않은 상태입니다.");
 
 			saveDest(request);
 			response.sendRedirect("/user/login");

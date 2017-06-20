@@ -40,57 +40,50 @@ import com.kosta.abbo.user.service.TruckUserService;
 public class ApplierController {
 	@Resource(name = "uploadPath")
 	private String uploadPath;
-	
+
 	@Inject
 	private ApplierService service;
-	
+
 	@Inject
 	private DocuService docuService;
-	
+
 	@Inject
 	private EventService eventService;
-	
+
 	@Inject
-	private	TruckUserService truckService;
-	
+	private TruckUserService truckService;
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@Transactional
 	@RequestMapping(value = "/list/{eventId}", method = RequestMethod.GET)
-	public String list(Model model, HttpSession session,@PathVariable("eventId") int eventId) throws Exception {
+	public String list(Model model, HttpSession session, @PathVariable("eventId") int eventId) throws Exception {
 		logger.info("신청트럭 목록 화면");
-		
+
 		NormalUser user = (NormalUser) session.getAttribute("login");
-		
 		TruckUser loginUser = truckService.read(user.getUserId());
-		
 		int loginUserId = loginUser.getUserId();
 		int eventUserId = eventService.read(eventId).getUserId();
-		
+
 		if (eventUserId != loginUserId) {
 			return "/fail";
 		} else {
 			ObjectMapper objectMapper = new ObjectMapper();
-	
 			List<Applier> applierList = service.list(eventId);
-	
 			String jsonList = objectMapper.writeValueAsString(applierList);
-			
 			model.addAttribute("applierList", jsonList);
-			logger.info(jsonList);
 			return "/applier/list";
 		}
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/downloadFile")
 	public ResponseEntity<byte[]> downloadFile(int userId, String docuName) throws IOException {
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
 		String fileName = docuService.getPath(userId, docuName);
-		
-		logger.info("파일 다운로드");
-		logger.info("FILE NAME : " + fileName);
+
+		logger.info("파일 다운로드 : " + fileName);
 
 		try {
 			HttpHeaders headers = new HttpHeaders();
@@ -99,81 +92,70 @@ public class ApplierController {
 			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 			headers.add("Content-Disposition",
 					"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
-
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
 		} finally {
 			in.close();
 		}
-
 		return entity;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/confirm")
 	public ResponseEntity<String> confirm(int applierId) throws IOException {
 		logger.info("행사 신청 수락");
 		service.confirm(applierId);
-		return new ResponseEntity<String> ("success", HttpStatus.OK);
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/deny")
 	public ResponseEntity<String> deny(int applierId) throws IOException {
 		logger.info("행사 신청 거절");
 		service.deny(applierId);
-		return new ResponseEntity<String> ("success", HttpStatus.OK);
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/checkConfirm")
 	public ResponseEntity<String> chekcConfirm(String confirmList) throws IOException {
 		logger.info("행사 신청 수락");
-		confirmList = confirmList.substring(0, confirmList.length()-1);
+		confirmList = confirmList.substring(0, confirmList.length() - 1);
 		String[] list = confirmList.split("-");
-		
 		for (String applierId : list) {
 			service.confirm(Integer.parseInt(applierId));
 		}
-		return new ResponseEntity<String> ("success", HttpStatus.OK);
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/checkDeny")
 	public ResponseEntity<String> chekcDeny(String denyList) throws IOException {
 		logger.info("행사 신청 수락");
-		denyList = denyList.substring(0, denyList.length()-1);
+		denyList = denyList.substring(0, denyList.length() - 1);
 		String[] list = denyList.split("-");
-		
+
 		for (String applierId : list) {
 			service.deny(Integer.parseInt(applierId));
 		}
-		return new ResponseEntity<String> ("success", HttpStatus.OK);
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
-	
-	
+
 	@RequestMapping(value = "/event", method = RequestMethod.GET)
 	public String event(Model model, HttpSession session) throws Exception {
 		logger.info("신청 행사 목록 화면");
-		
+
 		NormalUser user = (NormalUser) session.getAttribute("login");
-		
 		TruckUser loginUser = truckService.read(user.getUserId());
-		
 		int loginUserId = loginUser.getUserId();
-		
 		ObjectMapper objectMapper = new ObjectMapper();
-
 		List<Map<String, Object>> eventList = service.myEvent(loginUserId);
-
 		String jsonList = objectMapper.writeValueAsString(eventList);
-		logger.info(jsonList);
 		model.addAttribute("eventList", jsonList);
 
 		return "/applier/event";
 	}
-	
+
 }

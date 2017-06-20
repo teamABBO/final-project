@@ -37,24 +37,14 @@ public class LiketruckServiceImpl implements LiketruckService {
 		dao.update(truckId);
 	}
 	
-	
+	/**
+	 * 관심트럭 체크
+	 */
 	@Override
 	public int checkliketruck(int userId, int truckId) {
 
 		return dao.checkliketruck(userId, truckId);
 	}
-	
-
-	/**
-	 * 관심트럭 상세보기
-	 * @param liketruckId
-	 * @return
-	 */
-	@Override
-	public Liketruck read(int liketruckId) {
-		return dao.read(liketruckId);
-	}
-
 	
 
 	/**
