@@ -111,6 +111,7 @@ $(function(){
 										swal("등록 성공!", "리뷰가 등록되었습니다.", "success");
 										reviewPage=1;
 										getPage("/review/"+targetId+"/"+reviewPage);
+										$("#reviewopen").html("트럭 리뷰 접기");
 										reviewtextObj.val("");
 									}
 								}

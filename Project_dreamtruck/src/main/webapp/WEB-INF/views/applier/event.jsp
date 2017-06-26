@@ -28,7 +28,7 @@ $(document).ready(function () {
 		var listElements = "" +
       	"<tr>" +
       	"	<td>"+eventList[num].EVENTID+"</td>" +
-      	"	<td><a href='/event/detail?eventId="+eventList[num].EVENTID+"'>"+eventList[num].TITLE+"</a></td>" +
+      	"	<td><a href='/event/detail?page=1&perPageNum=9&searchType&keyword=&eventId="+eventList[num].EVENTID+"'>"+eventList[num].TITLE+"</a></td>" +
       	"	<td>"+eventList[num].WRITER+"</td>" +
       	"	<td>"+eventList[num].RECRUIT+"</td>" +
       	"	<td>"+eventList[num].APPLIERCNT+"</td>" +

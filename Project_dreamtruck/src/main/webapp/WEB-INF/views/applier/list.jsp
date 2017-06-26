@@ -18,7 +18,7 @@ $(document).ready(function () {
 		if (applierList[num].success == "o") {
 			$("#confirmTable").append(""+
 				"<tr>" + 
-      				"<td><a href='/truck/read?userId=" + applierList[num].userId + "'>" + applierList[num].applierName + "</a></td>" +
+      				"<td><a href='/truck/read?page=1&perPageNum=9&searchType&keyword=&userId=" + applierList[num].userId + "'>" + applierList[num].applierName + "</a></td>" +
       				"<td>" + applierList[num].regdate + "</td>" +
       				"<td> <a href='/applier/downloadFile?userId=" + applierList[num].userId + "&docuName=Deong'><button class='btn btn-sm glyphicon glyphicon-save' style='background-color: #fd9483; color:#ffffff'></button></a>" + 
       				" || <a href='/applier/downloadFile?userId=" + applierList[num].userId + "&docuName=License'><button class='btn btn-sm glyphicon glyphicon-save' style='background-color: #fd9483; color:#ffffff'></button></a>" + 
@@ -30,7 +30,7 @@ $(document).ready(function () {
 			$("#applyTable").append(""+
 					"<tr>" + 
 						"<td></td>" +
-	      				"<td><a href='/truck/read?userId=" + applierList[num].userId + "'>" + applierList[num].applierName + "</a></td>" +
+	      				"<td><a href='/truck/read?page=1&perPageNum=9&searchType&keyword=&userId=" + applierList[num].userId + "'>" + applierList[num].applierName + "</a></td>" +
 	      				"<td>" + applierList[num].regdate + "</td>" +
 	      				"<td style='color: red'>거절</td>" + 
 	      				"<td></td>" +
@@ -39,7 +39,7 @@ $(document).ready(function () {
 			$("#applyTable").append(""+
 					"<tr data-applierId='" + applierList[num].applierId + "' >" + 
 						"<td><input type='checkbox' class='check' id='" + applierList[num].applierId + "' /></td>" +
-	      				"<td><a href='/truck/read?userId=" + applierList[num].userId + "'>" + applierList[num].applierName + "</a></td>" +
+	      				"<td><a href='/truck/read?page=1&perPageNum=9&searchType&keyword=&userId=" + applierList[num].userId + "'>" + applierList[num].applierName + "</a></td>" +
 	      				"<td>" + applierList[num].regdate + "</td>" +
 	      				"<td style='color: orange'>대기</td>" + 
 	      				"<td> <button class='btn btn-success confirm'>수락</button> <button class='btn btn-warning deny' id='deny'>거절</button></td>" +

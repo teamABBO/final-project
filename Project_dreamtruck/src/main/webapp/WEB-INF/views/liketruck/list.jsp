@@ -146,7 +146,7 @@ body {
 												class="pull-right"><i class="fa fa-heart">&nbsp;${liketruck.truckLikecnt}</i></span>
 										</h4>
 										<a
-											href="../truck/read?page=1&perPageNum=9&searchType&keyword=&userId=${liketruck.truckId }"
+											href="/truck/read?page=1&perPageNum=9&searchType&keyword=&userId=${liketruck.truckId }"
 											class=""><i class="fa fa-eye"> 상세보기</i></a> &nbsp;&nbsp;<a
 											class="delete" id="delete${liketruck.truckId}"><i
 											class="fa fa-ban" style="cursor: pointer;"> 제거</i></a>
